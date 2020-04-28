@@ -12,4 +12,11 @@ Giulia Del Citto:
 
 ### Mockup
 ![cube](./mockup/cube-picture.jpg)
+
+### Links to the documents
+
+Evaluation/README.md
+
+
+
           
