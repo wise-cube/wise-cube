@@ -9,5 +9,5 @@ Giulia Del Citto:
 - Linkedin: https://www.linkedin.com/in/giulia-del-citto-316a8b1a3/
 
 ### Mockup
-<img src='/mockup/cube-picture.jpg'>
+<img src='/mockup/site/cube-picture.jpg'>
           
