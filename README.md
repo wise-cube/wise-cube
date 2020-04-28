@@ -11,7 +11,10 @@ Giulia Del Citto:
  - Linkedin: https://www.linkedin.com/in/giulia-del-citto-316a8b1a3/
 
 ### Mockup
-![cube](./mockup/cube-picture.jpg)
+<p align="center">
+ <img src="mockup/cube-picture.jpg" width="700" )
+</p>
+
 
 ### Links to the documents
 
