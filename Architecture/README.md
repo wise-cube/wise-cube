@@ -19,7 +19,7 @@ In particular when it is placed over a certain NFC tag it shows the player a QR 
 In order to make the game logic we are going to use the following entities.
 
 
-<img src="https://di3go-article-images.s3.eu-central-1.amazonaws.com/uPic/Untitled%20Document-2.png" height="300" >
+<img src="entities.png" height="" >
 
 
 ### The magic cube
