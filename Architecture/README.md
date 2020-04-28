@@ -10,7 +10,7 @@ The system is composed of 5 main parts
 
 That should communicate in this fashion
 
-![Sketch](architecture.png)
+![Sketch](architecture.jpg)
 
 The cube will handle four player for each screen, and will display images received on the player's MQTT channel on the corresponding screen.
 
