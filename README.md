@@ -12,7 +12,7 @@ Giulia Del Citto:
 
 ### Mockup
 <p align="center">
- <img src="mockup/cube-picture.jpg" width="700" )
+ <img src="mockup/cube-picture.jpg" width="600" )
 </p>
 
 
