@@ -76,5 +76,5 @@ __Scenario__: The school organised a school trip in Rome, to visit the monuments
 
 ## Storyboard
 
-![Storyboard](story7.jpg)
+![Storyboard](./story7.jpg)
 
