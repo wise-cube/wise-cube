@@ -12,7 +12,7 @@ That should communicate in this fashion
 
 ![Sketch](https://di3go-article-images.s3.eu-central-1.amazonaws.com/uPic/Sketch.png)
 
-The cube will handle four player, on for each screen, and will display images received on the player's MQTT channel on the corresponding screen.
+The cube will handle four player for each screen, and will display images received on the player's MQTT channel on the corresponding screen.
 
 In particular when it is placed over a certain NFC tag it shows the player a QR code  with the link to play a game with other people on the same cube
 
@@ -24,19 +24,19 @@ In order to make the game logic we are going to use the following entities.
 
 ### The magic cube
 
-The cube will mostly work as a proxy between the server and  the phone/player.
+The cube will mostly work as a proxy between the server and the phone/player.
 
-The hardware is based on a NUCLEO_ST board, preferrably a small form factor one like the [STM32](https://www.st.com/content/st_com/en/products/evaluation-tools/product-evaluation-tools/mcu-mpu-eval-tools/stm32-mcu-mpu-eval-tools/stm32-nucleo-boards/nucleo-f042k6.html). 
+The hardware is based on a NUCLEO_ST board, preferably a small form factor one like the [STM32](https://www.st.com/content/st_com/en/products/evaluation-tools/product-evaluation-tools/mcu-mpu-eval-tools/stm32-mcu-mpu-eval-tools/stm32-nucleo-boards/nucleo-f042k6.html). 
 
-It is connected via wifi ( or possibly any other wireless communication method, as it only interacts with the server ) and talks to an MQTT broker.
+It is connected via WIFI (or possibly any other wireless communication method, as it only interacts with the server) and talks to an MQTT broker.
 
-It aims to have four 96x96 [SSD1327  lcd screens](https://www.reichelt.com/it/it/arduino-display-1-12-display-grove-oled-ssd1327-grv-oled-1-12-p191247.html?r=1) on  4 sides, that will mainly display the qr code to join a game and display some informations, like the correctness of an answer or a scoreboard.
+It aims to have four 96x96 [SSD1327  lcd screens](https://www.reichelt.com/it/it/arduino-display-1-12-display-grove-oled-ssd1327-grv-oled-1-12-p191247.html?r=1) on  4 sides, that will mainly display the qr code to join a game and display some information, like the correctness of an answer or a scoreboard.
 
-One of the remaining two faces will have an nfc reader like the [RC522](https://lastminuteengineers.com/how-rfid-works-rc522-arduino-tutorial/) used to trigger the interactions. This will usually be the bottom face.
+One of the remaining two faces will have an NFC reader like the [RC522](https://lastminuteengineers.com/how-rfid-works-rc522-arduino-tutorial/) used to trigger the interactions. This will usually be the bottom face.
 
 Therefore the last face may be flat or contain some buttons.
 
-In order to interact with 4 screens plus an NFC reader we will use multiple slaves over SPI, but anyway, as our overall bandwidht over SPI for reading and writing data is  limited we will costrain the usage of the screen and rather delegate it to the mobile phone.
+In order to interact with 4 screens plus an NFC reader we will use multiple slaves over SPI, but anyway, as our overall bandwidth over SPI for reading and writing data is  limited we will costrain the usage of the screen and rather delegate it to the mobile phone.
 
 The cube will post and receive some messages over mqtt and 
 
