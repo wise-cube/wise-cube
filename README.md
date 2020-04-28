@@ -15,8 +15,9 @@ Giulia Del Citto:
 
 ### Links to the documents
 
-[evaluetion_directory](Evaluation/README.md)
-
+[Design file](Design/README.md)
+[Architecture file](Architecture/README.md)
+[Evaluetion file](Evaluation/README.md)
 
 
           
