@@ -10,7 +10,7 @@ The system is composed of 5 main parts
 
 That should communicate in this fashion
 
-![Sketch](https://di3go-article-images.s3.eu-central-1.amazonaws.com/uPic/Sketch.png)
+![Sketch](architecture.png)
 
 The cube will handle four player for each screen, and will display images received on the player's MQTT channel on the corresponding screen.
 
