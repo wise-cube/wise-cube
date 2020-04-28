@@ -20,11 +20,11 @@ Roberto Sorce:
 
 ### Links to the documents
 
-[Design file](Design/README.md)
+[Design document](Design/README.md)
 
-[Architecture file](Architecture/README.md)  
+[Architecture document](Architecture/README.md)  
 
-[Evaluetion file](Evaluation/README.md)  
+[Evaluation document](Evaluation/README.md)  
 
 
           
