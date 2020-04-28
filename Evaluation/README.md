@@ -40,9 +40,9 @@ For what concerns the evaluation of each component of our system, we report belo
 
 Technical aspect of the product evaluation includes:
 
-- Failure/Anomalies detection during the communication among each part
+- Failures/Anomalies detection during the communication among each part
 - Behaviours wrt numbers of cubes running and exchanging messages with the broker in terms of latency
-- The ratio between numbers of players (phone) connect and efficiency
+- The ratio between number of players (phones) connected and efficiency
 - How the responsiveness of the webserver change  during the "stress test"
 
 
