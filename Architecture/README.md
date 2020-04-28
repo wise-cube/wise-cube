@@ -2,7 +2,7 @@
 
 The system is composed of 5 main parts
 
-- The magic cube
+- The wise cube
 - NFC Tags
 - A webserver
 - An MQTT broker
