@@ -14,7 +14,7 @@ The aim of the project, developed in co-operation with the ***Museum of Classica
 
 The IoT device, provided by the museum, is an interactive, multi-functional cube composed by LED displays.
 
-The cube contains inside an ***ST-Microelectronics Nucleo board***, stereo speakers, a NFC module to communicate with other sensors placed inside the many rooms of the museum. 
+The cube contains inside an ***ST-Microelectronics Nucleo board***, a NFC module to communicate with other sensors placed inside the many rooms of the museum. 
 
 We took inspiration from the Rubik's cube to develop the shape of the device and to mimic the handling, to give the users something comfortable to use.
 
