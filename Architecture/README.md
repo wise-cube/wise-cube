@@ -2,7 +2,7 @@
 
 The system is composed of 5 main parts
 
-- The magic cube
+- The wise cube
 - NFC Tags
 - A webserver
 - An MQTT broker
@@ -10,7 +10,7 @@ The system is composed of 5 main parts
 
 That should communicate in this fashion
 
-![Sketch](https://di3go-article-images.s3.eu-central-1.amazonaws.com/uPic/Sketch.png)
+![Sketch](architecture.jpg)
 
 The cube will handle four player for each screen, and will display images received on the player's MQTT channel on the corresponding screen.
 
@@ -19,7 +19,7 @@ In particular when it is placed over a certain NFC tag it shows the player a QR 
 In order to make the game logic we are going to use the following entities.
 
 
-<img src="https://di3go-article-images.s3.eu-central-1.amazonaws.com/uPic/Untitled%20Document-2.png" height="300" >
+<img src="entities.png" height="" >
 
 
 ### The magic cube
