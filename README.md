@@ -5,7 +5,7 @@ Wise-cube is a smart cube that allows visitors to play a trivial like game, with
 
 [Giulia Del Citto](https://www.linkedin.com/in/giulia-del-citto-316a8b1a3), 
 [Diego Sonaglia](https://www.linkedin.com/in/diego-sonaglia-66a96915b), 
-[Roberto Sorce](https://www.linkedin.com/in/roberto-sorce-52491512a), 
+[Roberto Sorce](https://www.linkedin.com/in/roberto-sorce-52491512a)
 
 ### Mockup
 Here there is a first mockup of the wise-cube itself!
