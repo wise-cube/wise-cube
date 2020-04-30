@@ -2,6 +2,7 @@
 Wise-cube is a smart cube that allows visitors to play a trivial like game, with questions concerning the artworks they are surrounded by, with the help of NFC and QR codes!
 
 ### Authors
+This project was developed as part of the Internet of Things elective in the MSE of Computer Science at University La Sapienza in Rome.
 
 [Giulia Del Citto](https://www.linkedin.com/in/giulia-del-citto-316a8b1a3), 
 [Diego Sonaglia](https://www.linkedin.com/in/diego-sonaglia-66a96915b), 
