@@ -3,7 +3,7 @@ Wise-cube is a smart cube that allows visitors to play a trivial like game, with
 
 ### Authors
 
-Giulia Del Citto:  
+[Giulia Del Citto](https://www.linkedin.com/in/giulia-del-citto-316a8b1a3)
  - Linkedin: https://www.linkedin.com/in/giulia-del-citto-316a8b1a3/
  
 Diego Sonaglia:  
