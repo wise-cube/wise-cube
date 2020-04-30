@@ -13,6 +13,7 @@ Roberto Sorce:
  - Linkedin: https://www.linkedin.com/in/roberto-sorce-52491512a/
 
 ### Mockup
+Here there is a first mockup of the wise-cube itself!
 <p align="center">
  <img src="mockup/cube-picture.jpg" width="450" )
 </p>
