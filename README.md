@@ -14,17 +14,19 @@ Roberto Sorce:
 
 ### Mockup
 <p align="center">
- <img src="mockup/cube-picture.jpg" width="600" )
+ <img src="mockup/cube-picture.jpg" width="450" )
 </p>
 
 
 ### Links to the documents
 
-[Design document](Design/README.md)
+Here you can find some useful informations
 
-[Architecture document](Architecture/README.md)  
-
-[Evaluation document](Evaluation/README.md)  
+- Design document: Link[Link](Design/README.md)
+- Architecture document: [Link](Architecture/README.md)  
+- Evaluation document:[Link](Evaluation/README.md)  
+- Presentation Video : Work in Progress
+- Technical Video : Work in Progress
 
 
           
