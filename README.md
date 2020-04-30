@@ -22,7 +22,7 @@ Here you can find some useful informations to learn more about the wise-cube
 - Architecture document: [Link](Architecture/README.md)  
 - Evaluation document: [Link](Evaluation/README.md)  
 - Presentation Video : Work in Progress
-- Technical Video : Work in Progress
+- Technical Video : https://youtu.be/B5hpS4fOLXs
 
 
           
