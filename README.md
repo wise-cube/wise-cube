@@ -8,7 +8,7 @@ This project was developed as part of the Internet of Things elective in the MSE
 - [Roberto Sorce](https://www.linkedin.com/in/roberto-sorce-52491512a) 
 
 
-With the help of a Design Advisor from the faculy of Design
+With the help of an advisor from the faculy of Design
 - Francesco Gregori
 
 ### Mockup
