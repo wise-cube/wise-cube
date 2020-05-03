@@ -26,7 +26,7 @@ Once arrived at the museum, the users are prompted to use ***the cube***, to sta
 
 If the users decides to take the alternative tour with the cube, the museum staff will provide the few instructions to use it. 
 
-When the users start their tour through the rooms of the museum, they will discover the ___cube activators___ where to place the cube near the artworks and the cube will play informations from the speakers, and also the cube will display the corresponding QR-code to start playing the game level.
+When the users start their tour through the rooms of the museum, they will discover the ___cube activators___ where to place the cube near the artworks and the cube will display the corresponding QR-code to start playing the game level, depending on the answer the player can receive an explanation or a curiosity on the artworks.
 
 Once the users have completed the visit at the museum, they have completed also all the game levels and at the end the user who have gained the highest score wins the game. 
 
