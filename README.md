@@ -26,8 +26,8 @@ Here you can find some useful informations to learn more about the wise-cube
 - Architecture document: [Link](Architecture/README.md)  
 - Evaluation document: [Link](Evaluation/README.md)  
 - Presentation Video: [Link](https://youtu.be/Edgz3QMJZN0)
-- Presentation Slides:[Link](WiseCube.pdf)  
+- Presentation Slides: [Link](wisecube_presentation.pdf)  
 - Technical Video: [Link](https://youtu.be/yzEvTQlMhxs)
-- Technical Slides: [Link](WiseCube_technical_aspects.pdf)  
+
 
           
