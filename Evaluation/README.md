@@ -34,7 +34,9 @@ For what concerns the evaluation of each component of our system, we report belo
   - Does it look familiar?
   - Does it feel handy (too big or too small)?
   - Is it easy to use? 
+  - Did you have a QR reader app or did you download it ?
   - Gather impressions from the users about the usage, or suggestions to improve the experience.
+  
   
 ### Evaluation of technical aspects
 
