@@ -32,7 +32,7 @@ It is connected via WIFI (or possibly any other wireless communication method, a
 
 It aims to have four 96x96 [SSD1327  lcd screens](https://www.reichelt.com/it/it/arduino-display-1-12-display-grove-oled-ssd1327-grv-oled-1-12-p191247.html?r=1) on  4 sides, that will mainly display the QR code to join a game and display some information, like the correctness of an answer or a scoreboard.
 
-One of the remaining two faces will have an NFC reader like the [RC522](https://lastminuteengineers.com/how-rfid-works-rc522-arduino-tutorial/) used to trigger the interactions. This will usually be the bottom face.
+One of the remaining two faces will have an NFC reader like the [PN532](https://www.amazon.it/HiLetgo-Communication-Arduino-Raspberry-Android/dp/B07ZWV1XZ1/ref=sr_1_4?dchild=1&keywords=pn532&qid=1588680467&sr=8-4) used to trigger the interactions. This will usually be the bottom face.
 
 Therefore, the last face may be flat or contain some buttons.
 
