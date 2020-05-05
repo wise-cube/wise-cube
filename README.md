@@ -28,6 +28,6 @@ Here you can find some useful informations to learn more about the wise-cube
 - Presentation Video: [Link](https://youtu.be/Edgz3QMJZN0)
 - Presentation Slides:[Link](WiseCube.pdf)  
 - Technical Video: [Link](https://youtu.be/yzEvTQlMhxs)
-- Technical Slides:[Link](WiseCube_technical_aspects.pdf)  
+- Technical Slides: [Link](WiseCube_technical_aspects.pdf)  
 
           
