@@ -24,15 +24,20 @@ Our product offers a funny and Interactive user experience, suited either for a 
 
 Once arrived at the museum, the users are prompted to use ***the cube***, to start this new tour experience and to play a game with the artworks, otherwise they can go on taking the classical tour. 
 
-If the users decides to take the alternative tour with the cube, the museum staff will provide the few instructions to use it. 
+If the users decides to take the alternative tour with the cube, the museum staff will provide the few instructions to use it.
 
-When the users start their tour through the rooms of the museum, they will discover the ___cube activators___ where to place the cube near the artworks and the cube will display the corresponding QR-code to start playing the game level, depending on the answer the player can receive an explanation or a curiosity on the artworks.
+Wise-cube provides even an __interactive tour__, which the users can decide to choose, based on the age of the participants.
+The cube offers a dedicated tour experience for the kids, presenting a more simplified and enjoyable journey with respect to didactics, and their educational level and a regular tour for everyone.
+
+When the users start their tour through the rooms of the museum, they will discover the ___cube activators___ where to place the cube near the artworks and the cube will display the corresponding QR-code to start the journey through the museum guided by the __cube__ and playing the game level, depending on the answer the player can receive an explanation or a curiosity on the artworks.
 
 Once the users have completed the visit at the museum, they have completed also all the game levels and at the end the user who have gained the highest score wins the game. 
 
 ## Personas
 
 We identified the user target of our product, introducing the following personas:
+
+![Persona1](./new_persona1.png )
 
 1. Persona
 
@@ -45,6 +50,8 @@ We identified the user target of our product, introducing the following personas
    Income: None  
 
 __Persona 1__: Carlo is a 8 years old kid that lives in Rome, he attends the Elementary school. Carlo likes movies, to read novel books and playing board games and videogames on his smartphone.
+
+![Persona2](./new_persona2.png)
 
 2. Persona
 
@@ -60,15 +67,17 @@ __Persona 2__: Valentina is a 46 years old mom, she's a Mechanical engineer Prof
 
 __Scenario__: Saturday morning, Valentina and Carlo are free, they decide to spend the mornign together visiting a museum, so they decide to go the Museum of Classical Arts of Sapienza University, where Carlo can learn while having fun with his mom. 
 
+![Persona3](./new_persona3.jpg)
+
 3. Persona
 
    Name: Alessandra  
    Surname: Borghi  
-   Age: 17 y.o.   
+   Age: 18 y.o.   
    Gender: Female  
    Education: High school  
-   Career type: Writer  
-   Income: 30.000€  
+   Career type: Student  
+   Income: None
 
 __Persona 3__: Alessandra attends the artistic high school in Tivoli. She likes to hang out with her friends, to practice sports, photography and painting. During the weekends she likes to visit and discover new places and especially to visit museums.
 
@@ -77,4 +86,6 @@ __Scenario__: The school organised a school trip in Rome, to visit the monuments
 ## Storyboard
 
 ![Storyboard](./story7.jpg)
+
+
 
