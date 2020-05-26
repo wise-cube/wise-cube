@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Wise-Cube</title>
+  </head>
+  <body>
+    {% extends "homepage.html" %}
+    {% block content %}
+    <p> This is the interactive guide page </p>
+
+    <div class="Guide" id="Guide">
+        {% if title %}
+          <h1> {{ title }}!</h1>
+        {% endif %}
+
+        {% if txt_q %}
+          <h1> {{ txt_q }}</h1>
+        {% endif %}
+    </div>
+
+    {% endblock %}
+  </body>
+</html>
