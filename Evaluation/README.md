@@ -24,7 +24,7 @@ After showing our product using a mockup, we'd like to collect the opinions of t
 
 For what concerns the evaluation of each component of our system, we report below the metrics considered, always taking into account the __UCD__.
 
-- __Subjective evaluation__: Our users have been subjected to fill a questionnaire, in order to gather suggestions to improve the experience. The data collected through a Google form, about the product and its usage, are useful to measure:
+- __Subjective evaluation__: Our users have been subjected to fill a questionnaire, in order to gather suggestions to improve the experience. The data collected through a [Google form](https://drive.google.com/open?id=1zhA7-tdKlrwFhrzVa_NeZZsIFxUYHAxxEx4Oh-ibjrA), about the product and its usage, are useful to measure:
   - The user's learning rate with the help of our product
   - Impact on the museum tour using Wise-cube
   - Ease of use of the IoT system
