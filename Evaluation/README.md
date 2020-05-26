@@ -24,19 +24,29 @@ After showing our product using a mockup, we'd like to collect the opinions of t
 
 For what concerns the evaluation of each component of our system, we report below the metrics considered, always taking into account the __UCD__.
 
-- Regarding the website:
-  - Does it look good?
-  - Is it easy to use? 
-  - and so on and so forth.
-  - Gather impressions from the users about the usage, or suggestions to improve the experience.
+- __Subjective evaluation__: Our users have been subjected to fill a questionnaire, in order to gather suggestions to improve the experience. The data collected through a Google form, about the product and its usage, are useful to measure:
+  - The user's learning rate with the help of our product
+  - Impact on the museum tour using Wise-cube
+  - Ease of use of the IoT system
+  - Innovative interactive experience from the user's point of view
+  - Familiar design
+  - Difficulties on the usage of a dedicated app (i.e. A QR code scanner)
 
-- Regarding the Cube:
-  - Does it look familiar?
-  - Does it feel handy (too big or too small)?
-  - Is it easy to use? 
-  - Did you have a QR reader app or did you download it ?
-  - Gather impressions from the users about the usage, or suggestions to improve the experience.
+- __Objective evaluation__: Statistic analysis of data coming from different contexts (i.e. questionnaire); Due to COVID-19 emergency, some effective measurments are not possible to carry out on the field, at the moment. 
+  - Statistic effective learning rate based on the game results 
+  - Number of participants 
+  - Number of game played 
+  - Potentially growth of visitors of the museum, wrt the avarage of visitors without the proposed IoT system
   
+  #### Submit to the users the prototype, to retrieve important feedbacks about the game and the tour guide
+
+- __Game Web app evaluation__: 
+  - User interaction (attractive interface)
+  - Severity of questions, regarding the level of difficulty (e.g. Kid's tour, standard tour)
+  
+- __Guide Web app evaluation__:
+  - User interaction (attractive interface)
+  - comprehensiveness of the exposition and the contents, regarding the level of difficulty (e.g. Kid's tour, standard tour)
   
 ### Evaluation of technical aspects
 
