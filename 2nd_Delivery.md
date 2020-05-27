@@ -1,10 +1,14 @@
 ### Comments that you received during the 1st delivery and how you have addressed them
 
-During the presentation of our project that we have develop good idea, with a user centered design, 
-but without the user opinon and also that the evaluation have to be more precise.
+The comment about general idea was good, also for user centered design aspect, but this are not well explain,
+as the user opinon and also the evaluation have to be more precise.
 
 To solve the first point we have done a google form for the user opinion, the question are about the general
 opinion about the museum and the interactive tour, and, about our idea under a different point of view.
+And due to correct the evaluation we have change the evaluation document by inserting specific metrics.
+
+The other problem showed us is the device portability, so in the form we ask to the user and have change the cube
+into a smallest device that contains only one display.
 
 
 ### Changes made to your design, architecture and evaluation plan 
@@ -67,6 +71,6 @@ We have also develop a QR code generator to access in the guide and in the game,
 
 ###### Work in progress
 
-## #List of the functionality that is still missing
+### List of the functionality that is still missing
 
 ###### Work in progress
