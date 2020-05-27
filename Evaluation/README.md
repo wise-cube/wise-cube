@@ -13,7 +13,7 @@ After showing our product using a mockup, we'd like to collect the opinions of t
   ##### Attractiveness 
  Overall impression of the product. We're concerned about the design and perception of the product from the user point of view. Does it catch the interest of users? Is it entertaining? 
 
-  ##### Interaction
+  ##### Ease of interaction
  From the interaction point of view, we ask ourselves if the users find easy to get familiar with our product and to learn how to use it. Does the user feel in control of the interaction? Is it predictable? 
 
   ##### Motivation
