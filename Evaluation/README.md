@@ -2,19 +2,17 @@
 
 ###### Authors: Giulia Del Citto, Diego Sonaglia, Roberto Sorce
 
-To properly evaluate our product, according to our case of study, we decided to resort to the User Centered Design (__UCD__), considering different perspectives and factors that can affect the user experience.
-
-We are going to use a mixture of both subjective and objective metrics to evaluate the quality of service (__QoS__) and to understand how to improve it.
-
 - [X] Brainstorming with design advisor
 - [X] Mockup
 - [X] Evaluation 1
 - [ ] **Prototyping**
 - [ ] Evaluation 2
 - [ ] Product Development
-- [ ] Evaluation 3 ( feedback )
+- [ ] Evaluation 3 (feedback)
 
-After showing our product using a mockup, we'd like to collect the opinions of the users by prompting to submit a form with questions about: 
+To properly evaluate our product, according to our case of study, we decided to resort to the _User Centered Design_ (__UCD__), considering different perspectives and factors that can affect the user experience.
+
+We are going to use a mixture of both subjective and objective metrics to evaluate the quality of service (__QoS__) and to understand how to improve it.
 
 ### Evaluation goals
 
@@ -26,22 +24,17 @@ After showing our product using a mockup, we'd like to collect the opinions of t
   ###### Ease of interaction
  From the interaction point of view, we ask ourselves if the users find easy to get familiar with our product and to learn how to use it. Does the user feel in control of the interaction? Is it predictable? 
   
-  ###### Motivation ( Is it worh it ? )
+  ###### Motivation
  The solution we are proposing is motivating to justify the use of the product during the tour? Is it fun to use? Does the user perceive it as a useful tool to enrich the tour experience offered by the museum? Did it change your experience?
 
 #### Tecnical Aspects
+
   ###### Correctness
+  
   ###### Reactivity
+  
 
 ### Evaluation 1 - Initial Feedback about the Idea
-Valutare apprezzamento/utilitá/consigli per feature da aggiungere 
-
-### Evaluation 2 - User Experience and Technical Evaluation
-Valutazione User Experience con modalitá simili alla fase 1, ma con la differenza che l'utente può effettivamente interagire
-Valutazione tecnica
-
-
-END
 
 ### Evaluation of the user experience
 
@@ -60,6 +53,8 @@ For what concerns the evaluation of each component of our system, we report belo
   - Number of participants 
   - Number of game played 
   - Potentially growth of visitors of the museum, wrt the avarage of visitors without the proposed IoT system
+
+### Evaluation 2 - User Experience and Technical Evaluation
   
   #### Submit to the users the prototype, to retrieve important feedbacks about the game and the tour guide
 
@@ -78,7 +73,7 @@ Technical aspect of the product evaluation includes:
 - Failures/Anomalies detection during the communication among each part
 - Behaviours wrt numbers of cubes running and exchanging messages with the broker in terms of latency
 - The ratio between number of players (phones) connected and efficiency
-- How the responsiveness of the webserver change  during the "stress test"
+- How the responsiveness of the webserver change during the "stress test"
 
 
 
