@@ -8,11 +8,11 @@ We are going to use a mixture of both subjective and objective metrics to evalua
 
 - [X] Brainstorming 
 - [X] Mockup
-- [X] Validazione 1
-- [ ] Sviluppo prototipo 
-- [ ] Validazione 2
-- [ ] Sviluppo prodotto
-- [ ] Validazione 3 ( o feedback )
+- [X] Evaluation 1
+- [ ] **Prototipying**
+- [ ] Evaluation 2
+- [ ] Product Development
+- [ ] Evaluation 3 ( feedback )
 
 After showing our product using a mockup, we'd like to collect the opinions of the users by prompting to submit a form with questions about: 
 
