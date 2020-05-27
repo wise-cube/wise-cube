@@ -18,7 +18,7 @@ After showing our product using a mockup, we'd like to collect the opinions of t
 
 ### Evaluation goals
 
-##### User Experience
+#### User Experience
 
   ###### Attractiveness 
  Overall impression of the product. We're concerned about the design and perception of the product from the user point of view. Does it catch the interest of users? Is it entertaining? 
@@ -29,7 +29,7 @@ After showing our product using a mockup, we'd like to collect the opinions of t
   ###### Motivation ( Is it worh it ? )
  The solution we are proposing is motivating to justify the use of the product during the tour? Is it fun to use? Does the user perceive it as a useful tool to enrich the tour experience offered by the museum? Did it change your experience?
 
-##### Tecnical Aspects
+#### Tecnical Aspects
   ###### Correctness
   ###### Reactivity
 
