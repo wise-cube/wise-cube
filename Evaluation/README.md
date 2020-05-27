@@ -9,7 +9,7 @@ We are going to use a mixture of both subjective and objective metrics to evalua
 - [X] Brainstorming 
 - [X] Mockup
 - [X] Evaluation 1
-- [ ] **Prototipying**
+- [ ] **Prototyping**
 - [ ] Evaluation 2
 - [ ] Product Development
 - [ ] Evaluation 3 ( feedback )
