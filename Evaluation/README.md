@@ -43,7 +43,6 @@ For what concerns the evaluation of each component of our system, we report belo
 - __Subjective evaluation__: Our users have been subjected to fill a questionnaire, in order to gather suggestions to improve the experience. The data collected through a [Google form](https://forms.gle/j8imT1uCAk1TxU6y6), about the product and its usage, are useful to measure:
   - The user's learning rate with the help of our product
   - Impact on the museum tour using Wise-cube
-  - Ease of use of the IoT system
   - Innovative interactive experience from the user's point of view
   - Familiar design
   - Difficulties on the usage of a dedicated app (i.e. A QR code scanner)
@@ -55,14 +54,18 @@ For what concerns the evaluation of each component of our system, we report belo
   - Potentially growth of visitors of the museum, wrt the avarage of visitors without the proposed IoT system
 
 ### Evaluation 2 - User Experience and Technical Evaluation
-  
-  #### Submit to the users the prototype, to retrieve important feedbacks about the game and the tour guide
+
+#### Submit to the users the prototype, to retrieve important feedbacks about the game and the tour guide
+
+In this second phase of evaluation, the users will already tried our product, hence they will be prompted again to fill a new form, with more questions regarding the ease of use of the overall product, the game and the interactive guide.
 
 - __Game Web app evaluation__: 
+  - Ease of use of the gameplay
   - User interaction (attractive interface)
   - Severity of questions, regarding the level of difficulty (e.g. Kid's tour, standard tour)
   
 - __Guide Web app evaluation__:
+  - Ease of use of the guide webpage
   - User interaction (attractive interface)
   - comprehensiveness of the exposition and the contents, regarding the level of difficulty (e.g. Kid's tour, standard tour)
   
@@ -70,14 +73,6 @@ For what concerns the evaluation of each component of our system, we report belo
 
 Technical aspect of the product evaluation includes:
 
-- Failures/Anomalies detection during the communication among each part
-- Behaviours wrt numbers of cubes running and exchanging messages with the broker in terms of latency
-- The ratio between number of players (phones) connected and efficiency
-- How the responsiveness of the webserver change during the "stress test"
-
-
-
-
-
-
-
+- Failures/Anomalies detection during the communication among each component
+- Responsiveness wrt the number of users currently using together the system
+- Latency of messages exchanged by the modules
