@@ -6,7 +6,7 @@ To properly evaluate our product, according to our case of study, we decided to 
 
 We are going to use a mixture of both subjective and objective metrics to evaluate the quality of service (__QoS__) and to understand how to improve it.
 
-- [X] Brainstorming 
+- [X] Brainstorming with design advisor
 - [X] Mockup
 - [X] Evaluation 1
 - [ ] **Prototyping**
