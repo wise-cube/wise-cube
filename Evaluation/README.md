@@ -27,6 +27,15 @@ After showing our product using a mockup, we'd like to collect the opinions of t
   ##### Motivation
  The solution we are proposing is motivating to justify the use of the product during the tour? Is it fun to use? Does the user perceive it as a useful tool to enrich the tour experience offered by the museum? Did it change your experience?
 
+### Evaluation 1 - Initial Feedback about the Idea
+Valutare apprezzamento/utilitá/consigli per feature da aggiungere 
+
+### Evaluation 2 - User Experience and Technical Evaluation
+Valutazione User Experience con modalitá simili alla fase 1, ma con la differenza che l'utente può effettivamente interagire
+Valutazione tecnica
+
+
+END
 
 ### Evaluation of the user experience
 
