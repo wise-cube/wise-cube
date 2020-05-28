@@ -45,24 +45,24 @@ We have also developed a QR code generator to log in the guide and in the game.
 
 - Databes Adapter
 - Game Logic
-- http Web Server ( Flask ) 
+- http Web Server (Flask) 
 
 
 ### Brief list of the functionality that is still missing and will be done till the 3rd and final delivery.
 
 For what concern the code itself
 
-- Riot-os client
-- mqtt/sn client interface
-- mqtt server interface
-- Riot-os NFC reader 
+- Riot-OS client
+- MQTT/SN client interface
+- MQTT server interface
+- Riot-OS NFC reader 
 
 For what concern infrastructure deployment
 
-- Set up Google Cloud Mqtt Broker
+- Set up Google Cloud MQTT Broker
 - Set up Google Cloud DB
-- Set up Heroku App for http/mqtt servers
-- Set up mqttsn/mqtt adapter
+- Set up Heroku App for HTTP/MQTT servers
+- Set up MQTT/MQTT-SN adapter
 
 
 ### Brief presentation of the evaluation conducted since the 1st delivery.
