@@ -117,9 +117,14 @@ def new_answer_trigger():
 def next_round_trigger():
     cube_id=request.args.get('cube_id')
     cube = db.get_cube_by_id(cube_id)
-    cube.curr_round_id += 1
+    game = db.get_game_by_id(cube.curr_game_id)
+    rounds = game.rounds
+    if cube.curr_round_id < len(rounds):
+        cube.curr_round_id += 1
+        return redirect('/cubes')
+    else:
+        return redirect('/cubes')
 
-    return redirect('/cubes')
 
 @flask_server.route('/end_game')
 @flask_server.route('/stop_game')
@@ -139,25 +144,26 @@ def game_page():
     auth_token = request.cookies.get('auth_token')
     player = db.get_player_by_auth_token(auth_token)
     cube = db.get_cube_by_id(player.cube_id)
+    game = db.get_game_by_id(cube.curr_game_id)
+    if game:
 
-    if cube.curr_game_id:
-        game = db.get_game_by_id(cube.curr_game_id)
-        round = game.rounds[cube.curr_game_id]
 
-        choices = json.loads(round.choices)
         round = game.rounds[cube.curr_round_id]
+        choices = json.loads(round.choices)
+
         answer = db.get_answer(player_id=player.id, game_id=cube.curr_game_id, cube_id=cube.id, round_id=round.id)
 
         print(answer)
         print(db.get_answers())
         print(player.id,cube.curr_game_id,cube.id,round.id)
+
         if not answer:
             answer_text = "None"
         elif not answer.correct:
             answer_text="Wrong"
         else:
             answer_text="Right"
-        return render_template('game.htm', game=game, cube=cube, choices=choices, answer=answer_text )
+        return render_template('game.htm', game=game, cube=cube, choices=choices, answer=answer_text, curiosity=round.curiosity, question= round.question_text)
 
     else:
         answer_text = "None"

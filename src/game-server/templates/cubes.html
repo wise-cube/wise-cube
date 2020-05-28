@@ -26,6 +26,7 @@
             </td>
             <td>
                 <a href="{{ url_for("start_game_trigger") + "?cube_id=" + (c.id | string) }}">Start Game</a>
+                <a href="{{ url_for("next_round_trigger") + "?cube_id=" + (c.id | string) }}">Next Round</a>
                 <a href="{{ url_for("stop_game_trigger") + "?cube_id=" + (c.id | string) }}">Stop Game</a>
             </td>
             <td>
