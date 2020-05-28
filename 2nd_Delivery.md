@@ -43,12 +43,26 @@ At the moment, we evaluated only the general idea and the mockup, the next steps
 Since the first delivery, we have developed the database and the relative queries to store the quiz, the guide information, and the data required to manage the system.
 We have also developed a QR code generator to log in the guide and in the game.
 
-###### Work in progress
+- Databes Adapter
+- Game Logic
+- Flask Web Server
 
 
 ### Brief list of the functionality that is still missing and will be done till the 3rd and final delivery.
 
-###### Work in progress
+For what concern the code itself
+
+- Riot-os client
+- mqtt/sn client interface
+- mqtt server interface
+- Riot-os NFC reader 
+
+For what concern infrastructure deployment
+
+- Set up Google Cloud Mqtt Broker
+- Set up Google Cloud DB
+- Set up Heroku App for http/mqtt servers
+- Set up mqttsn/mqtt adapter
 
 
 ### Brief presentation of the evaluation conducted since the 1st delivery.
