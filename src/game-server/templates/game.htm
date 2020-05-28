@@ -19,6 +19,9 @@
             Cube Round: {{ cube.curr_round_id }}
     </div>
     <div>
+    Question: {{ question }}
+    </div>
+    <div>
         Choices:
         {% for c in choices %}
             <a href="/new_answer?ans={{ loop.index - 1 }}"> {{ c }}</a>
@@ -26,6 +29,9 @@
     </div>
     <div>
         Answer: {{ answer }}
+    </div>
+    <div>
+        Curiosity: {{ curiosity }}
     </div>
      {% endif %}
     <div>

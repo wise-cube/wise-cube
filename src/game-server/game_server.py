@@ -7,7 +7,7 @@ from secrets import token_urlsafe  as new_token
 
 import json
 
-HOSTNAME='192.168.1.139'
+HOSTNAME='192.168.1.200'
 PORT=5000
 
 
@@ -123,11 +123,12 @@ class DB:
             g1 = Game(name="Discobulus and Kouros")
             r1 = Round(game_id=1, question_text="What is the original Discobulus statue is made of?",choices='''["Bronze", "Marble", "Plaster", "Wax"]''',correct_answer=1,
                        curiosity="The discus-thrower (Gk. discobolus) has become the iconic image of the Olympic Games, and a fantastic representation of the athletic ideal.")
-            r2 = Round(game_id=1, question_text="What Kouros means?", choices='''["Old, men, especially of noble rank.","Young, girl, especially of noble rank." , "Old, woman, especially of noble rank." "Youth, boy, especially of noble rank."]''',
+            r2 = Round(game_id=1, question_text="What Kouros means?", choices='''["Old, men, especially of noble rank.","Young, girl, especially of noble rank." , "Old, woman, especially of noble rank.", "Youth, boy, especially of noble rank."]''',
                        correct_answer=4, curiosity="Kouros is a perfume for men produced by Yves Saint Laurent.The perfume was introduced in 1981. It was created by perfumer Pierre Bourdon.The perfume was inspired by a trip to Greece Saint Laurent had taken, he was particularly impressed by the kouroi.")
             g1.rounds = [r1, r2]
 
             self.session.add_all([g1, r1, r2])
+            self.session.commit()
 
             g2 = Game(name="Athena and Nike")
             r1 = Round(game_id=1, question_text="When the most famous copy of the Athena was rediscovery?", choices='''["1997", "1797" , "1610", "1893"]''',
@@ -137,6 +138,7 @@ class DB:
             g2.rounds = [r1, r2]
 
             self.session.add_all([g2, r1, r2])
+            self.session.commit()
 
             g3 = Game(name="Lion Gate")
             r1 = Round(game_id=1, question_text="In which ancient town was build the Lion Gate?", choices='''["Jerusalem", "Mycenae", "Delphi", "Athens"]''',
