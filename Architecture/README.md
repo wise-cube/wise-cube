@@ -89,7 +89,7 @@ MQTT port 8883
 
 HTTPS port 443
 
-HTTP port 80 ( yes, it has  )
+HTTP port 80 
 
 MQTT and HTTP rest API follow the same scheme: messages are encoded as a JSON object with one mandatory field: "type" that acts as a selector for the event to be triggered. The remaining fields are type-specific and may contain additional arguments.
 
