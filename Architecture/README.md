@@ -12,14 +12,9 @@ That should communicate in this fashion
 
 ![Sketch](architecture.jpg)
 
-The cube will handle four player for each screen, and will display images received on the player's MQTT channel on the corresponding screen.
+The cube, with the help of an LCD screen, will work as a digital companion for the museum guide and it's NFC reader will be used to trigger interactions.
 
-In particular when it is placed over a certain NFC tag it shows the player a QR code  with the link to play a game with other people on the same cube
-
-In order to make the game logic we are going to use the following entities.
-
-
-<img src="entities.png" height="" >
+Also, the cube will show a qr code that allows to 'register' a phone by simply visiting a link, after that, each time the same page is open again, it will display the current activity, allowing for additional interactions.
 
 
 ### The magic cube
@@ -30,29 +25,28 @@ The hardware is based on a NUCLEO_ST board, preferably a small form factor one l
 
 It is connected via WIFI (or possibly any other wireless communication method, as it only interacts with the server) and talks to an MQTT broker.
 
-It aims to have four 96x96 [SSD1327  lcd screens](https://www.reichelt.com/it/it/arduino-display-1-12-display-grove-oled-ssd1327-grv-oled-1-12-p191247.html?r=1) on  4 sides, that will mainly display the QR code to join a game and display some information, like the correctness of an answer or a scoreboard.
+On the front face there will be an LCD display like [HD44780](https://www.winstar.com.tw/products/character-lcd-display-module/20x4-lcd-display.html) that will mainly display the QR code to join that group and additional informations, like a scoreboard, a timeout, additional descritptions, curiosisties and so on.
+In addition it should give some sort of visual feedback to the user to inform in that the interaction has been correctly triggered.
 
-One of the remaining two faces will have an NFC reader like the [PN532](https://www.amazon.it/HiLetgo-Communication-Arduino-Raspberry-Android/dp/B07ZWV1XZ1/ref=sr_1_4?dchild=1&keywords=pn532&qid=1588680467&sr=8-4) used to trigger the interactions. This will usually be the bottom face.
+It will have an NFC reader like [PN532](https://www.amazon.it/HiLetgo-Communication-Arduino-Raspberry-Android/dp/B07ZWV1XZ1/ref=sr_1_4?dchild=1&keywords=pn532&qid=1588680467&sr=8-4) on the bottom face that will be used to distinguish different interactions, based on the values read from the cards.
 
-Therefore, the last face may be flat or contain some buttons.
+Additionally, the top face will contain some buttons to interact with the cube/
 
-In order to interact with 4 screens plus an NFC reader we will use multiple slaves over SPI, but anyway, as our overall bandwidth over SPI for reading and writing data is  limited we will costrain the usage of the screen and rather delegate it to the mobile phone.
+In order to interact with an NFC reader and a LCD screen we are going to use SPI with multiple slaves.
 
-The cube will post and receive some messages over **MQTT** and in fact the cube will show a QR code that redirects the user to a predefined webpage, along with a token that authenticates him contained in the URL!
+The cube will post and receive some messages over **MQTT/SN**.
 
-This way the user doesn't have to register himself and, as  most phones have now  integrated the feature of opening a qr code from the camera, it doesn't require any additional step!
+Cube interactions:
 
 ###### Start a new Group
-
-This event is triggered with an NFC tag containing  the constant `group_req` 
+This event is triggered with an NFC tag containing the constant `group_req` 
  When triggered it will do the following:
 
 - unsubscribe from all channels
-
-- subscribe on `cube_id` 
-- post a  group_req message over `cube_id` and wait for the server to publish the new group_id and the  4 players_id
-- subscribe to `cube_id/_group_id/player_n_id/+` for each player 
-- Assign a face to each player_id
+- require a new cube id
+- subscribe on `/cube/cube_id` 
+- receive a qr code message on the previous topic
+- display the `join_group` qr code
 
 ###### Start a new Game
 
@@ -61,29 +55,24 @@ This event is triggered with an NFC tag containing the constant `game_req`
  When triggered it will do the following:
 
 - post a `game_req <game_id>`  message over `cube_id/group_id`
-
-- when a qr_message is received on `cube_id/new_group_id/player_n_id` it will show the qr on one of the 4 correponding faces
-- when a status_message is received on `cube_id/new_group_id/player_n_id/status` it will update the face of the corresponding player with a certain information that may depend on the game.
+- listen on the `/cube/cube_id` topic
+- whenever a message is published, display it on the screen in the proper way ( it may be a countdown, a scoreboard, a question and so on ) 
 
 ### NFC Tags
+An NFC tag is a simple integrated circuit with a memory storage, a radio antenna and some logic. They are passive devices, meaning that they do not have integrated battery and need an external source of power in order to work, in this case it is 'drawn' from the device that read it through induction. 
 
-An NFC tag is a simple integrated circuit with a memory storage, a radio antenna and some logic. They are passive devices, meaning that they need an external source of power to work, in this case it is 'drawn' from the device that read it through induction. 
-
-We actually need one of them for each game we want to make available, each of them should store the following values:
+We actually need one of them for each game/interaction we want to make available and some of them for service operations, like resetting the cube's group ( we think that it's easier than button combinations ).
 
 - GROUP_REQ 
-- JOIN_GROUP* <group_id>
-
-- GAME_REQ <game_id>
+- GAME_REQ
+- EXPLAINATION_REQ
+- ( GENERIC_HTML_REQ  for 3rd party integrations ? )
 
 The GROUP_REQ will be used by the staff member to reset the magic cube, whereas the game_req are spread across the museum and will activate different games.
 
-*The JOIN_GROUP tag is an update that should be implemented in a second time.
-The idea is that the cube may have another NFC tag to allow another cube to join his group but has to be deeper investigated. 
-
 ### Game Server 
 
-The Game Server  should implement both the http server and all the game logic.
+The Game Server should implement both the http server and all the game logic.
 It will subscribe to the MQTT broker and listen for incoming messages from the cube.
 On a new publish it will update the database in a coherent way, publish a response over MQTT and notifying the web clients via a rest-API or a web socket.
 
@@ -162,14 +151,15 @@ CLIENT -> SERVER
 }
 ```
 
-### MQTT broker
+### MQTT broker / MQTTSN gateway
 
 A simple mqtt broker that may be implemented with any technology.
 It is only required to bridge the communication between the broker and the Game Server
 
 It should only accept secure TLS connections.
 
-### Database
+Additionally we may need an mqtt/sn gateway for better supporting riot-os.
 
-It is used  by the Game Server to keep historical data and add a persistency layer for future statistics and insights.
+### Database
+The database will contain the status of the group at any moment, therefore most of the game logic is implemented with the help of a consistent set of values and rules.
 
