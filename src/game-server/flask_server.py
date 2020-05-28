@@ -6,7 +6,7 @@ from flask_qrcode import QRcode
 
 flask_server = Flask(__name__, static_folder="static/")
 db = game_server.GameServer()
-db.seed()
+
 socketio = SocketIO(flask_server)
 
 flask_server.config['SERVER_NAME'] = db.host
@@ -52,6 +52,8 @@ def players_page():
 @flask_server.route('/player')
 def player_page():
     auth_token = request.args.get('auth_token')
+    if not auth_token:
+        auth_token = request.cookies.get('auth_token')
     if auth_token:
         player = db.get_player_by_auth_token(auth_token)
         resp = make_response(render_template("player.html", host=db.host, player=player))
@@ -158,7 +160,8 @@ def game_page():
         return render_template('game.htm', game=game, cube=cube, choices=choices, answer=answer_text )
 
     else:
-        return "Currently not playing"
+        answer_text = "None"
+        return render_template('game.htm',cube=cube)
 
 # @socketio.on('message')
 # def handle_message(message):

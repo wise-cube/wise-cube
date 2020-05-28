@@ -1,29 +1,35 @@
 
-<div>
-    Game: {{ game.name }}
-</div>
 
-{% if cube.curr_round_id < 0 %}
+{% if not cube.curr_game_id %}
+<div>
+    Not Playing
+</div>
+{% elif cube.curr_round_id < 0 %}
+    <div>
+    Game: {{ game.name }}
+    </div>
     <div>
         Waiting
     </div>
 {% else %}
-<div>
-        Cube Round: {{ cube.curr_round_id }}
-</div>
-<div>
-    Choices:
-
-    {% for c in choices %}
-
-        <a href="/new_answer?ans={{ loop.index - 1 }}"> {{ c }}</a>
-
-
-    {% endfor %}
-
-
-</div>
+    <div>
+    Game: {{ game.name }}
+    </div>
+    <div>
+            Cube Round: {{ cube.curr_round_id }}
+    </div>
+    <div>
+        Choices:
+        {% for c in choices %}
+            <a href="/new_answer?ans={{ loop.index - 1 }}"> {{ c }}</a>
+        {% endfor %}
+    </div>
     <div>
         Answer: {{ answer }}
+    </div>
+     {% endif %}
+    <div>
+    <a href="{{ url_for('home_page') }}">
+        Home
+    </a>
 </div>
- {% endif %}
