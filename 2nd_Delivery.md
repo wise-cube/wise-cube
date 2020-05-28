@@ -45,7 +45,7 @@ We have also developed a QR code generator to log in the guide and in the game.
 
 - Databes Adapter
 - Game Logic
-- Flask Web Server
+- http Web Server ( Flask ) 
 
 
 ### Brief list of the functionality that is still missing and will be done till the 3rd and final delivery.
