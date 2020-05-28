@@ -58,7 +58,7 @@ The form has been submitted from different type of customers, ranging over from 
  
 From the questionnaire, emerged that the larger part of the consumers visit the museums about 3-5 times in a year, and have tried at least once an interactive tour.
 
-The results of the survey, show that in the user opinion, this kind of activity can be done by everyone, but with a differentation of the tour, and more than 90% of the users think that this activity can support the visitors learning.
+The results of the survey, show that in the user opinion, this kind of activity can be done by everyone, but with a differentiation of the tour, and more than 90% of the users think that this activity can support the visitors learning.
 
 Furthermore, the large part of the users are willing to hold the cube during the tour, but using a smaller device they will appreciate more the experience.
 
