@@ -87,3 +87,4 @@ __Scenario__: The school organised a school trip in Rome, to visit the monuments
 
 
 
+![Link to the previous version of the file ](https://github.com/wise-cube/wise-cube/tree/1st-delivery/Design)
