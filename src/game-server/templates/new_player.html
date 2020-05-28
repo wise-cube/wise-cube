@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>New Player</title>
+</head>
+<body>
+    <form action="/new_player" method="POST" enctype="application/x-www-form-urlencoded">
+        <label for="type">Choose a nickname:</label>
+        <input type="text" name="name" />
+
+        <label for="type">Choose a category:</label>
+
+        <select name="cars" id="cars">
+          <option value="kid">Kid</option>
+          <option value="young">Young</option>
+          <option value="adult">Adult</option>
+        </select>
+
+    <input type="hidden" name="cube_id" value="{{ cube_id }}" />
+    <input type="submit" value="Submit" />
+</form>
+
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Player</title>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js" integrity="sha256-yr4fRk/GU1ehYJPAs8P4JlTgu0Hdsp4ZKrx8bDEDC3I=" crossorigin="anonymous"></script>
+    <script
+			  src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+			  integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs="
+			  crossorigin="anonymous"></script>
+    <script type="text/javascript" charset="utf-8">
+        function getCookie(c_name)
+        {
+            var i,x,y,ARRcookies=document.cookie.split(";");
+
+            for (i=0;i<ARRcookies.length;i++)
+            {
+                x=ARRcookies[i].substr(0,ARRcookies[i].indexOf("="));
+                y=ARRcookies[i].substr(ARRcookies[i].indexOf("=")+1);
+                x=x.replace(/^\s+|\s+$/g,"");
+                if (x==c_name)
+                {
+                    return unescape(y);
+                }
+             }
+        }
+
+          //Sample usage
+        var auth_token = getCookie('auth_token');
+
+        {#var socket = io.connect('/cube/{{ player.cube_id }}');#}
+        var general_socket = io.connect()
+        var cube_socket = io.connect('/cube/{{ player.cube_id }}')
+
+        general_socket.on('connect', function() {
+             socket.emit('connection', {data: ["{{ player.cube_id }}",'I\'m connected!']});
+        });
+
+        general_socket.on('reload', function() {
+             document.location.reload()
+        });
+
+
+
+        </script>
+</head>
+<body>
+    <div>
+        Player id: {{player.id}}
+    </div>
+    <div>
+        Player Name: {{player.name}}
+    </div>
+    <div id="game-box">
+        Game Div
+    </div>
+</body>
+</html>
