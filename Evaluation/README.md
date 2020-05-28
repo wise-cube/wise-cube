@@ -76,3 +76,5 @@ Technical aspect of the product evaluation includes:
 - Failures/Anomalies detection during the communication among each component
 - Responsiveness wrt the number of users currently using together the system
 - Latency of messages exchanged by the modules
+
+![Link to old Evaluation file](https://github.com/wise-cube/wise-cube/tree/1st-delivery/Evaluation)
