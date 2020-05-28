@@ -7,7 +7,7 @@ from secrets import token_urlsafe  as new_token
 
 import json
 
-HOSTNAME='192.168.1.200'
+HOSTNAME='192.168.1.139'
 PORT=5000
 
 
@@ -74,6 +74,7 @@ class Round(Base):
     question_text = Column(String)
     choices = Column(String)
     correct_answer = Column(Integer)
+    curiosity = Column(String)
 
 
 
@@ -119,12 +120,31 @@ class DB:
             players += [Player(name="Pippo",auth_token=new_token(32))]
             cube.players = players
 
-            g = Game(name="Julius Caesar")
-            r1 = Round(game_id=1, question_text="When did he die ?",choices='''["lion","zebra","gazelle"]''',correct_answer=1)
-            r2 = Round(game_id=1, question_text="When did she die ?", choices='''["lion","zebra","gazelle"]''',correct_answer=2)
-            g.rounds = [r1, r2]
+            g1 = Game(name="Discobulus and Kouros")
+            r1 = Round(game_id=1, question_text="What is the original Discobulus statue is made of?",choices='''["Bronze", "Marble", "Plaster", "Wax"]''',correct_answer=1,
+                       curiosity="The discus-thrower (Gk. discobolus) has become the iconic image of the Olympic Games, and a fantastic representation of the athletic ideal.")
+            r2 = Round(game_id=1, question_text="What Kouros means?", choices='''["Old, men, especially of noble rank.","Young, girl, especially of noble rank." , "Old, woman, especially of noble rank." "Youth, boy, especially of noble rank."]''',
+                       correct_answer=4, curiosity="Kouros is a perfume for men produced by Yves Saint Laurent.The perfume was introduced in 1981. It was created by perfumer Pierre Bourdon.The perfume was inspired by a trip to Greece Saint Laurent had taken, he was particularly impressed by the kouroi.")
+            g1.rounds = [r1, r2]
 
-            self.session.add_all([g, r1, r2])
+            self.session.add_all([g1, r1, r2])
+
+            g2 = Game(name="Athena and Nike")
+            r1 = Round(game_id=1, question_text="When the most famous copy of the Athena was rediscovery?", choices='''["1997", "1797" , "1610", "1893"]''',
+                       correct_answer=2 , curiosity= "Upon rediscovery, it was purchased by Vincenzo Pacetti, who added the peak of the helmet, the straight forearm, the hands, the feet, the snakes, and a section of the cloak, and polished the overall surface. He then sold it to the French Directory, which transported it to Rome, where it was soon seized by Neapolitan armies when they briefly held the city from November to December 1798 during the opening stages of the War of the Second Coalition. France then regained it in the Treaty of Florence, and it was displayed at the Louvre from December 1803 onwards.")
+            r2 = Round(game_id=1, question_text="Where is exposed the original Nike of Samothrace?", choices='''[ "National Archaeological Museum, Athens" , "Louvre Museum, Paris", "Uffizzi gallery, Florence", "MoMa, New York"]''',
+                       correct_answer=2, curiosity="The Nike company takes its name from Nike, the Greek goddess of victory, the Nike logo represent the statue's wing.")
+            g2.rounds = [r1, r2]
+
+            self.session.add_all([g2, r1, r2])
+
+            g3 = Game(name="Lion Gate")
+            r1 = Round(game_id=1, question_text="In which ancient town was build the Lion Gate?", choices='''["Jerusalem", "Mycenae", "Delphi", "Athens"]''',
+                       correct_answer=2, curiosity="In the same archaelogical site of Mycenae has been discovered the famouse Mask of Agamemnon (gold funeral mask).The mask, displayed in the National Archaeological Museum of Athens, has been described by Cathy Gere as the 'Mona Lisa of prehistory' ")
+
+            g3.rounds = [r1]
+
+            self.session.add_all([g3, r1])
 
             self.session.add_all(players)
             self.session.add(cube)
