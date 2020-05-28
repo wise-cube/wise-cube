@@ -4,13 +4,11 @@ from sqlalchemy.orm import relationship, sessionmaker
 from sqlalchemy import create_engine, MetaData
 from sqlalchemy import Column, Integer, String, ForeignKey
 from secrets import token_urlsafe  as new_token
-import random
-import string
 
-from pprint import pprint
 import json
 
-
+HOSTNAME='192.168.1.200'
+PORT=5000
 
 
 Base = declarative_base()
@@ -195,8 +193,8 @@ class DB:
 
 
 class GameServer(DB):
-    hostname = '192.168.1.200'
-    port = 5000
+    hostname = HOSTNAME
+    port = PORT
     host = f"{hostname}:{port}"
 
     def new_cube(self, cube_id):
@@ -267,5 +265,5 @@ class GameServer(DB):
 
 
 
-
+db = GameServer().seed()
 
