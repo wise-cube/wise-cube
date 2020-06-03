@@ -8,10 +8,16 @@ In this document we're concerned about the design aspects of the IoT system prop
 
 The aim of the project, developed in co-operation with the ***Museum of Classical Arts*** of Sapienza University, is to improve the user experience during the tour, offering information with innovative techniques and a different kind of entertainment.
 
+Our product offers a funny and interactive user experience, suited either for a single user, or for multiple users together. Single visitors can even find other participants to play with, so to challenge them and even socialise.
+
+Once arrived at the museum, the users are prompted to use the device to start this new tour experience and to play a game with the artworks, otherwise they can go on, taking the classical tour. 
+
+If the users decides to take the alternative tour with our product, the museum staff will provide the few instructions to use it.
+
 
 ## Product
 
-###### Description
+##### Description
 
 Wise-cube is an IoT device, provided by the museum: it is an interactive, multi-functional cube and an intelligent die that acts as a controller for an interactive quiz game.
 
@@ -21,10 +27,10 @@ The device has embedded:
    - MPU 9250 sensor (Accelerometer + Gyroscope + Magnetometer)
    - NFC module to communicate with other sensors placed inside the many rooms of the museum. 
 
-When the visitors begin the experience, it is given a **wise-cube**.
+When the visitors begin the experience, it is given a **Wise-cube**.
 
 
-###### Trivial game
+##### User experience
 The game, will be described as a trivial quiz game, in which the players challenge themselves, learning about the artworks of the museum. The aim of the game is to gain the highest score. The game is mainly aimed for kids but it can be played by everyone.
 
 Each user, before starting the interactive game, select his own __avatar__, by **shaking** the cube.
@@ -44,19 +50,9 @@ The user is prompted with a question on the screen, if he answers correctly he w
 
 Each player has one chance for each installment and the player that advances more is the winner at the end.
 
+Wise-cube provides even an __interactive tour__. The device offers a dedicated tour experience for the kids, presenting a more simplified and enjoyable journey with respect to didactics, and their educational level and a regular tour for everyone.
 
-###### User experience
-
-Our product offers a funny and interactive user experience, suited either for a single user, or for multiple users together. Single visitors can even find other participants to play with, so to challenge them and even socialise.
-
-Once arrived at the museum, the users are prompted to use the device to start this new tour experience and to play a game with the artworks, otherwise they can go on, taking the classical tour. 
-
-If the users decides to take the alternative tour with our product, the museum staff will provide the few instructions to use it.
-
-Wise-cube provides even an __interactive tour__, which the users can decide to choose, based on the age of the participants.
-The device offers a dedicated tour experience for the kids, presenting a more simplified and enjoyable journey with respect to didactics, and their educational level and a regular tour for everyone.
-
-When the users start their tour through the rooms of the museum, they will discover the ___activators___ where to place the IoT device near the artworks and it will display the corresponding QR-code to start the journey through the museum, guided by our prototype and playing the game level. Depending on the answer to the question, the player will discover a curiosity about the artworks.
+When the users start their tour through the rooms of the museum, they will discover the ___activators___ where to place the IoT device near the artworks and it will display the corresponding user avatar to start the journey through the museum, guided by our prototype and playing the game level. Depending on the answer to the question, the player will discover a curiosity about the artworks.
 
 Once the users have completed the visit at the museum, they have completed also all the game levels and at the end the user who have gained the highest score wins the game. 
 
@@ -65,7 +61,9 @@ Once the users have completed the visit at the museum, they have completed also 
 
 We identified the user target of our product, introducing the following personas:
 
-![Persona1](./new_persona1.png )
+__Persona 1__: Carlo is a 8 years old kid that lives in Rome, he attends the Elementary school. Carlo likes movies, to read novel books and playing board games and videogames on his smartphone.
+
+![Persona1](./new_persona1.png)
 
 1. Persona
 
@@ -77,7 +75,8 @@ We identified the user target of our product, introducing the following personas
    Career type: Student    
    Income: None  
 
-__Persona 1__: Carlo is a 8 years old kid that lives in Rome, he attends the Elementary school. Carlo likes movies, to read novel books and playing board games and videogames on his smartphone.
+
+__Persona 2__: Valentina is a 46 years old mom, she's a Mechanical engineer Professor at La Sapienza University. She likes playing with her son Carlo and in the free time, she likes to visit museums.
 
 ![Persona2](./new_persona2.png)
 
@@ -91,9 +90,9 @@ __Persona 1__: Carlo is a 8 years old kid that lives in Rome, he attends the Ele
    Career type: Professor  
    Income: 60.000€  
 
-__Persona 2__: Valentina is a 46 years old mom, she's a Mechanical engineer Professor at La Sapienza University. She likes playing with her son Carlo and in the free time, she likes to visit museums.
-
 __Scenario__: Saturday morning, Valentina and Carlo are free, they decide to spend the mornign together visiting a museum, so they decide to go the Museum of Classical Arts of Sapienza University, where Carlo can learn while having fun with his mom. 
+
+__Persona 3__: Alessandra attends the artistic high school in Tivoli. She likes to hang out with her friends, to practice sports, photography and painting. During the weekends she likes to visit and discover new places and especially to visit museums.
 
 ![Persona3](./new_persona3.jpg)
 
@@ -106,8 +105,6 @@ __Scenario__: Saturday morning, Valentina and Carlo are free, they decide to spe
    Education: High school  
    Career type: Student  
    Income: None
-
-__Persona 3__: Alessandra attends the artistic high school in Tivoli. She likes to hang out with her friends, to practice sports, photography and painting. During the weekends she likes to visit and discover new places and especially to visit museums.
 
 __Scenario__: The school organised a school trip in Rome, to visit the monuments and the museums of the capital city. Among the many museums of the city, the school decided to visit the Museum of Classical Arts of Sapienza university. Here they will be divided in groups and start visiting the museum with the new device. Thanks to the cube and the interactive games, they challenge each other groups discovering interesting facts about the artworks.
 
