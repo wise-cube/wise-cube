@@ -12,9 +12,24 @@ The aim of the project, developed in co-operation with the ***Museum of Classica
 
 ###### Description
 
-The IoT device, provided by the museum, is an interactive, multi-functional gadget composed by LED displays.
+Wise-cube is an IoT device, provided by the museum: it is an interactive, multi-functional cube and an intelligent die that acts as a controller for an interactive quiz game.
 
-The device has an embedded ***ST-Microelectronics Nucleo board***, a NFC module to communicate with other sensors placed inside the many rooms of the museum. 
+The device has embedded:
+   - ***ST-Microelectronics Nucleo board***
+   - Dot matrix LED display
+   - MPU 9250 sensor (Accelerometer + Gyroscope + Magnetometer)
+   - NFC module to communicate with other sensors placed inside the many rooms of the museum. 
+
+When the visitors begin the experience, it is given a **wise-cube**.
+
+Each user, to start the interactive game, select his own __avatar__, by **shaking** the cube.
+The **8x8 pixel avatar** identifies each player, and it is shown on the display.
+
+
+![avatar](./avatar.png)
+
+In the museum there will be various placements, the **cube activators**, that consist of **1 Screen** and **5 NFC Cards**.
+
 
 ###### User experience
 
