@@ -8,6 +8,7 @@ In this document we're concerned about the design aspects of the IoT system prop
 
 The aim of the project, developed in co-operation with the ***Museum of Classical Arts*** of Sapienza University, is to improve the user experience during the tour, offering information with innovative techniques and a different kind of entertainment.
 
+
 ## Product
 
 ###### Description
@@ -22,13 +23,26 @@ The device has embedded:
 
 When the visitors begin the experience, it is given a **wise-cube**.
 
-Each user, to start the interactive game, select his own __avatar__, by **shaking** the cube.
-The **8x8 pixel avatar** identifies each player, and it is shown on the display.
 
+###### Trivial game
+The game, will be described as a trivial quiz game, in which the players challenge themselves, learning about the artworks of the museum. The aim of the game is to gain the highest score. The game is mainly aimed for kids but it can be played by everyone.
+
+Each user, before starting the interactive game, select his own __avatar__, by **shaking** the cube.
+The **8x8 pixel avatar** identifies each player, and it is shown on the display.
 
 ![avatar](./avatar.png)
 
-In the museum there will be various placements, the **cube activators**, that consist of **1 Screen** and **5 NFC Cards**.
+In the museum there will be various placements, the **cube activators**, that consist of **one screen** and **five NFC Cards** and a **box activator** where the players throw the cube. In addition, if the users need it, instead of using the screen provided in each placement, they can use their own smartphones to display the questions of the game.
+
+The players to start the game, will place Wise-cube on the activator, the cube randomly chooses a user and displays his avatar on the screen, the designated visitor picks it up. 
+
+The cube will detect that the user has picked it up and notifies with an animation on the screen, now it's ready to be thrown. 
+
+The player throws wise-cube and, with the help of an accelerometer, the cube will detect the face on which it landed, then, the player could obtain the number of points, shown on the screen, but only if the user answers correctly to the upcoming question.
+
+The user is prompted with a question on the screen, if he answers correctly he will roll again the die, otherwise he will pass the turn to the next player.
+
+Each player has one chance for each installment and the player that advances more is the winner at the end.
 
 
 ###### User experience
@@ -45,6 +59,7 @@ The device offers a dedicated tour experience for the kids, presenting a more si
 When the users start their tour through the rooms of the museum, they will discover the ___activators___ where to place the IoT device near the artworks and it will display the corresponding QR-code to start the journey through the museum, guided by our prototype and playing the game level. Depending on the answer to the question, the player will discover a curiosity about the artworks.
 
 Once the users have completed the visit at the museum, they have completed also all the game levels and at the end the user who have gained the highest score wins the game. 
+
 
 ## Personas
 
