@@ -27,12 +27,23 @@ We are going to use a mixture of both subjective and objective metrics to evalua
   ###### Motivation
  The solution we are proposing is motivating to justify the use of the product during the tour? Is it fun to use? Does the user perceive it as a useful tool to enrich the tour experience offered by the museum? Did it change your experience?
 
-#### Tecnical Aspects
 
-  ###### Correctness
-  
-  ###### Reactivity
-  
+#### Technical Challenges
+1. Detect pick-up motion 
+2. Detect proper roll motion ( anti-cheating )
+3. The cube will be probably be higly biased, due to its uneven mass distribution. 
+   Anyway this can be easily fixed by getting statistics about the faces occurrency distribution and implement one of the following strategies:
+   - In-game balancing: the faces that occurr less have the effect of advancing the player of  more tiles in the board.
+   - Physical balancing: Adding weights on the faces that occurr less should make the outcome more uniform
+4. Various sensors involved
+
+   - PN532 NFC module
+
+   - MPU-9250 Nine-Axis (Gyro + Accelerometer + Compass) Sensor
+
+   - 8x8 LED Dot Matrix
+5. Real Time communication between the cube and the webapp
+6. Power consumption
 
 ### Evaluation 1 - Initial Feedback about the Idea
 
