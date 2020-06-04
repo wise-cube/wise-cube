@@ -23,8 +23,8 @@ The hardware is based on a NUCLEO STM32 board, prefrerably a small form factor o
 
  It is connected to the internet via WIFI (or possibly any other wireless communication method, as it only interacts with the server) and talks to an MQTT/SN gateway.
 
-- On the front face there will be a **8x8 points Led Matrix** display, like the SK6812 or WS2812.
-- Inside the cube there is **9 Axis Accelerometer, GyroScope and Magnetometer MPU-9250**
+- On the top face there will be a **8x8 points Led Matrix** display, like the SK6812 or WS2812.
+- Inside the cube there is **9 Axis Accelerometer, GyroScope and Magnetometer MPU-9250** and a **3.7v battery pack** with a charging connector.
 - It will have an **NFC reader like [PN532]**(https://www.amazon.it/HiLetgo-Communication-Arduino-Raspberry-Android/dp/B07ZWV1XZ1/ref=sr_1_4?dchild=1&keywords=pn532&qid=1588680467&sr=8-4) on the bottom face that will be used to distinguish different interactions, based on the values read from the cards.
 
 Additionally, the remaining faces may host additional buttons for other interactions.
