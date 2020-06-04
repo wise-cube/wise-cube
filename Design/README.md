@@ -23,9 +23,10 @@ Wise-cube is an IoT device, provided by the museum: it is an interactive, multi-
 
 The device has embedded:
    - ***ST-Microelectronics Nucleo board***
-   - Dot matrix LED display
+   - 8x8 Dot matrix LED display
+   - A bettery oack 
    - MPU 9250 sensor (Accelerometer + Gyroscope + Magnetometer)
-   - NFC module to communicate with other sensors placed inside the many rooms of the museum. 
+   - NFC module.
 
 When the visitors begin the experience, it is given a **Wise-cube**.
 
@@ -114,4 +115,4 @@ __Scenario__: The school organised a school trip in Rome, to visit the monuments
 
 
 
-![Link to the previous version of the file ](https://github.com/wise-cube/wise-cube/tree/1st-delivery/Design)
+![Link to the previous version of the file ](https://github.com/wise-cube/wise-cube/tree/1st-delivery/Design/README.md)
