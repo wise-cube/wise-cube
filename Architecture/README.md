@@ -72,7 +72,7 @@ This event is triggered with an NFC tag containing the constant `game_req_X`
 ### NFC Tags
 An NFC tag is a simple integrated circuit with a memory storage, a radio antenna and some logic. They are passive devices, meaning that they do not have integrated battery and need an external source of power in order to work, in this case it is 'drawn' from the device that read it through induction. 
 
-We actually need one of the game_req for each game/interaction we want to make available, and some of them for service operations, in total there will be the following cards:
+We actually need one of the `game_req` and four `ans_x` tag for each game/interaction we want to make available, and some of them for service operations, in total there will be the following cards:
 
 - GROUP_REQ 
 
