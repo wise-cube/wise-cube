@@ -45,7 +45,6 @@ For what concerns the evaluation of each component of our system, we report belo
   - Impact on the museum tour using Wise-cube
   - Innovative interactive experience from the user's point of view
   - Familiar design
-  - Difficulties on the usage of a dedicated app (i.e. A QR code scanner)
 
 - __Objective evaluation__: Statistic analysis of data coming from different contexts (i.e. questionnaire); Due to COVID-19 emergency, some effective measurments are not possible to carry out on the field, at the moment. 
   - Statistic effective learning rate based on the game results 
@@ -57,17 +56,12 @@ For what concerns the evaluation of each component of our system, we report belo
 
 #### Submit to the users the prototype, to retrieve important feedbacks about the game and the tour guide
 
-In this second phase of evaluation, the users will already tried our product, hence they will be prompted again to fill a new form, with more questions regarding the ease of use of the overall product, the game and the interactive guide.
+In this second phase of evaluation, the users will already tried our product, hence they will be prompted again to fill a new form, with more questions regarding the ease of use of the overall product and the game.
 
 - __Game Web app evaluation__: 
   - Ease of use of the gameplay
   - User interaction (attractive interface)
   - Severity of questions, regarding the level of difficulty (e.g. Kid's tour, standard tour)
-  
-- __Guide Web app evaluation__:
-  - Ease of use of the guide webpage
-  - User interaction (attractive interface)
-  - comprehensiveness of the exposition and the contents, regarding the level of difficulty (e.g. Kid's tour, standard tour)
   
 ### Evaluation of technical aspects
 
