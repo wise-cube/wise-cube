@@ -33,7 +33,7 @@ The cube will post and receive some messages over **MQTT/SN**.
 
 Cube interactions:
 
-###### Start a new Group
+##### Start a new Group
 This event is triggered with an NFC tag containing the constant `group_req` 
  When triggered it will do the following:
 
@@ -41,7 +41,7 @@ This event is triggered with an NFC tag containing the constant `group_req`
 - Start to configure the first player
 - Wait for another `group_req` card to end customization 
 
-###### Add a new Player to current Group
+##### Add a new Player to current Group
 This event is triggered automatically after a new group event
  When triggered it will do the following:
 
@@ -52,7 +52,7 @@ At this point, the player has two choices:
 
 - On acceptance it will notify the server by publishing on the `/cube/cube_id` channel
 
-###### Start a new Game/Interaction
+##### Start a new Game/Interaction
 
 This event is triggered with an NFC tag containing the constant `game_req_X` 
 
@@ -81,8 +81,8 @@ We actually need one of the game_req for each game/interaction we want to make a
 - ANS_C
 - ANS_D
 - GAME_REQ_1
-...
-- GAME_REQ_2
+- ...
+- GAME_REQ_N
 
 The GROUP_REQ will be used by the staff member to reset the magic cube, whereas the game_req are spread across the museum and will activate different games.
 
