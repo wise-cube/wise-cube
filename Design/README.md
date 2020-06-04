@@ -24,7 +24,7 @@ Wise-cube is an IoT device, provided by the museum: it is an interactive, multi-
 The device has embedded:
    - ***ST-Microelectronics Nucleo board***
    - 8x8 Dot matrix LED display
-   - A bettery oack 
+   - A battery pack 
    - MPU 9250 sensor (Accelerometer + Gyroscope + Magnetometer)
    - NFC module.
 
