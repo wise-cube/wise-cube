@@ -1,37 +1,20 @@
 from flask import Flask, render_template, request, abort, redirect, make_response
-import game_server
+import backend
 from flask_socketio import SocketIO
 import json
 from flask_qrcode import QRcode
 
+
+from loguru import logger
+
 flask_server = Flask(__name__, static_folder="static/")
-db = game_server.GameServer()
+db = backend.GameServer()
 
 socketio = SocketIO(flask_server)
 
 flask_server.config['SERVER_NAME'] = db.host
 QRcode(flask_server)
-# flask_server.config['SECRET_KEY'] = 'secret!'
 
-#
-# @flask_server.route('/')
-# @flask_server.route('/guide/<title>/<txt_q>', methods=['GET', 'POST'])
-# @flask_server.route('/game/<question>/<a>/<b>/<c>/<d>/<txt_a>', methods=['GET', 'POST'])
-# def homepage():
-#     if request.method == 'GET':
-#         ty = request.args.get('t')
-#         title="prova titolo"
-#         txt_q="prova testo"
-#         txt_a="prova testo risp"
-#         a="prova a"
-#         b="prova b"
-#         c="prova d"
-#         d="prova D"
-#         question="prova domanda"
-#         if ty == "txt":
-#             return render_template("guide.html", title=title, txt_q=txt_q)
-#         else:
-#             return render_template("game.html", question=question, a=a, b=b, c=c, d=d, txt_a=txt_a)
 
 @flask_server.route('/')
 @flask_server.route('/home')
@@ -184,9 +167,9 @@ def handle_my_custom_event(json):
     socketio.emit("")
 
 
-
-
+@logger.catch
+def main():
+	    flask_server.run()
+	    
 if __name__ == '__main__':
-
-
-    flask_server.run()
+	main()
