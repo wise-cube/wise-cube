@@ -1,0 +1,21 @@
+{% set pagename='Debug Page' %}
+{% extends 'base.html' %}
+{% block body %}
+<div class="container">
+    <h2 class="title">Cubes</h2>
+        {% include 'tables/cubes.htm' %}
+
+    <h2 class="title">Players</h2>
+        {% include 'tables/players.htm' %}
+
+    <h2 class="title">Games</h2>
+        {% include 'tables/games.htm' %}
+    <h2 class="title">Questions</h2>
+        {% include 'tables/questions.htm' %}
+    <h2 class="title">Choices</h2>
+        {% include 'tables/choices.htm' %}
+    <h2 class="title">Answers</h2>
+        {% include 'tables/answers.htm' %}
+</div>
+
+{% endblock %}

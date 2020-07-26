@@ -1,0 +1,38 @@
+{% extends 'tables/base.htm' %}
+    {% block thead %}
+    <tr>
+        <td>
+            id
+        </td>
+        <td>
+            game_id
+        </td>
+        <td>
+            text
+        </td>
+        <td>
+            choices
+        </td>
+    </tr>
+{% endblock %}
+{% block tbody %}
+    {% for q in questions %}
+        <tr>
+            <td>
+                {{ q.id }}
+            </td>
+            <td>
+                {{ q.game_id }}
+            </td>
+            <td>
+                {{ q.text }}
+            </td>
+            <td>
+                {%  for c in q.choices %}
+                    {{  c.id }}{{ '  ->  ' }}{{ c.text }}
+                    <br>
+                {% endfor %}
+            </td>
+        </tr>
+    {% endfor %}
+{% endblock %}

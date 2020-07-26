@@ -1,0 +1,44 @@
+{% extends 'tables/base.htm' %}
+    {% block thead %}
+    <tr>
+        <td>
+            Id
+        </td>
+        <td>
+            Game Id
+        </td>
+        <td>
+            Question Id
+        </td>
+        <td>
+            Players
+        </td>
+    </tr>
+{% endblock %}
+{% block tbody %}
+    {% for c in cubes %}
+        <tr>
+            <td>
+                {{ c.id }}
+            </td>
+            <td>
+                {{ c.curr_game_id }}
+            </td>
+            <td>
+                {{ c.curr_question_id }}
+            </td>
+            <td>
+                {% for p in c.players %}
+                    {{ p.name }}
+                {% endfor %}
+            </td>
+            <td>
+                {% include 'buttons/join_cube.htm' %}
+            </td>
+
+            <td>
+{#                <img src="{{ qrcode(c.join_url()) }}">#}
+            </td>
+        </tr>
+    {% endfor %}
+{% endblock %}

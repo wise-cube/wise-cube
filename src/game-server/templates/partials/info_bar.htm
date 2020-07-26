@@ -1,0 +1,61 @@
+{% set current_cube = None %}
+<section class="section">
+    <nav class="level">
+      <div class="level-item has-text-centered">
+        <div>
+          <p class="heading">Player</p>
+              {% if current_user.is_active  %}
+                  <p class="title">
+                  {{ current_user.name }}
+                  {% set current_cube = current_user.cube %}
+                  {% set current_game = current_cube.curr_game %}
+                  </p>
+                  {% if current_user.avatar %}
+                      <p>
+                      {% include  'avatar/avatar'+(current_user.avatar | string)+'.htm' %}
+                      </p>
+                  {% endif %}
+                    {% include "buttons/logout.htm" %}
+                {% else  %}
+                  <p class="title">
+                  None
+                  </p>
+              {% endif %}
+        </div>
+      </div>
+      <div class="level-item has-text-centered">
+        <div>
+          <p class="heading">Cube</p>
+
+          <p class="title">
+               {% if current_cube %}
+              {{ current_cube.id }}
+                                   </p>
+
+                 <p>
+                    {% include 'buttons/leave_cube.htm' %}
+            {% else %}
+                None
+            {%  endif %}
+            </p>
+        </div>
+      </div>
+        <div class="level-item has-text-centered">
+        <div>
+          <p class="heading">Game</p>
+
+          <p class="title">
+             {% if current_game %}
+              {{ current_game.id }}
+                 </p><p>
+                  {% include 'buttons/leave_game.htm' %}
+
+            {% else %}
+                None
+            {%  endif %}
+        </p>
+        </div>
+
+      </div>
+    </nav>
+</section>
