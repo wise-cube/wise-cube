@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="wise-cube" uuid="3bfbc746-fdb6-4458-b8f7-398b04f2fb13">
+    <data-source source="LOCAL" name="SQLite - wise-cube.db" uuid="7abb0dab-4e3b-422e-8671-db0416b10e1d">
       <driver-ref>sqlite.xerial</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/wise-cube.game_server</jdbc-url>
+      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/wise-cube.db</jdbc-url>
     </data-source>
   </component>
 </project>

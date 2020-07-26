@@ -1,0 +1,35 @@
+{% extends 'tables/base.htm' %}
+    {% block thead %}
+    <tr>
+        <td>
+            id
+        </td>
+        <td>
+            question_id
+        </td>
+        <td>
+            text
+        </td>
+        <td>
+            correct
+        </td>
+    </tr>
+{% endblock %}
+{% block tbody %}
+    {% for c in choices %}
+        <tr>
+            <td>
+                {{ c.id }}
+            </td>
+            <td>
+                {{ c.question_id }}
+            </td>
+            <td>
+                {{ c.text }}
+            </td>
+                        <td>
+                {{ c.correct }}
+            </td>
+        </tr>
+    {% endfor %}
+{% endblock %}

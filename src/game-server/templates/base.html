@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Wise Cube</title>
+
+    <script
+        src="//cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"
+        integrity="sha256-yr4fRk/GU1ehYJPAs8P4JlTgu0Hdsp4ZKrx8bDEDC3I="
+        crossorigin="anonymous"></script>
+    <script
+          src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+          integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs="
+          crossorigin="anonymous"></script>
+{#    <script#}
+{#        src="/main.js" ></script>#}
+
+    <link
+            rel="stylesheet" href="/main.css">
+    <link
+            rel="stylesheet" href="/vendor/bulma.css">
+
+</head>
+<body>
+    {% include 'partials/header.htm' %}
+    <section class="section">
+    {% include 'partials/info_bar.htm' %}
+        {% block body %}
+        Base Page
+    {#        <a href="{{ url_for('debug_page') }}">Game</a>#}
+    {#        <a href="{{ url_for('player_page') }}">Profile</a>#}
+    {#        <a href="{{ url_for('logout_page') }}">Logout</a>#}
+        </div>
+        {% endblock %}
+    </section>>
+    {% include 'partials/footer.htm' %}
+</body>
+</html>
