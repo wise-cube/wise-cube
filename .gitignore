@@ -1,4 +1,7 @@
 .DS_Store
 __pychache__
 venv
-
+.idea
+mqtt-broker/src
+mqtt-broker/build
+paho-mqtt/bin

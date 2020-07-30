@@ -1,0 +1,1 @@
+/usr/bin/c++ -fPIC   -shared -Wl,-soname,libmosquittopp.so.1 -o libmosquittopp.so.1.6.10 CMakeFiles/mosquittopp.dir/mosquittopp.cpp.o   -L/home/di3go/Documents/wise-cube/src/mqtt/build/lib  -Wl,-rpath,/home/di3go/Documents/wise-cube/src/mqtt/build/lib: ../libmosquitto.so.1.6.10 -lssl -lcrypto -lpthread -lrt 
