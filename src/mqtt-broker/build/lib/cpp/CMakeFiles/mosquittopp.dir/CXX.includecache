@@ -1,0 +1,32 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/di3go/Documents/wise-cube/src/mqtt/src/lib/cpp/mosquittopp.cpp
+cstdlib
+-
+mosquitto.h
+-
+mosquittopp.h
+-
+
+/home/di3go/Documents/wise-cube/src/mqtt/src/lib/cpp/mosquittopp.h
+cstdlib
+-
+mosquitto.h
+-
+time.h
+-
+
+/home/di3go/Documents/wise-cube/src/mqtt/src/lib/mosquitto.h
+stdbool.h
+-
+stddef.h
+-
+stdint.h
+-
+
