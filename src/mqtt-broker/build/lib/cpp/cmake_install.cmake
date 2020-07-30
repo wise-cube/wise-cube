@@ -1,4 +1,4 @@
-# Install script for directory: /home/di3go/Documents/wise-cube/src/mqtt/src/lib/cpp
+# Install script for directory: /home/di3go/Documents/wise-cube-new/src/mqtt-broker/src/lib/cpp
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -50,8 +50,8 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
     endif()
   endforeach()
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE SHARED_LIBRARY FILES
-    "/home/di3go/Documents/wise-cube/src/mqtt/build/lib/cpp/libmosquittopp.so.1.6.10"
-    "/home/di3go/Documents/wise-cube/src/mqtt/build/lib/cpp/libmosquittopp.so.1"
+    "/home/di3go/Documents/wise-cube-new/src/mqtt-broker/build/lib/cpp/libmosquittopp.so.1.6.10"
+    "/home/di3go/Documents/wise-cube-new/src/mqtt-broker/build/lib/cpp/libmosquittopp.so.1"
     )
   foreach(file
       "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libmosquittopp.so.1.6.10"
@@ -61,7 +61,7 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
        NOT IS_SYMLINK "${file}")
       file(RPATH_CHANGE
            FILE "${file}"
-           OLD_RPATH "/home/di3go/Documents/wise-cube/src/mqtt/build/lib:"
+           OLD_RPATH "/home/di3go/Documents/wise-cube-new/src/mqtt-broker/build/lib:"
            NEW_RPATH "")
       if(CMAKE_INSTALL_DO_STRIP)
         execute_process(COMMAND "/usr/bin/strip" "${file}")
@@ -77,12 +77,12 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
          FILE "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libmosquittopp.so"
          RPATH "")
   endif()
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE SHARED_LIBRARY FILES "/home/di3go/Documents/wise-cube/src/mqtt/build/lib/cpp/libmosquittopp.so")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE SHARED_LIBRARY FILES "/home/di3go/Documents/wise-cube-new/src/mqtt-broker/build/lib/cpp/libmosquittopp.so")
   if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libmosquittopp.so" AND
      NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libmosquittopp.so")
     file(RPATH_CHANGE
          FILE "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libmosquittopp.so"
-         OLD_RPATH "/home/di3go/Documents/wise-cube/src/mqtt/build/lib:"
+         OLD_RPATH "/home/di3go/Documents/wise-cube-new/src/mqtt-broker/build/lib:"
          NEW_RPATH "")
     if(CMAKE_INSTALL_DO_STRIP)
       execute_process(COMMAND "/usr/bin/strip" "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libmosquittopp.so")
@@ -91,6 +91,6 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include" TYPE FILE FILES "/home/di3go/Documents/wise-cube/src/mqtt/src/lib/cpp/mosquittopp.h")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include" TYPE FILE FILES "/home/di3go/Documents/wise-cube-new/src/mqtt-broker/src/lib/cpp/mosquittopp.h")
 endif()
 

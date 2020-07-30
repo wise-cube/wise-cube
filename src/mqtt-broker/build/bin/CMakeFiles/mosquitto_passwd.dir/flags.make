@@ -6,5 +6,5 @@ C_FLAGS =
 
 C_DEFINES = -DCMAKE -DVERSION=\"1.6.10\" -DWITH_BRIDGE -DWITH_BROKER -DWITH_EC -DWITH_MEMORY_TRACKING -DWITH_PERSISTENCE -DWITH_SOCKS -DWITH_SYS_TREE -DWITH_THREADING -DWITH_TLS -DWITH_TLS_PSK
 
-C_INCLUDES = -I/home/di3go/Documents/wise-cube/src/mqtt/src -I/home/di3go/Documents/wise-cube/src/mqtt/src/src -I/home/di3go/Documents/wise-cube/src/mqtt/src/lib -I/home/di3go/Documents/wise-cube/src/mqtt/src/src/deps 
+C_INCLUDES = -I/home/di3go/Documents/wise-cube-new/src/mqtt-broker/src -I/home/di3go/Documents/wise-cube-new/src/mqtt-broker/src/src -I/home/di3go/Documents/wise-cube-new/src/mqtt-broker/src/lib -I/home/di3go/Documents/wise-cube-new/src/mqtt-broker/src/src/deps 
 

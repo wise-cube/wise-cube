@@ -1,4 +1,4 @@
-# Install script for directory: /home/di3go/Documents/wise-cube/src/mqtt/src/src
+# Install script for directory: /home/di3go/Documents/wise-cube-new/src/mqtt-broker/src/src
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -44,7 +44,7 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
          FILE "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/sbin/mosquitto"
          RPATH "")
   endif()
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/sbin" TYPE EXECUTABLE FILES "/home/di3go/Documents/wise-cube/src/mqtt/build/src/mosquitto")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/sbin" TYPE EXECUTABLE FILES "/home/di3go/Documents/wise-cube-new/src/mqtt-broker/build/src/mosquitto")
   if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/sbin/mosquitto" AND
      NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/sbin/mosquitto")
     if(CMAKE_INSTALL_DO_STRIP)
@@ -55,8 +55,8 @@ endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include" TYPE FILE FILES
-    "/home/di3go/Documents/wise-cube/src/mqtt/src/src/mosquitto_broker.h"
-    "/home/di3go/Documents/wise-cube/src/mqtt/src/src/mosquitto_plugin.h"
+    "/home/di3go/Documents/wise-cube-new/src/mqtt-broker/src/src/mosquitto_broker.h"
+    "/home/di3go/Documents/wise-cube-new/src/mqtt-broker/src/src/mosquitto_plugin.h"
     )
 endif()
 
@@ -67,7 +67,7 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
          FILE "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/mosquitto_passwd"
          RPATH "")
   endif()
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/bin" TYPE EXECUTABLE FILES "/home/di3go/Documents/wise-cube/src/mqtt/build/src/mosquitto_passwd")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/bin" TYPE EXECUTABLE FILES "/home/di3go/Documents/wise-cube-new/src/mqtt-broker/build/src/mosquitto_passwd")
   if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/mosquitto_passwd" AND
      NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/mosquitto_passwd")
     if(CMAKE_INSTALL_DO_STRIP)

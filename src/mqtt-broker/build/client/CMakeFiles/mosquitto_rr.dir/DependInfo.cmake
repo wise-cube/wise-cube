@@ -4,11 +4,11 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "/home/di3go/Documents/wise-cube/src/mqtt/src/client/client_props.c" "/home/di3go/Documents/wise-cube/src/mqtt/build/client/CMakeFiles/mosquitto_rr.dir/client_props.c.o"
-  "/home/di3go/Documents/wise-cube/src/mqtt/src/client/client_shared.c" "/home/di3go/Documents/wise-cube/src/mqtt/build/client/CMakeFiles/mosquitto_rr.dir/client_shared.c.o"
-  "/home/di3go/Documents/wise-cube/src/mqtt/src/client/pub_shared.c" "/home/di3go/Documents/wise-cube/src/mqtt/build/client/CMakeFiles/mosquitto_rr.dir/pub_shared.c.o"
-  "/home/di3go/Documents/wise-cube/src/mqtt/src/client/rr_client.c" "/home/di3go/Documents/wise-cube/src/mqtt/build/client/CMakeFiles/mosquitto_rr.dir/rr_client.c.o"
-  "/home/di3go/Documents/wise-cube/src/mqtt/src/client/sub_client_output.c" "/home/di3go/Documents/wise-cube/src/mqtt/build/client/CMakeFiles/mosquitto_rr.dir/sub_client_output.c.o"
+  "/home/di3go/Documents/wise-cube-new/src/mqtt-broker/src/client/client_props.c" "/home/di3go/Documents/wise-cube-new/src/mqtt-broker/build/client/CMakeFiles/mosquitto_rr.dir/client_props.c.o"
+  "/home/di3go/Documents/wise-cube-new/src/mqtt-broker/src/client/client_shared.c" "/home/di3go/Documents/wise-cube-new/src/mqtt-broker/build/client/CMakeFiles/mosquitto_rr.dir/client_shared.c.o"
+  "/home/di3go/Documents/wise-cube-new/src/mqtt-broker/src/client/pub_shared.c" "/home/di3go/Documents/wise-cube-new/src/mqtt-broker/build/client/CMakeFiles/mosquitto_rr.dir/pub_shared.c.o"
+  "/home/di3go/Documents/wise-cube-new/src/mqtt-broker/src/client/rr_client.c" "/home/di3go/Documents/wise-cube-new/src/mqtt-broker/build/client/CMakeFiles/mosquitto_rr.dir/rr_client.c.o"
+  "/home/di3go/Documents/wise-cube-new/src/mqtt-broker/src/client/sub_client_output.c" "/home/di3go/Documents/wise-cube-new/src/mqtt-broker/build/client/CMakeFiles/mosquitto_rr.dir/sub_client_output.c.o"
   )
 set(CMAKE_C_COMPILER_ID "GNU")
 
@@ -25,13 +25,13 @@ set(CMAKE_TARGET_DEFINITIONS_C
 
 # The include file search paths:
 set(CMAKE_C_TARGET_INCLUDE_PATH
-  "/home/di3go/Documents/wise-cube/src/mqtt/src"
-  "/home/di3go/Documents/wise-cube/src/mqtt/src/lib"
+  "/home/di3go/Documents/wise-cube-new/src/mqtt-broker/src"
+  "/home/di3go/Documents/wise-cube-new/src/mqtt-broker/src/lib"
   )
 
 # Targets to which this target links.
 set(CMAKE_TARGET_LINKED_INFO_FILES
-  "/home/di3go/Documents/wise-cube/src/mqtt/build/lib/CMakeFiles/libmosquitto.dir/DependInfo.cmake"
+  "/home/di3go/Documents/wise-cube-new/src/mqtt-broker/build/lib/CMakeFiles/libmosquitto.dir/DependInfo.cmake"
   )
 
 # Fortran module output directory.

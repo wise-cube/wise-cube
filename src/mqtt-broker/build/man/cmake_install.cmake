@@ -1,4 +1,4 @@
-# Install script for directory: /home/di3go/Documents/wise-cube/src/mqtt/src/man
+# Install script for directory: /home/di3go/Documents/wise-cube-new/src/mqtt-broker/src/man
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -39,29 +39,29 @@ endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/man/man1" TYPE FILE FILES
-    "/home/di3go/Documents/wise-cube/src/mqtt/src/man/mosquitto_passwd.1"
-    "/home/di3go/Documents/wise-cube/src/mqtt/src/man/mosquitto_pub.1"
-    "/home/di3go/Documents/wise-cube/src/mqtt/src/man/mosquitto_sub.1"
-    "/home/di3go/Documents/wise-cube/src/mqtt/src/man/mosquitto_rr.1"
+    "/home/di3go/Documents/wise-cube-new/src/mqtt-broker/src/man/mosquitto_passwd.1"
+    "/home/di3go/Documents/wise-cube-new/src/mqtt-broker/src/man/mosquitto_pub.1"
+    "/home/di3go/Documents/wise-cube-new/src/mqtt-broker/src/man/mosquitto_sub.1"
+    "/home/di3go/Documents/wise-cube-new/src/mqtt-broker/src/man/mosquitto_rr.1"
     )
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/man/man3" TYPE FILE FILES "/home/di3go/Documents/wise-cube/src/mqtt/src/man/libmosquitto.3")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/man/man3" TYPE FILE FILES "/home/di3go/Documents/wise-cube-new/src/mqtt-broker/src/man/libmosquitto.3")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/man/man5" TYPE FILE FILES "/home/di3go/Documents/wise-cube/src/mqtt/src/man/mosquitto.conf.5")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/man/man5" TYPE FILE FILES "/home/di3go/Documents/wise-cube-new/src/mqtt-broker/src/man/mosquitto.conf.5")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/man/man7" TYPE FILE FILES
-    "/home/di3go/Documents/wise-cube/src/mqtt/src/man/mosquitto-tls.7"
-    "/home/di3go/Documents/wise-cube/src/mqtt/src/man/mqtt.7"
+    "/home/di3go/Documents/wise-cube-new/src/mqtt-broker/src/man/mosquitto-tls.7"
+    "/home/di3go/Documents/wise-cube-new/src/mqtt-broker/src/man/mqtt.7"
     )
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/man/man8" TYPE FILE FILES "/home/di3go/Documents/wise-cube/src/mqtt/src/man/mosquitto.8")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/man/man8" TYPE FILE FILES "/home/di3go/Documents/wise-cube-new/src/mqtt-broker/src/man/mosquitto.8")
 endif()
 

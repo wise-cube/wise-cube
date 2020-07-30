@@ -68,10 +68,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/di3go/Documents/wise-cube/src/mqtt/src
+CMAKE_SOURCE_DIR = /home/di3go/Documents/wise-cube-new/src/mqtt-broker/src
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/di3go/Documents/wise-cube/src/mqtt/build
+CMAKE_BINARY_DIR = /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -157,14 +157,14 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/di3go/Documents/wise-cube/src/mqtt/build/CMakeFiles /home/di3go/Documents/wise-cube/src/mqtt/build/src/CMakeFiles/progress.marks
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/di3go/Documents/wise-cube/src/mqtt/build/CMakeFiles 0
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build/CMakeFiles /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build/src/CMakeFiles/progress.marks
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/clean
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/clean
 .PHONY : clean
 
 # The main clean target
@@ -174,22 +174,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/preinstall
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/preinstall
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 src/CMakeFiles/mosquitto_passwd.dir/rule:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/CMakeFiles/mosquitto_passwd.dir/rule
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/CMakeFiles/mosquitto_passwd.dir/rule
 .PHONY : src/CMakeFiles/mosquitto_passwd.dir/rule
 
 # Convenience name for target.
@@ -199,12 +199,12 @@ mosquitto_passwd: src/CMakeFiles/mosquitto_passwd.dir/rule
 
 # fast build rule for target.
 mosquitto_passwd/fast:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto_passwd.dir/build.make src/CMakeFiles/mosquitto_passwd.dir/build
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto_passwd.dir/build.make src/CMakeFiles/mosquitto_passwd.dir/build
 .PHONY : mosquitto_passwd/fast
 
 # Convenience name for target.
 src/CMakeFiles/mosquitto.dir/rule:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/CMakeFiles/mosquitto.dir/rule
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/CMakeFiles/mosquitto.dir/rule
 .PHONY : src/CMakeFiles/mosquitto.dir/rule
 
 # Convenience name for target.
@@ -214,7 +214,7 @@ mosquitto: src/CMakeFiles/mosquitto.dir/rule
 
 # fast build rule for target.
 mosquitto/fast:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/build
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/build
 .PHONY : mosquitto/fast
 
 __/lib/alias_mosq.o: __/lib/alias_mosq.c.o
@@ -223,7 +223,7 @@ __/lib/alias_mosq.o: __/lib/alias_mosq.c.o
 
 # target to build an object file
 __/lib/alias_mosq.c.o:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/alias_mosq.c.o
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/alias_mosq.c.o
 .PHONY : __/lib/alias_mosq.c.o
 
 __/lib/alias_mosq.i: __/lib/alias_mosq.c.i
@@ -232,7 +232,7 @@ __/lib/alias_mosq.i: __/lib/alias_mosq.c.i
 
 # target to preprocess a source file
 __/lib/alias_mosq.c.i:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/alias_mosq.c.i
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/alias_mosq.c.i
 .PHONY : __/lib/alias_mosq.c.i
 
 __/lib/alias_mosq.s: __/lib/alias_mosq.c.s
@@ -241,7 +241,7 @@ __/lib/alias_mosq.s: __/lib/alias_mosq.c.s
 
 # target to generate assembly for a file
 __/lib/alias_mosq.c.s:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/alias_mosq.c.s
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/alias_mosq.c.s
 .PHONY : __/lib/alias_mosq.c.s
 
 __/lib/handle_ping.o: __/lib/handle_ping.c.o
@@ -250,7 +250,7 @@ __/lib/handle_ping.o: __/lib/handle_ping.c.o
 
 # target to build an object file
 __/lib/handle_ping.c.o:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/handle_ping.c.o
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/handle_ping.c.o
 .PHONY : __/lib/handle_ping.c.o
 
 __/lib/handle_ping.i: __/lib/handle_ping.c.i
@@ -259,7 +259,7 @@ __/lib/handle_ping.i: __/lib/handle_ping.c.i
 
 # target to preprocess a source file
 __/lib/handle_ping.c.i:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/handle_ping.c.i
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/handle_ping.c.i
 .PHONY : __/lib/handle_ping.c.i
 
 __/lib/handle_ping.s: __/lib/handle_ping.c.s
@@ -268,7 +268,7 @@ __/lib/handle_ping.s: __/lib/handle_ping.c.s
 
 # target to generate assembly for a file
 __/lib/handle_ping.c.s:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/handle_ping.c.s
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/handle_ping.c.s
 .PHONY : __/lib/handle_ping.c.s
 
 __/lib/handle_pubackcomp.o: __/lib/handle_pubackcomp.c.o
@@ -277,7 +277,7 @@ __/lib/handle_pubackcomp.o: __/lib/handle_pubackcomp.c.o
 
 # target to build an object file
 __/lib/handle_pubackcomp.c.o:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/handle_pubackcomp.c.o
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/handle_pubackcomp.c.o
 .PHONY : __/lib/handle_pubackcomp.c.o
 
 __/lib/handle_pubackcomp.i: __/lib/handle_pubackcomp.c.i
@@ -286,7 +286,7 @@ __/lib/handle_pubackcomp.i: __/lib/handle_pubackcomp.c.i
 
 # target to preprocess a source file
 __/lib/handle_pubackcomp.c.i:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/handle_pubackcomp.c.i
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/handle_pubackcomp.c.i
 .PHONY : __/lib/handle_pubackcomp.c.i
 
 __/lib/handle_pubackcomp.s: __/lib/handle_pubackcomp.c.s
@@ -295,7 +295,7 @@ __/lib/handle_pubackcomp.s: __/lib/handle_pubackcomp.c.s
 
 # target to generate assembly for a file
 __/lib/handle_pubackcomp.c.s:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/handle_pubackcomp.c.s
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/handle_pubackcomp.c.s
 .PHONY : __/lib/handle_pubackcomp.c.s
 
 __/lib/handle_pubrec.o: __/lib/handle_pubrec.c.o
@@ -304,7 +304,7 @@ __/lib/handle_pubrec.o: __/lib/handle_pubrec.c.o
 
 # target to build an object file
 __/lib/handle_pubrec.c.o:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/handle_pubrec.c.o
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/handle_pubrec.c.o
 .PHONY : __/lib/handle_pubrec.c.o
 
 __/lib/handle_pubrec.i: __/lib/handle_pubrec.c.i
@@ -313,7 +313,7 @@ __/lib/handle_pubrec.i: __/lib/handle_pubrec.c.i
 
 # target to preprocess a source file
 __/lib/handle_pubrec.c.i:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/handle_pubrec.c.i
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/handle_pubrec.c.i
 .PHONY : __/lib/handle_pubrec.c.i
 
 __/lib/handle_pubrec.s: __/lib/handle_pubrec.c.s
@@ -322,7 +322,7 @@ __/lib/handle_pubrec.s: __/lib/handle_pubrec.c.s
 
 # target to generate assembly for a file
 __/lib/handle_pubrec.c.s:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/handle_pubrec.c.s
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/handle_pubrec.c.s
 .PHONY : __/lib/handle_pubrec.c.s
 
 __/lib/handle_pubrel.o: __/lib/handle_pubrel.c.o
@@ -331,7 +331,7 @@ __/lib/handle_pubrel.o: __/lib/handle_pubrel.c.o
 
 # target to build an object file
 __/lib/handle_pubrel.c.o:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/handle_pubrel.c.o
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/handle_pubrel.c.o
 .PHONY : __/lib/handle_pubrel.c.o
 
 __/lib/handle_pubrel.i: __/lib/handle_pubrel.c.i
@@ -340,7 +340,7 @@ __/lib/handle_pubrel.i: __/lib/handle_pubrel.c.i
 
 # target to preprocess a source file
 __/lib/handle_pubrel.c.i:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/handle_pubrel.c.i
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/handle_pubrel.c.i
 .PHONY : __/lib/handle_pubrel.c.i
 
 __/lib/handle_pubrel.s: __/lib/handle_pubrel.c.s
@@ -349,7 +349,7 @@ __/lib/handle_pubrel.s: __/lib/handle_pubrel.c.s
 
 # target to generate assembly for a file
 __/lib/handle_pubrel.c.s:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/handle_pubrel.c.s
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/handle_pubrel.c.s
 .PHONY : __/lib/handle_pubrel.c.s
 
 __/lib/handle_suback.o: __/lib/handle_suback.c.o
@@ -358,7 +358,7 @@ __/lib/handle_suback.o: __/lib/handle_suback.c.o
 
 # target to build an object file
 __/lib/handle_suback.c.o:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/handle_suback.c.o
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/handle_suback.c.o
 .PHONY : __/lib/handle_suback.c.o
 
 __/lib/handle_suback.i: __/lib/handle_suback.c.i
@@ -367,7 +367,7 @@ __/lib/handle_suback.i: __/lib/handle_suback.c.i
 
 # target to preprocess a source file
 __/lib/handle_suback.c.i:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/handle_suback.c.i
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/handle_suback.c.i
 .PHONY : __/lib/handle_suback.c.i
 
 __/lib/handle_suback.s: __/lib/handle_suback.c.s
@@ -376,7 +376,7 @@ __/lib/handle_suback.s: __/lib/handle_suback.c.s
 
 # target to generate assembly for a file
 __/lib/handle_suback.c.s:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/handle_suback.c.s
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/handle_suback.c.s
 .PHONY : __/lib/handle_suback.c.s
 
 __/lib/handle_unsuback.o: __/lib/handle_unsuback.c.o
@@ -385,7 +385,7 @@ __/lib/handle_unsuback.o: __/lib/handle_unsuback.c.o
 
 # target to build an object file
 __/lib/handle_unsuback.c.o:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/handle_unsuback.c.o
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/handle_unsuback.c.o
 .PHONY : __/lib/handle_unsuback.c.o
 
 __/lib/handle_unsuback.i: __/lib/handle_unsuback.c.i
@@ -394,7 +394,7 @@ __/lib/handle_unsuback.i: __/lib/handle_unsuback.c.i
 
 # target to preprocess a source file
 __/lib/handle_unsuback.c.i:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/handle_unsuback.c.i
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/handle_unsuback.c.i
 .PHONY : __/lib/handle_unsuback.c.i
 
 __/lib/handle_unsuback.s: __/lib/handle_unsuback.c.s
@@ -403,7 +403,7 @@ __/lib/handle_unsuback.s: __/lib/handle_unsuback.c.s
 
 # target to generate assembly for a file
 __/lib/handle_unsuback.c.s:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/handle_unsuback.c.s
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/handle_unsuback.c.s
 .PHONY : __/lib/handle_unsuback.c.s
 
 __/lib/memory_mosq.o: __/lib/memory_mosq.c.o
@@ -412,7 +412,7 @@ __/lib/memory_mosq.o: __/lib/memory_mosq.c.o
 
 # target to build an object file
 __/lib/memory_mosq.c.o:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/memory_mosq.c.o
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/memory_mosq.c.o
 .PHONY : __/lib/memory_mosq.c.o
 
 __/lib/memory_mosq.i: __/lib/memory_mosq.c.i
@@ -421,7 +421,7 @@ __/lib/memory_mosq.i: __/lib/memory_mosq.c.i
 
 # target to preprocess a source file
 __/lib/memory_mosq.c.i:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/memory_mosq.c.i
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/memory_mosq.c.i
 .PHONY : __/lib/memory_mosq.c.i
 
 __/lib/memory_mosq.s: __/lib/memory_mosq.c.s
@@ -430,7 +430,7 @@ __/lib/memory_mosq.s: __/lib/memory_mosq.c.s
 
 # target to generate assembly for a file
 __/lib/memory_mosq.c.s:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/memory_mosq.c.s
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/memory_mosq.c.s
 .PHONY : __/lib/memory_mosq.c.s
 
 __/lib/misc_mosq.o: __/lib/misc_mosq.c.o
@@ -439,8 +439,8 @@ __/lib/misc_mosq.o: __/lib/misc_mosq.c.o
 
 # target to build an object file
 __/lib/misc_mosq.c.o:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto_passwd.dir/build.make src/CMakeFiles/mosquitto_passwd.dir/__/lib/misc_mosq.c.o
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/misc_mosq.c.o
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto_passwd.dir/build.make src/CMakeFiles/mosquitto_passwd.dir/__/lib/misc_mosq.c.o
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/misc_mosq.c.o
 .PHONY : __/lib/misc_mosq.c.o
 
 __/lib/misc_mosq.i: __/lib/misc_mosq.c.i
@@ -449,8 +449,8 @@ __/lib/misc_mosq.i: __/lib/misc_mosq.c.i
 
 # target to preprocess a source file
 __/lib/misc_mosq.c.i:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto_passwd.dir/build.make src/CMakeFiles/mosquitto_passwd.dir/__/lib/misc_mosq.c.i
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/misc_mosq.c.i
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto_passwd.dir/build.make src/CMakeFiles/mosquitto_passwd.dir/__/lib/misc_mosq.c.i
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/misc_mosq.c.i
 .PHONY : __/lib/misc_mosq.c.i
 
 __/lib/misc_mosq.s: __/lib/misc_mosq.c.s
@@ -459,8 +459,8 @@ __/lib/misc_mosq.s: __/lib/misc_mosq.c.s
 
 # target to generate assembly for a file
 __/lib/misc_mosq.c.s:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto_passwd.dir/build.make src/CMakeFiles/mosquitto_passwd.dir/__/lib/misc_mosq.c.s
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/misc_mosq.c.s
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto_passwd.dir/build.make src/CMakeFiles/mosquitto_passwd.dir/__/lib/misc_mosq.c.s
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/misc_mosq.c.s
 .PHONY : __/lib/misc_mosq.c.s
 
 __/lib/net_mosq.o: __/lib/net_mosq.c.o
@@ -469,7 +469,7 @@ __/lib/net_mosq.o: __/lib/net_mosq.c.o
 
 # target to build an object file
 __/lib/net_mosq.c.o:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/net_mosq.c.o
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/net_mosq.c.o
 .PHONY : __/lib/net_mosq.c.o
 
 __/lib/net_mosq.i: __/lib/net_mosq.c.i
@@ -478,7 +478,7 @@ __/lib/net_mosq.i: __/lib/net_mosq.c.i
 
 # target to preprocess a source file
 __/lib/net_mosq.c.i:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/net_mosq.c.i
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/net_mosq.c.i
 .PHONY : __/lib/net_mosq.c.i
 
 __/lib/net_mosq.s: __/lib/net_mosq.c.s
@@ -487,7 +487,7 @@ __/lib/net_mosq.s: __/lib/net_mosq.c.s
 
 # target to generate assembly for a file
 __/lib/net_mosq.c.s:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/net_mosq.c.s
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/net_mosq.c.s
 .PHONY : __/lib/net_mosq.c.s
 
 __/lib/net_mosq_ocsp.o: __/lib/net_mosq_ocsp.c.o
@@ -496,7 +496,7 @@ __/lib/net_mosq_ocsp.o: __/lib/net_mosq_ocsp.c.o
 
 # target to build an object file
 __/lib/net_mosq_ocsp.c.o:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/net_mosq_ocsp.c.o
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/net_mosq_ocsp.c.o
 .PHONY : __/lib/net_mosq_ocsp.c.o
 
 __/lib/net_mosq_ocsp.i: __/lib/net_mosq_ocsp.c.i
@@ -505,7 +505,7 @@ __/lib/net_mosq_ocsp.i: __/lib/net_mosq_ocsp.c.i
 
 # target to preprocess a source file
 __/lib/net_mosq_ocsp.c.i:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/net_mosq_ocsp.c.i
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/net_mosq_ocsp.c.i
 .PHONY : __/lib/net_mosq_ocsp.c.i
 
 __/lib/net_mosq_ocsp.s: __/lib/net_mosq_ocsp.c.s
@@ -514,7 +514,7 @@ __/lib/net_mosq_ocsp.s: __/lib/net_mosq_ocsp.c.s
 
 # target to generate assembly for a file
 __/lib/net_mosq_ocsp.c.s:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/net_mosq_ocsp.c.s
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/net_mosq_ocsp.c.s
 .PHONY : __/lib/net_mosq_ocsp.c.s
 
 __/lib/packet_datatypes.o: __/lib/packet_datatypes.c.o
@@ -523,7 +523,7 @@ __/lib/packet_datatypes.o: __/lib/packet_datatypes.c.o
 
 # target to build an object file
 __/lib/packet_datatypes.c.o:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/packet_datatypes.c.o
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/packet_datatypes.c.o
 .PHONY : __/lib/packet_datatypes.c.o
 
 __/lib/packet_datatypes.i: __/lib/packet_datatypes.c.i
@@ -532,7 +532,7 @@ __/lib/packet_datatypes.i: __/lib/packet_datatypes.c.i
 
 # target to preprocess a source file
 __/lib/packet_datatypes.c.i:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/packet_datatypes.c.i
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/packet_datatypes.c.i
 .PHONY : __/lib/packet_datatypes.c.i
 
 __/lib/packet_datatypes.s: __/lib/packet_datatypes.c.s
@@ -541,7 +541,7 @@ __/lib/packet_datatypes.s: __/lib/packet_datatypes.c.s
 
 # target to generate assembly for a file
 __/lib/packet_datatypes.c.s:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/packet_datatypes.c.s
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/packet_datatypes.c.s
 .PHONY : __/lib/packet_datatypes.c.s
 
 __/lib/packet_mosq.o: __/lib/packet_mosq.c.o
@@ -550,7 +550,7 @@ __/lib/packet_mosq.o: __/lib/packet_mosq.c.o
 
 # target to build an object file
 __/lib/packet_mosq.c.o:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/packet_mosq.c.o
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/packet_mosq.c.o
 .PHONY : __/lib/packet_mosq.c.o
 
 __/lib/packet_mosq.i: __/lib/packet_mosq.c.i
@@ -559,7 +559,7 @@ __/lib/packet_mosq.i: __/lib/packet_mosq.c.i
 
 # target to preprocess a source file
 __/lib/packet_mosq.c.i:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/packet_mosq.c.i
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/packet_mosq.c.i
 .PHONY : __/lib/packet_mosq.c.i
 
 __/lib/packet_mosq.s: __/lib/packet_mosq.c.s
@@ -568,7 +568,7 @@ __/lib/packet_mosq.s: __/lib/packet_mosq.c.s
 
 # target to generate assembly for a file
 __/lib/packet_mosq.c.s:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/packet_mosq.c.s
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/packet_mosq.c.s
 .PHONY : __/lib/packet_mosq.c.s
 
 __/lib/property_mosq.o: __/lib/property_mosq.c.o
@@ -577,7 +577,7 @@ __/lib/property_mosq.o: __/lib/property_mosq.c.o
 
 # target to build an object file
 __/lib/property_mosq.c.o:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/property_mosq.c.o
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/property_mosq.c.o
 .PHONY : __/lib/property_mosq.c.o
 
 __/lib/property_mosq.i: __/lib/property_mosq.c.i
@@ -586,7 +586,7 @@ __/lib/property_mosq.i: __/lib/property_mosq.c.i
 
 # target to preprocess a source file
 __/lib/property_mosq.c.i:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/property_mosq.c.i
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/property_mosq.c.i
 .PHONY : __/lib/property_mosq.c.i
 
 __/lib/property_mosq.s: __/lib/property_mosq.c.s
@@ -595,7 +595,7 @@ __/lib/property_mosq.s: __/lib/property_mosq.c.s
 
 # target to generate assembly for a file
 __/lib/property_mosq.c.s:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/property_mosq.c.s
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/property_mosq.c.s
 .PHONY : __/lib/property_mosq.c.s
 
 __/lib/send_connect.o: __/lib/send_connect.c.o
@@ -604,7 +604,7 @@ __/lib/send_connect.o: __/lib/send_connect.c.o
 
 # target to build an object file
 __/lib/send_connect.c.o:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/send_connect.c.o
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/send_connect.c.o
 .PHONY : __/lib/send_connect.c.o
 
 __/lib/send_connect.i: __/lib/send_connect.c.i
@@ -613,7 +613,7 @@ __/lib/send_connect.i: __/lib/send_connect.c.i
 
 # target to preprocess a source file
 __/lib/send_connect.c.i:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/send_connect.c.i
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/send_connect.c.i
 .PHONY : __/lib/send_connect.c.i
 
 __/lib/send_connect.s: __/lib/send_connect.c.s
@@ -622,7 +622,7 @@ __/lib/send_connect.s: __/lib/send_connect.c.s
 
 # target to generate assembly for a file
 __/lib/send_connect.c.s:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/send_connect.c.s
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/send_connect.c.s
 .PHONY : __/lib/send_connect.c.s
 
 __/lib/send_disconnect.o: __/lib/send_disconnect.c.o
@@ -631,7 +631,7 @@ __/lib/send_disconnect.o: __/lib/send_disconnect.c.o
 
 # target to build an object file
 __/lib/send_disconnect.c.o:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/send_disconnect.c.o
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/send_disconnect.c.o
 .PHONY : __/lib/send_disconnect.c.o
 
 __/lib/send_disconnect.i: __/lib/send_disconnect.c.i
@@ -640,7 +640,7 @@ __/lib/send_disconnect.i: __/lib/send_disconnect.c.i
 
 # target to preprocess a source file
 __/lib/send_disconnect.c.i:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/send_disconnect.c.i
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/send_disconnect.c.i
 .PHONY : __/lib/send_disconnect.c.i
 
 __/lib/send_disconnect.s: __/lib/send_disconnect.c.s
@@ -649,7 +649,7 @@ __/lib/send_disconnect.s: __/lib/send_disconnect.c.s
 
 # target to generate assembly for a file
 __/lib/send_disconnect.c.s:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/send_disconnect.c.s
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/send_disconnect.c.s
 .PHONY : __/lib/send_disconnect.c.s
 
 __/lib/send_mosq.o: __/lib/send_mosq.c.o
@@ -658,7 +658,7 @@ __/lib/send_mosq.o: __/lib/send_mosq.c.o
 
 # target to build an object file
 __/lib/send_mosq.c.o:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/send_mosq.c.o
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/send_mosq.c.o
 .PHONY : __/lib/send_mosq.c.o
 
 __/lib/send_mosq.i: __/lib/send_mosq.c.i
@@ -667,7 +667,7 @@ __/lib/send_mosq.i: __/lib/send_mosq.c.i
 
 # target to preprocess a source file
 __/lib/send_mosq.c.i:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/send_mosq.c.i
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/send_mosq.c.i
 .PHONY : __/lib/send_mosq.c.i
 
 __/lib/send_mosq.s: __/lib/send_mosq.c.s
@@ -676,7 +676,7 @@ __/lib/send_mosq.s: __/lib/send_mosq.c.s
 
 # target to generate assembly for a file
 __/lib/send_mosq.c.s:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/send_mosq.c.s
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/send_mosq.c.s
 .PHONY : __/lib/send_mosq.c.s
 
 __/lib/send_publish.o: __/lib/send_publish.c.o
@@ -685,7 +685,7 @@ __/lib/send_publish.o: __/lib/send_publish.c.o
 
 # target to build an object file
 __/lib/send_publish.c.o:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/send_publish.c.o
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/send_publish.c.o
 .PHONY : __/lib/send_publish.c.o
 
 __/lib/send_publish.i: __/lib/send_publish.c.i
@@ -694,7 +694,7 @@ __/lib/send_publish.i: __/lib/send_publish.c.i
 
 # target to preprocess a source file
 __/lib/send_publish.c.i:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/send_publish.c.i
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/send_publish.c.i
 .PHONY : __/lib/send_publish.c.i
 
 __/lib/send_publish.s: __/lib/send_publish.c.s
@@ -703,7 +703,7 @@ __/lib/send_publish.s: __/lib/send_publish.c.s
 
 # target to generate assembly for a file
 __/lib/send_publish.c.s:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/send_publish.c.s
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/send_publish.c.s
 .PHONY : __/lib/send_publish.c.s
 
 __/lib/send_subscribe.o: __/lib/send_subscribe.c.o
@@ -712,7 +712,7 @@ __/lib/send_subscribe.o: __/lib/send_subscribe.c.o
 
 # target to build an object file
 __/lib/send_subscribe.c.o:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/send_subscribe.c.o
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/send_subscribe.c.o
 .PHONY : __/lib/send_subscribe.c.o
 
 __/lib/send_subscribe.i: __/lib/send_subscribe.c.i
@@ -721,7 +721,7 @@ __/lib/send_subscribe.i: __/lib/send_subscribe.c.i
 
 # target to preprocess a source file
 __/lib/send_subscribe.c.i:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/send_subscribe.c.i
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/send_subscribe.c.i
 .PHONY : __/lib/send_subscribe.c.i
 
 __/lib/send_subscribe.s: __/lib/send_subscribe.c.s
@@ -730,7 +730,7 @@ __/lib/send_subscribe.s: __/lib/send_subscribe.c.s
 
 # target to generate assembly for a file
 __/lib/send_subscribe.c.s:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/send_subscribe.c.s
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/send_subscribe.c.s
 .PHONY : __/lib/send_subscribe.c.s
 
 __/lib/send_unsubscribe.o: __/lib/send_unsubscribe.c.o
@@ -739,7 +739,7 @@ __/lib/send_unsubscribe.o: __/lib/send_unsubscribe.c.o
 
 # target to build an object file
 __/lib/send_unsubscribe.c.o:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/send_unsubscribe.c.o
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/send_unsubscribe.c.o
 .PHONY : __/lib/send_unsubscribe.c.o
 
 __/lib/send_unsubscribe.i: __/lib/send_unsubscribe.c.i
@@ -748,7 +748,7 @@ __/lib/send_unsubscribe.i: __/lib/send_unsubscribe.c.i
 
 # target to preprocess a source file
 __/lib/send_unsubscribe.c.i:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/send_unsubscribe.c.i
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/send_unsubscribe.c.i
 .PHONY : __/lib/send_unsubscribe.c.i
 
 __/lib/send_unsubscribe.s: __/lib/send_unsubscribe.c.s
@@ -757,7 +757,7 @@ __/lib/send_unsubscribe.s: __/lib/send_unsubscribe.c.s
 
 # target to generate assembly for a file
 __/lib/send_unsubscribe.c.s:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/send_unsubscribe.c.s
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/send_unsubscribe.c.s
 .PHONY : __/lib/send_unsubscribe.c.s
 
 __/lib/time_mosq.o: __/lib/time_mosq.c.o
@@ -766,7 +766,7 @@ __/lib/time_mosq.o: __/lib/time_mosq.c.o
 
 # target to build an object file
 __/lib/time_mosq.c.o:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/time_mosq.c.o
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/time_mosq.c.o
 .PHONY : __/lib/time_mosq.c.o
 
 __/lib/time_mosq.i: __/lib/time_mosq.c.i
@@ -775,7 +775,7 @@ __/lib/time_mosq.i: __/lib/time_mosq.c.i
 
 # target to preprocess a source file
 __/lib/time_mosq.c.i:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/time_mosq.c.i
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/time_mosq.c.i
 .PHONY : __/lib/time_mosq.c.i
 
 __/lib/time_mosq.s: __/lib/time_mosq.c.s
@@ -784,7 +784,7 @@ __/lib/time_mosq.s: __/lib/time_mosq.c.s
 
 # target to generate assembly for a file
 __/lib/time_mosq.c.s:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/time_mosq.c.s
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/time_mosq.c.s
 .PHONY : __/lib/time_mosq.c.s
 
 __/lib/tls_mosq.o: __/lib/tls_mosq.c.o
@@ -793,7 +793,7 @@ __/lib/tls_mosq.o: __/lib/tls_mosq.c.o
 
 # target to build an object file
 __/lib/tls_mosq.c.o:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/tls_mosq.c.o
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/tls_mosq.c.o
 .PHONY : __/lib/tls_mosq.c.o
 
 __/lib/tls_mosq.i: __/lib/tls_mosq.c.i
@@ -802,7 +802,7 @@ __/lib/tls_mosq.i: __/lib/tls_mosq.c.i
 
 # target to preprocess a source file
 __/lib/tls_mosq.c.i:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/tls_mosq.c.i
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/tls_mosq.c.i
 .PHONY : __/lib/tls_mosq.c.i
 
 __/lib/tls_mosq.s: __/lib/tls_mosq.c.s
@@ -811,7 +811,7 @@ __/lib/tls_mosq.s: __/lib/tls_mosq.c.s
 
 # target to generate assembly for a file
 __/lib/tls_mosq.c.s:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/tls_mosq.c.s
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/tls_mosq.c.s
 .PHONY : __/lib/tls_mosq.c.s
 
 __/lib/utf8_mosq.o: __/lib/utf8_mosq.c.o
@@ -820,7 +820,7 @@ __/lib/utf8_mosq.o: __/lib/utf8_mosq.c.o
 
 # target to build an object file
 __/lib/utf8_mosq.c.o:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/utf8_mosq.c.o
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/utf8_mosq.c.o
 .PHONY : __/lib/utf8_mosq.c.o
 
 __/lib/utf8_mosq.i: __/lib/utf8_mosq.c.i
@@ -829,7 +829,7 @@ __/lib/utf8_mosq.i: __/lib/utf8_mosq.c.i
 
 # target to preprocess a source file
 __/lib/utf8_mosq.c.i:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/utf8_mosq.c.i
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/utf8_mosq.c.i
 .PHONY : __/lib/utf8_mosq.c.i
 
 __/lib/utf8_mosq.s: __/lib/utf8_mosq.c.s
@@ -838,7 +838,7 @@ __/lib/utf8_mosq.s: __/lib/utf8_mosq.c.s
 
 # target to generate assembly for a file
 __/lib/utf8_mosq.c.s:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/utf8_mosq.c.s
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/utf8_mosq.c.s
 .PHONY : __/lib/utf8_mosq.c.s
 
 __/lib/util_mosq.o: __/lib/util_mosq.c.o
@@ -847,7 +847,7 @@ __/lib/util_mosq.o: __/lib/util_mosq.c.o
 
 # target to build an object file
 __/lib/util_mosq.c.o:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/util_mosq.c.o
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/util_mosq.c.o
 .PHONY : __/lib/util_mosq.c.o
 
 __/lib/util_mosq.i: __/lib/util_mosq.c.i
@@ -856,7 +856,7 @@ __/lib/util_mosq.i: __/lib/util_mosq.c.i
 
 # target to preprocess a source file
 __/lib/util_mosq.c.i:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/util_mosq.c.i
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/util_mosq.c.i
 .PHONY : __/lib/util_mosq.c.i
 
 __/lib/util_mosq.s: __/lib/util_mosq.c.s
@@ -865,7 +865,7 @@ __/lib/util_mosq.s: __/lib/util_mosq.c.s
 
 # target to generate assembly for a file
 __/lib/util_mosq.c.s:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/util_mosq.c.s
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/util_mosq.c.s
 .PHONY : __/lib/util_mosq.c.s
 
 __/lib/util_topic.o: __/lib/util_topic.c.o
@@ -874,7 +874,7 @@ __/lib/util_topic.o: __/lib/util_topic.c.o
 
 # target to build an object file
 __/lib/util_topic.c.o:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/util_topic.c.o
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/util_topic.c.o
 .PHONY : __/lib/util_topic.c.o
 
 __/lib/util_topic.i: __/lib/util_topic.c.i
@@ -883,7 +883,7 @@ __/lib/util_topic.i: __/lib/util_topic.c.i
 
 # target to preprocess a source file
 __/lib/util_topic.c.i:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/util_topic.c.i
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/util_topic.c.i
 .PHONY : __/lib/util_topic.c.i
 
 __/lib/util_topic.s: __/lib/util_topic.c.s
@@ -892,7 +892,7 @@ __/lib/util_topic.s: __/lib/util_topic.c.s
 
 # target to generate assembly for a file
 __/lib/util_topic.c.s:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/util_topic.c.s
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/util_topic.c.s
 .PHONY : __/lib/util_topic.c.s
 
 __/lib/will_mosq.o: __/lib/will_mosq.c.o
@@ -901,7 +901,7 @@ __/lib/will_mosq.o: __/lib/will_mosq.c.o
 
 # target to build an object file
 __/lib/will_mosq.c.o:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/will_mosq.c.o
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/will_mosq.c.o
 .PHONY : __/lib/will_mosq.c.o
 
 __/lib/will_mosq.i: __/lib/will_mosq.c.i
@@ -910,7 +910,7 @@ __/lib/will_mosq.i: __/lib/will_mosq.c.i
 
 # target to preprocess a source file
 __/lib/will_mosq.c.i:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/will_mosq.c.i
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/will_mosq.c.i
 .PHONY : __/lib/will_mosq.c.i
 
 __/lib/will_mosq.s: __/lib/will_mosq.c.s
@@ -919,7 +919,7 @@ __/lib/will_mosq.s: __/lib/will_mosq.c.s
 
 # target to generate assembly for a file
 __/lib/will_mosq.c.s:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/will_mosq.c.s
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/__/lib/will_mosq.c.s
 .PHONY : __/lib/will_mosq.c.s
 
 bridge.o: bridge.c.o
@@ -928,7 +928,7 @@ bridge.o: bridge.c.o
 
 # target to build an object file
 bridge.c.o:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/bridge.c.o
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/bridge.c.o
 .PHONY : bridge.c.o
 
 bridge.i: bridge.c.i
@@ -937,7 +937,7 @@ bridge.i: bridge.c.i
 
 # target to preprocess a source file
 bridge.c.i:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/bridge.c.i
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/bridge.c.i
 .PHONY : bridge.c.i
 
 bridge.s: bridge.c.s
@@ -946,7 +946,7 @@ bridge.s: bridge.c.s
 
 # target to generate assembly for a file
 bridge.c.s:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/bridge.c.s
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/bridge.c.s
 .PHONY : bridge.c.s
 
 conf.o: conf.c.o
@@ -955,7 +955,7 @@ conf.o: conf.c.o
 
 # target to build an object file
 conf.c.o:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/conf.c.o
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/conf.c.o
 .PHONY : conf.c.o
 
 conf.i: conf.c.i
@@ -964,7 +964,7 @@ conf.i: conf.c.i
 
 # target to preprocess a source file
 conf.c.i:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/conf.c.i
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/conf.c.i
 .PHONY : conf.c.i
 
 conf.s: conf.c.s
@@ -973,7 +973,7 @@ conf.s: conf.c.s
 
 # target to generate assembly for a file
 conf.c.s:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/conf.c.s
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/conf.c.s
 .PHONY : conf.c.s
 
 conf_includedir.o: conf_includedir.c.o
@@ -982,7 +982,7 @@ conf_includedir.o: conf_includedir.c.o
 
 # target to build an object file
 conf_includedir.c.o:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/conf_includedir.c.o
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/conf_includedir.c.o
 .PHONY : conf_includedir.c.o
 
 conf_includedir.i: conf_includedir.c.i
@@ -991,7 +991,7 @@ conf_includedir.i: conf_includedir.c.i
 
 # target to preprocess a source file
 conf_includedir.c.i:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/conf_includedir.c.i
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/conf_includedir.c.i
 .PHONY : conf_includedir.c.i
 
 conf_includedir.s: conf_includedir.c.s
@@ -1000,7 +1000,7 @@ conf_includedir.s: conf_includedir.c.s
 
 # target to generate assembly for a file
 conf_includedir.c.s:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/conf_includedir.c.s
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/conf_includedir.c.s
 .PHONY : conf_includedir.c.s
 
 context.o: context.c.o
@@ -1009,7 +1009,7 @@ context.o: context.c.o
 
 # target to build an object file
 context.c.o:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/context.c.o
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/context.c.o
 .PHONY : context.c.o
 
 context.i: context.c.i
@@ -1018,7 +1018,7 @@ context.i: context.c.i
 
 # target to preprocess a source file
 context.c.i:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/context.c.i
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/context.c.i
 .PHONY : context.c.i
 
 context.s: context.c.s
@@ -1027,7 +1027,7 @@ context.s: context.c.s
 
 # target to generate assembly for a file
 context.c.s:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/context.c.s
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/context.c.s
 .PHONY : context.c.s
 
 database.o: database.c.o
@@ -1036,7 +1036,7 @@ database.o: database.c.o
 
 # target to build an object file
 database.c.o:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/database.c.o
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/database.c.o
 .PHONY : database.c.o
 
 database.i: database.c.i
@@ -1045,7 +1045,7 @@ database.i: database.c.i
 
 # target to preprocess a source file
 database.c.i:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/database.c.i
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/database.c.i
 .PHONY : database.c.i
 
 database.s: database.c.s
@@ -1054,7 +1054,7 @@ database.s: database.c.s
 
 # target to generate assembly for a file
 database.c.s:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/database.c.s
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/database.c.s
 .PHONY : database.c.s
 
 handle_auth.o: handle_auth.c.o
@@ -1063,7 +1063,7 @@ handle_auth.o: handle_auth.c.o
 
 # target to build an object file
 handle_auth.c.o:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/handle_auth.c.o
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/handle_auth.c.o
 .PHONY : handle_auth.c.o
 
 handle_auth.i: handle_auth.c.i
@@ -1072,7 +1072,7 @@ handle_auth.i: handle_auth.c.i
 
 # target to preprocess a source file
 handle_auth.c.i:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/handle_auth.c.i
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/handle_auth.c.i
 .PHONY : handle_auth.c.i
 
 handle_auth.s: handle_auth.c.s
@@ -1081,7 +1081,7 @@ handle_auth.s: handle_auth.c.s
 
 # target to generate assembly for a file
 handle_auth.c.s:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/handle_auth.c.s
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/handle_auth.c.s
 .PHONY : handle_auth.c.s
 
 handle_connack.o: handle_connack.c.o
@@ -1090,7 +1090,7 @@ handle_connack.o: handle_connack.c.o
 
 # target to build an object file
 handle_connack.c.o:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/handle_connack.c.o
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/handle_connack.c.o
 .PHONY : handle_connack.c.o
 
 handle_connack.i: handle_connack.c.i
@@ -1099,7 +1099,7 @@ handle_connack.i: handle_connack.c.i
 
 # target to preprocess a source file
 handle_connack.c.i:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/handle_connack.c.i
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/handle_connack.c.i
 .PHONY : handle_connack.c.i
 
 handle_connack.s: handle_connack.c.s
@@ -1108,7 +1108,7 @@ handle_connack.s: handle_connack.c.s
 
 # target to generate assembly for a file
 handle_connack.c.s:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/handle_connack.c.s
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/handle_connack.c.s
 .PHONY : handle_connack.c.s
 
 handle_connect.o: handle_connect.c.o
@@ -1117,7 +1117,7 @@ handle_connect.o: handle_connect.c.o
 
 # target to build an object file
 handle_connect.c.o:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/handle_connect.c.o
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/handle_connect.c.o
 .PHONY : handle_connect.c.o
 
 handle_connect.i: handle_connect.c.i
@@ -1126,7 +1126,7 @@ handle_connect.i: handle_connect.c.i
 
 # target to preprocess a source file
 handle_connect.c.i:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/handle_connect.c.i
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/handle_connect.c.i
 .PHONY : handle_connect.c.i
 
 handle_connect.s: handle_connect.c.s
@@ -1135,7 +1135,7 @@ handle_connect.s: handle_connect.c.s
 
 # target to generate assembly for a file
 handle_connect.c.s:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/handle_connect.c.s
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/handle_connect.c.s
 .PHONY : handle_connect.c.s
 
 handle_disconnect.o: handle_disconnect.c.o
@@ -1144,7 +1144,7 @@ handle_disconnect.o: handle_disconnect.c.o
 
 # target to build an object file
 handle_disconnect.c.o:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/handle_disconnect.c.o
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/handle_disconnect.c.o
 .PHONY : handle_disconnect.c.o
 
 handle_disconnect.i: handle_disconnect.c.i
@@ -1153,7 +1153,7 @@ handle_disconnect.i: handle_disconnect.c.i
 
 # target to preprocess a source file
 handle_disconnect.c.i:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/handle_disconnect.c.i
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/handle_disconnect.c.i
 .PHONY : handle_disconnect.c.i
 
 handle_disconnect.s: handle_disconnect.c.s
@@ -1162,7 +1162,7 @@ handle_disconnect.s: handle_disconnect.c.s
 
 # target to generate assembly for a file
 handle_disconnect.c.s:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/handle_disconnect.c.s
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/handle_disconnect.c.s
 .PHONY : handle_disconnect.c.s
 
 handle_publish.o: handle_publish.c.o
@@ -1171,7 +1171,7 @@ handle_publish.o: handle_publish.c.o
 
 # target to build an object file
 handle_publish.c.o:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/handle_publish.c.o
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/handle_publish.c.o
 .PHONY : handle_publish.c.o
 
 handle_publish.i: handle_publish.c.i
@@ -1180,7 +1180,7 @@ handle_publish.i: handle_publish.c.i
 
 # target to preprocess a source file
 handle_publish.c.i:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/handle_publish.c.i
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/handle_publish.c.i
 .PHONY : handle_publish.c.i
 
 handle_publish.s: handle_publish.c.s
@@ -1189,7 +1189,7 @@ handle_publish.s: handle_publish.c.s
 
 # target to generate assembly for a file
 handle_publish.c.s:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/handle_publish.c.s
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/handle_publish.c.s
 .PHONY : handle_publish.c.s
 
 handle_subscribe.o: handle_subscribe.c.o
@@ -1198,7 +1198,7 @@ handle_subscribe.o: handle_subscribe.c.o
 
 # target to build an object file
 handle_subscribe.c.o:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/handle_subscribe.c.o
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/handle_subscribe.c.o
 .PHONY : handle_subscribe.c.o
 
 handle_subscribe.i: handle_subscribe.c.i
@@ -1207,7 +1207,7 @@ handle_subscribe.i: handle_subscribe.c.i
 
 # target to preprocess a source file
 handle_subscribe.c.i:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/handle_subscribe.c.i
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/handle_subscribe.c.i
 .PHONY : handle_subscribe.c.i
 
 handle_subscribe.s: handle_subscribe.c.s
@@ -1216,7 +1216,7 @@ handle_subscribe.s: handle_subscribe.c.s
 
 # target to generate assembly for a file
 handle_subscribe.c.s:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/handle_subscribe.c.s
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/handle_subscribe.c.s
 .PHONY : handle_subscribe.c.s
 
 handle_unsubscribe.o: handle_unsubscribe.c.o
@@ -1225,7 +1225,7 @@ handle_unsubscribe.o: handle_unsubscribe.c.o
 
 # target to build an object file
 handle_unsubscribe.c.o:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/handle_unsubscribe.c.o
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/handle_unsubscribe.c.o
 .PHONY : handle_unsubscribe.c.o
 
 handle_unsubscribe.i: handle_unsubscribe.c.i
@@ -1234,7 +1234,7 @@ handle_unsubscribe.i: handle_unsubscribe.c.i
 
 # target to preprocess a source file
 handle_unsubscribe.c.i:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/handle_unsubscribe.c.i
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/handle_unsubscribe.c.i
 .PHONY : handle_unsubscribe.c.i
 
 handle_unsubscribe.s: handle_unsubscribe.c.s
@@ -1243,7 +1243,7 @@ handle_unsubscribe.s: handle_unsubscribe.c.s
 
 # target to generate assembly for a file
 handle_unsubscribe.c.s:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/handle_unsubscribe.c.s
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/handle_unsubscribe.c.s
 .PHONY : handle_unsubscribe.c.s
 
 logging.o: logging.c.o
@@ -1252,7 +1252,7 @@ logging.o: logging.c.o
 
 # target to build an object file
 logging.c.o:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/logging.c.o
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/logging.c.o
 .PHONY : logging.c.o
 
 logging.i: logging.c.i
@@ -1261,7 +1261,7 @@ logging.i: logging.c.i
 
 # target to preprocess a source file
 logging.c.i:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/logging.c.i
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/logging.c.i
 .PHONY : logging.c.i
 
 logging.s: logging.c.s
@@ -1270,7 +1270,7 @@ logging.s: logging.c.s
 
 # target to generate assembly for a file
 logging.c.s:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/logging.c.s
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/logging.c.s
 .PHONY : logging.c.s
 
 loop.o: loop.c.o
@@ -1279,7 +1279,7 @@ loop.o: loop.c.o
 
 # target to build an object file
 loop.c.o:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/loop.c.o
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/loop.c.o
 .PHONY : loop.c.o
 
 loop.i: loop.c.i
@@ -1288,7 +1288,7 @@ loop.i: loop.c.i
 
 # target to preprocess a source file
 loop.c.i:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/loop.c.i
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/loop.c.i
 .PHONY : loop.c.i
 
 loop.s: loop.c.s
@@ -1297,7 +1297,7 @@ loop.s: loop.c.s
 
 # target to generate assembly for a file
 loop.c.s:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/loop.c.s
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/loop.c.s
 .PHONY : loop.c.s
 
 mosquitto.o: mosquitto.c.o
@@ -1306,7 +1306,7 @@ mosquitto.o: mosquitto.c.o
 
 # target to build an object file
 mosquitto.c.o:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/mosquitto.c.o
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/mosquitto.c.o
 .PHONY : mosquitto.c.o
 
 mosquitto.i: mosquitto.c.i
@@ -1315,7 +1315,7 @@ mosquitto.i: mosquitto.c.i
 
 # target to preprocess a source file
 mosquitto.c.i:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/mosquitto.c.i
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/mosquitto.c.i
 .PHONY : mosquitto.c.i
 
 mosquitto.s: mosquitto.c.s
@@ -1324,7 +1324,7 @@ mosquitto.s: mosquitto.c.s
 
 # target to generate assembly for a file
 mosquitto.c.s:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/mosquitto.c.s
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/mosquitto.c.s
 .PHONY : mosquitto.c.s
 
 mosquitto_passwd.o: mosquitto_passwd.c.o
@@ -1333,7 +1333,7 @@ mosquitto_passwd.o: mosquitto_passwd.c.o
 
 # target to build an object file
 mosquitto_passwd.c.o:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto_passwd.dir/build.make src/CMakeFiles/mosquitto_passwd.dir/mosquitto_passwd.c.o
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto_passwd.dir/build.make src/CMakeFiles/mosquitto_passwd.dir/mosquitto_passwd.c.o
 .PHONY : mosquitto_passwd.c.o
 
 mosquitto_passwd.i: mosquitto_passwd.c.i
@@ -1342,7 +1342,7 @@ mosquitto_passwd.i: mosquitto_passwd.c.i
 
 # target to preprocess a source file
 mosquitto_passwd.c.i:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto_passwd.dir/build.make src/CMakeFiles/mosquitto_passwd.dir/mosquitto_passwd.c.i
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto_passwd.dir/build.make src/CMakeFiles/mosquitto_passwd.dir/mosquitto_passwd.c.i
 .PHONY : mosquitto_passwd.c.i
 
 mosquitto_passwd.s: mosquitto_passwd.c.s
@@ -1351,7 +1351,7 @@ mosquitto_passwd.s: mosquitto_passwd.c.s
 
 # target to generate assembly for a file
 mosquitto_passwd.c.s:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto_passwd.dir/build.make src/CMakeFiles/mosquitto_passwd.dir/mosquitto_passwd.c.s
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto_passwd.dir/build.make src/CMakeFiles/mosquitto_passwd.dir/mosquitto_passwd.c.s
 .PHONY : mosquitto_passwd.c.s
 
 net.o: net.c.o
@@ -1360,7 +1360,7 @@ net.o: net.c.o
 
 # target to build an object file
 net.c.o:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/net.c.o
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/net.c.o
 .PHONY : net.c.o
 
 net.i: net.c.i
@@ -1369,7 +1369,7 @@ net.i: net.c.i
 
 # target to preprocess a source file
 net.c.i:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/net.c.i
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/net.c.i
 .PHONY : net.c.i
 
 net.s: net.c.s
@@ -1378,7 +1378,7 @@ net.s: net.c.s
 
 # target to generate assembly for a file
 net.c.s:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/net.c.s
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/net.c.s
 .PHONY : net.c.s
 
 persist_read.o: persist_read.c.o
@@ -1387,7 +1387,7 @@ persist_read.o: persist_read.c.o
 
 # target to build an object file
 persist_read.c.o:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/persist_read.c.o
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/persist_read.c.o
 .PHONY : persist_read.c.o
 
 persist_read.i: persist_read.c.i
@@ -1396,7 +1396,7 @@ persist_read.i: persist_read.c.i
 
 # target to preprocess a source file
 persist_read.c.i:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/persist_read.c.i
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/persist_read.c.i
 .PHONY : persist_read.c.i
 
 persist_read.s: persist_read.c.s
@@ -1405,7 +1405,7 @@ persist_read.s: persist_read.c.s
 
 # target to generate assembly for a file
 persist_read.c.s:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/persist_read.c.s
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/persist_read.c.s
 .PHONY : persist_read.c.s
 
 persist_read_v234.o: persist_read_v234.c.o
@@ -1414,7 +1414,7 @@ persist_read_v234.o: persist_read_v234.c.o
 
 # target to build an object file
 persist_read_v234.c.o:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/persist_read_v234.c.o
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/persist_read_v234.c.o
 .PHONY : persist_read_v234.c.o
 
 persist_read_v234.i: persist_read_v234.c.i
@@ -1423,7 +1423,7 @@ persist_read_v234.i: persist_read_v234.c.i
 
 # target to preprocess a source file
 persist_read_v234.c.i:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/persist_read_v234.c.i
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/persist_read_v234.c.i
 .PHONY : persist_read_v234.c.i
 
 persist_read_v234.s: persist_read_v234.c.s
@@ -1432,7 +1432,7 @@ persist_read_v234.s: persist_read_v234.c.s
 
 # target to generate assembly for a file
 persist_read_v234.c.s:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/persist_read_v234.c.s
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/persist_read_v234.c.s
 .PHONY : persist_read_v234.c.s
 
 persist_read_v5.o: persist_read_v5.c.o
@@ -1441,7 +1441,7 @@ persist_read_v5.o: persist_read_v5.c.o
 
 # target to build an object file
 persist_read_v5.c.o:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/persist_read_v5.c.o
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/persist_read_v5.c.o
 .PHONY : persist_read_v5.c.o
 
 persist_read_v5.i: persist_read_v5.c.i
@@ -1450,7 +1450,7 @@ persist_read_v5.i: persist_read_v5.c.i
 
 # target to preprocess a source file
 persist_read_v5.c.i:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/persist_read_v5.c.i
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/persist_read_v5.c.i
 .PHONY : persist_read_v5.c.i
 
 persist_read_v5.s: persist_read_v5.c.s
@@ -1459,7 +1459,7 @@ persist_read_v5.s: persist_read_v5.c.s
 
 # target to generate assembly for a file
 persist_read_v5.c.s:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/persist_read_v5.c.s
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/persist_read_v5.c.s
 .PHONY : persist_read_v5.c.s
 
 persist_write.o: persist_write.c.o
@@ -1468,7 +1468,7 @@ persist_write.o: persist_write.c.o
 
 # target to build an object file
 persist_write.c.o:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/persist_write.c.o
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/persist_write.c.o
 .PHONY : persist_write.c.o
 
 persist_write.i: persist_write.c.i
@@ -1477,7 +1477,7 @@ persist_write.i: persist_write.c.i
 
 # target to preprocess a source file
 persist_write.c.i:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/persist_write.c.i
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/persist_write.c.i
 .PHONY : persist_write.c.i
 
 persist_write.s: persist_write.c.s
@@ -1486,7 +1486,7 @@ persist_write.s: persist_write.c.s
 
 # target to generate assembly for a file
 persist_write.c.s:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/persist_write.c.s
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/persist_write.c.s
 .PHONY : persist_write.c.s
 
 persist_write_v5.o: persist_write_v5.c.o
@@ -1495,7 +1495,7 @@ persist_write_v5.o: persist_write_v5.c.o
 
 # target to build an object file
 persist_write_v5.c.o:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/persist_write_v5.c.o
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/persist_write_v5.c.o
 .PHONY : persist_write_v5.c.o
 
 persist_write_v5.i: persist_write_v5.c.i
@@ -1504,7 +1504,7 @@ persist_write_v5.i: persist_write_v5.c.i
 
 # target to preprocess a source file
 persist_write_v5.c.i:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/persist_write_v5.c.i
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/persist_write_v5.c.i
 .PHONY : persist_write_v5.c.i
 
 persist_write_v5.s: persist_write_v5.c.s
@@ -1513,7 +1513,7 @@ persist_write_v5.s: persist_write_v5.c.s
 
 # target to generate assembly for a file
 persist_write_v5.c.s:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/persist_write_v5.c.s
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/persist_write_v5.c.s
 .PHONY : persist_write_v5.c.s
 
 plugin.o: plugin.c.o
@@ -1522,7 +1522,7 @@ plugin.o: plugin.c.o
 
 # target to build an object file
 plugin.c.o:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/plugin.c.o
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/plugin.c.o
 .PHONY : plugin.c.o
 
 plugin.i: plugin.c.i
@@ -1531,7 +1531,7 @@ plugin.i: plugin.c.i
 
 # target to preprocess a source file
 plugin.c.i:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/plugin.c.i
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/plugin.c.i
 .PHONY : plugin.c.i
 
 plugin.s: plugin.c.s
@@ -1540,7 +1540,7 @@ plugin.s: plugin.c.s
 
 # target to generate assembly for a file
 plugin.c.s:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/plugin.c.s
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/plugin.c.s
 .PHONY : plugin.c.s
 
 property_broker.o: property_broker.c.o
@@ -1549,7 +1549,7 @@ property_broker.o: property_broker.c.o
 
 # target to build an object file
 property_broker.c.o:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/property_broker.c.o
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/property_broker.c.o
 .PHONY : property_broker.c.o
 
 property_broker.i: property_broker.c.i
@@ -1558,7 +1558,7 @@ property_broker.i: property_broker.c.i
 
 # target to preprocess a source file
 property_broker.c.i:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/property_broker.c.i
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/property_broker.c.i
 .PHONY : property_broker.c.i
 
 property_broker.s: property_broker.c.s
@@ -1567,7 +1567,7 @@ property_broker.s: property_broker.c.s
 
 # target to generate assembly for a file
 property_broker.c.s:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/property_broker.c.s
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/property_broker.c.s
 .PHONY : property_broker.c.s
 
 read_handle.o: read_handle.c.o
@@ -1576,7 +1576,7 @@ read_handle.o: read_handle.c.o
 
 # target to build an object file
 read_handle.c.o:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/read_handle.c.o
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/read_handle.c.o
 .PHONY : read_handle.c.o
 
 read_handle.i: read_handle.c.i
@@ -1585,7 +1585,7 @@ read_handle.i: read_handle.c.i
 
 # target to preprocess a source file
 read_handle.c.i:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/read_handle.c.i
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/read_handle.c.i
 .PHONY : read_handle.c.i
 
 read_handle.s: read_handle.c.s
@@ -1594,7 +1594,7 @@ read_handle.s: read_handle.c.s
 
 # target to generate assembly for a file
 read_handle.c.s:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/read_handle.c.s
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/read_handle.c.s
 .PHONY : read_handle.c.s
 
 security.o: security.c.o
@@ -1603,7 +1603,7 @@ security.o: security.c.o
 
 # target to build an object file
 security.c.o:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/security.c.o
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/security.c.o
 .PHONY : security.c.o
 
 security.i: security.c.i
@@ -1612,7 +1612,7 @@ security.i: security.c.i
 
 # target to preprocess a source file
 security.c.i:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/security.c.i
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/security.c.i
 .PHONY : security.c.i
 
 security.s: security.c.s
@@ -1621,7 +1621,7 @@ security.s: security.c.s
 
 # target to generate assembly for a file
 security.c.s:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/security.c.s
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/security.c.s
 .PHONY : security.c.s
 
 security_default.o: security_default.c.o
@@ -1630,7 +1630,7 @@ security_default.o: security_default.c.o
 
 # target to build an object file
 security_default.c.o:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/security_default.c.o
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/security_default.c.o
 .PHONY : security_default.c.o
 
 security_default.i: security_default.c.i
@@ -1639,7 +1639,7 @@ security_default.i: security_default.c.i
 
 # target to preprocess a source file
 security_default.c.i:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/security_default.c.i
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/security_default.c.i
 .PHONY : security_default.c.i
 
 security_default.s: security_default.c.s
@@ -1648,7 +1648,7 @@ security_default.s: security_default.c.s
 
 # target to generate assembly for a file
 security_default.c.s:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/security_default.c.s
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/security_default.c.s
 .PHONY : security_default.c.s
 
 send_auth.o: send_auth.c.o
@@ -1657,7 +1657,7 @@ send_auth.o: send_auth.c.o
 
 # target to build an object file
 send_auth.c.o:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/send_auth.c.o
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/send_auth.c.o
 .PHONY : send_auth.c.o
 
 send_auth.i: send_auth.c.i
@@ -1666,7 +1666,7 @@ send_auth.i: send_auth.c.i
 
 # target to preprocess a source file
 send_auth.c.i:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/send_auth.c.i
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/send_auth.c.i
 .PHONY : send_auth.c.i
 
 send_auth.s: send_auth.c.s
@@ -1675,7 +1675,7 @@ send_auth.s: send_auth.c.s
 
 # target to generate assembly for a file
 send_auth.c.s:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/send_auth.c.s
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/send_auth.c.s
 .PHONY : send_auth.c.s
 
 send_connack.o: send_connack.c.o
@@ -1684,7 +1684,7 @@ send_connack.o: send_connack.c.o
 
 # target to build an object file
 send_connack.c.o:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/send_connack.c.o
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/send_connack.c.o
 .PHONY : send_connack.c.o
 
 send_connack.i: send_connack.c.i
@@ -1693,7 +1693,7 @@ send_connack.i: send_connack.c.i
 
 # target to preprocess a source file
 send_connack.c.i:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/send_connack.c.i
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/send_connack.c.i
 .PHONY : send_connack.c.i
 
 send_connack.s: send_connack.c.s
@@ -1702,7 +1702,7 @@ send_connack.s: send_connack.c.s
 
 # target to generate assembly for a file
 send_connack.c.s:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/send_connack.c.s
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/send_connack.c.s
 .PHONY : send_connack.c.s
 
 send_suback.o: send_suback.c.o
@@ -1711,7 +1711,7 @@ send_suback.o: send_suback.c.o
 
 # target to build an object file
 send_suback.c.o:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/send_suback.c.o
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/send_suback.c.o
 .PHONY : send_suback.c.o
 
 send_suback.i: send_suback.c.i
@@ -1720,7 +1720,7 @@ send_suback.i: send_suback.c.i
 
 # target to preprocess a source file
 send_suback.c.i:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/send_suback.c.i
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/send_suback.c.i
 .PHONY : send_suback.c.i
 
 send_suback.s: send_suback.c.s
@@ -1729,7 +1729,7 @@ send_suback.s: send_suback.c.s
 
 # target to generate assembly for a file
 send_suback.c.s:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/send_suback.c.s
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/send_suback.c.s
 .PHONY : send_suback.c.s
 
 send_unsuback.o: send_unsuback.c.o
@@ -1738,7 +1738,7 @@ send_unsuback.o: send_unsuback.c.o
 
 # target to build an object file
 send_unsuback.c.o:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/send_unsuback.c.o
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/send_unsuback.c.o
 .PHONY : send_unsuback.c.o
 
 send_unsuback.i: send_unsuback.c.i
@@ -1747,7 +1747,7 @@ send_unsuback.i: send_unsuback.c.i
 
 # target to preprocess a source file
 send_unsuback.c.i:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/send_unsuback.c.i
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/send_unsuback.c.i
 .PHONY : send_unsuback.c.i
 
 send_unsuback.s: send_unsuback.c.s
@@ -1756,7 +1756,7 @@ send_unsuback.s: send_unsuback.c.s
 
 # target to generate assembly for a file
 send_unsuback.c.s:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/send_unsuback.c.s
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/send_unsuback.c.s
 .PHONY : send_unsuback.c.s
 
 session_expiry.o: session_expiry.c.o
@@ -1765,7 +1765,7 @@ session_expiry.o: session_expiry.c.o
 
 # target to build an object file
 session_expiry.c.o:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/session_expiry.c.o
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/session_expiry.c.o
 .PHONY : session_expiry.c.o
 
 session_expiry.i: session_expiry.c.i
@@ -1774,7 +1774,7 @@ session_expiry.i: session_expiry.c.i
 
 # target to preprocess a source file
 session_expiry.c.i:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/session_expiry.c.i
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/session_expiry.c.i
 .PHONY : session_expiry.c.i
 
 session_expiry.s: session_expiry.c.s
@@ -1783,7 +1783,7 @@ session_expiry.s: session_expiry.c.s
 
 # target to generate assembly for a file
 session_expiry.c.s:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/session_expiry.c.s
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/session_expiry.c.s
 .PHONY : session_expiry.c.s
 
 signals.o: signals.c.o
@@ -1792,7 +1792,7 @@ signals.o: signals.c.o
 
 # target to build an object file
 signals.c.o:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/signals.c.o
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/signals.c.o
 .PHONY : signals.c.o
 
 signals.i: signals.c.i
@@ -1801,7 +1801,7 @@ signals.i: signals.c.i
 
 # target to preprocess a source file
 signals.c.i:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/signals.c.i
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/signals.c.i
 .PHONY : signals.c.i
 
 signals.s: signals.c.s
@@ -1810,7 +1810,7 @@ signals.s: signals.c.s
 
 # target to generate assembly for a file
 signals.c.s:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/signals.c.s
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/signals.c.s
 .PHONY : signals.c.s
 
 subs.o: subs.c.o
@@ -1819,7 +1819,7 @@ subs.o: subs.c.o
 
 # target to build an object file
 subs.c.o:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/subs.c.o
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/subs.c.o
 .PHONY : subs.c.o
 
 subs.i: subs.c.i
@@ -1828,7 +1828,7 @@ subs.i: subs.c.i
 
 # target to preprocess a source file
 subs.c.i:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/subs.c.i
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/subs.c.i
 .PHONY : subs.c.i
 
 subs.s: subs.c.s
@@ -1837,7 +1837,7 @@ subs.s: subs.c.s
 
 # target to generate assembly for a file
 subs.c.s:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/subs.c.s
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/subs.c.s
 .PHONY : subs.c.s
 
 sys_tree.o: sys_tree.c.o
@@ -1846,7 +1846,7 @@ sys_tree.o: sys_tree.c.o
 
 # target to build an object file
 sys_tree.c.o:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/sys_tree.c.o
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/sys_tree.c.o
 .PHONY : sys_tree.c.o
 
 sys_tree.i: sys_tree.c.i
@@ -1855,7 +1855,7 @@ sys_tree.i: sys_tree.c.i
 
 # target to preprocess a source file
 sys_tree.c.i:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/sys_tree.c.i
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/sys_tree.c.i
 .PHONY : sys_tree.c.i
 
 sys_tree.s: sys_tree.c.s
@@ -1864,7 +1864,7 @@ sys_tree.s: sys_tree.c.s
 
 # target to generate assembly for a file
 sys_tree.c.s:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/sys_tree.c.s
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/sys_tree.c.s
 .PHONY : sys_tree.c.s
 
 websockets.o: websockets.c.o
@@ -1873,7 +1873,7 @@ websockets.o: websockets.c.o
 
 # target to build an object file
 websockets.c.o:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/websockets.c.o
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/websockets.c.o
 .PHONY : websockets.c.o
 
 websockets.i: websockets.c.i
@@ -1882,7 +1882,7 @@ websockets.i: websockets.c.i
 
 # target to preprocess a source file
 websockets.c.i:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/websockets.c.i
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/websockets.c.i
 .PHONY : websockets.c.i
 
 websockets.s: websockets.c.s
@@ -1891,7 +1891,7 @@ websockets.s: websockets.c.s
 
 # target to generate assembly for a file
 websockets.c.s:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/websockets.c.s
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/websockets.c.s
 .PHONY : websockets.c.s
 
 will_delay.o: will_delay.c.o
@@ -1900,7 +1900,7 @@ will_delay.o: will_delay.c.o
 
 # target to build an object file
 will_delay.c.o:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/will_delay.c.o
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/will_delay.c.o
 .PHONY : will_delay.c.o
 
 will_delay.i: will_delay.c.i
@@ -1909,7 +1909,7 @@ will_delay.i: will_delay.c.i
 
 # target to preprocess a source file
 will_delay.c.i:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/will_delay.c.i
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/will_delay.c.i
 .PHONY : will_delay.c.i
 
 will_delay.s: will_delay.c.s
@@ -1918,7 +1918,7 @@ will_delay.s: will_delay.c.s
 
 # target to generate assembly for a file
 will_delay.c.s:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/will_delay.c.s
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/mosquitto.dir/build.make src/CMakeFiles/mosquitto.dir/will_delay.c.s
 .PHONY : will_delay.c.s
 
 # Help Target
@@ -2136,6 +2136,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

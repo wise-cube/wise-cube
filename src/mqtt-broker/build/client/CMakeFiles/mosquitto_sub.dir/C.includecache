@@ -6,9 +6,9 @@
 
 #IncludeRegexTransform: 
 
-/home/di3go/Documents/wise-cube/src/mqtt/src/client/client_props.c
+/home/di3go/Documents/wise-cube-new/src/mqtt-broker/src/client/client_props.c
 config.h
-/home/di3go/Documents/wise-cube/src/mqtt/src/client/config.h
+/home/di3go/Documents/wise-cube-new/src/mqtt-broker/src/client/config.h
 errno.h
 -
 fcntl.h
@@ -28,15 +28,15 @@ process.h
 winsock2.h
 -
 mosquitto.h
-/home/di3go/Documents/wise-cube/src/mqtt/src/client/mosquitto.h
+/home/di3go/Documents/wise-cube-new/src/mqtt-broker/src/client/mosquitto.h
 mqtt_protocol.h
-/home/di3go/Documents/wise-cube/src/mqtt/src/client/mqtt_protocol.h
+/home/di3go/Documents/wise-cube-new/src/mqtt-broker/src/client/mqtt_protocol.h
 client_shared.h
-/home/di3go/Documents/wise-cube/src/mqtt/src/client/client_shared.h
+/home/di3go/Documents/wise-cube-new/src/mqtt-broker/src/client/client_shared.h
 
-/home/di3go/Documents/wise-cube/src/mqtt/src/client/client_shared.c
+/home/di3go/Documents/wise-cube-new/src/mqtt-broker/src/client/client_shared.c
 config.h
-/home/di3go/Documents/wise-cube/src/mqtt/src/client/config.h
+/home/di3go/Documents/wise-cube-new/src/mqtt-broker/src/client/config.h
 errno.h
 -
 fcntl.h
@@ -62,9 +62,9 @@ mosquitto.h
 mqtt_protocol.h
 -
 client_shared.h
-/home/di3go/Documents/wise-cube/src/mqtt/src/client/client_shared.h
+/home/di3go/Documents/wise-cube-new/src/mqtt-broker/src/client/client_shared.h
 
-/home/di3go/Documents/wise-cube/src/mqtt/src/client/client_shared.h
+/home/di3go/Documents/wise-cube-new/src/mqtt-broker/src/client/client_shared.h
 stdio.h
 -
 winsock2.h
@@ -72,9 +72,9 @@ winsock2.h
 sys/time.h
 -
 
-/home/di3go/Documents/wise-cube/src/mqtt/src/client/sub_client.c
+/home/di3go/Documents/wise-cube-new/src/mqtt-broker/src/client/sub_client.c
 config.h
-/home/di3go/Documents/wise-cube/src/mqtt/src/client/config.h
+/home/di3go/Documents/wise-cube-new/src/mqtt-broker/src/client/config.h
 assert.h
 -
 errno.h
@@ -100,11 +100,11 @@ mosquitto.h
 mqtt_protocol.h
 -
 client_shared.h
-/home/di3go/Documents/wise-cube/src/mqtt/src/client/client_shared.h
+/home/di3go/Documents/wise-cube-new/src/mqtt-broker/src/client/client_shared.h
 
-/home/di3go/Documents/wise-cube/src/mqtt/src/client/sub_client_output.c
+/home/di3go/Documents/wise-cube-new/src/mqtt-broker/src/client/sub_client_output.c
 config.h
-/home/di3go/Documents/wise-cube/src/mqtt/src/client/config.h
+/home/di3go/Documents/wise-cube-new/src/mqtt-broker/src/client/config.h
 assert.h
 -
 errno.h
@@ -128,15 +128,15 @@ sys/time.h
 mosquitto.h
 -
 client_shared.h
-/home/di3go/Documents/wise-cube/src/mqtt/src/client/client_shared.h
+/home/di3go/Documents/wise-cube-new/src/mqtt-broker/src/client/client_shared.h
 
-/home/di3go/Documents/wise-cube/src/mqtt/src/config.h
+/home/di3go/Documents/wise-cube-new/src/mqtt-broker/src/config.h
 openssl/opensslconf.h
 -
 stdint.h
 -
 
-/home/di3go/Documents/wise-cube/src/mqtt/src/lib/mosquitto.h
+/home/di3go/Documents/wise-cube-new/src/mqtt-broker/src/lib/mosquitto.h
 stdbool.h
 -
 stddef.h
@@ -144,5 +144,5 @@ stddef.h
 stdint.h
 -
 
-/home/di3go/Documents/wise-cube/src/mqtt/src/lib/mqtt_protocol.h
+/home/di3go/Documents/wise-cube-new/src/mqtt-broker/src/lib/mqtt_protocol.h
 

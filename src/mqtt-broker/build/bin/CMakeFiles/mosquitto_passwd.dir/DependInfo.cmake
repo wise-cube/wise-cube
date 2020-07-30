@@ -4,8 +4,8 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "/home/di3go/Documents/wise-cube/src/mqtt/src/lib/misc_mosq.c" "/home/di3go/Documents/wise-cube/src/mqtt/build/src/CMakeFiles/mosquitto_passwd.dir/__/lib/misc_mosq.c.o"
-  "/home/di3go/Documents/wise-cube/src/mqtt/src/src/mosquitto_passwd.c" "/home/di3go/Documents/wise-cube/src/mqtt/build/src/CMakeFiles/mosquitto_passwd.dir/mosquitto_passwd.c.o"
+  "/home/di3go/Documents/wise-cube-new/src/mqtt-broker/src/lib/misc_mosq.c" "/home/di3go/Documents/wise-cube-new/src/mqtt-broker/build/src/CMakeFiles/mosquitto_passwd.dir/__/lib/misc_mosq.c.o"
+  "/home/di3go/Documents/wise-cube-new/src/mqtt-broker/src/src/mosquitto_passwd.c" "/home/di3go/Documents/wise-cube-new/src/mqtt-broker/build/src/CMakeFiles/mosquitto_passwd.dir/mosquitto_passwd.c.o"
   )
 set(CMAKE_C_COMPILER_ID "GNU")
 
@@ -27,10 +27,10 @@ set(CMAKE_TARGET_DEFINITIONS_C
 
 # The include file search paths:
 set(CMAKE_C_TARGET_INCLUDE_PATH
-  "/home/di3go/Documents/wise-cube/src/mqtt/src"
-  "/home/di3go/Documents/wise-cube/src/mqtt/src/src"
-  "/home/di3go/Documents/wise-cube/src/mqtt/src/lib"
-  "/home/di3go/Documents/wise-cube/src/mqtt/src/src/deps"
+  "/home/di3go/Documents/wise-cube-new/src/mqtt-broker/src"
+  "/home/di3go/Documents/wise-cube-new/src/mqtt-broker/src/src"
+  "/home/di3go/Documents/wise-cube-new/src/mqtt-broker/src/lib"
+  "/home/di3go/Documents/wise-cube-new/src/mqtt-broker/src/src/deps"
   )
 
 # Targets to which this target links.

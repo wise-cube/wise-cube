@@ -68,10 +68,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/di3go/Documents/wise-cube/src/mqtt/src
+CMAKE_SOURCE_DIR = /home/di3go/Documents/wise-cube-new/src/mqtt-broker/src
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/di3go/Documents/wise-cube/src/mqtt/build
+CMAKE_BINARY_DIR = /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -157,14 +157,14 @@ test/fast: test
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/di3go/Documents/wise-cube/src/mqtt/build/CMakeFiles /home/di3go/Documents/wise-cube/src/mqtt/build/client/CMakeFiles/progress.marks
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 client/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/di3go/Documents/wise-cube/src/mqtt/build/CMakeFiles 0
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build/CMakeFiles /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build/client/CMakeFiles/progress.marks
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 client/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 client/clean
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 client/clean
 .PHONY : clean
 
 # The main clean target
@@ -174,22 +174,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 client/preinstall
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 client/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 client/preinstall
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 client/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 client/CMakeFiles/mosquitto_rr.dir/rule:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 client/CMakeFiles/mosquitto_rr.dir/rule
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 client/CMakeFiles/mosquitto_rr.dir/rule
 .PHONY : client/CMakeFiles/mosquitto_rr.dir/rule
 
 # Convenience name for target.
@@ -199,12 +199,12 @@ mosquitto_rr: client/CMakeFiles/mosquitto_rr.dir/rule
 
 # fast build rule for target.
 mosquitto_rr/fast:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f client/CMakeFiles/mosquitto_rr.dir/build.make client/CMakeFiles/mosquitto_rr.dir/build
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f client/CMakeFiles/mosquitto_rr.dir/build.make client/CMakeFiles/mosquitto_rr.dir/build
 .PHONY : mosquitto_rr/fast
 
 # Convenience name for target.
 client/CMakeFiles/mosquitto_sub.dir/rule:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 client/CMakeFiles/mosquitto_sub.dir/rule
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 client/CMakeFiles/mosquitto_sub.dir/rule
 .PHONY : client/CMakeFiles/mosquitto_sub.dir/rule
 
 # Convenience name for target.
@@ -214,12 +214,12 @@ mosquitto_sub: client/CMakeFiles/mosquitto_sub.dir/rule
 
 # fast build rule for target.
 mosquitto_sub/fast:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f client/CMakeFiles/mosquitto_sub.dir/build.make client/CMakeFiles/mosquitto_sub.dir/build
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f client/CMakeFiles/mosquitto_sub.dir/build.make client/CMakeFiles/mosquitto_sub.dir/build
 .PHONY : mosquitto_sub/fast
 
 # Convenience name for target.
 client/CMakeFiles/mosquitto_pub.dir/rule:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 client/CMakeFiles/mosquitto_pub.dir/rule
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 client/CMakeFiles/mosquitto_pub.dir/rule
 .PHONY : client/CMakeFiles/mosquitto_pub.dir/rule
 
 # Convenience name for target.
@@ -229,7 +229,7 @@ mosquitto_pub: client/CMakeFiles/mosquitto_pub.dir/rule
 
 # fast build rule for target.
 mosquitto_pub/fast:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f client/CMakeFiles/mosquitto_pub.dir/build.make client/CMakeFiles/mosquitto_pub.dir/build
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f client/CMakeFiles/mosquitto_pub.dir/build.make client/CMakeFiles/mosquitto_pub.dir/build
 .PHONY : mosquitto_pub/fast
 
 client_props.o: client_props.c.o
@@ -238,9 +238,9 @@ client_props.o: client_props.c.o
 
 # target to build an object file
 client_props.c.o:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f client/CMakeFiles/mosquitto_rr.dir/build.make client/CMakeFiles/mosquitto_rr.dir/client_props.c.o
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f client/CMakeFiles/mosquitto_sub.dir/build.make client/CMakeFiles/mosquitto_sub.dir/client_props.c.o
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f client/CMakeFiles/mosquitto_pub.dir/build.make client/CMakeFiles/mosquitto_pub.dir/client_props.c.o
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f client/CMakeFiles/mosquitto_rr.dir/build.make client/CMakeFiles/mosquitto_rr.dir/client_props.c.o
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f client/CMakeFiles/mosquitto_sub.dir/build.make client/CMakeFiles/mosquitto_sub.dir/client_props.c.o
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f client/CMakeFiles/mosquitto_pub.dir/build.make client/CMakeFiles/mosquitto_pub.dir/client_props.c.o
 .PHONY : client_props.c.o
 
 client_props.i: client_props.c.i
@@ -249,9 +249,9 @@ client_props.i: client_props.c.i
 
 # target to preprocess a source file
 client_props.c.i:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f client/CMakeFiles/mosquitto_rr.dir/build.make client/CMakeFiles/mosquitto_rr.dir/client_props.c.i
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f client/CMakeFiles/mosquitto_sub.dir/build.make client/CMakeFiles/mosquitto_sub.dir/client_props.c.i
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f client/CMakeFiles/mosquitto_pub.dir/build.make client/CMakeFiles/mosquitto_pub.dir/client_props.c.i
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f client/CMakeFiles/mosquitto_rr.dir/build.make client/CMakeFiles/mosquitto_rr.dir/client_props.c.i
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f client/CMakeFiles/mosquitto_sub.dir/build.make client/CMakeFiles/mosquitto_sub.dir/client_props.c.i
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f client/CMakeFiles/mosquitto_pub.dir/build.make client/CMakeFiles/mosquitto_pub.dir/client_props.c.i
 .PHONY : client_props.c.i
 
 client_props.s: client_props.c.s
@@ -260,9 +260,9 @@ client_props.s: client_props.c.s
 
 # target to generate assembly for a file
 client_props.c.s:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f client/CMakeFiles/mosquitto_rr.dir/build.make client/CMakeFiles/mosquitto_rr.dir/client_props.c.s
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f client/CMakeFiles/mosquitto_sub.dir/build.make client/CMakeFiles/mosquitto_sub.dir/client_props.c.s
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f client/CMakeFiles/mosquitto_pub.dir/build.make client/CMakeFiles/mosquitto_pub.dir/client_props.c.s
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f client/CMakeFiles/mosquitto_rr.dir/build.make client/CMakeFiles/mosquitto_rr.dir/client_props.c.s
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f client/CMakeFiles/mosquitto_sub.dir/build.make client/CMakeFiles/mosquitto_sub.dir/client_props.c.s
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f client/CMakeFiles/mosquitto_pub.dir/build.make client/CMakeFiles/mosquitto_pub.dir/client_props.c.s
 .PHONY : client_props.c.s
 
 client_shared.o: client_shared.c.o
@@ -271,9 +271,9 @@ client_shared.o: client_shared.c.o
 
 # target to build an object file
 client_shared.c.o:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f client/CMakeFiles/mosquitto_rr.dir/build.make client/CMakeFiles/mosquitto_rr.dir/client_shared.c.o
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f client/CMakeFiles/mosquitto_sub.dir/build.make client/CMakeFiles/mosquitto_sub.dir/client_shared.c.o
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f client/CMakeFiles/mosquitto_pub.dir/build.make client/CMakeFiles/mosquitto_pub.dir/client_shared.c.o
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f client/CMakeFiles/mosquitto_rr.dir/build.make client/CMakeFiles/mosquitto_rr.dir/client_shared.c.o
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f client/CMakeFiles/mosquitto_sub.dir/build.make client/CMakeFiles/mosquitto_sub.dir/client_shared.c.o
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f client/CMakeFiles/mosquitto_pub.dir/build.make client/CMakeFiles/mosquitto_pub.dir/client_shared.c.o
 .PHONY : client_shared.c.o
 
 client_shared.i: client_shared.c.i
@@ -282,9 +282,9 @@ client_shared.i: client_shared.c.i
 
 # target to preprocess a source file
 client_shared.c.i:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f client/CMakeFiles/mosquitto_rr.dir/build.make client/CMakeFiles/mosquitto_rr.dir/client_shared.c.i
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f client/CMakeFiles/mosquitto_sub.dir/build.make client/CMakeFiles/mosquitto_sub.dir/client_shared.c.i
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f client/CMakeFiles/mosquitto_pub.dir/build.make client/CMakeFiles/mosquitto_pub.dir/client_shared.c.i
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f client/CMakeFiles/mosquitto_rr.dir/build.make client/CMakeFiles/mosquitto_rr.dir/client_shared.c.i
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f client/CMakeFiles/mosquitto_sub.dir/build.make client/CMakeFiles/mosquitto_sub.dir/client_shared.c.i
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f client/CMakeFiles/mosquitto_pub.dir/build.make client/CMakeFiles/mosquitto_pub.dir/client_shared.c.i
 .PHONY : client_shared.c.i
 
 client_shared.s: client_shared.c.s
@@ -293,9 +293,9 @@ client_shared.s: client_shared.c.s
 
 # target to generate assembly for a file
 client_shared.c.s:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f client/CMakeFiles/mosquitto_rr.dir/build.make client/CMakeFiles/mosquitto_rr.dir/client_shared.c.s
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f client/CMakeFiles/mosquitto_sub.dir/build.make client/CMakeFiles/mosquitto_sub.dir/client_shared.c.s
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f client/CMakeFiles/mosquitto_pub.dir/build.make client/CMakeFiles/mosquitto_pub.dir/client_shared.c.s
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f client/CMakeFiles/mosquitto_rr.dir/build.make client/CMakeFiles/mosquitto_rr.dir/client_shared.c.s
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f client/CMakeFiles/mosquitto_sub.dir/build.make client/CMakeFiles/mosquitto_sub.dir/client_shared.c.s
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f client/CMakeFiles/mosquitto_pub.dir/build.make client/CMakeFiles/mosquitto_pub.dir/client_shared.c.s
 .PHONY : client_shared.c.s
 
 pub_client.o: pub_client.c.o
@@ -304,7 +304,7 @@ pub_client.o: pub_client.c.o
 
 # target to build an object file
 pub_client.c.o:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f client/CMakeFiles/mosquitto_pub.dir/build.make client/CMakeFiles/mosquitto_pub.dir/pub_client.c.o
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f client/CMakeFiles/mosquitto_pub.dir/build.make client/CMakeFiles/mosquitto_pub.dir/pub_client.c.o
 .PHONY : pub_client.c.o
 
 pub_client.i: pub_client.c.i
@@ -313,7 +313,7 @@ pub_client.i: pub_client.c.i
 
 # target to preprocess a source file
 pub_client.c.i:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f client/CMakeFiles/mosquitto_pub.dir/build.make client/CMakeFiles/mosquitto_pub.dir/pub_client.c.i
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f client/CMakeFiles/mosquitto_pub.dir/build.make client/CMakeFiles/mosquitto_pub.dir/pub_client.c.i
 .PHONY : pub_client.c.i
 
 pub_client.s: pub_client.c.s
@@ -322,7 +322,7 @@ pub_client.s: pub_client.c.s
 
 # target to generate assembly for a file
 pub_client.c.s:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f client/CMakeFiles/mosquitto_pub.dir/build.make client/CMakeFiles/mosquitto_pub.dir/pub_client.c.s
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f client/CMakeFiles/mosquitto_pub.dir/build.make client/CMakeFiles/mosquitto_pub.dir/pub_client.c.s
 .PHONY : pub_client.c.s
 
 pub_shared.o: pub_shared.c.o
@@ -331,8 +331,8 @@ pub_shared.o: pub_shared.c.o
 
 # target to build an object file
 pub_shared.c.o:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f client/CMakeFiles/mosquitto_rr.dir/build.make client/CMakeFiles/mosquitto_rr.dir/pub_shared.c.o
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f client/CMakeFiles/mosquitto_pub.dir/build.make client/CMakeFiles/mosquitto_pub.dir/pub_shared.c.o
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f client/CMakeFiles/mosquitto_rr.dir/build.make client/CMakeFiles/mosquitto_rr.dir/pub_shared.c.o
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f client/CMakeFiles/mosquitto_pub.dir/build.make client/CMakeFiles/mosquitto_pub.dir/pub_shared.c.o
 .PHONY : pub_shared.c.o
 
 pub_shared.i: pub_shared.c.i
@@ -341,8 +341,8 @@ pub_shared.i: pub_shared.c.i
 
 # target to preprocess a source file
 pub_shared.c.i:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f client/CMakeFiles/mosquitto_rr.dir/build.make client/CMakeFiles/mosquitto_rr.dir/pub_shared.c.i
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f client/CMakeFiles/mosquitto_pub.dir/build.make client/CMakeFiles/mosquitto_pub.dir/pub_shared.c.i
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f client/CMakeFiles/mosquitto_rr.dir/build.make client/CMakeFiles/mosquitto_rr.dir/pub_shared.c.i
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f client/CMakeFiles/mosquitto_pub.dir/build.make client/CMakeFiles/mosquitto_pub.dir/pub_shared.c.i
 .PHONY : pub_shared.c.i
 
 pub_shared.s: pub_shared.c.s
@@ -351,8 +351,8 @@ pub_shared.s: pub_shared.c.s
 
 # target to generate assembly for a file
 pub_shared.c.s:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f client/CMakeFiles/mosquitto_rr.dir/build.make client/CMakeFiles/mosquitto_rr.dir/pub_shared.c.s
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f client/CMakeFiles/mosquitto_pub.dir/build.make client/CMakeFiles/mosquitto_pub.dir/pub_shared.c.s
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f client/CMakeFiles/mosquitto_rr.dir/build.make client/CMakeFiles/mosquitto_rr.dir/pub_shared.c.s
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f client/CMakeFiles/mosquitto_pub.dir/build.make client/CMakeFiles/mosquitto_pub.dir/pub_shared.c.s
 .PHONY : pub_shared.c.s
 
 rr_client.o: rr_client.c.o
@@ -361,7 +361,7 @@ rr_client.o: rr_client.c.o
 
 # target to build an object file
 rr_client.c.o:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f client/CMakeFiles/mosquitto_rr.dir/build.make client/CMakeFiles/mosquitto_rr.dir/rr_client.c.o
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f client/CMakeFiles/mosquitto_rr.dir/build.make client/CMakeFiles/mosquitto_rr.dir/rr_client.c.o
 .PHONY : rr_client.c.o
 
 rr_client.i: rr_client.c.i
@@ -370,7 +370,7 @@ rr_client.i: rr_client.c.i
 
 # target to preprocess a source file
 rr_client.c.i:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f client/CMakeFiles/mosquitto_rr.dir/build.make client/CMakeFiles/mosquitto_rr.dir/rr_client.c.i
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f client/CMakeFiles/mosquitto_rr.dir/build.make client/CMakeFiles/mosquitto_rr.dir/rr_client.c.i
 .PHONY : rr_client.c.i
 
 rr_client.s: rr_client.c.s
@@ -379,7 +379,7 @@ rr_client.s: rr_client.c.s
 
 # target to generate assembly for a file
 rr_client.c.s:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f client/CMakeFiles/mosquitto_rr.dir/build.make client/CMakeFiles/mosquitto_rr.dir/rr_client.c.s
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f client/CMakeFiles/mosquitto_rr.dir/build.make client/CMakeFiles/mosquitto_rr.dir/rr_client.c.s
 .PHONY : rr_client.c.s
 
 sub_client.o: sub_client.c.o
@@ -388,7 +388,7 @@ sub_client.o: sub_client.c.o
 
 # target to build an object file
 sub_client.c.o:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f client/CMakeFiles/mosquitto_sub.dir/build.make client/CMakeFiles/mosquitto_sub.dir/sub_client.c.o
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f client/CMakeFiles/mosquitto_sub.dir/build.make client/CMakeFiles/mosquitto_sub.dir/sub_client.c.o
 .PHONY : sub_client.c.o
 
 sub_client.i: sub_client.c.i
@@ -397,7 +397,7 @@ sub_client.i: sub_client.c.i
 
 # target to preprocess a source file
 sub_client.c.i:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f client/CMakeFiles/mosquitto_sub.dir/build.make client/CMakeFiles/mosquitto_sub.dir/sub_client.c.i
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f client/CMakeFiles/mosquitto_sub.dir/build.make client/CMakeFiles/mosquitto_sub.dir/sub_client.c.i
 .PHONY : sub_client.c.i
 
 sub_client.s: sub_client.c.s
@@ -406,7 +406,7 @@ sub_client.s: sub_client.c.s
 
 # target to generate assembly for a file
 sub_client.c.s:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f client/CMakeFiles/mosquitto_sub.dir/build.make client/CMakeFiles/mosquitto_sub.dir/sub_client.c.s
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f client/CMakeFiles/mosquitto_sub.dir/build.make client/CMakeFiles/mosquitto_sub.dir/sub_client.c.s
 .PHONY : sub_client.c.s
 
 sub_client_output.o: sub_client_output.c.o
@@ -415,8 +415,8 @@ sub_client_output.o: sub_client_output.c.o
 
 # target to build an object file
 sub_client_output.c.o:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f client/CMakeFiles/mosquitto_rr.dir/build.make client/CMakeFiles/mosquitto_rr.dir/sub_client_output.c.o
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f client/CMakeFiles/mosquitto_sub.dir/build.make client/CMakeFiles/mosquitto_sub.dir/sub_client_output.c.o
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f client/CMakeFiles/mosquitto_rr.dir/build.make client/CMakeFiles/mosquitto_rr.dir/sub_client_output.c.o
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f client/CMakeFiles/mosquitto_sub.dir/build.make client/CMakeFiles/mosquitto_sub.dir/sub_client_output.c.o
 .PHONY : sub_client_output.c.o
 
 sub_client_output.i: sub_client_output.c.i
@@ -425,8 +425,8 @@ sub_client_output.i: sub_client_output.c.i
 
 # target to preprocess a source file
 sub_client_output.c.i:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f client/CMakeFiles/mosquitto_rr.dir/build.make client/CMakeFiles/mosquitto_rr.dir/sub_client_output.c.i
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f client/CMakeFiles/mosquitto_sub.dir/build.make client/CMakeFiles/mosquitto_sub.dir/sub_client_output.c.i
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f client/CMakeFiles/mosquitto_rr.dir/build.make client/CMakeFiles/mosquitto_rr.dir/sub_client_output.c.i
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f client/CMakeFiles/mosquitto_sub.dir/build.make client/CMakeFiles/mosquitto_sub.dir/sub_client_output.c.i
 .PHONY : sub_client_output.c.i
 
 sub_client_output.s: sub_client_output.c.s
@@ -435,8 +435,8 @@ sub_client_output.s: sub_client_output.c.s
 
 # target to generate assembly for a file
 sub_client_output.c.s:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f client/CMakeFiles/mosquitto_rr.dir/build.make client/CMakeFiles/mosquitto_rr.dir/sub_client_output.c.s
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f client/CMakeFiles/mosquitto_sub.dir/build.make client/CMakeFiles/mosquitto_sub.dir/sub_client_output.c.s
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f client/CMakeFiles/mosquitto_rr.dir/build.make client/CMakeFiles/mosquitto_rr.dir/sub_client_output.c.s
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f client/CMakeFiles/mosquitto_sub.dir/build.make client/CMakeFiles/mosquitto_sub.dir/sub_client_output.c.s
 .PHONY : sub_client_output.c.s
 
 # Help Target
@@ -487,6 +487,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

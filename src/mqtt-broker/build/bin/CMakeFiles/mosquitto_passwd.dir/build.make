@@ -63,10 +63,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/di3go/Documents/wise-cube/src/mqtt/src
+CMAKE_SOURCE_DIR = /home/di3go/Documents/wise-cube-new/src/mqtt-broker/src
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/di3go/Documents/wise-cube/src/mqtt/build
+CMAKE_BINARY_DIR = /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build
 
 # Include any dependencies generated for this target.
 include src/CMakeFiles/mosquitto_passwd.dir/depend.make
@@ -78,30 +78,30 @@ include src/CMakeFiles/mosquitto_passwd.dir/progress.make
 include src/CMakeFiles/mosquitto_passwd.dir/flags.make
 
 src/CMakeFiles/mosquitto_passwd.dir/mosquitto_passwd.c.o: src/CMakeFiles/mosquitto_passwd.dir/flags.make
-src/CMakeFiles/mosquitto_passwd.dir/mosquitto_passwd.c.o: /home/di3go/Documents/wise-cube/src/mqtt/src/src/mosquitto_passwd.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/di3go/Documents/wise-cube/src/mqtt/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object src/CMakeFiles/mosquitto_passwd.dir/mosquitto_passwd.c.o"
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/mosquitto_passwd.dir/mosquitto_passwd.c.o   -c /home/di3go/Documents/wise-cube/src/mqtt/src/src/mosquitto_passwd.c
+src/CMakeFiles/mosquitto_passwd.dir/mosquitto_passwd.c.o: /home/di3go/Documents/wise-cube-new/src/mqtt-broker/src/src/mosquitto_passwd.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/di3go/Documents/wise-cube-new/src/mqtt-broker/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object src/CMakeFiles/mosquitto_passwd.dir/mosquitto_passwd.c.o"
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/mosquitto_passwd.dir/mosquitto_passwd.c.o   -c /home/di3go/Documents/wise-cube-new/src/mqtt-broker/src/src/mosquitto_passwd.c
 
 src/CMakeFiles/mosquitto_passwd.dir/mosquitto_passwd.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/mosquitto_passwd.dir/mosquitto_passwd.c.i"
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/di3go/Documents/wise-cube/src/mqtt/src/src/mosquitto_passwd.c > CMakeFiles/mosquitto_passwd.dir/mosquitto_passwd.c.i
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/di3go/Documents/wise-cube-new/src/mqtt-broker/src/src/mosquitto_passwd.c > CMakeFiles/mosquitto_passwd.dir/mosquitto_passwd.c.i
 
 src/CMakeFiles/mosquitto_passwd.dir/mosquitto_passwd.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/mosquitto_passwd.dir/mosquitto_passwd.c.s"
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/di3go/Documents/wise-cube/src/mqtt/src/src/mosquitto_passwd.c -o CMakeFiles/mosquitto_passwd.dir/mosquitto_passwd.c.s
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/di3go/Documents/wise-cube-new/src/mqtt-broker/src/src/mosquitto_passwd.c -o CMakeFiles/mosquitto_passwd.dir/mosquitto_passwd.c.s
 
 src/CMakeFiles/mosquitto_passwd.dir/__/lib/misc_mosq.c.o: src/CMakeFiles/mosquitto_passwd.dir/flags.make
-src/CMakeFiles/mosquitto_passwd.dir/__/lib/misc_mosq.c.o: /home/di3go/Documents/wise-cube/src/mqtt/src/lib/misc_mosq.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/di3go/Documents/wise-cube/src/mqtt/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object src/CMakeFiles/mosquitto_passwd.dir/__/lib/misc_mosq.c.o"
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/mosquitto_passwd.dir/__/lib/misc_mosq.c.o   -c /home/di3go/Documents/wise-cube/src/mqtt/src/lib/misc_mosq.c
+src/CMakeFiles/mosquitto_passwd.dir/__/lib/misc_mosq.c.o: /home/di3go/Documents/wise-cube-new/src/mqtt-broker/src/lib/misc_mosq.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/di3go/Documents/wise-cube-new/src/mqtt-broker/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object src/CMakeFiles/mosquitto_passwd.dir/__/lib/misc_mosq.c.o"
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/mosquitto_passwd.dir/__/lib/misc_mosq.c.o   -c /home/di3go/Documents/wise-cube-new/src/mqtt-broker/src/lib/misc_mosq.c
 
 src/CMakeFiles/mosquitto_passwd.dir/__/lib/misc_mosq.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/mosquitto_passwd.dir/__/lib/misc_mosq.c.i"
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/di3go/Documents/wise-cube/src/mqtt/src/lib/misc_mosq.c > CMakeFiles/mosquitto_passwd.dir/__/lib/misc_mosq.c.i
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/di3go/Documents/wise-cube-new/src/mqtt-broker/src/lib/misc_mosq.c > CMakeFiles/mosquitto_passwd.dir/__/lib/misc_mosq.c.i
 
 src/CMakeFiles/mosquitto_passwd.dir/__/lib/misc_mosq.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/mosquitto_passwd.dir/__/lib/misc_mosq.c.s"
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/di3go/Documents/wise-cube/src/mqtt/src/lib/misc_mosq.c -o CMakeFiles/mosquitto_passwd.dir/__/lib/misc_mosq.c.s
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/di3go/Documents/wise-cube-new/src/mqtt-broker/src/lib/misc_mosq.c -o CMakeFiles/mosquitto_passwd.dir/__/lib/misc_mosq.c.s
 
 # Object files for target mosquitto_passwd
 mosquitto_passwd_OBJECTS = \
@@ -117,8 +117,8 @@ src/mosquitto_passwd: src/CMakeFiles/mosquitto_passwd.dir/build.make
 src/mosquitto_passwd: /usr/lib/libssl.so
 src/mosquitto_passwd: /usr/lib/libcrypto.so
 src/mosquitto_passwd: src/CMakeFiles/mosquitto_passwd.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/di3go/Documents/wise-cube/src/mqtt/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking C executable mosquitto_passwd"
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build/src && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/mosquitto_passwd.dir/link.txt --verbose=$(VERBOSE)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/di3go/Documents/wise-cube-new/src/mqtt-broker/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking C executable mosquitto_passwd"
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build/src && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/mosquitto_passwd.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
 src/CMakeFiles/mosquitto_passwd.dir/build: src/mosquitto_passwd
@@ -126,10 +126,10 @@ src/CMakeFiles/mosquitto_passwd.dir/build: src/mosquitto_passwd
 .PHONY : src/CMakeFiles/mosquitto_passwd.dir/build
 
 src/CMakeFiles/mosquitto_passwd.dir/clean:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build/src && $(CMAKE_COMMAND) -P CMakeFiles/mosquitto_passwd.dir/cmake_clean.cmake
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build/src && $(CMAKE_COMMAND) -P CMakeFiles/mosquitto_passwd.dir/cmake_clean.cmake
 .PHONY : src/CMakeFiles/mosquitto_passwd.dir/clean
 
 src/CMakeFiles/mosquitto_passwd.dir/depend:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/di3go/Documents/wise-cube/src/mqtt/src /home/di3go/Documents/wise-cube/src/mqtt/src/src /home/di3go/Documents/wise-cube/src/mqtt/build /home/di3go/Documents/wise-cube/src/mqtt/build/src /home/di3go/Documents/wise-cube/src/mqtt/build/src/CMakeFiles/mosquitto_passwd.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/di3go/Documents/wise-cube-new/src/mqtt-broker/src /home/di3go/Documents/wise-cube-new/src/mqtt-broker/src/src /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build/src /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build/src/CMakeFiles/mosquitto_passwd.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : src/CMakeFiles/mosquitto_passwd.dir/depend
 
