@@ -6,5 +6,5 @@ CXX_FLAGS = -fPIC
 
 CXX_DEFINES = -DCMAKE -DVERSION=\"1.6.10\" -DWITH_EC -DWITH_SOCKS -DWITH_THREADING -DWITH_TLS -DWITH_TLS_PSK -Dmosquittopp_EXPORTS
 
-CXX_INCLUDES = -I/home/di3go/Documents/wise-cube/src/mqtt/src/lib -I/home/di3go/Documents/wise-cube/src/mqtt/src/lib/cpp 
+CXX_INCLUDES = -I/home/di3go/Documents/wise-cube-new/src/mqtt-broker/src/lib -I/home/di3go/Documents/wise-cube-new/src/mqtt-broker/src/lib/cpp 
 

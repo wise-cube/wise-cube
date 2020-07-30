@@ -1,4 +1,4 @@
-# Install script for directory: /home/di3go/Documents/wise-cube/src/mqtt/src
+# Install script for directory: /home/di3go/Documents/wise-cube-new/src/mqtt-broker/src
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -39,27 +39,27 @@ endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/etc/mosquitto" TYPE FILE FILES
-    "/home/di3go/Documents/wise-cube/src/mqtt/src/mosquitto.conf"
-    "/home/di3go/Documents/wise-cube/src/mqtt/src/aclfile.example"
-    "/home/di3go/Documents/wise-cube/src/mqtt/src/pskfile.example"
-    "/home/di3go/Documents/wise-cube/src/mqtt/src/pwfile.example"
+    "/home/di3go/Documents/wise-cube-new/src/mqtt-broker/src/mosquitto.conf"
+    "/home/di3go/Documents/wise-cube-new/src/mqtt-broker/src/aclfile.example"
+    "/home/di3go/Documents/wise-cube-new/src/mqtt-broker/src/pskfile.example"
+    "/home/di3go/Documents/wise-cube-new/src/mqtt-broker/src/pwfile.example"
     )
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/di3go/Documents/wise-cube/src/mqtt/build/libmosquitto.pc")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/di3go/Documents/wise-cube-new/src/mqtt-broker/build/libmosquitto.pc")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/di3go/Documents/wise-cube/src/mqtt/build/libmosquittopp.pc")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/di3go/Documents/wise-cube-new/src/mqtt-broker/build/libmosquittopp.pc")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/home/di3go/Documents/wise-cube/src/mqtt/build/lib/cmake_install.cmake")
-  include("/home/di3go/Documents/wise-cube/src/mqtt/build/client/cmake_install.cmake")
-  include("/home/di3go/Documents/wise-cube/src/mqtt/build/src/cmake_install.cmake")
-  include("/home/di3go/Documents/wise-cube/src/mqtt/build/man/cmake_install.cmake")
+  include("/home/di3go/Documents/wise-cube-new/src/mqtt-broker/build/lib/cmake_install.cmake")
+  include("/home/di3go/Documents/wise-cube-new/src/mqtt-broker/build/client/cmake_install.cmake")
+  include("/home/di3go/Documents/wise-cube-new/src/mqtt-broker/build/src/cmake_install.cmake")
+  include("/home/di3go/Documents/wise-cube-new/src/mqtt-broker/build/man/cmake_install.cmake")
 
 endif()
 
@@ -71,5 +71,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/di3go/Documents/wise-cube/src/mqtt/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/di3go/Documents/wise-cube-new/src/mqtt-broker/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

@@ -63,10 +63,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/di3go/Documents/wise-cube/src/mqtt/src
+CMAKE_SOURCE_DIR = /home/di3go/Documents/wise-cube-new/src/mqtt-broker/src
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/di3go/Documents/wise-cube/src/mqtt/build
+CMAKE_BINARY_DIR = /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build
 
 # Include any dependencies generated for this target.
 include client/CMakeFiles/mosquitto_pub.dir/depend.make
@@ -78,56 +78,56 @@ include client/CMakeFiles/mosquitto_pub.dir/progress.make
 include client/CMakeFiles/mosquitto_pub.dir/flags.make
 
 client/CMakeFiles/mosquitto_pub.dir/pub_client.c.o: client/CMakeFiles/mosquitto_pub.dir/flags.make
-client/CMakeFiles/mosquitto_pub.dir/pub_client.c.o: /home/di3go/Documents/wise-cube/src/mqtt/src/client/pub_client.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/di3go/Documents/wise-cube/src/mqtt/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object client/CMakeFiles/mosquitto_pub.dir/pub_client.c.o"
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build/client && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/mosquitto_pub.dir/pub_client.c.o   -c /home/di3go/Documents/wise-cube/src/mqtt/src/client/pub_client.c
+client/CMakeFiles/mosquitto_pub.dir/pub_client.c.o: /home/di3go/Documents/wise-cube-new/src/mqtt-broker/src/client/pub_client.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/di3go/Documents/wise-cube-new/src/mqtt-broker/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object client/CMakeFiles/mosquitto_pub.dir/pub_client.c.o"
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build/client && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/mosquitto_pub.dir/pub_client.c.o   -c /home/di3go/Documents/wise-cube-new/src/mqtt-broker/src/client/pub_client.c
 
 client/CMakeFiles/mosquitto_pub.dir/pub_client.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/mosquitto_pub.dir/pub_client.c.i"
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build/client && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/di3go/Documents/wise-cube/src/mqtt/src/client/pub_client.c > CMakeFiles/mosquitto_pub.dir/pub_client.c.i
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build/client && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/di3go/Documents/wise-cube-new/src/mqtt-broker/src/client/pub_client.c > CMakeFiles/mosquitto_pub.dir/pub_client.c.i
 
 client/CMakeFiles/mosquitto_pub.dir/pub_client.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/mosquitto_pub.dir/pub_client.c.s"
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build/client && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/di3go/Documents/wise-cube/src/mqtt/src/client/pub_client.c -o CMakeFiles/mosquitto_pub.dir/pub_client.c.s
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build/client && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/di3go/Documents/wise-cube-new/src/mqtt-broker/src/client/pub_client.c -o CMakeFiles/mosquitto_pub.dir/pub_client.c.s
 
 client/CMakeFiles/mosquitto_pub.dir/pub_shared.c.o: client/CMakeFiles/mosquitto_pub.dir/flags.make
-client/CMakeFiles/mosquitto_pub.dir/pub_shared.c.o: /home/di3go/Documents/wise-cube/src/mqtt/src/client/pub_shared.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/di3go/Documents/wise-cube/src/mqtt/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object client/CMakeFiles/mosquitto_pub.dir/pub_shared.c.o"
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build/client && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/mosquitto_pub.dir/pub_shared.c.o   -c /home/di3go/Documents/wise-cube/src/mqtt/src/client/pub_shared.c
+client/CMakeFiles/mosquitto_pub.dir/pub_shared.c.o: /home/di3go/Documents/wise-cube-new/src/mqtt-broker/src/client/pub_shared.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/di3go/Documents/wise-cube-new/src/mqtt-broker/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object client/CMakeFiles/mosquitto_pub.dir/pub_shared.c.o"
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build/client && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/mosquitto_pub.dir/pub_shared.c.o   -c /home/di3go/Documents/wise-cube-new/src/mqtt-broker/src/client/pub_shared.c
 
 client/CMakeFiles/mosquitto_pub.dir/pub_shared.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/mosquitto_pub.dir/pub_shared.c.i"
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build/client && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/di3go/Documents/wise-cube/src/mqtt/src/client/pub_shared.c > CMakeFiles/mosquitto_pub.dir/pub_shared.c.i
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build/client && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/di3go/Documents/wise-cube-new/src/mqtt-broker/src/client/pub_shared.c > CMakeFiles/mosquitto_pub.dir/pub_shared.c.i
 
 client/CMakeFiles/mosquitto_pub.dir/pub_shared.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/mosquitto_pub.dir/pub_shared.c.s"
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build/client && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/di3go/Documents/wise-cube/src/mqtt/src/client/pub_shared.c -o CMakeFiles/mosquitto_pub.dir/pub_shared.c.s
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build/client && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/di3go/Documents/wise-cube-new/src/mqtt-broker/src/client/pub_shared.c -o CMakeFiles/mosquitto_pub.dir/pub_shared.c.s
 
 client/CMakeFiles/mosquitto_pub.dir/client_shared.c.o: client/CMakeFiles/mosquitto_pub.dir/flags.make
-client/CMakeFiles/mosquitto_pub.dir/client_shared.c.o: /home/di3go/Documents/wise-cube/src/mqtt/src/client/client_shared.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/di3go/Documents/wise-cube/src/mqtt/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object client/CMakeFiles/mosquitto_pub.dir/client_shared.c.o"
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build/client && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/mosquitto_pub.dir/client_shared.c.o   -c /home/di3go/Documents/wise-cube/src/mqtt/src/client/client_shared.c
+client/CMakeFiles/mosquitto_pub.dir/client_shared.c.o: /home/di3go/Documents/wise-cube-new/src/mqtt-broker/src/client/client_shared.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/di3go/Documents/wise-cube-new/src/mqtt-broker/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object client/CMakeFiles/mosquitto_pub.dir/client_shared.c.o"
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build/client && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/mosquitto_pub.dir/client_shared.c.o   -c /home/di3go/Documents/wise-cube-new/src/mqtt-broker/src/client/client_shared.c
 
 client/CMakeFiles/mosquitto_pub.dir/client_shared.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/mosquitto_pub.dir/client_shared.c.i"
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build/client && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/di3go/Documents/wise-cube/src/mqtt/src/client/client_shared.c > CMakeFiles/mosquitto_pub.dir/client_shared.c.i
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build/client && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/di3go/Documents/wise-cube-new/src/mqtt-broker/src/client/client_shared.c > CMakeFiles/mosquitto_pub.dir/client_shared.c.i
 
 client/CMakeFiles/mosquitto_pub.dir/client_shared.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/mosquitto_pub.dir/client_shared.c.s"
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build/client && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/di3go/Documents/wise-cube/src/mqtt/src/client/client_shared.c -o CMakeFiles/mosquitto_pub.dir/client_shared.c.s
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build/client && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/di3go/Documents/wise-cube-new/src/mqtt-broker/src/client/client_shared.c -o CMakeFiles/mosquitto_pub.dir/client_shared.c.s
 
 client/CMakeFiles/mosquitto_pub.dir/client_props.c.o: client/CMakeFiles/mosquitto_pub.dir/flags.make
-client/CMakeFiles/mosquitto_pub.dir/client_props.c.o: /home/di3go/Documents/wise-cube/src/mqtt/src/client/client_props.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/di3go/Documents/wise-cube/src/mqtt/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building C object client/CMakeFiles/mosquitto_pub.dir/client_props.c.o"
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build/client && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/mosquitto_pub.dir/client_props.c.o   -c /home/di3go/Documents/wise-cube/src/mqtt/src/client/client_props.c
+client/CMakeFiles/mosquitto_pub.dir/client_props.c.o: /home/di3go/Documents/wise-cube-new/src/mqtt-broker/src/client/client_props.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/di3go/Documents/wise-cube-new/src/mqtt-broker/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building C object client/CMakeFiles/mosquitto_pub.dir/client_props.c.o"
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build/client && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/mosquitto_pub.dir/client_props.c.o   -c /home/di3go/Documents/wise-cube-new/src/mqtt-broker/src/client/client_props.c
 
 client/CMakeFiles/mosquitto_pub.dir/client_props.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/mosquitto_pub.dir/client_props.c.i"
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build/client && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/di3go/Documents/wise-cube/src/mqtt/src/client/client_props.c > CMakeFiles/mosquitto_pub.dir/client_props.c.i
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build/client && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/di3go/Documents/wise-cube-new/src/mqtt-broker/src/client/client_props.c > CMakeFiles/mosquitto_pub.dir/client_props.c.i
 
 client/CMakeFiles/mosquitto_pub.dir/client_props.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/mosquitto_pub.dir/client_props.c.s"
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build/client && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/di3go/Documents/wise-cube/src/mqtt/src/client/client_props.c -o CMakeFiles/mosquitto_pub.dir/client_props.c.s
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build/client && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/di3go/Documents/wise-cube-new/src/mqtt-broker/src/client/client_props.c -o CMakeFiles/mosquitto_pub.dir/client_props.c.s
 
 # Object files for target mosquitto_pub
 mosquitto_pub_OBJECTS = \
@@ -148,8 +148,8 @@ client/mosquitto_pub: lib/libmosquitto.so.1.6.10
 client/mosquitto_pub: /usr/lib/libssl.so
 client/mosquitto_pub: /usr/lib/libcrypto.so
 client/mosquitto_pub: client/CMakeFiles/mosquitto_pub.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/di3go/Documents/wise-cube/src/mqtt/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking C executable mosquitto_pub"
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build/client && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/mosquitto_pub.dir/link.txt --verbose=$(VERBOSE)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/di3go/Documents/wise-cube-new/src/mqtt-broker/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking C executable mosquitto_pub"
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build/client && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/mosquitto_pub.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
 client/CMakeFiles/mosquitto_pub.dir/build: client/mosquitto_pub
@@ -157,10 +157,10 @@ client/CMakeFiles/mosquitto_pub.dir/build: client/mosquitto_pub
 .PHONY : client/CMakeFiles/mosquitto_pub.dir/build
 
 client/CMakeFiles/mosquitto_pub.dir/clean:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build/client && $(CMAKE_COMMAND) -P CMakeFiles/mosquitto_pub.dir/cmake_clean.cmake
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build/client && $(CMAKE_COMMAND) -P CMakeFiles/mosquitto_pub.dir/cmake_clean.cmake
 .PHONY : client/CMakeFiles/mosquitto_pub.dir/clean
 
 client/CMakeFiles/mosquitto_pub.dir/depend:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/di3go/Documents/wise-cube/src/mqtt/src /home/di3go/Documents/wise-cube/src/mqtt/src/client /home/di3go/Documents/wise-cube/src/mqtt/build /home/di3go/Documents/wise-cube/src/mqtt/build/client /home/di3go/Documents/wise-cube/src/mqtt/build/client/CMakeFiles/mosquitto_pub.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/di3go/Documents/wise-cube-new/src/mqtt-broker/src /home/di3go/Documents/wise-cube-new/src/mqtt-broker/src/client /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build/client /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build/client/CMakeFiles/mosquitto_pub.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : client/CMakeFiles/mosquitto_pub.dir/depend
 

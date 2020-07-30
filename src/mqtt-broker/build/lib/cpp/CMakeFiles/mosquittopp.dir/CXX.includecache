@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/home/di3go/Documents/wise-cube/src/mqtt/src/lib/cpp/mosquittopp.cpp
+/home/di3go/Documents/wise-cube-new/src/mqtt-broker/src/lib/cpp/mosquittopp.cpp
 cstdlib
 -
 mosquitto.h
@@ -14,7 +14,7 @@ mosquitto.h
 mosquittopp.h
 -
 
-/home/di3go/Documents/wise-cube/src/mqtt/src/lib/cpp/mosquittopp.h
+/home/di3go/Documents/wise-cube-new/src/mqtt-broker/src/lib/cpp/mosquittopp.h
 cstdlib
 -
 mosquitto.h
@@ -22,7 +22,7 @@ mosquitto.h
 time.h
 -
 
-/home/di3go/Documents/wise-cube/src/mqtt/src/lib/mosquitto.h
+/home/di3go/Documents/wise-cube-new/src/mqtt-broker/src/lib/mosquitto.h
 stdbool.h
 -
 stddef.h

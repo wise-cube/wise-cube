@@ -68,10 +68,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/di3go/Documents/wise-cube/src/mqtt/src
+CMAKE_SOURCE_DIR = /home/di3go/Documents/wise-cube-new/src/mqtt-broker/src
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/di3go/Documents/wise-cube/src/mqtt/build
+CMAKE_BINARY_DIR = /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -157,14 +157,14 @@ test/fast: test
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/di3go/Documents/wise-cube/src/mqtt/build/CMakeFiles /home/di3go/Documents/wise-cube/src/mqtt/build/lib/cpp/CMakeFiles/progress.marks
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 lib/cpp/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/di3go/Documents/wise-cube/src/mqtt/build/CMakeFiles 0
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(CMAKE_COMMAND) -E cmake_progress_start /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build/CMakeFiles /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build/lib/cpp/CMakeFiles/progress.marks
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 lib/cpp/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 lib/cpp/clean
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 lib/cpp/clean
 .PHONY : clean
 
 # The main clean target
@@ -174,22 +174,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 lib/cpp/preinstall
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 lib/cpp/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 lib/cpp/preinstall
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 lib/cpp/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 lib/cpp/CMakeFiles/mosquittopp.dir/rule:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 lib/cpp/CMakeFiles/mosquittopp.dir/rule
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 lib/cpp/CMakeFiles/mosquittopp.dir/rule
 .PHONY : lib/cpp/CMakeFiles/mosquittopp.dir/rule
 
 # Convenience name for target.
@@ -199,7 +199,7 @@ mosquittopp: lib/cpp/CMakeFiles/mosquittopp.dir/rule
 
 # fast build rule for target.
 mosquittopp/fast:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f lib/cpp/CMakeFiles/mosquittopp.dir/build.make lib/cpp/CMakeFiles/mosquittopp.dir/build
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f lib/cpp/CMakeFiles/mosquittopp.dir/build.make lib/cpp/CMakeFiles/mosquittopp.dir/build
 .PHONY : mosquittopp/fast
 
 mosquittopp.o: mosquittopp.cpp.o
@@ -208,7 +208,7 @@ mosquittopp.o: mosquittopp.cpp.o
 
 # target to build an object file
 mosquittopp.cpp.o:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f lib/cpp/CMakeFiles/mosquittopp.dir/build.make lib/cpp/CMakeFiles/mosquittopp.dir/mosquittopp.cpp.o
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f lib/cpp/CMakeFiles/mosquittopp.dir/build.make lib/cpp/CMakeFiles/mosquittopp.dir/mosquittopp.cpp.o
 .PHONY : mosquittopp.cpp.o
 
 mosquittopp.i: mosquittopp.cpp.i
@@ -217,7 +217,7 @@ mosquittopp.i: mosquittopp.cpp.i
 
 # target to preprocess a source file
 mosquittopp.cpp.i:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f lib/cpp/CMakeFiles/mosquittopp.dir/build.make lib/cpp/CMakeFiles/mosquittopp.dir/mosquittopp.cpp.i
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f lib/cpp/CMakeFiles/mosquittopp.dir/build.make lib/cpp/CMakeFiles/mosquittopp.dir/mosquittopp.cpp.i
 .PHONY : mosquittopp.cpp.i
 
 mosquittopp.s: mosquittopp.cpp.s
@@ -226,7 +226,7 @@ mosquittopp.s: mosquittopp.cpp.s
 
 # target to generate assembly for a file
 mosquittopp.cpp.s:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(MAKE) $(MAKESILENT) -f lib/cpp/CMakeFiles/mosquittopp.dir/build.make lib/cpp/CMakeFiles/mosquittopp.dir/mosquittopp.cpp.s
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(MAKE) $(MAKESILENT) -f lib/cpp/CMakeFiles/mosquittopp.dir/build.make lib/cpp/CMakeFiles/mosquittopp.dir/mosquittopp.cpp.s
 .PHONY : mosquittopp.cpp.s
 
 # Help Target
@@ -257,6 +257,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/di3go/Documents/wise-cube/src/mqtt/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/di3go/Documents/wise-cube-new/src/mqtt-broker/build && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 
