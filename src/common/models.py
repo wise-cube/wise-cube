@@ -1,18 +1,29 @@
 from sqlalchemy.orm import relationship
-from sqlalchemy import Column, Integer, String, ForeignKey
+from sqlalchemy import Column, Integer, String, ForeignKey, Enum
+from conf import Base
+from states import CubeStates
 
-from database import Base
 
+class Group(Base):
+    __tablename__ = 'groups'
+
+    id = Column(Integer, primary_key=True)
+    cube_id = Column(Integer, ForeignKey('cubes.id'))
+    name = Column(String)
+    auth_token = Column(String)
+
+
+    cube = relationship('Cube', back_populates='group')
+    players = relationship('Player', back_populates='group')
 
 class Cube(Base):
     __tablename__ = 'cubes'
 
     id = Column(Integer, primary_key=True)
-    curr_game_id = Column(Integer, ForeignKey('games.id'))
-    curr_question_id = Column(Integer, ForeignKey('questions.id'))
 
-    players = relationship('Player', back_populates='cube',lazy="joined")
-    curr_game = relationship('Game')
+
+    state = Column(Enum(CubeStates), default=CubeStates.DISCONNECTED )
+    group = relationship('Group', back_populates='cube')
 
 
 
@@ -20,23 +31,18 @@ class Player(Base):
     __tablename__ = 'players'
 
     id = Column(Integer, primary_key=True)
+    group_id = Column(Integer, ForeignKey('groups.id'))
+
     name = Column(String)
     type = Column(String)
-    auth_token = Column(String)
-    cube_id = Column(Integer, ForeignKey('cubes.id'))
-    score =  Column(Integer)
     avatar = Column(Integer)
 
+    answers = relationship('Answer', backref='player' )
+    group = relationship('Group', back_populates='players' )
 
-    is_authenticated = True
-    is_active = True
-    is_anonymous = False
 
-    answers = relationship('Answer', backref='player',lazy="joined" )
-    cube = relationship('Cube', back_populates='players', innerjoin=True)
-
-    def get_id(self):
-        return self.id
+    def get_score(self):
+        return sum([a.points for a in self.answers])
 
 
 
@@ -55,8 +61,9 @@ class Question(Base):
     game_id = Column(Integer, ForeignKey('games.id'))
     text = Column(String)
     curiosity = Column(String)
+    points = Column(Integer)
 
-    choices = relationship('Choice', backref='question', lazy="joined")
+    choices = relationship('Choice', back_populates='question')
 
 class Answer(Base):
     __tablename__ = 'answers'
@@ -72,5 +79,12 @@ class Choice(Base):
 
     id = Column(Integer, primary_key=True)
     question_id = Column(Integer, ForeignKey('questions.id'))
+
     correct = Column(Integer)
     text = Column(String)
+
+    question = relationship('Question', back_populates='choices')
+
+
+
+

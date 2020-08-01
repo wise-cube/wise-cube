@@ -1,2 +1,2 @@
 #!/bin/sh
-python3 -m flask_app
+python3  flask_app.py

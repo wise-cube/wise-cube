@@ -6,4 +6,4 @@ loguru
 flask-login
 flask-celery
 flask-sqlalchemy==2.4.4
-flask-sqlalchemy-session==1.1
+
