@@ -2,7 +2,8 @@
 __pychache__
 venv
 .idea
+/src//__pycache__
 /src/mqtt-broker/src/
 /src/mqtt-broker/build/
 /src/mqtt-broker/mosquitto
-paho-mqtt/bin
+/src/cube-riot/paho-mqtt/bin/
