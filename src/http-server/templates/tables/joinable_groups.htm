@@ -1,0 +1,16 @@
+{% extends 'tables/base.htm' %}
+{% block tbody %}
+        {% for g in groups  %}
+            <tr>
+                <td>
+                    {{ g.id }}
+                </td>
+                <td>
+                    {{ g.name }}
+                </td>
+                <td>
+                    {% include 'triggers/login_auth_token.htm' %}
+                </td>
+            </tr>
+        {% endfor %}
+{% endblock %}

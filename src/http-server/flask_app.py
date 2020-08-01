@@ -1,36 +1,70 @@
-from common import *
-from views import *
-from common import SESSION as Session
+from common.conf import SECRET_KEY
+from common.database import *
+from flask import g, make_response,redirect
 
-from flask import Flask
+from flask import Flask, request
 from os.path import exists
+from os import remove
+from loguru import logger
 
+from routes import tables, pages, triggers, game
 
 
 def db_init():
-    if not exists('wise-cube.db'):
-        DatabaseHandler.migration()
-        DatabaseHandler.seed()
+    if exists('wise-cube.db'):
+        remove('wise-cube.db')
+    # if not exists('wise-cube.db'):
+    #     DB.migration()
+    #     DB.seed()
+    DB.migrate()
+    DB.seed()
 
-App = Flask(__name__, static_folder='static', static_url_path='/')
-App.secret_key = SECRET_KEY
+app = Flask(__name__, static_folder='static', static_url_path='/')
+app.secret_key = SECRET_KEY
+
+@app.before_request
+def before_request_func():
+    print("before_request is running!")
+    group_auth_token = request.cookies.get('auth-token')
+    print(group_auth_token)
+    if not group_auth_token :
+        print("No group auth-token found")
+    else:
+        g.group = ScopedSession.query(Group) \
+                                  .filter(Group.auth_token == group_auth_token) \
+                                  .first()
+        if g.group is None:
+            print("Invalid token")
+            resp = make_response(redirect('/'))
+            resp.set_cookie('auth-token', '', expires=0)
+            return resp
+        else:
+            g.cube= g.group.cube
 
 
-ScopedSession = flask_scoped_session(Session, App)
+
+
+@app.teardown_request
+def teardown_request_func(error=None):
+    ScopedSession.commit()
+    ScopedSession.remove()
+    print("teardown_request is running!")
+    if error:
+        # Log the error
+        print(str(error))
+
 
 
 @logger.catch
 def main():
+    db_init()
+    app.register_blueprint(tables)
+    app.register_blueprint(game)
+    app.register_blueprint(pages)
+    app.register_blueprint(triggers)
+    app.run()
 
 
-    login_manager.init_app(App)
-
-    App.register_blueprint(game)
-    App.register_blueprint(pages)
-    App.register_blueprint(tables)
-    App.register_blueprint(triggers)
-    App.run()
-
-
-main()
+if __name__ == '__main__':
+    main()
 

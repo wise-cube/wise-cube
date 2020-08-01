@@ -15,7 +15,7 @@
                       {% include  'avatar/avatar'+(current_user.avatar | string)+'.htm' %}
                       </p>
                   {% endif %}
-                    {% include "buttons/logout.htm" %}
+                    {% include "triggers/logout.htm" %}
                 {% else  %}
                   <p class="title">
                   None
@@ -33,7 +33,7 @@
                                    </p>
 
                  <p>
-                    {% include 'buttons/leave_cube.htm' %}
+                    {% include 'triggers/leave_cube.htm' %}
             {% else %}
                 None
             {%  endif %}
@@ -48,7 +48,7 @@
              {% if current_game %}
               {{ current_game.id }}
                  </p><p>
-                  {% include 'buttons/leave_game.htm' %}
+                  {% include 'triggers/leave_game.htm' %}
 
             {% else %}
                 None

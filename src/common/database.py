@@ -1,26 +1,26 @@
-from models import *
-from conf import SQL_ENGINE, Base, FlaskSession, HandlerSession
+from common.models import *
+from conf import SQL_ENGINE, Base, ScopedSession
 from secrets import token_urlsafe  as new_token
 
-
 class DB:
-    session = FlaskSession
 
     @staticmethod
-    def migration():
+    def migrate():
         Base.metadata.create_all(SQL_ENGINE)
 
     @staticmethod
     def seed():
-        s = FlaskSession()
-        s.commit()
-        to_add = []
+
+        group = Group(auth_token=new_token(64),cube_id=1, name='I cchiu bell')
 
         cube = Cube()
+        ScopedSession.add_all((cube,group))
+        ScopedSession.commit()
 
-        players = [Player(name="Pippo",auth_token=new_token(32), cube_id=cube.id, avatar=1),Player(name="Paperino",auth_token=new_token(32),  cube_id=cube.id,avatar=2),Player(name="Pluto",auth_token=new_token(32), cube_id=cube.id,avatar=3)]
-        to_add += [cube]
-        to_add += players
+        players = [Player(name="Qui", group_id=group.id, avatar=1), Player(name="Quo", group_id=group.id, avatar=2),Player(name="Qua", group_id=group.id, avatar=3)]
+
+        ScopedSession.add_all(players)
+        ScopedSession.commit()
 
         g1 = Game(name="Discobulus and Kouros")
         q1 = Question(game_id=1, text="What is the original Discobulus statue is made of?",
@@ -28,7 +28,10 @@ class DB:
         q2 = Question(game_id=1, text="What Kouros means?",
                    curiosity="Kouros is a perfume for men produced by Yves Saint Laurent.The perfume was introduced in 1981. It was created by perfumer Pierre Bourdon.The perfume was inspired by a trip to Greece Saint Laurent had taken, he was particularly impressed by the kouroi.")
 
-        to_add += [g1,q1,q2]
+        ScopedSession.add_all((g1,q1,q2))
+        ScopedSession.commit()
+
+        to_add = []
         for i,t in enumerate(["Bronze", "Marble", "Plaster", "Wax"]):
             # print('\n'*10)
             # print(t)
@@ -44,9 +47,10 @@ class DB:
         print('\n' * 10)
 
         print(to_add)
-        s.add_all(to_add)
-        s.commit()
-        s.remove()
+        ScopedSession.add_all(to_add)
+        ScopedSession.commit()
+        ScopedSession.close()
+
 
 
             # g2 = Game(name="Athena and Nike")
@@ -71,14 +75,6 @@ class DB:
             # self.session.add(cube)
             # self.session.commit()
 
-
-
-if __name__ == '__main__':
-    fs1 = FlaskSession()
-    fs2 = FlaskSession()
-    hs1 = HandlerSession()
-    print(fs1 == fs2)
-    print(fs1 == hs1)
 
 
 
