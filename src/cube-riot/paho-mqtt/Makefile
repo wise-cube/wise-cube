@@ -14,8 +14,8 @@ DEVELHELP ?= 1
 # Change this to 0 show compiler invocation lines by default:
 QUIET ?= 1
 
-WIFI_SSID ?= "HotelViaGorizia"
-WIFI_PASS ?= "F!l!ppo0"
+WIFI_SSID ?= "Your_WiFi_name"
+WIFI_PASS ?= "Your_secure_password"
 
 USEMODULE += shell
 USEMODULE += shell_commands
