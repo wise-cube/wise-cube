@@ -4,7 +4,7 @@ APPLICATION = paho-mqtt-example
 BOARD ?= native
 
 # This has to be the absolute path to the RIOT base directory:
-RIOTBASE ?= $(CURDIR)/../..
+RIOTBASE ?= $(CURDIR)/../../../../RIOT
 
 # Comment this out to disable code in RIOT that does safety checking
 # which is not needed in a production environment but helps in the
@@ -14,8 +14,8 @@ DEVELHELP ?= 1
 # Change this to 0 show compiler invocation lines by default:
 QUIET ?= 1
 
-WIFI_SSID ?= "Your_WiFi_name"
-WIFI_PASS ?= "Your_secure_password"
+WIFI_SSID ?= "HotelViaGorizia"
+WIFI_PASS ?= "F!l!ppo0"
 
 USEMODULE += shell
 USEMODULE += shell_commands
