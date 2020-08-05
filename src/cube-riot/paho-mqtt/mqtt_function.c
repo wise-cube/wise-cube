@@ -161,13 +161,13 @@ void new_game(char* game_id){
 	pub(topic, payload);
 }
 
-void new_answere(char* answere_id){
+void new_answer(char* answer_id){
 
-	char* topic="answere";
+	char* topic="answer";
 	char payload[45]= "{'type': 'new_group_event', 'answer_id': ";
 	char b[]= "}\0";
 	
-	strcat(payload, answere_id);
+	strcat(payload, answer_id);
 	strcat(payload, b);
 	printf(payload);
 	printf("\n");
