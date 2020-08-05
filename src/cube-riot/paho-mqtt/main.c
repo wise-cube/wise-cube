@@ -30,15 +30,6 @@
 
 #include "mqtt_function.h"
 
-/*static const shell_command_t shell_commands[] =
-{
-    { "con",    "connect to MQTT broker",             _cmd_con    },
-    { "discon", "disconnect from the current broker", _cmd_discon },
-    { "pub",    "publish something",                  _cmd_pub    },
-    { "sub",    "subscribe topic",                    _cmd_sub    },
-    { "unsub",  "unsubscribe from topic",             _cmd_unsub  },
-    { NULL,     NULL,                                 NULL        }
-};*/
 
 static unsigned char buf[BUF_SIZE];
 static unsigned char readbuf[BUF_SIZE];
