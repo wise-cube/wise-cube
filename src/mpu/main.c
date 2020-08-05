@@ -32,6 +32,7 @@
 #define mpu9x50_comp_addr_t
 #define INTERVAL (100000U)    /* set interval to 1 seconds */
 
+
 int position(int* acc){
 	if (acc[0]>=9 && (acc[1]<=2 && acc[1]>=-2) && (acc[2]<=2 && acc[2]>=-2)){
 		//printf("accelerometer: %d, %d, %d\n", acc[0], acc[1], acc[2]);
@@ -56,7 +57,6 @@ int position(int* acc){
 
 }
 
-
 int main(void)
 {
 	mpu9x50_status_t conf = {0x01,0x01,0x01,0x03,0x03,1000,100,0x00,0x00,0x00};
@@ -66,7 +66,6 @@ int main(void)
 	mpu9x50_results_t res_a = {0};
 	int gyro[] = {0};
 	int acc[] = {0};
-    puts("Read Atmel SAMR21 Io-Xplained-Pro temperature sensor on I2C bus\n");
 
     /* Initialise the I2C serial interface as master */
     i2c_init(I2C_INTERFACE);
@@ -122,7 +121,7 @@ int main(void)
 				
 			}		
 		}
-		
+				
 		acc[0] = acc_buf.x_axis/1000;
 		acc[1] = acc_buf.y_axis/1000;
 		acc[2] = acc_buf.z_axis/1000;
@@ -131,35 +130,36 @@ int main(void)
 		gyro[1] = gyr_buf.y_axis/10;
 		gyro[2] = gyr_buf.z_axis/10;
 		
+		int s=acc[0]*acc[0] + acc[1]*acc[1] + acc[2]*acc[2];
+		//printf("x: %d, y: %d, z:%d", acc[0], acc[1], acc[2]);
+		//printf("----> val: %d", s);
+		if (s > 125){
+			printf("----> CUBE SHAKE <-----\n");
+		}
+		
 		int pos = position(acc);
 		
 		switch (pos){
 			case 'X': 
-			printf("--->Answere A\n");
+			printf("answer A\n");
 			break;
 			case 'x': 
-			printf("--->Answere C\n");
+			printf("answer C\n");
 			break;
 			case 'Y': 
-			printf("--->Answere B\n");
+			printf("answer B\n");
 			break;
 			case 'y': 
-			printf("--->Answere D\n");
+			printf("answer D\n");
 			break;
 			case 'Z': 
 			case 'z': 
-			printf("--->NFC/button\n");
+			printf("NFC/button\n");
 			break;
 			default: 
 			break;
 		}
-			
-		//printf("accelerometer: %d, %d, %d\n", acc[0], acc[1], acc[2]);
-		//printf("gyroscope: %d, %d, %d\n", gyro[0], gyro[1], gyro[2]);
-		
-		xtimer_usleep(INTERVAL);
-		
-		
+		xtimer_usleep(INTERVAL);	
 		
 	}
     return 0;
