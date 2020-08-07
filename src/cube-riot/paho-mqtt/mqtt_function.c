@@ -147,7 +147,58 @@ int _cmd_unsub(int argc, char **argv){
 }
 
 //Topic: game, answere
- 
+
+void new_group_req(){
+	char* topic="group";
+	char* payload="{'type': 'new_group_req'}";
+	
+	pub(topic, payload);
+	sub(topic);
+}
+
+void new_player_req(char* group_id){
+	char* topic="group/player";
+	char payload[45]= "{'type': 'new_player_req', 'group_id': ";
+	char b[]= "}\0";
+	
+	strcat(payload, group_id);
+	strcat(payload, b);
+	printf(payload);
+	printf("\n");
+	pub(topic, payload);
+	sub(topic);
+}
+
+void new_player_accept_event(char* group_id, char* player_id){
+	char* topic="group/player";
+	char payload[60]= "{'type': 'new_player_acc', 'group_id': ";
+	char a[]=", player_id: ";
+	char b[]= "}\0";
+	
+	strcat(payload, group_id);
+	strcat(payload, a);
+	strcat(payload, player_id);
+	strcat(payload, b);
+	printf(payload);
+	printf("\n");
+	pub(topic, payload);
+}
+
+void resume_group_req(char* token){
+	char* topic="group/req";
+	char payload[50]= "{'type': 'resume_group_req', 'group_token': ";
+	char b[]= "}\0";
+	
+	strcat(payload, token);
+	strcat(payload, b);
+	printf(payload);
+	printf("\n");
+	
+	pub(topic, payload);
+	
+	sub(topic);
+}
+
 void new_game(char* game_id){
 	
 	char* topic="game";
@@ -161,45 +212,46 @@ void new_game(char* game_id){
 	pub(topic, payload);
 }
 
-void new_answer(char* answer_id){
-
-	char* topic="answer";
-	char payload[45]= "{'type': 'new_group_event', 'answer_id': ";
+void player_req(char* group_id){
+	char* topic="group/player";
+	char payload[40]= "{'type': 'player_req', 'group_id': ";
 	char b[]= "}\0";
 	
-	strcat(payload, answer_id);
+	strcat(payload, group_id);
+	strcat(payload, b);
+	printf(payload);
+	printf("\n");
+	pub(topic, payload);
+	sub(topic);
+}
+
+void new_question(char* game_id, char* point){
+	char* topic="game/question";
+	char payload[50]= "{'type': 'new_question', 'game_id': ";
+	char a[]= ", point: ";
+	char b[]= "}\0";
+	
+	strcat(payload, game_id);
+	strcat(payload, a);
+	strcat(payload, point);
 	strcat(payload, b);
 	printf(payload);
 	printf("\n");
 	pub(topic, payload);
 }
 
-//Topic: new_group
-
-void new_group_req(){
-	char* topic_pub="group/req/new";
-	char* topic_sub="group/resp/new";
-	char* payload="{'type': 'new_group_req'}";
-	
-	pub(topic_pub, payload);
-	
-	sub(topic_sub);
-}
-
-void resume_group_req(char* token){
-	char* topic_pub="group/req";
-	char* topic_sub="group/resp";
-	
-	char payload[50]= "{'type': 'resume_group_req', 'group_token': ";
+void new_answer(char* answer_id, char* answer_val){
+	char* topic="answer";
+	char payload[60]= "{'type': 'new_group_event', 'answer_id': ";
+	char a[]=", 'answer_val: '";
 	char b[]= "}\0";
 	
-	strcat(payload, token);
+	strcat(payload, answer_id);
+	strcat(payload, a);
+	strcat(payload, answer_val);
 	strcat(payload, b);
 	printf(payload);
 	printf("\n");
-	
-	
-	pub(topic_pub, payload);
-	
-	sub(topic_sub);
+	pub(topic, payload);
 }
+

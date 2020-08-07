@@ -27,6 +27,7 @@
 /**
  * @brief Default MQTT port
  */
+ 
 #define DEFAULT_MQTT_PORT               1883
 
 /**
@@ -60,10 +61,19 @@ int sub(char* topic);
 
 int _cmd_unsub(int argc, char **argv);
 
-void new_game(char* game_id);
-
-void new_answere(char* answere_id);
-
 void new_group_req();
 
+void new_player_req(char* group_id);
+
+void new_player_accept_event(char* group_id, char* player_id);
+
 void resume_group_req(char* token);
+
+void new_game(char* game_id);
+
+void player_req(char* group_id);
+
+void new_question(char* game_id, char* point);
+
+void new_answer(char* answer_id, char* answer_val);
+
