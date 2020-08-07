@@ -48,11 +48,21 @@ int main(void){
 
     connect();
     
-    new_game("3");
-
-	new_answere("5");
+    new_group_req();
+    
+    new_game("1");
+	
+	new_player_req("2");
+	
+	player_req("3");
 	
 	resume_group_req("abcde");
+	
+	new_question("4", "5");
+	
+	new_answer("5", "A");
+	
+	new_player_accept_event("6", "7");
     
     return 0;
 }
