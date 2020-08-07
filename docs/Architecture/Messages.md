@@ -37,6 +37,36 @@ NEW_GROUP_RESP
 }
 ```
 
+NEW_PLAYER_REQ
+
+```
+{
+'type': new_player_req
+'group_id': int
+}
+```
+
+NEW_PLAYER_RESP
+
+```
+{
+'type': new_player_resp
+'group_id': int
+'player_id': int
+
+}
+```
+NEW_PLAYER_ACCEPT_EVENT
+
+```
+{
+'type': new_player_accept
+'group_id': int
+'player_id': int
+
+}
+```
+
 RESUME_GROUP_REQ
 
 ```
@@ -60,8 +90,18 @@ NEW_ANSWER_EVENT
 
 ```
 {
-'type': new_group_event
+'type': new_answer_event
 'answer_id': int
+'answer_val': int
+}
+```
+NEW_QUESTION_EVENT
+
+```
+{
+'type': new_question_event
+'game_id': int
+'point': int
 }
 ```
 
@@ -73,9 +113,24 @@ NEW_GAME_EVENT
 'game_id': int
 }
 ```
+PLAYER_REQ
 
+```
+{
+'type': player_req
+'group_id': int
+}
+```
 
+PLAYER_RESP
 
+```
+{
+'type': player_resp
+'group_id': int
+'player_id': int
+}
+```
 
 
 ​	
