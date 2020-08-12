@@ -30,39 +30,45 @@
 
 #include "mqtt_function.h"
 
+MQTTClient client;
+Network network;
 
 static unsigned char buf[BUF_SIZE];
 static unsigned char readbuf[BUF_SIZE];
 
-int main(void){
-	#ifdef MODULE_LWIP
-		/* let LWIP initialize */
-		xtimer_sleep(1);
-	#endif
+int main(void)
+{
+#ifdef MODULE_LWIP
+    /* let LWIP initialize */
+    xtimer_sleep(2);
+#endif
 
     NetworkInit(&network);
 
-    MQTTClientInit(&client, &network, COMMAND_TIMEOUT_MS, buf, BUF_SIZE, readbuf, BUF_SIZE);
+    MQTTClientInit(&client, &network, COMMAND_TIMEOUT_MS, buf, BUF_SIZE,
+                   readbuf,
+                   BUF_SIZE);
+    printf("Running mqtt paho example. Type help for commands info\n");
 
     MQTTStartTask(&client);
-
-    connect();
+    
+    con();
     
     new_group_req();
     
-    new_game("1");
-	
-	new_player_req("2");
-	
-	player_req("3");
-	
-	resume_group_req("abcde");
-	
-	new_question("4", "5");
-	
-	new_answer("5", "A");
-	
-	new_player_accept_event("6", "7");
+    new_player_req("1");
+    
+    new_player_accept_event("1", "1");
+    
+    resume_group_req("token");
+    
+    new_game("2");
+    
+    player_req("1");
+    
+    new_question("3", "4");
+    
+    new_answer("5", "a");
     
     return 0;
 }

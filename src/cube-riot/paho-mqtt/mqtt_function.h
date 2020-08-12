@@ -8,6 +8,7 @@
 #include "paho_mqtt.h"
 #include "MQTTClient.h"
 
+
 #define BUF_SIZE                        1024
 #define MQTT_VERSION_v311               4       /* MQTT v3.1.1 version is 4 */
 #define COMMAND_TIMEOUT_MS              4000
@@ -28,7 +29,7 @@
  * @brief Default MQTT port
  */
  
-#define DEFAULT_MQTT_PORT               1883
+#define DEFAULT_MQTT_PORT               1884
 
 /**
  * @brief Keepalive timeout in seconds
@@ -46,14 +47,18 @@
 #define IS_CLEAN_SESSION                1
 #define IS_RETAINED_MSG                 0
 
-static MQTTClient client;
-static Network network;
 static int topic_cnt = 0;
+
+
+extern MQTTClient client;
+extern Network network;
+
+
 static char _topic_to_subscribe[MAX_TOPICS][MAX_LEN_TOPIC];
 
-int disconnect(int argc, char **argv);
+int discon();
 
-int connect();
+int con();
 
 int pub(char* topic, char* payload);
 

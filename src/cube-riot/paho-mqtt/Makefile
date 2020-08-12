@@ -1,7 +1,7 @@
 APPLICATION = paho-mqtt-example
 
 # If no BOARD is found in the environment, use this default:
-BOARD ?= native
+BOARD ?=  BOARD=esp8266-esp-12x
 
 # This has to be the absolute path to the RIOT base directory:
 RIOTBASE ?= $(CURDIR)/../../../../RIOT
@@ -14,8 +14,9 @@ DEVELHELP ?= 1
 # Change this to 0 show compiler invocation lines by default:
 QUIET ?= 1
 
-WIFI_SSID ?= "Your_WiFi_name"
-WIFI_PASS ?= "Your_secure_password"
+WIFI_SSID ?= "HotelViaGorizia"
+WIFI_PASS ?= "F!l!ppo0"
+
 
 USEMODULE += shell
 USEMODULE += shell_commands
