@@ -1,5 +1,8 @@
-{% set pagename='Home Page' %}
+{% set pagename='Group Page' %}
 {% extends "base.html" %}
 {% block body %}
     {% include 'sections/group_info.htm' %}
+    {% if is_creation %}
+        {% include 'sections/player_new.htm' %}
+    {% endif %}
 {% endblock %}

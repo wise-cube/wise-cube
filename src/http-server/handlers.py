@@ -28,11 +28,36 @@ class GroupHandler:
         return GroupHandler(auth_token=auth_token)
 
     @staticmethod
-    def new():
+    def by_id(group_id):
+        return GroupHandler(group_id=group_id)
+
+    @staticmethod
+    def new(name=None):
         g = Group()
+        g.auth_token = new_token(64)
+
+        if name is not None:
+            g.name = name
+
         ScopedSession.add(g)
         ScopedSession.commit()
-        return g.id
+        return g
+
+    def new_player(self, name, avatar_id=None):
+        p = Player(group_id=self.id, name=name)
+        if avatar_id is not None:
+            p.avatar_id = avatar_id
+
+        ScopedSession.add(p)
+        ScopedSession.commit()
+        # TODO
+        # clean up all avatars not assigned to a player
+        return p
+
+    def end_player_creation(self):
+        self.group.state = GroupStates.IDLE
+        ScopedSession.add(self.group)
+        ScopedSession.commit()
 
     def join_cube(self, cube_id):
         s = ScopedSession

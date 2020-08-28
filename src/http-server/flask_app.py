@@ -7,7 +7,7 @@ from os.path import exists
 from os import remove
 from loguru import logger
 
-from routes import tables, pages, triggers, game
+from routes import tables, pages, triggers, game, misc
 
 
 def db_init():
@@ -33,6 +33,7 @@ def before_request_func():
         g.group = ScopedSession.query(Group) \
                                   .filter(Group.auth_token == group_auth_token) \
                                   .first()
+
         if g.group is None:
             print("Invalid token")
             resp = make_response(redirect('/'))
@@ -40,6 +41,7 @@ def before_request_func():
             return resp
         else:
             g.cube= g.group.cube
+            g.group_id = g.group.id
 
 
 
@@ -62,6 +64,7 @@ def main():
     app.register_blueprint(game)
     app.register_blueprint(pages)
     app.register_blueprint(triggers)
+    app.register_blueprint(misc)
     app.run()
 
 
