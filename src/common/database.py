@@ -1,5 +1,5 @@
 from common.models import *
-from conf import SQL_ENGINE, Base, ScopedSession
+from common.conf import SQL_ENGINE, Base, ScopedSession
 from secrets import token_urlsafe  as new_token
 
 class DB:
@@ -11,13 +11,15 @@ class DB:
     @staticmethod
     def seed():
 
-        group = Group(auth_token=new_token(64),cube_id=1, name='I cchiu bell')
+        group = Group(auth_token=new_token(64),cube_id=1, name='I cchiu bell', state=GroupStates.IDLE)
 
         cube = Cube()
         ScopedSession.add_all((cube,group))
         ScopedSession.commit()
 
-        players = [Player(name="Qui", group_id=group.id, avatar=1), Player(name="Quo", group_id=group.id, avatar=2),Player(name="Qua", group_id=group.id, avatar=3)]
+        players = [Player(name=Player.random_name(), group_id=group.id, avatar=Avatar.random()),
+                   Player(name=Player.random_name(), group_id=group.id, avatar=Avatar.random()),
+                   Player(name=Player.random_name(), group_id=group.id, avatar=Avatar.random())]
 
         ScopedSession.add_all(players)
         ScopedSession.commit()

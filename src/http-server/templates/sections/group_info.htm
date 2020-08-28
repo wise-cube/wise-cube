@@ -21,7 +21,8 @@
                   </p>
                   {% if p.avatar %}
                       <p>
-                      {% include  'avatar/avatar'+(p.avatar | string)+'.htm' %}
+                      {% set avatar=p.avatar %}
+                      {% include  'avatar/avatar.htm' %}
                       </p>
                   {% endif %}
                   <p class="title">

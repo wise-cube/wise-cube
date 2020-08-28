@@ -1,9 +1,10 @@
 from common.database import *
-from flask import Blueprint, redirect, render_template, session, request, make_response,g
-
-from handlers import GroupHandler
+from flask import Blueprint, redirect, render_template, session, request, make_response, g
 import flask
 from helpers import rel2table
+from handlers import GroupHandler
+
+
 
 s = ScopedSession()
 
@@ -11,6 +12,9 @@ game = Blueprint('game', __name__, )
 pages = Blueprint('pages', __name__,)
 tables = Blueprint('tables', __name__, template_folder="templates/tables/")
 triggers = Blueprint('triggers',__name__,template_folder="templates/triggers/")
+
+misc = Blueprint('misc', __name__,)
+
 
 RELATIONS = {
     'cubes': Cube,
@@ -22,47 +26,53 @@ RELATIONS = {
     'choices': Choice
 }
 
-
-#
-#
-# @tables.route('/tables/players')
-# def players_table():
-#     players = s.query(Player).all()
-#     return render_template("players.htm", players=players)
-#
-# @tables.route('/tables/cubes')
-# def cubes_table():
-#     cubes = s.query(Cube).all()
-#     return render_template("cubes.htm", cubes=cubes)
-#
-# @tables.route('/tables/games')
-# def games_table():
-#     games = s.query(Game).all()
-#     return render_template("games.htm", games=games)
-#
-# @tables.route('/tables/choices')
-# def choices_table():
-#     choices = s.query(Choice).all()
-#     return render_template("choices.htm", choices=choices)
-
+# PAGES
 @pages.route('/')
 @pages.route('/home')
-def home():
+def home_page():
     groups = ScopedSession.query(Group).all()
     return render_template('home.html', groups=groups)
 
 @pages.route('/group')
 def group_page():
-    return render_template('group.html', group=g.group)
 
+    is_creation = g.group.state == GroupStates.CREATION
+
+
+    if is_creation:
+        p_rand_name = Player.random_name()
+        p_rand_avatar = Avatar.random()
+        ScopedSession.add(p_rand_avatar)
+        ScopedSession.commit()
+        return render_template('group.html', group=g.group, is_creation=is_creation, p_rand_name=p_rand_name, p_rand_avatar=p_rand_avatar)
+
+    return render_template('group.html', group=g.group, is_creation=is_creation)
 
 @pages.route('/debug')
-def debug():
+def debug_page():
     tables = [(t_name.capitalize(), rel2table(t)) for t_name,t in RELATIONS.items()]
     return render_template('debug.html', tables=tables)
 
 
+# MISC
+@misc.route('/rand_name')
+def get_rand_name():
+    return Player.random_name()
 
+@misc.route('/rand_avatar')
+def get_rand_avatar():
+    from json import dumps
+    avatar = Avatar.random()
+    ScopedSession.add(avatar)
+    ScopedSession.commit()
+    avatar_dic = {
+        'avatar_id': avatar.id,
+        'avatar_src': avatar.get_image_src()
+    }
+    return dumps(avatar_dic)
+
+
+# TRIGGERS
 @triggers.route('/login', methods=['POST'])
 def login():
     resp = make_response(redirect('/group'))
@@ -80,6 +90,33 @@ def logout():
     resp.set_cookie('auth-token', '', expires=0)
     return resp
 
+@triggers.route('/new_group', methods=['POST'])
+def new_group():
+    g_name = request.form['group_name']
+    g = GroupHandler.new(name=g_name)
+
+    resp = make_response(redirect('/group'))
+    resp.set_cookie('auth-token',g.auth_token)
+    return resp
+
+@triggers.route('/end_players_creation', methods=['POST','GET'])
+def end_players_creation():
+
+    GroupHandler.by_id(g.group_id).end_player_creation()
+    return redirect('/group')
+
+@triggers.route('/new_player', methods=['POST'])
+def new_player( ):
+    gh = GroupHandler.by_id(g.group.id)
+
+
+    player_name = request.form['player_name']
+    player_avatar_id =  request.form['player_avatar_id']
+
+    player = gh.new_player(player_name, player_avatar_id)
+
+    return redirect('/group')
+
 
 @triggers.route('/join_cube', methods=['POST'])
 def join_cube():
@@ -90,18 +127,19 @@ def join_cube():
 
 
 
-@game.route('/player')
-def player_page():
-    auth_token = request.args.get('auth_token')
-    if not auth_token:
-        auth_token = request.cookies.get('auth_token')
-    if auth_token:
-        player = DatabaseHandler.get_player_by_auth_token(auth_token)
-        resp = make_response(render_template("player.html",player=player))
-        resp.set_cookie('auth_token', auth_token)
-        return resp
-    else:
-        return redirect('/new_player')
+
+# @game.route('/player')
+# def player_page():
+#     auth_token = request.args.get('auth_token')
+#     if not auth_token:
+#         auth_token = request.cookies.get('auth_token')
+#     if auth_token:
+#         player = DatabaseHandler.get_player_by_auth_token(auth_token)
+#         resp = make_response(render_template("player.html",player=player))
+#         resp.set_cookie('auth_token', auth_token)
+#         return resp
+#     else:
+#         return redirect('/new_player')
 
 #
 # @game.route('/cubes')

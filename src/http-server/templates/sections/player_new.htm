@@ -1,0 +1,103 @@
+<section class="section">
+    <div class="container has-text-centered">
+        <form class="form" action="/new_player" method="post">
+
+            {#  Form Player name input field  #}
+            <div class="field">
+              <label class="label">Player Name</label>
+              <div class="control">
+                <input class="input" type="text" name="player_name" id="player_name" value="{{ p_rand_name }}">
+              </div>
+            </div>
+
+            {#  Form Player Avatar hidden_fields #}
+            <div class="field">
+              <label class="label">Player Avatar</label>
+              <div class="control">
+                <input type="hidden" name="player_avatar_id" id="player_avatar_id" value="{{ p_rand_avatar.id }}">
+                  {% set avatar=p_rand_avatar %}
+                  {% include 'avatar/avatar.htm' %}
+              </div>
+            </div>
+
+
+            {#  Form Buttons #}
+            <div class="field is-grouped">
+
+            {% if g.group.players | length > 0 %}
+                <button type="button" class="button is-danger" id="end_button">
+                End
+                </button>
+            {% endif %}
+
+                <button type="button" class="button is-light" id="random_button">
+                Randomize!
+                </button>
+
+                <button type="button" class="button is-success" id="progress_button">
+                Next
+                </button>
+
+
+
+            </div>
+
+        </form>
+        {# Random Button #}
+
+    </div>
+</section>
+
+<script>
+    var progress=0
+
+    function random_button_handler(){
+        if (progress == 0) {
+            randomize_name()
+        } else if (progress == 1){
+            randomize_avatar()
+        } else {
+            alert('Error, invalid progress value')
+        }
+    }
+    function progress_button_handler(){
+        if (progress == 0){
+            progress += 1
+             $("#player_name").addClass('is-success')
+
+        } else {
+            $('form').submit() ;
+        }
+    }
+    function end_button_handler(){
+        console.log('End button triggered')
+        window.location.href = '/end_players_creation'
+    }
+    function randomize_name(){
+        console.log('randomize name triggered')
+
+        $.get( "/rand_name",{},function( data ) {
+            $("#player_name").val(data);
+        });
+
+
+    }
+
+    function randomize_avatar(){
+        console.log('randomize name triggered')
+
+        $.get( "/rand_avatar",{},function( data ) {
+            console.log(data)
+            obj = JSON.parse(data)
+            console.log(obj)
+            $("#player_avatar_id").val(obj.avatar_id);
+            $("form .avatar").attr('src',obj.avatar_src)
+        });
+
+    }
+
+
+    $("#random_button").click( random_button_handler )
+    $("#progress_button").click( progress_button_handler )
+    $("#end_button").click( end_button_handler )
+</script>
