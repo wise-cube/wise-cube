@@ -1,0 +1,35 @@
+{% if  g.group.current_round == 0 %}
+
+    <section class="section has-text-centered " id="intro">
+        <div class="container">
+            <div class="content">
+                <p class="subtitle">
+                    {{ g.group.current_game.intro }}
+                </p>
+            </div>
+        </div>
+    </section>
+{% elif group.current_round < (group.current_game.rounds | length) %}
+    {% include 'sections/choices.htm' %}
+{% else %}
+    <section class="section has-text-centered " id="outro">
+        <div class="container">
+            <div class="content">
+                <p class="subtitle">
+                    Game Ended!
+                </p>
+            </div>
+        </div>
+    </section>
+
+{% endif %}
+<section class="section has-text-centered is-warning" id="next">
+    <div class="container">
+        <div class="content">
+            <p class="subtitle">
+                <a href="/next_round"> Next </a>
+            </p>
+        </div>
+    </div>
+</section>
+

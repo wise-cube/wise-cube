@@ -11,7 +11,6 @@ class GroupHandler:
                 raise Exception('cannot retrieve group, supply one argument')
 
             elif group_id is not None:
-                self.id = group_id
                 self.group = ScopedSession.query(Group) \
                              .filter( Group.id == self.id) \
                              .first()
@@ -22,7 +21,6 @@ class GroupHandler:
                 self.group = ScopedSession.query(Group) \
                              .filter( Group.auth_token == auth_token) \
                              .first()
-                self.id = self.group.id
                 if self.group is None:
                     raise Exception('cannot retrieve group')
 
@@ -48,7 +46,7 @@ class GroupHandler:
         return g
 
     def new_player(self, name, avatar_id=None):
-        p = Player(group_id=self.id, name=name)
+        p = Player(group_id=self.group.id, name=name)
         if avatar_id is not None:
             p.avatar_id = avatar_id
 
