@@ -24,6 +24,7 @@ app.secret_key = SECRET_KEY
 
 @app.before_request
 def before_request_func():
+    g.group = None
     print("before_request is running!")
     group_auth_token = request.cookies.get('auth-token')
     print(group_auth_token)

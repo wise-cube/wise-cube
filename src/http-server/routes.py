@@ -50,9 +50,14 @@ def group_page():
 
 @pages.route('/debug')
 def debug_page():
-    tables = [(t_name.capitalize(), rel2table(t)) for t_name,t in RELATIONS.items()]
+    tables = [(t_name.capitalize(), rel2table(t)) for t_name, t in RELATIONS.items()]
     return render_template('debug.html', tables=tables)
 
+@pages.route('/game')
+
+def game_page():
+
+    return render_template('game.html', group=g.group)
 
 # MISC
 @misc.route('/rand_name')
@@ -70,6 +75,7 @@ def get_rand_avatar():
         'avatar_src': avatar.get_image_src()
     }
     return dumps(avatar_dic)
+
 
 
 # TRIGGERS
@@ -125,8 +131,10 @@ def join_cube():
     ScopedSession.commit()
     return redirect('/group')
 
-
-
+@triggers.route('/next_round', methods=['GET'])
+def next_round():
+    GroupHandler().next_round()
+    return redirect('/game')
 
 # @game.route('/player')
 # def player_page():

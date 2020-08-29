@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% set pagename='Game Page' %}
+{% block body %}
+
+<div class="container">
+    {% if not group  %}
+    You don't have a group
+    Go to <a href="/home">home_page</a>
+    {%else%}
+        {%if group.current_game%}
+            <h1> {{ group.current_game.name }}</h1>
+            {% if  group.current_round == 0 %}
+                {{ group.current_game.intro}}
+                <a href="/next_round"> Next </h>
+            {% elif group.current_round < (group.current_game.rounds | length) %}
+                {{group.current_round}}
+            {% else%}
+                Game end
+            {%endif%}
+        {%else%}
+            Not in game
+            Go to <a href="/home">home_page</a>
+        {%endif%}
+    {% endif %}
+</div>
+
+{% endblock %}
