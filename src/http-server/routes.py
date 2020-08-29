@@ -37,6 +37,7 @@ def home_page():
 def group_page():
 
     is_creation = g.group.state == GroupStates.CREATION
+    is_game = g.group.state == GroupStates.IN_GAME
 
 
     if is_creation:
@@ -44,7 +45,12 @@ def group_page():
         p_rand_avatar = Avatar.random()
         ScopedSession.add(p_rand_avatar)
         ScopedSession.commit()
-        return render_template('group.html', group=g.group, is_creation=is_creation, p_rand_name=p_rand_name, p_rand_avatar=p_rand_avatar)
+        return render_template('group.html', group=g.group, is_creation=is_creation, is_game=is_game, p_rand_name=p_rand_name, p_rand_avatar=p_rand_avatar)
+
+    if is_game:
+        return render_template('group.html', group=g.group, is_creation=is_creation, is_game=is_game)
+
+
 
     return render_template('group.html', group=g.group, is_creation=is_creation)
 
@@ -113,13 +119,10 @@ def end_players_creation():
 
 @triggers.route('/new_player', methods=['POST'])
 def new_player( ):
-    gh = GroupHandler.by_id(g.group.id)
-
-
     player_name = request.form['player_name']
     player_avatar_id =  request.form['player_avatar_id']
 
-    player = gh.new_player(player_name, player_avatar_id)
+    GroupHandler().new_player(player_name, player_avatar_id)
 
     return redirect('/group')
 

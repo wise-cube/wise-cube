@@ -1,0 +1,26 @@
+<section class="section has-text-centered" id="game-info">
+    <div class="container">
+        <div class="content">
+            <h2 class="subtitle">
+                Currently playing:
+                <a href="/game">
+                    {{ group.current_game.name }}
+                </a>
+            </h2>
+            <h2 class="subtitle">
+                Current Round:
+                <a href="/game">
+                    {{ group.current_round }}
+                </a>
+            </h2>
+            {% if group.current_player %}
+                <h2 class="subtitle">
+                    Current Player:
+                    <a href="/game">
+                        {{ group.current_player.name }}
+                    </a>
+                </h2>
+            {% endif %}
+        </div>
+    </div>
+</section>

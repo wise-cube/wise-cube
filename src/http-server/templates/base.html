@@ -14,24 +14,19 @@
 {#    <script#}
 {#        src="/main.js" ></script>#}
 
-    <link
-            rel="stylesheet" href="/main.css">
+
     <link
             rel="stylesheet" href="/vendor/bulma.css">
+    <link
+            rel="stylesheet" href="/main.css">
 
 </head>
 <body>
     {% include 'partials/header.htm' %}
-    <section class="section">
-{#    {% include 'partials/info_bar.htm' %}#}
-        {% block body %}
-        Base Page
-    {#        <a href="{{ url_for('debug_page') }}">Game</a>#}
-    {#        <a href="{{ url_for('player_page') }}">Profile</a>#}
-    {#        <a href="{{ url_for('logout_page') }}">Logout</a>#}
-        </div>
-        {% endblock %}
-    </section>>
+
+    {% block body %}
+    {% endblock %}
+
     {% include 'partials/footer.htm' %}
 </body>
 

@@ -1,36 +1,37 @@
-<nav class="level">
-    <div class="level-item has-text-centered">
-        <div>
-            <p class="heading">Group</p>
-            <p class="title">
-                {{ group.name }}
-                <br>
-                <a href="/logout" class="is-warning">
-                    Logout
-                </a>
-            </p>
+<section class="section" id="group-info">
+    <nav class="level">
+        <div class="level-item has-text-centered">
+            <div>
+                <p class="heading">Group</p>
+                <p class="title">
+                    {{ group.name }}
+                    <br>
+                    <a href="/logout" class="is-warning">
+                        Logout
+                    </a>
+                </p>
+            </div>
         </div>
-    </div>
 
-{% for p in group.players %}
-      <div class="level-item has-text-centered">
-        <div>
-          <p class="heading">Player</p>
-                  <p class="title">
-                  {{ p.name }}
-                  </p>
-                  {% if p.avatar %}
-                      <p>
-                      {% set avatar=p.avatar %}
-                      {% include  'avatar/avatar.htm' %}
-                      </p>
-                  {% endif %}
-                  <p class="title">
-                  {{ p.get_score() }}
-                  </p>
+        {% for p in g.group.players %}
+              <div class="level-item has-text-centered">
+                <div>
+                  <p class="heading">Player</p>
+                          <p class="title">
+                          {{ p.name }}
+                          </p>
+                          {% if p.avatar %}
+                              <p>
+                              {% set avatar=p.avatar %}
+                              {% include  'avatar/avatar.htm' %}
+                              </p>
+                          {% endif %}
+                          <p class="title">
+                          {{ p.get_score() }}
+                          </p>
+                </div>
+             </div>
+        {% endfor %}
 
-        </div>
-     </div>
-{% endfor %}
-
-</nav>
+    </nav>
+</section>

@@ -1,3 +1,18 @@
 /*table {*/
 /*    border: 1px solid black ;*/
 /*}*/
+a {
+    color:darkslategray;
+}
+#group-infom {
+    background: lightgray;
+}
+#choices {
+    background: lightgray;
+}
+#intro {
+    background: lightgray;
+}
+#next {
+    background-color: #ffdd57;
+}
