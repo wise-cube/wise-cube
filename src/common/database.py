@@ -24,7 +24,7 @@ class DB:
         ScopedSession.add_all(players)
         ScopedSession.commit()
 
-        g1 = Game(name="Discobulus and Kouros")
+        g1 = Game(name="Discobulus and Kouros", intro="dfjbffibaòbjvfnòdjkvnfòneòjnbòdknlvàa")
         q1 = Question(game_id=1, text="What is the original Discobulus statue is made of?",
                    curiosity="The discus-thrower (Gk. discobolus) has become the iconic image of the Olympic Games, and a fantastic representation of the athletic ideal.")
         q2 = Question(game_id=1, text="What Kouros means?",
@@ -33,6 +33,9 @@ class DB:
         ScopedSession.add_all((g1,q1,q2))
         ScopedSession.commit()
 
+        group.current_game=g1
+        ScopedSession.add(g1)
+        ScopedSession.commit()
         to_add = []
         for i,t in enumerate(["Bronze", "Marble", "Plaster", "Wax"]):
             # print('\n'*10)

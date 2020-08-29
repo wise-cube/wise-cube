@@ -4,29 +4,6 @@ from common.conf import Base
 from common.states import CubeStates, GroupStates
 from random import choice
 
-class Group(Base):
-    __tablename__ = 'groups'
-
-    id = Column(Integer, primary_key=True)
-    cube_id = Column(Integer, ForeignKey('cubes.id'))
-    name = Column(String)
-    auth_token = Column(String)
-
-    state = Column(Enum(GroupStates), default=GroupStates.CREATION )
-
-
-    cube = relationship('Cube', back_populates='group')
-    players = relationship('Player', back_populates='group')
-
-class Cube(Base):
-    __tablename__ = 'cubes'
-
-    id = Column(Integer, primary_key=True)
-
-
-    state = Column(Enum(CubeStates), default=CubeStates.DISCONNECTED )
-    group = relationship('Group', back_populates='cube')
-
 
 
 class Player(Base):
@@ -41,7 +18,7 @@ class Player(Base):
     type = Column(String)
 
     answers = relationship('Answer', backref='player' )
-    group = relationship('Group', back_populates='players' )
+    group = relationship('Group', foreign_keys=[group_id], back_populates='players' )
     avatar = relationship('Avatar')
 
     def get_score(self):
@@ -51,6 +28,34 @@ class Player(Base):
     def random_name():
         return choice(Player.NAMES)
 
+class Group(Base):
+    __tablename__ = 'groups'
+
+    id = Column(Integer, primary_key=True)
+    cube_id = Column(Integer, ForeignKey('cubes.id'))
+    current_game_id = Column(Integer, ForeignKey('games.id'))
+    current_player_id = Column(Integer, ForeignKey('players.id'))
+    name = Column(String)
+    auth_token = Column(String)
+
+    state = Column(Enum(GroupStates), default=GroupStates.CREATION )
+
+    current_game= relationship('Game')
+    current_round= Column(Integer, default=0)
+    current_player= relationship('Player', foreign_keys=[current_player_id])
+
+    cube = relationship('Cube', back_populates='group')
+    players = relationship('Player', foreign_keys=[Player.group_id], back_populates='group')
+
+class Cube(Base):
+    __tablename__ = 'cubes'
+
+    id = Column(Integer, primary_key=True)
+
+
+    state = Column(Enum(CubeStates), default=CubeStates.DISCONNECTED )
+    group = relationship('Group', back_populates='cube')
+
 
 
 class Game(Base):
@@ -59,6 +64,7 @@ class Game(Base):
     id = Column(Integer, primary_key=True)
     name = Column(String)
     rounds = relationship('Question')
+    intro = Column(String)
 
 
 class Question(Base):
