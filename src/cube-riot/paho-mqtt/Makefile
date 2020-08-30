@@ -23,6 +23,7 @@ USEMODULE += shell_commands
 USEMODULE += ps
 USEMODULE += netdev_default
 USEPKG += paho-mqtt
+USEPKG += jsmn
 
 # paho-mqtt depends on TCP support, choose the stack you want
 LWIP_IPV4 ?= 0

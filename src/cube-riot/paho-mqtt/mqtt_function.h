@@ -7,6 +7,7 @@
 #include "mutex.h"
 #include "paho_mqtt.h"
 #include "MQTTClient.h"
+#include "jsmn.h"
 
 
 #define BUF_SIZE                        1024
@@ -49,9 +50,11 @@
 
 static int topic_cnt = 0;
 
-
 extern MQTTClient client;
 extern Network network;
+
+extern int group_id;
+extern int player_id;
 
 
 static char _topic_to_subscribe[MAX_TOPICS][MAX_LEN_TOPIC];
@@ -81,4 +84,5 @@ void player_req(char* group_id);
 void new_question(char* game_id, char* point);
 
 void new_answer(char* answer_id, char* answer_val);
+
 
