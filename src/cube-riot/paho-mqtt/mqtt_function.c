@@ -163,7 +163,7 @@ int _cmd_unsub(int argc, char **argv){
 
 void new_group_req(){
 	char* topic="group";
-	char* payload="{'type': 'new_group_req'}";
+	char* payload='{'type': 'new_group_req'}';
 	
 	pub(topic, payload);
 	sub(topic);

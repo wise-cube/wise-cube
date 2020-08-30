@@ -45,4 +45,13 @@ function onConnectionLost(responseObject) {
 // called when a message arrives
 function onMessageArrived(message) {
   console.log("onMessageArrived:"+message.payloadString);
+  check_type_msg(message.toString());  
+}
+
+
+function check_type_msg(msg){
+	
+	var p=JSON.parse(msg.type);	
+    
+    
 }
