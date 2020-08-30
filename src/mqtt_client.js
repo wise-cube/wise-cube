@@ -7,7 +7,7 @@ var mqtt = require('mqtt');*/
 console.log("after require");
 var host = "localhost";
 var port = 1885;
-var clientid = "cubee"
+var clientid = "cubee";
 
 // Create a client instance
 client = new Paho.MQTT.Client(host, port, clientid);
@@ -24,10 +24,15 @@ client.connect({onSuccess:onConnect});
 function onConnect() {
   // Once a connection has been made, make a subscription and send a message.
   console.log("onConnect");
-  client.subscribe("World");
-  message = new Paho.MQTT.Message("Hello");
-  message.destinationName = "World";
-  client.send(message);
+  client.subscribe("group");
+  client.subscribe("group/player");
+  client.subscribe("group/req");
+  client.subscribe("game");
+  client.subscribe("game/answer");
+  client.subscribe("game/question");
+  //message = new Paho.MQTT.Message("Hello");
+  //message.destinationName = "World";
+  //client.send(message);
 }
 
 // called when the client loses its connection
