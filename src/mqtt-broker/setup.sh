@@ -5,8 +5,8 @@ rm mosquitto.tar.gz
 mv mosquitto-1.6.10 src
 (mkdir build
 cd build 
-cmake ../src 
-make
+cmake -DWITH_WEBSOCKETS=ON ../src 
+make  
 mv src bin
 mv bin/mosquitto ../
 )
