@@ -10,12 +10,18 @@ unsigned get_qos(const char *str){
     }
 }
 
+
+
 void _on_msg_received(MessageData *data){
-    printf("paho_mqtt_example: message received on topic"
+	
+	printf("on_message arrived triggered\n");
+	char* msg= (char *)data->message->payload;
+    printf("----------------->message received on topic"
            " %.*s: %.*s\n",
            (int)data->topicName->lenstring.len,
            data->topicName->lenstring.data, (int)data->message->payloadlen,
-           (char *)data->message->payload);
+           msg);
+   
 }
 
 int con(){
@@ -162,31 +168,33 @@ int _cmd_unsub(int argc, char **argv){
 //Topic: game, answere
 
 void new_group_req(){
-	char* topic="group";
-	char* payload='{'type': 'new_group_req'}';
+	char* topic_pub="group/req";
+	char* topic_sub="group/resp";
+	char* payload="{ type : new_group_req }";
 	
-	pub(topic, payload);
-	sub(topic);
+	pub(topic_pub, payload);
+	sub(topic_sub);
 }
 
 void new_player_req(char* group_id){
-	char* topic="group/player";
-	char payload[50]= "{'type': 'new_player_req', 'group_id': ";
-	char b[]= "}\0";
+	char* topic_pub="group/req/player";
+	char* topic_sub="group/resp/player";
+	char payload[50]= "{ type : new_player_req , group_id : ";
+	char b[]= " }\0";
 	
 	strcat(payload, group_id);
 	strcat(payload, b);
 	printf(payload);
 	printf("\n");
-	pub(topic, payload);
-	sub(topic);
+	pub(topic_pub, payload);
+	sub(topic_sub);
 }
 
 void new_player_accept_event(char* group_id, char* player_id){
 	char* topic="group/player";
-	char payload[60]= "{'type': 'new_player_acc', 'group_id': ";
-	char a[]=", player_id: ";
-	char b[]= "}\0";
+	char payload[60]= "{ type : new_player_acc , group_id : ";
+	char a[]=" , player_id : ";
+	char b[]= " }\0";
 	
 	strcat(payload, group_id);
 	strcat(payload, a);
@@ -199,8 +207,8 @@ void new_player_accept_event(char* group_id, char* player_id){
 
 void resume_group_req(char* token){
 	char* topic="group/req";
-	char payload[50]= "{'type': 'resume_group_req', 'group_token': ";
-	char b[]= "}\0";
+	char payload[50]= "{ type : resume_group_req , group_token : ";
+	char b[]= " }\0";
 	
 	strcat(payload, token);
 	strcat(payload, b);
@@ -215,8 +223,8 @@ void resume_group_req(char* token){
 void new_game(char* game_id){
 	
 	char* topic="game";
-	char payload[40]= "{'type': 'new_game_event', 'game_id': ";
-	char b[]= "}\0";
+	char payload[40]= "{ type : new_game_event , game_id : ";
+	char b[]= " }\0";
 	
 	strcat(payload, game_id);
 	strcat(payload, b);
@@ -227,8 +235,8 @@ void new_game(char* game_id){
 
 void player_req(char* group_id){
 	char* topic="group/player";
-	char payload[40]= "{'type': 'player_req', 'group_id': ";
-	char b[]= "}\0";
+	char payload[40]= "{ type : player_req , group_id : ";
+	char b[]= " }\0";
 	
 	strcat(payload, group_id);
 	strcat(payload, b);
@@ -240,9 +248,9 @@ void player_req(char* group_id){
 
 void new_question(char* game_id, char* point){
 	char* topic="game/question";
-	char payload[50]= "{'type': 'new_question', 'game_id': ";
-	char a[]= ", point: ";
-	char b[]= "}\0";
+	char payload[50]= "{ type : new_question , game_id : ";
+	char a[]= " , point : ";
+	char b[]= " }\0";
 	
 	strcat(payload, game_id);
 	strcat(payload, a);
@@ -255,9 +263,9 @@ void new_question(char* game_id, char* point){
 
 void new_answer(char* answer_id, char* answer_val){
 	char* topic="game/answer";
-	char payload[60]= "{'type': 'new_group_event', 'answer_id': ";
-	char a[]=", 'answer_val: '";
-	char b[]= "}\0";
+	char payload[60]= "{ type : new_group_event , answer_id : ";
+	char a[]=" , answer_val : ";
+	char b[]= " }\0";
 	
 	strcat(payload, answer_id);
 	strcat(payload, a);

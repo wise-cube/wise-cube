@@ -33,6 +33,10 @@
 MQTTClient client;
 Network network;
 
+int group_id= 0;
+int player_id= 0;
+
+
 static unsigned char buf[BUF_SIZE];
 static unsigned char readbuf[BUF_SIZE];
 
@@ -56,19 +60,19 @@ int main(void)
     
     new_group_req();
     
-    new_player_req("1");
+    //new_player_req(group_id);
     
-    new_player_accept_event("1", "1");
+    //new_player_accept_event("1", "1");
     
-    resume_group_req("token");
+	//resume_group_req("token");
     
-    new_game("2");
+    //new_game("2");
     
-    player_req("1");
+    //player_req("1");
     
-    new_question("3", "4");
+    //new_question("3", "4");
     
-    new_answer("5", "a");
+    //new_answer("5", "a");
     
     return 0;
 }
