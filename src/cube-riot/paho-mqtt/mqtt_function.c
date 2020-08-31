@@ -10,18 +10,54 @@ unsigned get_qos(const char *str){
     }
 }
 
+static int jsoneq(const char *json, jsmntok_t *tok, const char *s) {
+  
+  if (tok->type == JSMN_STRING && (int)strlen(s) == tok->end - tok->start &&
+      strncmp(json + tok->start, s, tok->end - tok->start) == 0) {
+    return 0;
+  }
+  return -1;
+}
 
+int json_conv(char* msg){
+	printf("in conv _jsson\n");
+	int i;
+	int r;
+	jsmn_parser p;
+	jsmntok_t t[128]; /* We expect no more than 128 tokens */
+
+	jsmn_init(&p);
+	r = jsmn_parse(&p, msg, strlen(msg), t, sizeof(t) / sizeof(t[0]));
+	if (r < 0) {
+		printf("Failed to parse JSON: %d\n", r);
+		return 1;
+	}
+	printf("after first \n");
+	/* Assume the top-level element is an object */
+	if (r < 1 || t[0].type != JSMN_OBJECT) {
+	printf("Object expected\n");
+	return 1;
+	}
+	for (i = 1; i < r; i++) {
+		if (jsoneq(msg, &t[i], "type") == 0) {
+			/* We may use strndup() to fetch string value */
+			printf("- User: %.*s\n", t[i + 1].end - t[i + 1].start,
+				 msg + t[i + 1].start);
+			
+			i++;
+		}
+	}
+}
 
 void _on_msg_received(MessageData *data){
 	
-	printf("on_message arrived triggered\n");
+	//printf("on_message arrived triggered\n");
 	char* msg= (char *)data->message->payload;
-    printf("----------------->message received on topic"
-           " %.*s: %.*s\n",
+    printf("----------------->message received on topic %.*s: %.*s\n",
            (int)data->topicName->lenstring.len,
            data->topicName->lenstring.data, (int)data->message->payloadlen,
            msg);
-   
+	//json_conv(msg);
 }
 
 int con(){
@@ -132,7 +168,7 @@ int sub(char* topic){
     }
     strncpy(_topic_to_subscribe[topic_cnt], topic, strlen(topic));
 
-    printf("mqtt_example: Subscribing to %s\n", _topic_to_subscribe[topic_cnt]);
+    //printf("mqtt_example: Subscribing to %s\n", _topic_to_subscribe[topic_cnt]);
     int ret = MQTTSubscribe(&client, _topic_to_subscribe[topic_cnt], qos, _on_msg_received);
     if (ret < 0) {
         printf("mqtt_example: Unable to subscribe to %s (%d)\n",
@@ -168,29 +204,38 @@ int _cmd_unsub(int argc, char **argv){
 //Topic: game, answere
 
 void new_group_req(){
+	if (! client.isconnected){
+		con();
+	}
 	char* topic_pub="group/req";
 	char* topic_sub="group/resp";
-	char* payload="{ type : new_group_req }";
+	char* payload="{ type : new_group_req }\0";
 	
 	pub(topic_pub, payload);
 	sub(topic_sub);
 }
 
 void new_player_req(char* group_id){
+	if (! client.isconnected){
+		con();
+	}
 	char* topic_pub="group/req/player";
 	char* topic_sub="group/resp/player";
-	char payload[50]= "{ type : new_player_req , group_id : ";
+	char payload[60]= "{ type : new_player_req , group_id : ";
 	char b[]= " }\0";
 	
 	strcat(payload, group_id);
 	strcat(payload, b);
-	printf(payload);
-	printf("\n");
+	//printf(payload);
+	//printf("\n");
 	pub(topic_pub, payload);
 	sub(topic_sub);
 }
 
 void new_player_accept_event(char* group_id, char* player_id){
+	if (! client.isconnected){
+		con();
+	}
 	char* topic="group/player";
 	char payload[60]= "{ type : new_player_acc , group_id : ";
 	char a[]=" , player_id : ";
@@ -200,13 +245,17 @@ void new_player_accept_event(char* group_id, char* player_id){
 	strcat(payload, a);
 	strcat(payload, player_id);
 	strcat(payload, b);
-	printf(payload);
-	printf("\n");
+	//printf(payload);
+	//printf("\n");
 	pub(topic, payload);
 }
 
 void resume_group_req(char* token){
-	char* topic="group/req";
+	if (! client.isconnected){
+		con();
+	}
+	char* topic_pub="group/req";
+	char* topic_sub="group/resp";
 	char payload[50]= "{ type : resume_group_req , group_token : ";
 	char b[]= " }\0";
 	
@@ -215,12 +264,15 @@ void resume_group_req(char* token){
 	printf(payload);
 	printf("\n");
 	
-	pub(topic, payload);
+	pub(topic_pub, payload);
 	
-	sub(topic);
+	sub(topic_sub);
 }
 
 void new_game(char* game_id){
+	if (! client.isconnected){
+		con();
+	}
 	
 	char* topic="game";
 	char payload[40]= "{ type : new_game_event , game_id : ";
@@ -234,7 +286,11 @@ void new_game(char* game_id){
 }
 
 void player_req(char* group_id){
-	char* topic="group/player";
+	if (! client.isconnected){
+		con();
+	}
+	char* topic_pub="group/req/player";
+	char* topic_sub="group/resp/player";
 	char payload[40]= "{ type : player_req , group_id : ";
 	char b[]= " }\0";
 	
@@ -242,13 +298,16 @@ void player_req(char* group_id){
 	strcat(payload, b);
 	printf(payload);
 	printf("\n");
-	pub(topic, payload);
-	sub(topic);
+	pub(topic_pub, payload);
+	sub(topic_sub);
 }
 
 void new_question(char* game_id, char* point){
+	if (! client.isconnected){
+		con();
+	}
 	char* topic="game/question";
-	char payload[50]= "{ type : new_question , game_id : ";
+	char payload[50]= "{ type : new_question_event , game_id : ";
 	char a[]= " , point : ";
 	char b[]= " }\0";
 	
@@ -262,8 +321,11 @@ void new_question(char* game_id, char* point){
 }
 
 void new_answer(char* answer_id, char* answer_val){
+	if (! client.isconnected){
+		con();
+	}
 	char* topic="game/answer";
-	char payload[60]= "{ type : new_group_event , answer_id : ";
+	char payload[60]= "{ type : new_answer_event , answer_id : ";
 	char a[]=" , answer_val : ";
 	char b[]= " }\0";
 	

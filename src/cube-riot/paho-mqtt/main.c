@@ -36,7 +36,6 @@ Network network;
 int group_id= 0;
 int player_id= 0;
 
-
 static unsigned char buf[BUF_SIZE];
 static unsigned char readbuf[BUF_SIZE];
 
@@ -52,7 +51,6 @@ int main(void)
     MQTTClientInit(&client, &network, COMMAND_TIMEOUT_MS, buf, BUF_SIZE,
                    readbuf,
                    BUF_SIZE);
-    printf("Running mqtt paho example. Type help for commands info\n");
 
     MQTTStartTask(&client);
     
@@ -60,19 +58,19 @@ int main(void)
     
     new_group_req();
     
-    //new_player_req(group_id);
+    //ok new_player_req("3");
     
-    //new_player_accept_event("1", "1");
+    //ok new_player_accept_event("1", "1");
     
-	//resume_group_req("token");
+	//ok resume_group_req("token");
     
-    //new_game("2");
+   //ok new_game("2");
     
-    //player_req("1");
+   //ok player_req("1");
     
-    //new_question("3", "4");
+   //ok new_question("3", "4");
     
-    //new_answer("5", "a");
+   //ok new_answer("5", "a");
     
     return 0;
 }
