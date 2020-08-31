@@ -1,6 +1,8 @@
 #include "mqtt_function.h"
+int topic_cnt= 0;
+char _topic_to_subscribe[MAX_TOPICS][MAX_LEN_TOPIC];
 
-unsigned get_qos(const char *str){
+unsigned get_qos(const char *str) {
     int qos = atoi(str);
 
     switch (qos) {
@@ -10,7 +12,7 @@ unsigned get_qos(const char *str){
     }
 }
 
-static int jsoneq(const char *json, jsmntok_t *tok, const char *s) {
+int jsoneq(const char *json, jsmntok_t *tok, const char *s) {
   
   if (tok->type == JSMN_STRING && (int)strlen(s) == tok->end - tok->start &&
       strncmp(json + tok->start, s, tok->end - tok->start) == 0) {
@@ -19,7 +21,7 @@ static int jsoneq(const char *json, jsmntok_t *tok, const char *s) {
   return -1;
 }
 
-int json_conv(char* msg){
+int json_conv(char* msg) {
 	printf("in conv _jsson\n");
 	int i;
 	int r;
@@ -47,9 +49,10 @@ int json_conv(char* msg){
 			i++;
 		}
 	}
+	return 0;
 }
 
-void _on_msg_received(MessageData *data){
+void _on_msg_received(MessageData *data) {
 	
 	//printf("on_message arrived triggered\n");
 	char* msg= (char *)data->message->payload;
@@ -60,7 +63,7 @@ void _on_msg_received(MessageData *data){
 	//json_conv(msg);
 }
 
-int con(){
+int con(void) {
 
     char *remote_ip = "fe80::fa8a:3207:eaae:d9ad";
 
@@ -107,7 +110,7 @@ int con(){
     ret = MQTTConnect(&client, &data);
     if (ret < 0) {
         printf("mqtt_example: Unable to connect client %d\n", ret);
-        discon(0, NULL);
+        discon();
         return ret;
     }
     else {
@@ -117,8 +120,7 @@ int con(){
     return (ret > 0) ? 0 : 1;
 }
 
-int discon(){
-    topic_cnt = 0;
+int discon(void) {
     int res = MQTTDisconnect(&client);
     if (res < 0) {
         printf("mqtt_example: Unable to disconnect\n");
@@ -131,7 +133,7 @@ int discon(){
     return res;
 }
 
-int pub(char* topic, char* payload){
+int pub(char* topic, char* payload) {
     enum QoS qos = QOS0;
 
     MQTTMessage message;
@@ -153,7 +155,7 @@ int pub(char* topic, char* payload){
     return rc;
 }
 
-int sub(char* topic){
+int sub(char* topic) {
     enum QoS qos = QOS0;
 
     if (topic_cnt > MAX_TOPICS) {
@@ -173,7 +175,7 @@ int sub(char* topic){
     if (ret < 0) {
         printf("mqtt_example: Unable to subscribe to %s (%d)\n",
                _topic_to_subscribe[topic_cnt], ret);
-        discon(0, NULL);
+        discon();
     }
     else {
         printf("mqtt_example: Now subscribed to %s, QOS %d\n", topic, (int) qos);
@@ -182,7 +184,7 @@ int sub(char* topic){
     return ret;
 }
 
-int _cmd_unsub(int argc, char **argv){
+int _cmd_unsub(int argc, char **argv) {
     if (argc < 2) {
         printf("usage %s <topic name>\n", argv[0]);
         return 1;
@@ -192,7 +194,7 @@ int _cmd_unsub(int argc, char **argv){
 
     if (ret < 0) {
         printf("mqtt_example: Unable to unsubscribe from topic: %s\n", argv[1]);
-        _cmd_discon(0, NULL);
+        discon();
     }
     else {
         printf("mqtt_example: Unsubscribed from topic:%s\n", argv[1]);
@@ -203,7 +205,7 @@ int _cmd_unsub(int argc, char **argv){
 
 //Topic: game, answere
 
-void new_group_req(){
+void new_group_req(void) {
 	if (! client.isconnected){
 		con();
 	}
@@ -215,7 +217,7 @@ void new_group_req(){
 	sub(topic_sub);
 }
 
-void new_player_req(char* group_id){
+void new_player_req(char* group_id) {
 	if (! client.isconnected){
 		con();
 	}
@@ -227,12 +229,12 @@ void new_player_req(char* group_id){
 	strcat(payload, group_id);
 	strcat(payload, b);
 	//printf(payload);
-	//printf("\n");
+	//printf("\n");ƒ
 	pub(topic_pub, payload);
 	sub(topic_sub);
 }
 
-void new_player_accept_event(char* group_id, char* player_id){
+void new_player_accept_event(char* group_id, char* player_id) {
 	if (! client.isconnected){
 		con();
 	}
@@ -250,7 +252,7 @@ void new_player_accept_event(char* group_id, char* player_id){
 	pub(topic, payload);
 }
 
-void resume_group_req(char* token){
+void resume_group_req(char* token) {
 	if (! client.isconnected){
 		con();
 	}
@@ -261,7 +263,7 @@ void resume_group_req(char* token){
 	
 	strcat(payload, token);
 	strcat(payload, b);
-	printf(payload);
+//	printf(payload);
 	printf("\n");
 	
 	pub(topic_pub, payload);
@@ -269,7 +271,7 @@ void resume_group_req(char* token){
 	sub(topic_sub);
 }
 
-void new_game(char* game_id){
+void new_game(char* game_id) {
 	if (! client.isconnected){
 		con();
 	}
@@ -280,12 +282,12 @@ void new_game(char* game_id){
 	
 	strcat(payload, game_id);
 	strcat(payload, b);
-	printf(payload);
+//	printf(payload);
 	printf("\n");
 	pub(topic, payload);
 }
 
-void player_req(char* group_id){
+void player_req(char* group_id) {
 	if (! client.isconnected){
 		con();
 	}
@@ -296,13 +298,13 @@ void player_req(char* group_id){
 	
 	strcat(payload, group_id);
 	strcat(payload, b);
-	printf(payload);
+//	printf(payload);
 	printf("\n");
 	pub(topic_pub, payload);
 	sub(topic_sub);
 }
 
-void new_question(char* game_id, char* point){
+void new_question(char* game_id, char* point) {
 	if (! client.isconnected){
 		con();
 	}
@@ -315,12 +317,12 @@ void new_question(char* game_id, char* point){
 	strcat(payload, a);
 	strcat(payload, point);
 	strcat(payload, b);
-	printf(payload);
+//	printf(payload);
 	printf("\n");
 	pub(topic, payload);
 }
 
-void new_answer(char* answer_id, char* answer_val){
+void new_answer(char* answer_id, char* answer_val) {
 	if (! client.isconnected){
 		con();
 	}
@@ -333,7 +335,7 @@ void new_answer(char* answer_id, char* answer_val){
 	strcat(payload, a);
 	strcat(payload, answer_val);
 	strcat(payload, b);
-	printf(payload);
+//	printf(payload);
 	printf("\n");
 	pub(topic, payload);
 }
