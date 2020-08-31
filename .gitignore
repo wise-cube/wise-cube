@@ -6,4 +6,7 @@ venv
 /src/mqtt-broker/src/
 /src/mqtt-broker/build/
 /src/mqtt-broker/mosquitto
-/src/cube-riot/paho-mqtt/bin/
+/src/riot-cube/paho-mqtt/bin/
+/src/py-common/__pycache__/
+/src/py-http-server/__pycache__/
+/src/py-cubes-handler/__pycache__/
