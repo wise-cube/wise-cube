@@ -26,7 +26,7 @@ function onConnect() {
   console.log("onConnect");
   client.subscribe("group/req");
   client.subscribe("group/req/player");
-  client.subscribe("group/req");
+  client.subscribe("group/player");
   client.subscribe("game");
   client.subscribe("game/answer");
   client.subscribe("game/question");
@@ -61,23 +61,33 @@ function trigger_pub(msg){
 	switch(obj.type) {
 	case "new_group_req":
 		console.log("Trigger new_group_resp");
-		new_group_resp();
+		new_group_resp("1", "sdf", "200");
 		break;
 	case "new_player_req":
 		console.log("Trigger new_player_resp");
-		new_player_resp();
+		new_player_resp("1", "12");
 		break;
 	case "new_player_acc":
+		console.log("!!!new_player_acc -> TODO funtion to save");
+		
 		break;
 	case "resume_group_req":
+		console.log("Trigger resume_group_resp");
+		new_group_resp("1", "sdf", "200");
 		break;
 	case "new_game_event":
+		console.log("!!!new game event ");
 		break;
 	case "player_req":
+		//potrebbe non avere senso fare la resp da vedere 
+		console.log("Trigger player_resp");
+		player_resp("1", "12");
 		break;
-	case "new_question":
+	case "new_question_event":
+		console.log("!!!new question event ");
 		break;
-	case "new_group_event":
+	case "new_answer_event":
+		console.log("!!!new answer event ");
 		break;
 	default:
 		console.log("NO CASE!!!!")
@@ -86,22 +96,22 @@ function trigger_pub(msg){
 }
 
 
-function new_group_resp(){
-	var id = "2";
-	var token ="abc"
-	var status= "200"
+function new_group_resp(id, token, status){
 	var payload= ' {"type":"new_group_resp","group_id":' + id + ', "group_token ": ' + token + ', "status" :' + status+ '}';
 	console.log("in new resp:   "+ payload)
 	pub("group/resp", payload)
 }
 
 
-function new_player_resp(){
-	var g_id = "2";
-	var p_id ="1a"
+function new_player_resp(g_id, p_id){
 	var payload= ' {"type":"new_player_resp","group_id":' + g_id + ', "player_id" : ' + p_id + '}';
 	console.log("in new p_resp:   "+ payload)
 	pub("group/resp/player", payload)
 }
 
 
+function player_resp(g_id, p_id){
+	var payload= ' {"type":player_resp","group_id":' + g_id + ', "player_id" : ' + p_id + '}';
+	console.log("inp_resp:   "+ payload)
+	pub("group/resp/player", payload)
+}
