@@ -48,7 +48,7 @@
 #define IS_CLEAN_SESSION                1
 #define IS_RETAINED_MSG                 0
 
-static int topic_cnt = 0;
+extern int topic_cnt;
 
 extern MQTTClient client;
 extern Network network;
@@ -57,32 +57,22 @@ extern int group_id;
 extern int player_id;
 
 
-static char _topic_to_subscribe[MAX_TOPICS][MAX_LEN_TOPIC];
 
-int discon();
 
-int con();
-
+unsigned get_qos(const char *str);
+int jsoneq(const char *json, jsmntok_t *tok, const char *s);
+int json_conv(char* msg);
+void _on_msg_received(MessageData *data);
+int con(void);
+int discon(void);
 int pub(char* topic, char* payload);
-
 int sub(char* topic);
-
 int _cmd_unsub(int argc, char **argv);
-
-void new_group_req();
-
+void new_group_req(void);
 void new_player_req(char* group_id);
-
 void new_player_accept_event(char* group_id, char* player_id);
-
 void resume_group_req(char* token);
-
 void new_game(char* game_id);
-
 void player_req(char* group_id);
-
 void new_question(char* game_id, char* point);
-
 void new_answer(char* answer_id, char* answer_val);
-
-

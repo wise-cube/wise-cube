@@ -1,10 +1,10 @@
 APPLICATION = paho-mqtt-example
 
 # If no BOARD is found in the environment, use this default:
-BOARD ?=  BOARD=esp8266-esp-12x
+BOARD ?= esp8266-esp-12x
 
 # This has to be the absolute path to the RIOT base directory:
-RIOTBASE ?= $(CURDIR)/../../../../RIOT
+RIOTBASE ?= /riot
 
 # Comment this out to disable code in RIOT that does safety checking
 # which is not needed in a production environment but helps in the
