@@ -1,4 +1,5 @@
 #include "mqtt_function.h"
+
 int topic_cnt= 0;
 char _topic_to_subscribe[MAX_TOPICS][MAX_LEN_TOPIC];
 
@@ -12,8 +13,8 @@ unsigned get_qos(const char *str) {
     }
 }
 
+
 int jsoneq(const char *json, jsmntok_t *tok, const char *s) {
-  
   if (tok->type == JSMN_STRING && (int)strlen(s) == tok->end - tok->start &&
       strncmp(json + tok->start, s, tok->end - tok->start) == 0) {
     return 0;
@@ -21,35 +22,65 @@ int jsoneq(const char *json, jsmntok_t *tok, const char *s) {
   return -1;
 }
 
-int json_conv(char* msg) {
-	printf("in conv _jsson\n");
-	int i;
-	int r;
-	jsmn_parser p;
-	jsmntok_t t[128]; /* We expect no more than 128 tokens */
+int json_conv(char* JSON_STRING) {
+  int i;
+  int r;
+  jsmn_parser p;
+  jsmntok_t t[128]; /* We expect no more than 128 tokens */
 
-	jsmn_init(&p);
-	r = jsmn_parse(&p, msg, strlen(msg), t, sizeof(t) / sizeof(t[0]));
-	if (r < 0) {
-		printf("Failed to parse JSON: %d\n", r);
-		return 1;
-	}
-	printf("after first \n");
-	/* Assume the top-level element is an object */
-	if (r < 1 || t[0].type != JSMN_OBJECT) {
-	printf("Object expected\n");
-	return 1;
-	}
-	for (i = 1; i < r; i++) {
-		if (jsoneq(msg, &t[i], "type") == 0) {
-			/* We may use strndup() to fetch string value */
-			printf("- User: %.*s\n", t[i + 1].end - t[i + 1].start,
-				 msg + t[i + 1].start);
-			
-			i++;
-		}
-	}
-	return 0;
+  jsmn_init(&p);
+  r = jsmn_parse(&p, JSON_STRING, strlen(JSON_STRING), t,
+                 sizeof(t) / sizeof(t[0]));
+  if (r < 0) {
+    printf("Failed to parse JSON: %d\n", r);
+    return 1;
+  }
+
+  /* Assume the top-level element is an object */
+  if (r < 1 || t[0].type != JSMN_OBJECT) {
+    printf("Object expected\n");
+    return 1;
+  }
+
+  /* Loop over all keys of the root object */
+  for (i = 1; i < r; i++) {
+	unsigned int length = t[i + 1].end - t[i + 1].start;
+	char val[length + 1];    
+	memcpy(val, &JSON_STRING[t[i+1].start], length);
+	val[length] = '\0';
+	
+    if (jsoneq(JSON_STRING, &t[i], "type") == 0) {
+		printf("Type: %s\n", val);     
+      i++;
+    } else if (jsoneq(JSON_STRING, &t[i], "group_id") == 0) {
+      /* We may additionally check if the value is either "true" or "false" */
+      printf("Group: %s\n", val);
+      
+      group_id = val;
+      printf("Group_var: %s\n", group_id);
+      i++;
+    } else if (jsoneq(JSON_STRING, &t[i], "player_id") == 0) {
+      /* We may want to do strtol() here to get numeric value */
+      printf("Player: %s\n", val);
+      player_id = val;
+      printf("Player_var: %s\n", player_id);
+      i++;
+    } else if (jsoneq(JSON_STRING, &t[i], "group_token") == 0) {
+      /* We may want to do strtol() here to get numeric value */
+      printf("Token: %s\n", val);
+      token=val;
+      printf("t--> %s\n", token);
+      printf("g--> %d\n", atoi(group_id));
+      i++;
+    } else if (jsoneq(JSON_STRING, &t[i], "status") == 0) {
+      /* We may want to do strtol() here to get numeric value */
+      printf("Status: %s\n", val);
+	  printf("g--> %d\n", atoi(group_id));
+	  printf("t--> %s\n", token);
+      i++;
+    }
+  }
+  return EXIT_SUCCESS;
 }
 
 void _on_msg_received(MessageData *data) {
@@ -60,7 +91,7 @@ void _on_msg_received(MessageData *data) {
            (int)data->topicName->lenstring.len,
            data->topicName->lenstring.data, (int)data->message->payloadlen,
            msg);
-	//json_conv(msg);
+	json_conv(msg);
 }
 
 int con(void) {

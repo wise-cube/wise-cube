@@ -55,9 +55,7 @@ extern Network network;
 
 extern int group_id;
 extern int player_id;
-
-
-
+extern char* token;
 
 unsigned get_qos(const char *str);
 int jsoneq(const char *json, jsmntok_t *tok, const char *s);

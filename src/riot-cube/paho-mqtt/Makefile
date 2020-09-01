@@ -4,8 +4,7 @@ APPLICATION = paho-mqtt-example
 BOARD ?= esp8266-esp-12x
 
 # This has to be the absolute path to the RIOT base directory:
-RIOTBASE ?= /riot
-
+RIOTBASE ?= $(CURDIR)/../../../../RIOT
 # Comment this out to disable code in RIOT that does safety checking
 # which is not needed in a production environment but helps in the
 # development process:
