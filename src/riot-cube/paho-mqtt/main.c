@@ -37,8 +37,8 @@ char* group_id= "0";
 char* player_id= "0";
 char* token= "null";
 
-static unsigned char buf[BUF_SIZE];
-static unsigned char readbuf[BUF_SIZE];
+static  char buf[BUF_SIZE];
+static  char readbuf[BUF_SIZE];
 
 int main(void)
 {
