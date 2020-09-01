@@ -53,8 +53,8 @@ extern int topic_cnt;
 extern MQTTClient client;
 extern Network network;
 
-extern int group_id;
-extern int player_id;
+extern char* group_id;
+extern char* player_id;
 extern char* token;
 
 unsigned get_qos(const char *str);
