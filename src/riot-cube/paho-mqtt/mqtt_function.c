@@ -45,7 +45,9 @@ int json_conv(char* JSON_STRING) {
   /* Loop over all keys of the root object */
   for (i = 1; i < r; i++) {
 	unsigned int length = t[i + 1].end - t[i + 1].start;
-	char val[length + 1];    
+	char val[length + 1];  
+	char g[strlen(val)+1];   
+	char p[strlen(val)+1];   
 	memcpy(val, &JSON_STRING[t[i+1].start], length);
 	val[length] = '\0';
 	
@@ -55,28 +57,33 @@ int json_conv(char* JSON_STRING) {
     } else if (jsoneq(JSON_STRING, &t[i], "group_id") == 0) {
       /* We may additionally check if the value is either "true" or "false" */
       printf("Group: %s\n", val);
+         
+	  memcpy(g, val , strlen(val));
+	  g[strlen(val)] = '\0';
+      group_id = g;
       
-      group_id = val;
       printf("Group_var: %s\n", group_id);
+      
       i++;
     } else if (jsoneq(JSON_STRING, &t[i], "player_id") == 0) {
       /* We may want to do strtol() here to get numeric value */
       printf("Player: %s\n", val);
-      player_id = val;
+           
+      memcpy(p, val , strlen(val));
+	  p[strlen(val)] = '\0';
+      player_id = p;
+      
       printf("Player_var: %s\n", player_id);
       i++;
     } else if (jsoneq(JSON_STRING, &t[i], "group_token") == 0) {
       /* We may want to do strtol() here to get numeric value */
       printf("Token: %s\n", val);
-      token=val;
-      printf("t--> %s\n", token);
-      printf("g--> %d\n", atoi(group_id));
       i++;
     } else if (jsoneq(JSON_STRING, &t[i], "status") == 0) {
       /* We may want to do strtol() here to get numeric value */
+       printf("gr: %s", group_id);
       printf("Status: %s\n", val);
-	  printf("g--> %d\n", atoi(group_id));
-	  printf("t--> %s\n", token);
+     
       i++;
     }
   }
@@ -212,6 +219,7 @@ int sub(char* topic) {
         printf("mqtt_example: Now subscribed to %s, QOS %d\n", topic, (int) qos);
         topic_cnt++;
     }
+    printf("ret = %d\n", ret);
     return ret;
 }
 
@@ -245,7 +253,8 @@ void new_group_req(void) {
 	char* payload="{ type : new_group_req }\0";
 	
 	pub(topic_pub, payload);
-	sub(topic_sub);
+	printf("after sub %d\n", sub(topic_sub) );
+	return;
 }
 
 void new_player_req(char* group_id) {
@@ -262,7 +271,8 @@ void new_player_req(char* group_id) {
 	//printf(payload);
 	//printf("\n");ƒ
 	pub(topic_pub, payload);
-	sub(topic_sub);
+	//sub(topic_sub);
+	printf("after sub %d\n", sub(topic_sub) );
 }
 
 void new_player_accept_event(char* group_id, char* player_id) {

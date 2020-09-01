@@ -37,8 +37,8 @@ char* group_id= "0";
 char* player_id= "0";
 char* token= "null";
 
-static  char buf[BUF_SIZE];
-static  char readbuf[BUF_SIZE];
+static unsigned char buf[BUF_SIZE];
+static unsigned char readbuf[BUF_SIZE];
 
 int main(void)
 {
@@ -59,7 +59,17 @@ int main(void)
     
     new_group_req();
     
-    //ok new_player_req("3");
+    while( atoi(group_id) == 0 ) {;} 
+      
+    printf("after while %s    %d \n", group_id, atoi(group_id));
+    
+    xtimer_sleep(5);
+    
+    new_player_req(group_id);
+    
+    while( atoi(player_id) == 0 ) {printf("in w\n");} 
+      
+    printf("after while %s    %d \n", player_id, atoi(player_id));
     
     //ok new_player_accept_event("1", "1");
     
