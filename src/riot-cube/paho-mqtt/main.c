@@ -33,8 +33,9 @@
 MQTTClient client;
 Network network;
 
-int group_id= 0;
-int player_id= 0;
+char* group_id= "0";
+char* player_id= "0";
+char* token= "null";
 
 static unsigned char buf[BUF_SIZE];
 static unsigned char readbuf[BUF_SIZE];
