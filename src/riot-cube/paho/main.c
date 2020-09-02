@@ -1,4 +1,5 @@
 #include "paho.h"
+#include "jsmn.h"
 
 extern MQTTClient client;
 extern Network network;

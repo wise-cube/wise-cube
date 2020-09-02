@@ -52,7 +52,7 @@
 /**
  * @brief Default MQTT port
  */
-#define DEFAULT_MQTT_PORT               1883
+#define DEFAULT_MQTT_PORT               1884
 
 /**
  * @brief Keepalive timeout in seconds
