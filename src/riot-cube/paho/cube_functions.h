@@ -1,0 +1,8 @@
+//
+// Created by di3go on 2020-09-02.
+//
+
+#ifndef RIOT_CUBE_CUBE_FUNCTIONS_H
+#define RIOT_CUBE_CUBE_FUNCTIONS_H
+
+#endif //RIOT_CUBE_CUBE_FUNCTIONS_H

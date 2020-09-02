@@ -17,6 +17,7 @@ extern char* token;
 /*
 // Paho Functions
 */
+
 unsigned get_qos(const char *str)
 {
     int qos = atoi(str);
@@ -57,22 +58,30 @@ int _cmd_discon(int argc, char **argv)
 
 int _cmd_con(int argc, char **argv)
 {
-    if (argc < 1) {
-        printf(
-                "usage: %s [brokerip addr] [port] [clientID] [user] [password] "
-                "[keepalivetime]\n",
-                argv[0]);
-        return 1;
-    }
+    //        typedef struct
+//        {
+//            /** The eyecatcher for this structure.  must be MQTC. */
+//            char struct_id[4];
+//            /** The version number of this structure.  Must be 0 */
+//            int struct_version;
+//            /** Version of MQTT to be used.  3 = 3.1 4 = 3.1.1
+//              */
+//            unsigned char MQTTVersion;
+//            MQTTString clientID;
+//            unsigned short keepAliveInterval;
+//            unsigned char cleansession;
+//            unsigned char willFlag;
+//            MQTTPacket_willOptions will;
+//            MQTTString username;
+//            MQTTString password;
+//        } MQTTPacket_connectData;
 
-    char *remote_ip = (char*)&BROKER_HOST;
-
-    if (argc > 1) {
-        remote_ip = argv[1];
-    }
-
-    int ret = -1;
-
+//    if (argc < 1) {
+//        printf(
+//                "usage: %s [brokerip addr] [port] [clientID] [user] [password] [keepalivetime]\n",
+//                argv[0]);
+//        return 1;
+//    }
     /* ensure client isn't connected in case of a new connection */
     if (client.isconnected) {
         printf("mqtt_example: client already connected, disconnecting it\n");
@@ -80,36 +89,50 @@ int _cmd_con(int argc, char **argv)
         NetworkDisconnect(&network);
     }
 
+
+    char *remote_ip = (char*)&BROKER_HOST;
     int port = BROKER_PORT;
+    int ret = -1;
+
+
+    MQTTPacket_willOptions lwt_data = MQTTPacket_willOptions_initializer;
+    lwt_data.topicName.cstring= PUB_TOPIC;
+    lwt_data.message.cstring = LWT_MSG;
+
+    MQTTPacket_connectData connect_data = MQTTPacket_connectData_initializer;
+    connect_data.willFlag = 1;
+    connect_data.will = lwt_data;
+    connect_data.MQTTVersion = MQTT_VERSION_v311;
+    connect_data.clientID.cstring = DEFAULT_MQTT_CLIENT_ID;
+    connect_data.cleansession = IS_CLEAN_SESSION;
+
+
+    if (argc > 1) {
+        remote_ip = argv[1];
+    }
+
     if (argc > 2) {
         port = atoi(argv[2]);
     }
 
-    MQTTPacket_connectData data = MQTTPacket_connectData_initializer;
-    data.MQTTVersion = MQTT_VERSION_v311;
-
-    data.clientID.cstring = DEFAULT_MQTT_CLIENT_ID;
     if (argc > 3) {
-        data.clientID.cstring = argv[3];
+        connect_data.clientID.cstring = argv[3];
     }
 
-    data.username.cstring = DEFAULT_MQTT_USER;
+    connect_data.username.cstring = DEFAULT_MQTT_USER;
     if (argc > 4) {
-        data.username.cstring = argv[4];
+        connect_data.username.cstring = argv[4];
     }
 
-    data.password.cstring = DEFAULT_MQTT_PWD;
+    connect_data.password.cstring = DEFAULT_MQTT_PWD;
     if (argc > 5) {
-        data.password.cstring = argv[5];
+        connect_data.password.cstring = argv[5];
     }
 
-    data.keepAliveInterval = DEFAULT_KEEPALIVE_SEC;
+    connect_data.keepAliveInterval = DEFAULT_KEEPALIVE_SEC;
     if (argc > 6) {
-        data.keepAliveInterval = atoi(argv[6]);
+        connect_data.keepAliveInterval = atoi(argv[6]);
     }
-
-    data.cleansession = IS_CLEAN_SESSION;
-    data.willFlag = 0;
 
     printf("mqtt_example: Connecting to MQTT Broker from %s %d\n",
            remote_ip, port);
@@ -121,9 +144,9 @@ int _cmd_con(int argc, char **argv)
         return ret;
     }
 
-    printf("user:%s clientId:%s password:%s\n", data.username.cstring,
-           data.clientID.cstring, data.password.cstring);
-    ret = MQTTConnect(&client, &data);
+    printf("user:%s clientId:%s password:%s\n", connect_data.username.cstring,
+           connect_data.clientID.cstring, connect_data.password.cstring);
+    ret = MQTTConnect(&client, &connect_data);
     if (ret < 0) {
         printf("mqtt_example: Unable to connect client %d\n", ret);
         _cmd_discon(0, NULL);
@@ -139,29 +162,36 @@ int _cmd_con(int argc, char **argv)
 int _cmd_pub(int argc, char **argv)
 {
     enum QoS qos = QOS0;
+    char* topic = (char*)&PUB_TOPIC;
 
-    if (argc < 3) {
-        printf("usage: %s <topic name> <string msg> [QoS level]\n",
+    if (argc < 2) {
+        printf("usage: %s <string msg> [topic name] [QoS level]\n",
                argv[0]);
         return 1;
     }
-    if (argc == 4) {
+
+    if (argc > 2) {
+        topic = argv[2];
+    }
+
+    if (argc > 3) {
         qos = get_qos(argv[3]);
     }
+
     MQTTMessage message;
     message.qos = qos;
     message.retained = IS_RETAINED_MSG;
-    message.payload = argv[2];
+    message.payload = argv[1];
     message.payloadlen = strlen(message.payload);
 
     int rc;
-    if ((rc = MQTTPublish(&client, argv[1], &message)) < 0) {
+    if ((rc = MQTTPublish(&client, topic, &message)) < 0) {
         printf("mqtt_example: Unable to publish (%d)\n", rc);
     }
     else {
         printf("mqtt_example: Message (%s) has been published to topic %s"
                "with QOS %d\n",
-               (char *)message.payload, argv[1], (int)message.qos);
+               (char *)message.payload, topic, (int)message.qos);
     }
 
     return rc;
@@ -170,13 +200,17 @@ int _cmd_pub(int argc, char **argv)
 int _cmd_sub(int argc, char **argv)
 {
     enum QoS qos = QOS0;
+    char* topic = (char*)&SUB_TOPIC;
 
-    if (argc < 2) {
-        printf("usage: %s <topic name> [QoS level]\n", argv[0]);
+    if (argc < 1) {
+        printf("usage: %s [topic name] [QoS level]\n", argv[0]);
         return 1;
     }
+    if (argc > 1) {
+        topic = argv[1];
+    }
 
-    if (argc >= 3) {
+    if (argc > 2) {
         qos = get_qos(argv[2]);
     }
 
@@ -186,11 +220,11 @@ int _cmd_sub(int argc, char **argv)
         return -1;
     }
 
-    if (strlen(argv[1]) > MAX_LEN_TOPIC) {
+    if (strlen(topic) > MAX_LEN_TOPIC) {
         printf("mqtt_example: Not subscribing, topic too long %s\n", argv[1]);
         return -1;
     }
-    strncpy(_topic_to_subscribe[topic_cnt], argv[1], strlen(argv[1]));
+    strncpy(_topic_to_subscribe[topic_cnt], topic, strlen(topic));
 
     printf("mqtt_example: Subscribing to %s\n", _topic_to_subscribe[topic_cnt]);
     int ret = MQTTSubscribe(&client,
@@ -202,7 +236,7 @@ int _cmd_sub(int argc, char **argv)
     }
     else {
         printf("mqtt_example: Now subscribed to %s, QOS %d\n",
-               argv[1], (int) qos);
+               topic, (int) qos);
         topic_cnt++;
     }
     return ret;
@@ -210,101 +244,25 @@ int _cmd_sub(int argc, char **argv)
 
 int _cmd_unsub(int argc, char **argv)
 {
-    if (argc < 2) {
-        printf("usage %s <topic name>\n", argv[0]);
+    char* topic = (char*)&SUB_TOPIC;
+
+    if (argc < 1) {
+        printf("usage %s [topic name]\n", argv[0]);
         return 1;
     }
+    if (argc > 1) {
+        topic = argv[1];
+    }
 
-    int ret = MQTTUnsubscribe(&client, argv[1]);
+    int ret = MQTTUnsubscribe(&client, topic);
 
     if (ret < 0) {
-        printf("mqtt_example: Unable to unsubscribe from topic: %s\n", argv[1]);
+        printf("mqtt_example: Unable to unsubscribe from topic: %s\n", topic);
         _cmd_discon(0, NULL);
     }
     else {
-        printf("mqtt_example: Unsubscribed from topic:%s\n", argv[1]);
+        printf("mqtt_example: Unsubscribed from topic:%s\n", topic);
         topic_cnt--;
     }
     return ret;
 }
-
-/*
-// Json Functions
-*/
-
-int _json_parse(const char *json, jsmntok_t *tok, const char *s) {
-    if (tok->type == JSMN_STRING && (int)strlen(s) == tok->end - tok->start &&
-        strncmp(json + tok->start, s, tok->end - tok->start) == 0) {
-        return 0;
-    }
-    return -1;
-}
-
-//int json_parse(char* json_string) {
-//    int i;
-//    int r;
-//    jsmn_parser p;
-//    jsmntok_t t[128]; /* We expect no more than 128 tokens */
-//
-//    jsmn_init(&p);
-//    r = jsmn_parse(&p, JSON_STRING, strlen(JSON_STRING), t,
-//                   sizeof(t) / sizeof(t[0]));
-//    if (r < 0) {
-//        printf("Failed to parse JSON: %d\n", r);
-//        return 1;
-//    }
-//
-//    /* Assume the top-level element is an object */
-//    if (r < 1 || t[0].type != JSMN_OBJECT) {
-//        printf("Object expected\n");
-//        return 1;
-//    }
-//
-//    /* Loop over all keys of the root object */
-//    for (i = 1; i < r; i++) {
-//        unsigned int length = t[i + 1].end - t[i + 1].start;
-//        char val[length + 1];
-//        char g[strlen(val)+1];
-//        char p[strlen(val)+1];
-//        memcpy(val, &JSON_STRING[t[i+1].start], length);
-//        val[length] = '\0';
-//
-//        if (jsoneq(JSON_STRING, &t[i], "type") == 0) {
-//            printf("Type: %s\n", val);
-//            i++;
-//        } else if (jsoneq(JSON_STRING, &t[i], "group_id") == 0) {
-//            /* We may additionally check if the value is either "true" or "false" */
-//            printf("Group: %s\n", val);
-//
-//            memcpy(g, val , strlen(val));
-//            g[strlen(val)] = '\0';
-//            group_id = g;
-//
-//            printf("Group_var: %s\n", group_id);
-//
-//            i++;
-//        } else if (jsoneq(JSON_STRING, &t[i], "player_id") == 0) {
-//            /* We may want to do strtol() here to get numeric value */
-//            printf("Player: %s\n", val);
-//
-//            memcpy(p, val , strlen(val));
-//            p[strlen(val)] = '\0';
-//            player_id = p;
-//
-//            printf("Player_var: %s\n", player_id);
-//            i++;
-//        } else if (jsoneq(JSON_STRING, &t[i], "group_token") == 0) {
-//            /* We may want to do strtol() here to get numeric value */
-//            printf("Token: %s\n", val);
-//            i++;
-//        } else if (jsoneq(JSON_STRING, &t[i], "status") == 0) {
-//            /* We may want to do strtol() here to get numeric value */
-//            printf("gr: %s", group_id);
-//            printf("Status: %s\n", val);
-//
-//            i++;
-//        }
-//    }
-//    return EXIT_SUCCESS;
-//}
-
