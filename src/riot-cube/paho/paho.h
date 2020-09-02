@@ -37,10 +37,6 @@
 #define MQTT_VERSION_v311               4       /* MQTT v3.1.1 version is 4 */
 #define COMMAND_TIMEOUT_MS              4000
 
-#ifndef DEFAULT_MQTT_CLIENT_ID
-#define DEFAULT_MQTT_CLIENT_ID          ""
-#endif
-
 #ifndef DEFAULT_MQTT_USER
 #define DEFAULT_MQTT_USER               ""
 #endif

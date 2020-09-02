@@ -224,9 +224,12 @@ int sub(char* topic) {
 }
 
 int _cmd_unsub(int argc, char **argv) {
-    if (argc < 2) {
-        printf("usage %s <topic name>\n", argv[0]);
+    if (argc < 1) {
+        printf("usage %s [topic name]\n", argv[0]);
         return 1;
+    }
+    if (argc > 1) {
+        topic = argv[1];
     }
 
     int ret = MQTTUnsubscribe(&client, argv[1]);
