@@ -1,18 +1,16 @@
 #include "paho.h"
-#include "utils.h"
-#include "globals.h"
+
+
 
 int topic_cnt = 0;
 MQTTClient client;
 Network network;
 char _topic_to_subscribe[MAX_TOPICS][MAX_LEN_TOPIC];
+int status;
 
 unsigned char buf[BUF_SIZE];
 unsigned char readbuf[BUF_SIZE];
 
-extern char* group_id;
-extern char* player_id;
-extern char* token;
 
 /*
 // Paho Functions
@@ -28,6 +26,7 @@ unsigned get_qos(const char *str)
         default:    return QOS0;
     }
 }
+
 
 void _on_msg_received(MessageData *data)
 {
@@ -53,6 +52,7 @@ int _cmd_discon(int argc, char **argv)
     }
 
     NetworkDisconnect(&network);
+    status=0;
     return res;
 }
 
@@ -155,7 +155,7 @@ int _cmd_con(int argc, char **argv)
     else {
         printf("mqtt_example: Connection successfully\n");
     }
-
+    status = (ret > 0) ? 0 : 1;
     return (ret > 0) ? 0 : 1;
 }
 
@@ -163,7 +163,7 @@ int _cmd_pub(int argc, char **argv)
 {
     enum QoS qos = QOS0;
     char* topic = (char*)&PUB_TOPIC;
-
+    printf("cmd_pub");
     if (argc < 2) {
         printf("usage: %s <string msg> [topic name] [QoS level]\n",
                argv[0]);

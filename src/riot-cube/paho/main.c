@@ -1,14 +1,6 @@
-#include "paho.h"
-#include "jsmn.h"
+#include "cube_functions.h"
 
-extern MQTTClient client;
-extern Network network;
-
-extern char _topic_to_subscribe[MAX_TOPICS][MAX_LEN_TOPIC];
-
-extern unsigned char buf[BUF_SIZE];
-extern unsigned char readbuf[BUF_SIZE];
-
+char line_buf[SHELL_DEFAULT_BUFSIZE];
 const shell_command_t shell_commands[] =
         {
                 { "con",    "connect to MQTT broker",             _cmd_con    },
@@ -16,29 +8,19 @@ const shell_command_t shell_commands[] =
                 { "pub",    "publish something",                  _cmd_pub    },
                 { "sub",    "subscribe topic",                    _cmd_sub    },
                 { "unsub",  "unsubscribe from topic",             _cmd_unsub  },
+                { "get_status",  "show status ",                cmd_get_status },
+                { "pub_shake", "pulish the shake event message", cmd_pub_shake_event},
+                { "pub_button_ok", "pulish the button Ok event message", cmd_pub_button_ok_event},
+                { "pub_button_ko", "pulish the button Ko event message", cmd_pub_button_ko_event},
                 { NULL,     NULL,                                 NULL        }
         };
 
-
-
+extern int status;
 
 int main(void)
 {
-#ifdef MODULE_LWIP
-    /* let LWIP initialize */
-    xtimer_sleep(1);
-#endif
-
-    NetworkInit(&network);
-
-    MQTTClientInit(&client, &network, COMMAND_TIMEOUT_MS, buf, BUF_SIZE,
-                   readbuf,
-                   BUF_SIZE);
-    printf("Running mqtt paho example. Type help for commands info\n");
-
-    MQTTStartTask(&client);
-
-    char line_buf[SHELL_DEFAULT_BUFSIZE];
+    cube_init();
     shell_run(shell_commands, line_buf, SHELL_DEFAULT_BUFSIZE);
+
     return 0;
 }
