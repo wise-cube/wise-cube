@@ -3,6 +3,8 @@ APPLICATION = paho-mqtt-example
 # If no BOARD is found in the environment, use this default:
 BOARD ?= esp8266-esp-12x
 
+FEATURES_REQUIRED += periph_gpio
+USEMODULE += periph_gpio_irq
 # This has to be the absolute path to the RIOT base directory:
 RIOTBASE ?= $(CURDIR)/../../../../RIOT
 # Comment this out to disable code in RIOT that does safety checking
@@ -25,7 +27,7 @@ USEPKG += paho-mqtt
 USEPKG += jsmn
 
 # paho-mqtt depends on TCP support, choose the stack you want
-LWIP_IPV4 ?=0
+LWIP_IPV4 ?=1
 
 ifneq (0, $(LWIP_IPV4))
   USEMODULE += ipv4_addr
