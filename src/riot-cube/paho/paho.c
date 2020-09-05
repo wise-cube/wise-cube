@@ -58,31 +58,6 @@ int _cmd_discon(int argc, char **argv)
 
 int _cmd_con(int argc, char **argv)
 {
-    //        typedef struct
-//        {
-//            /** The eyecatcher for this structure.  must be MQTC. */
-//            char struct_id[4];
-//            /** The version number of this structure.  Must be 0 */
-//            int struct_version;
-//            /** Version of MQTT to be used.  3 = 3.1 4 = 3.1.1
-//              */
-//            unsigned char MQTTVersion;
-//            MQTTString clientID;
-//            unsigned short keepAliveInterval;
-//            unsigned char cleansession;
-//            unsigned char willFlag;
-//            MQTTPacket_willOptions will;
-//            MQTTString username;
-//            MQTTString password;
-//        } MQTTPacket_connectData;
-
-//    if (argc < 1) {
-//        printf(
-//                "usage: %s [brokerip addr] [port] [clientID] [user] [password] [keepalivetime]\n",
-//                argv[0]);
-//        return 1;
-//    }
-    /* ensure client isn't connected in case of a new connection */
     if (client.isconnected) {
         printf("mqtt_example: client already connected, disconnecting it\n");
         MQTTDisconnect(&client);
@@ -185,6 +160,7 @@ int _cmd_pub(int argc, char **argv)
     message.payloadlen = strlen(message.payload);
 
     int rc;
+
     if ((rc = MQTTPublish(&client, topic, &message)) < 0) {
         printf("mqtt_example: Unable to publish (%d)\n", rc);
     }

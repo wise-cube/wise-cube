@@ -39,12 +39,13 @@ void cube_loop(void ) {
 }
 
 
-int cmd_pub_shake_event(int argc, char **argv){
+int pub_shake_event(void){
     char        msg_type_buf[]     ="shake_event";
-    const char  msg_template_buf[] ="{\"msg_type\":\"%s\"}";
-    char*       msg                =malloc(MSG_BUF_SIZE*sizeof(char));
-    memset(msg, 0, MSG_BUF_SIZE);
+    char        msg_buf[MSG_BUF_SIZE];
+    const char  msg_template_buf[]    ="{\"msg_type\":\"%s\"}";
+    char*       msg                   = (char*)&msg_buf;
 
+    memset(msg, 0, MSG_BUF_SIZE);
     snprintf(msg, MSG_BUF_SIZE-1, msg_template_buf, msg_type_buf);
 
     int  _argc=2;
@@ -55,18 +56,19 @@ int cmd_pub_shake_event(int argc, char **argv){
     _argv[0] = arg1;
     _argv[1] = arg2;
 
+    status = _argc + (int)_argv;
     int status = _cmd_pub(_argc, _argv);
-    free(msg);
 
     return status;
 }
 
-int cmd_pub_button_ok_event(int argc, char **argv){
-    char        msg_type_buf[]     ="button_ok_event";
-    const char  msg_template_buf[] ="{\"msg_type\":\"%s\"}";
-    char*       msg                =malloc(MSG_BUF_SIZE*sizeof(char));
-    memset(msg, 0, MSG_BUF_SIZE);
+int pub_button_ok_event(void){
+    char        msg_type_buf[]        ="button_ok_event";
+    char        msg_buf[MSG_BUF_SIZE];
+    const char  msg_template_buf[]    ="{\"msg_type\":\"%s\"}";
+    char*       msg                   = (char*)&msg_buf;
 
+    memset(msg, 0, MSG_BUF_SIZE);
     snprintf(msg, MSG_BUF_SIZE-1, msg_template_buf, msg_type_buf);
 
     int  _argc=2;
@@ -77,18 +79,19 @@ int cmd_pub_button_ok_event(int argc, char **argv){
     _argv[0] = arg1;
     _argv[1] = arg2;
 
+    status = _argc + (int)_argv;
     int status = _cmd_pub(_argc, _argv);
-    free(msg);
 
     return status;
 }
 
-int cmd_pub_button_ko_event(int argc, char **argv){
+int pub_button_ko_event(void){
     char        msg_type_buf[]     ="button_ko_event";
-    const char  msg_template_buf[] ="{\"msg_type\":\"%s\"}";
-    char*       msg                =malloc(MSG_BUF_SIZE*sizeof(char));
-    memset(msg, 0, MSG_BUF_SIZE);
+    char        msg_buf[MSG_BUF_SIZE];
+    const char  msg_template_buf[]    ="{\"msg_type\":\"%s\"}";
+    char*       msg                   = (char*)&msg_buf;
 
+    memset(msg, 0, MSG_BUF_SIZE);
     snprintf(msg, MSG_BUF_SIZE-1, msg_template_buf, msg_type_buf);
 
     int  _argc=2;
@@ -100,7 +103,18 @@ int cmd_pub_button_ko_event(int argc, char **argv){
     _argv[1] = arg2;
 
     int status = _cmd_pub(_argc, _argv);
-    free(msg);
 
     return status;
+}
+
+
+
+int cmd_pub_shake_event(int argc, char **argv){
+    return pub_shake_event();
+}
+int cmd_pub_button_ok_event(int argc, char **argv){
+    return pub_button_ok_event();
+}
+int cmd_pub_button_ko_event(int argc, char **argv){
+    return pub_button_ok_event();
 }
