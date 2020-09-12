@@ -1,4 +1,4 @@
 #! /bin/sh
 killall mosquitto
-./mosquitto -c mosquitto.conf
+./mosquitto -c conf/mosquitto.conf
 
