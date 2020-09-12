@@ -1,5 +1,10 @@
 import paho.mqtt.client as mqtt
+import json
 
+topicSub: str = "/from_cubes"
+topicPub: str = "/to_cube/1"
+#State : group_creation, avatar_creation, 
+state = "creation"
 
 # The callback for when the client receives a CONNACK response from the server.
 def on_connect(client, userdata, flags, rc):
@@ -7,9 +12,12 @@ def on_connect(client, userdata, flags, rc):
 
     # Subscribing in on_connect() means that if we lose the connection and
     # reconnect then subscriptions will be renewed.
-    client.subscribe("game/", qos=2)  # set correct topic name
+    client.subscribe(topicSub, qos=0)  
+    print ("topic subscribe")
+    client.publish(topicPub, "prova", qos=0, retain=False)  
+    
     # client.subscribe([("my/topic", 0), ("another/topic", 2)]) #use an array if you need to sub to many topics
-    client.publish("group/", payload=None, qos=2, retain=False)  # set correct topic name
+
 
 
 def on_disconnect(client, userdata, rc):
@@ -17,22 +25,52 @@ def on_disconnect(client, userdata, rc):
         print("Unexpected disconnection.")
 
 
+
 # The callback for when a PUBLISH message is received from the server.
 def on_message(client, userdata, msg):
-    print("Received message '" + str(msg.payload) + "' on topic '" + msg.topic + "' with QoS " + str(msg.qos))
+	print("Received message : " + str(msg.payload) + " -  on topic '" + msg.topic + "' with QoS " + str(msg.qos))
+	type_rec(msg)
+	
+	
 
+def type_rec(msg):
+	global state
+	json_data=json.loads(msg.payload)
+	msg_type = json_data["msg_type"]
+
+	if msg_type == "shake_event":
+		print ("shake event : " + msg_type)
+		print ("state: " + state)
+		if state == "avatar_creation":
+			print("creazione avatar deve mandare messaggio -> visualizza altro avatar")
+		else :
+			print("poi vediamo")
+			
+	elif msg_type == "button_ok_event":
+		print ("button_ok_event : " + msg_type + "\n")
+		print ("state: " + state)
+		if state == "creation":
+			print("inizio creazione gruppo")
+			state = "avatar_creation"
+			
+		else :
+			print("no state change")
+			
+	elif msg_type == "button_ko_event":
+		print ("button_ko_event : " + msg_type)
+			
+	else: 
+		print ("no match ")
+	
+	
+	
+	
 
 client = mqtt.Client(client_id="", clean_session=True, userdata=None, transport="websockets")
 client.on_connect = on_connect
 client.on_message = on_message
 client.on_disconnect = on_disconnect
 
-# option functions
-client.max_inflight_messages_set(self, inflight)
-client.max_queued_messages_set(self, queue_size)
-client.message_retry_set(retry)
-client.ws_set_options(self, path="/mqtt", headers=None)
-client.will_set("sample/will_msg", payload=None, qos=2, retain=False)  # specify right topic for will_msg
 client.reconnect_delay_set(min_delay=1, max_delay=120)
 
 """
