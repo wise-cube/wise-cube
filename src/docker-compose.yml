@@ -1,6 +1,21 @@
 version: '3.6'
 
 services:
+  mqtt-broker:
+    build: mqtt-broker
+    networks:
+      - default
+    ports:
+    - 1884:1884
+    - 1885:1885
+    volumes:
+    - ./mqtt-broker/conf:/mosquitto/config/
+
+  mqtt-sample:
+    build: py-mqtt-sample
+    networks:
+      - default
+
   http-server:
     build: py-http-server
     depends_on:
@@ -13,7 +28,8 @@ services:
     ports:
       - 5000:5000
     volumes:
-      - ./:/usr/src/
+      - ./py-http-server:/src/
+      - ./py-common:/src/common
     restart: always
 
   db:
@@ -25,7 +41,7 @@ services:
     networks:
       - default
     ports:
-      - 5405:5432
+      - 5432:5432
     restart: always
-    volumes:
-      - ./postgres-data:/var/lib/postgresql/data
+#    volumes:
+#      - ./postgres-data:/var/lib/postgresql/data

@@ -66,7 +66,8 @@ def main():
     app.register_blueprint(pages)
     app.register_blueprint(triggers)
     app.register_blueprint(misc)
-    app.run()
+    app.run(host='0.0.0.0')
+
 
 
 if __name__ == '__main__':
