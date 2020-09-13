@@ -66,7 +66,7 @@ def type_rec(msg):
 	
 	
 
-client = mqtt.Client(client_id="", clean_session=True, userdata=None, transport="websockets")
+client = mqtt.Client(client_id="cube-handler", clean_session=True, userdata=None, transport="websockets")
 client.on_connect = on_connect
 client.on_message = on_message
 client.on_disconnect = on_disconnect
@@ -78,7 +78,7 @@ client.tls_set(ca_certs=None, certfile=None, keyfile=None, cert_reqs=ssl.CERT_RE
     tls_version=ssl.PROTOCOL_TLS, ciphers=None)
 """
 
-client.connect(host="localhost", port=1885, keepalive=60) #set correct port
+client.connect(host="mqtt-broker", port=1885, keepalive=60) #set correct port
 
 # Blocking call that processes network traffic, dispatches callbacks and
 # handles reconnecting.

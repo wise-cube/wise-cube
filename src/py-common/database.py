@@ -40,18 +40,18 @@ class DB:
         for i,t in enumerate(["Bronze", "Marble", "Plaster", "Wax"]):
             # print('\n'*10)
             # print(t)
-            to_add += [Choice(question_id=1, correct=(i == 1), text=t)]
+            to_add += [Choice(question_id=1, correct=int(i == 1), text=t)]
 
 
         for i,t in enumerate(["Old, men, especially of noble rank.",
                               "Young, girl, especially of noble rank." ,
                               "Old, woman, especially of noble rank.",
                               "Youth, boy, especially of noble rank."])    :
-            to_add += [Choice( question_id=2, correct=(i == 4), text=t)]
+            to_add += [Choice( question_id=2, correct=int(i == 4), text=t)]
 
         print('\n' * 10)
 
-        print(to_add)
+
         ScopedSession.add_all(to_add)
         ScopedSession.commit()
         ScopedSession.close()

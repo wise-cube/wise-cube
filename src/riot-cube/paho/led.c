@@ -8,8 +8,8 @@
 #include "xtimer.h"
 
 gpio_t led_r = 16;
-gpio_t led_g = 5;
-gpio_t led_b = 4;
+gpio_t led_g = 10;
+gpio_t led_b = 9;
 
 
 void led_init(void){
