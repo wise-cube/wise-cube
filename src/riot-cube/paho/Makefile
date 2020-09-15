@@ -15,9 +15,12 @@ DEVELHELP ?= 1
 # Change this to 0 show compiler invocation lines by default:
 QUIET ?= 1
 
-WIFI_SSID ?= "Vodafone-34335290"
-WIFI_PASS ?= "hajm3aep2kfv595"
+WIFI_SSID ?= ""
+WIFI_PASS ?= ""
 
+USEMODULE += xtimer
+USEMODULE += mpu9x50
+FEATURES_REQUIRED += periph_i2c
 
 USEMODULE += shell
 USEMODULE += shell_commands
