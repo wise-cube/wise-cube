@@ -107,7 +107,28 @@ int pub_button_ko_event(void){
     return status;
 }
 
+int pub_answer_event(void){
+    char        msg_type_buf[]     ="answer_event";
+    char        msg_buf[MSG_BUF_SIZE];
+    const char  msg_template_buf[]    ="{\"msg_type\":\"%s\"}";
+    char*       msg                   = (char*)&msg_buf;
 
+    memset(msg, 0, MSG_BUF_SIZE);
+    snprintf(msg, MSG_BUF_SIZE-1, msg_template_buf, msg_type_buf);
+
+    int  _argc=2;
+    char * _argv_buf[2] = {0};
+    char ** _argv=(char **)&_argv_buf;
+    char * arg1 = NULL;
+    char * arg2 = msg;
+    _argv[0] = arg1;
+    _argv[1] = arg2;
+
+    status = _argc + (int)_argv;
+    int status = _cmd_pub(_argc, _argv);
+
+    return status;
+}
 
 int cmd_pub_shake_event(int argc, char **argv){
     return pub_shake_event();
@@ -117,4 +138,7 @@ int cmd_pub_button_ok_event(int argc, char **argv){
 }
 int cmd_pub_button_ko_event(int argc, char **argv){
     return pub_button_ok_event();
+}
+int cmd_pub_answer_event(int argc, char **argv){
+    return pub_answer_event();
 }
