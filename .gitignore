@@ -9,6 +9,6 @@ venv
 /src/py-common/__pycache__/
 /src/py-http-server/__pycache__/
 /src/py-cubes-handler/__pycache__/
-/src/riot-cube/paho/bin
-/src/riot-cube/paho-mqtt/bin/
-/src/riot-cube/mpu/bin/
+/src/riot-cube/paho/bin/*
+/src/riot-cube/paho-mqtt/bin/*
+/src/riot-cube/mpu/bin/*
