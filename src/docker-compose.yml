@@ -21,6 +21,7 @@ services:
       - default
     volumes:
       - ./py-mqtt-sample:/src/
+      - ./py-common:/src/common
     depends_on:
       - mqtt-broker
       - db
