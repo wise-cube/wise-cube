@@ -5,6 +5,8 @@ services:
     build: mqtt-broker
     networks:
       - default
+    expose:
+      - 1884
     ports:
     - 1884:1884
     - 1885:1885
@@ -12,9 +14,15 @@ services:
     - ./mqtt-broker/conf:/mosquitto/config/
 
   mqtt-sample:
+    environment:
+      IS_DOCKER: 1
     build: py-mqtt-sample
     networks:
       - default
+    volumes:
+      - ./py-mqtt-sample:/src/
+    depends_on:
+      - mqtt-broker
 
   http-server:
     build: py-http-server
@@ -40,8 +48,10 @@ services:
     image: postgres:latest
     networks:
       - default
-    ports:
-      - 5432:5432
+#    ports:
+#      - 5432:5432
+    expose:
+      - 5342
     restart: always
 #    volumes:
 #      - ./postgres-data:/var/lib/postgresql/data

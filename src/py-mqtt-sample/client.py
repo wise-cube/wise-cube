@@ -91,7 +91,7 @@ client.tls_set(ca_certs=None, certfile=None, keyfile=None, cert_reqs=ssl.CERT_RE
     tls_version=ssl.PROTOCOL_TLS, ciphers=None)
 """
 
-client.connect(host="localhost", port=1885, keepalive=60) #set correct port
+client.connect(host="mqtt-broker", port=1885, keepalive=60) #set correct port
 
 # Blocking call that processes network traffic, dispatches callbacks and
 # handles reconnecting.
