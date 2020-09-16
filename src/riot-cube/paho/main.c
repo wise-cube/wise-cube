@@ -17,7 +17,7 @@ const shell_command_t shell_commands[] =
                 { "pub_button_ok", "publish the button Ok event message", cmd_pub_button_ok_event},
                 { "pub_button_ko", "publish the button Ko event message", cmd_pub_button_ko_event},
                 { "pub_answer", "publish answer event message", cmd_pub_answer_event},
-                { "mpu", 	"mpu init"				     			, mpu_init},
+                { "mpu", 	"mpu init"				     			, cmd_mpu_init},
                 { NULL,     NULL,                                 NULL        }
         };
 

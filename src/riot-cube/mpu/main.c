@@ -26,6 +26,8 @@
 #include "periph/i2c.h"
 #include "mpu9x50.h"
 
+static int gyro[3] = {0};
+static int acc[3] = {0};
 
 #define I2C_INTERFACE I2C_DEV(0)    /* I2C interface number */
 #define mpu9x50_hw_addr_t 			/* I2C MPU address on sensor */
@@ -64,8 +66,7 @@ int main(void)
 	mpu9x50_t dev = {params,conf};
 	mpu9x50_results_t res_g = {0};
 	mpu9x50_results_t res_a = {0};
-	int gyro[] = {0};
-	int acc[] = {0};
+
 
     /* Initialise the I2C serial interface as master */
     i2c_init(I2C_INTERFACE);

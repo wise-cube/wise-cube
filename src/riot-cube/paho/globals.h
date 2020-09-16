@@ -1,7 +1,7 @@
 #ifndef RIOT_CUBE_GLOBALS_H
 #define RIOT_CUBE_GLOBALS_H
 
-#define BROKER_HOST "192.168.1.5"
+#define BROKER_HOST "fe80::1ac0:4dff:fe27:2698"
 #define BROKER_PORT 1884
 #define SUB_TOPIC "/to_cube/1"
 #define PUB_TOPIC "/from_cubes"

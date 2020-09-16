@@ -6,8 +6,8 @@ mpu9x50_params_t params = {I2C_INTERFACE,0x68,0x0C,1000};
 
 mpu9x50_results_t res_g = {0};
 mpu9x50_results_t res_a = {0};
-int gyro[] = {0};
-int acc[] = {0};
+int gyro[3] = {0};
+int acc[3] = {0};
 
 
 int mpu_init(void){
@@ -28,7 +28,7 @@ int mpu_init(void){
     return 0;
 }
 
-void mpu_handler(mpu9x50_t dev){
+int mpu_handler(mpu9x50_t dev){
     for (;;){
 		puts("in handler\n");
 		
@@ -123,8 +123,8 @@ void shake_handler(int s){
 		}
 }
 		
-void answer_handler(int pos){
-		int answer=0;
+int answer_handler(int pos){
+		char answer=0;
 		if (old_pos != pos){
 			switch (pos){
 				case 'X': 
@@ -156,5 +156,9 @@ void answer_handler(int pos){
 			}
 			
 		}
+		return (int)answer;
 				
 }   
+int cmd_mpu_init(int argc, char **argv){
+    return mpu_init();
+}

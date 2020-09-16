@@ -9,7 +9,7 @@ PORT=5000
 #SQLALCHEMY_DATABASE_URI = 'sqlite:///wise-cube.db'
 SQLALCHEMY_DATABASE_URI = os.environ.get('SQLALCHEMY_DATABASE_URI','sqlite:///wise-cube.db')
 SECRET_KEY = b'_5#y2L"F4Q8z\n\xec]/'
-SQL_ENGINE = create_engine(SQLALCHEMY_DATABASE_URI, echo=True)
+SQL_ENGINE = create_engine(SQLALCHEMY_DATABASE_URI, echo=False)
 LocalSession = sessionmaker(bind=SQL_ENGINE)
 ScopedSession = scoped_session(LocalSession)
 
