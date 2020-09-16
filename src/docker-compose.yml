@@ -21,7 +21,7 @@ services:
       - default
     volumes:
       - ./py-mqtt-sample:/src/
-      - ./py-common:/src/common
+      - ./common:/src/common
     depends_on:
       - mqtt-broker
       - db
@@ -40,7 +40,7 @@ services:
       - 5000:5000
     volumes:
       - ./py-http-server:/src/
-      - ./py-common:/src/common
+      - ./common:/src/common
     restart: always
 
   db:

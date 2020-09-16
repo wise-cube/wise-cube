@@ -15,4 +15,4 @@ ScopedSession = scoped_session(LocalSession)
 
 Base = declarative_base()
 
-
+MqttClient = None

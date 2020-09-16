@@ -19,8 +19,10 @@ def db_init():
     DB.migrate()
     DB.seed()
 
+
 app = Flask(__name__, static_folder='static', static_url_path='/')
 app.secret_key = SECRET_KEY
+
 
 @app.before_request
 def before_request_func():
@@ -55,7 +57,6 @@ def teardown_request_func(error=None):
     if error:
         # Log the error
         print(str(error))
-
 
 
 @logger.catch
