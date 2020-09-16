@@ -8,10 +8,10 @@ services:
     expose:
       - 1884
     ports:
-    - 1884:1884
-    - 1885:1885
+      - 1884:1884
+      - 1885:1885
     volumes:
-    - ./mqtt-broker/conf:/mosquitto/config/
+      - ./mqtt-broker/conf:/mosquitto/config/
 
   mqtt-sample:
     environment:
@@ -23,11 +23,13 @@ services:
       - ./py-mqtt-sample:/src/
     depends_on:
       - mqtt-broker
+      - db
 
   http-server:
     build: py-http-server
     depends_on:
       - db
+      - mqtt-sample
     environment:
       STAGE: test
       SQLALCHEMY_DATABASE_URI: postgresql+psycopg2://test:test@db/wise-cube

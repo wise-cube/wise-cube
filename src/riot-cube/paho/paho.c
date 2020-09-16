@@ -138,7 +138,7 @@ int _cmd_pub(int argc, char **argv)
 {
 	if ( !client.isconnected) {
         printf("mqtt_example: disconnect\n");
-        _cmd_con(0, "con");
+        _cmd_con(0, NULL);
     }
     enum QoS qos = QOS0;
     char* topic = (char*)&PUB_TOPIC;

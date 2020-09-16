@@ -7,7 +7,7 @@ BOARD ?= esp8266-esp-12x
 RIOTBASE ?= $(CURDIR)/../../../RIOT
 
 USEMODULE += xtimer
-USEMODULE += mpu9x50
+USEMODULE += mpu9150
 FEATURES_REQUIRED += periph_i2c
 
 # Comment this out to disable code in RIOT that does safety checking

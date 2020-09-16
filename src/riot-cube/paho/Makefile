@@ -19,7 +19,7 @@ WIFI_SSID ?= ""
 WIFI_PASS ?= ""
 
 USEMODULE += xtimer
-USEMODULE += mpu9x50
+USEMODULE += mpu9150
 FEATURES_REQUIRED += periph_i2c
 
 USEMODULE += shell
@@ -30,7 +30,8 @@ USEPKG += paho-mqtt
 USEPKG += jsmn
 
 # paho-mqtt depends on TCP support, choose the stack you want
-LWIP_IPV4 ?=1
+LWIP_IPV4 ?= 0
+
 
 ifneq (0, $(LWIP_IPV4))
   USEMODULE += ipv4_addr
