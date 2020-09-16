@@ -2,36 +2,36 @@ from common.database import *
 from flask import g
 
 class GroupHandler:
-    def __init__(self, group_id=None, auth_token=None):
-
-        try:
-           self.group=g.group
-        except:
-            if group_id is None and auth_token is None:
-                raise Exception('cannot retrieve group, supply one argument')
-
-            elif group_id is not None:
-                self.group = ScopedSession.query(Group) \
-                             .filter( Group.id == self.id) \
-                             .first()
-                if self.group is None:
-                    raise Exception('cannot retrieve group')
-
-            elif auth_token is not None:
-                self.group = ScopedSession.query(Group) \
-                             .filter( Group.auth_token == auth_token) \
-                             .first()
-                if self.group is None:
-                    raise Exception('cannot retrieve group')
-
-
-    @staticmethod
-    def by_auth_token(auth_token):
-        return GroupHandler(auth_token=auth_token)
+    def __init__(self, group):
+        if not group:
+            raise Exception('group can\'t be none')
+        self.group=group
 
     @staticmethod
     def by_id(group_id):
-        return GroupHandler(group_id=group_id)
+        group = ScopedSession.query(Group) \
+            .filter(Group.id == group_id) \
+            .first()
+
+        return GroupHandler(group)
+
+    @staticmethod
+    def by_auth_token(auth_token):
+        group = ScopedSession.query(Group) \
+            .filter(Group.auth_token == auth_token) \
+            .first()
+        return GroupHandler(group)
+
+    @staticmethod
+    def by_session():
+        group = none
+        try:
+            group = g.group
+        except:
+            pass
+
+        return GroupHandler(group)
+
 
     @staticmethod
     def new(name=None):
