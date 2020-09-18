@@ -16,3 +16,10 @@ a {
 #next {
     background-color: #ffdd57;
 }
+
+.bg-red {
+    background-color: #ee2049;
+}
+.bg-green {
+    background-color: #01c919;
+}

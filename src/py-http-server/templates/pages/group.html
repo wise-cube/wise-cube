@@ -1,11 +1,16 @@
 {% set pagename='Group Page' %}
-{% extends "base.html" %}
+{% extends "pages/base.html" %}
 {% block body %}
+    {% if not g.group.cube  %}
+        {% include "modals/cube_pairing.htm" %}
+    {% endif %}
     {% include 'sections/group_info.htm' %}
     {% if is_creation %}
         {% include 'sections/player_new.htm' %}
-    {% elif is_game %}
+    {% elif curr_game %}
 
         {% include 'sections/game_info.htm' %}
     {% endif %}
+
+
 {% endblock %}

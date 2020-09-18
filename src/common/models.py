@@ -1,6 +1,6 @@
 from sqlalchemy.orm import relationship
 from sqlalchemy import Column, Integer, String, ForeignKey, Enum
-from common.conf import Base
+from common.conf import Base, ScopedSession
 from common.states import CubeStates, GroupStates
 from random import choice
 
@@ -22,7 +22,7 @@ class Player(Base):
     name = Column(String)
     type = Column(String)
 
-    answers = relationship('Answer', backref='player' )
+    answers = relationship('Answer', back_populates='player' )
     group = relationship('Group', foreign_keys=[group_id], back_populates='players' )
     avatar = relationship('Avatar')
 
@@ -37,20 +37,71 @@ class Group(Base):
     __tablename__ = 'groups'
 
     id = Column(Integer, primary_key=True)
-    cube_id = Column(Integer, ForeignKey('cubes.id'))
-    current_game_id = Column(Integer, ForeignKey('games.id'))
-    current_player_id = Column(Integer, ForeignKey('players.id'))
+    cube_id = Column(Integer, ForeignKey('cubes.id') )
+    game_instance_id = Column(Integer, ForeignKey('game_instances.id'))
+
     name = Column(String)
     auth_token = Column(String)
 
     state = Column(Enum(GroupStates), default=GroupStates.CREATION )
 
-    current_game= relationship('Game')
-    current_round= Column(Integer, default=0)
-    current_player= relationship('Player', foreign_keys=[current_player_id])
+    curr_game= relationship('GameInstance',foreign_keys=[game_instance_id], back_populates='group')
+    # current_round= Column(Integer, default=0)
+    # current_player= relationship('Player', foreign_keys=[current_player_id])
 
-    cube = relationship('Cube', back_populates='group')
-    players = relationship('Player', foreign_keys=[Player.group_id], back_populates='group')
+    cube = relationship('Cube', back_populates='group', cascade='all')
+    players = relationship('Player', foreign_keys=[Player.group_id], back_populates='group',cascade='all')
+
+    def get_av_cubes(self):
+        return ScopedSession.query(Cube)\
+                            .filter(Cube.state == CubeStates.CONNECTED)\
+                            .all()
+
+class GameInstance(Base):
+    __tablename__ = 'game_instances'
+
+    id = Column(Integer, primary_key=True)
+    group_id = Column(Integer, ForeignKey('groups.id'), use_alter=True)
+    game_id = Column(Integer, ForeignKey('games.id'), use_alter=True )
+
+    curr_player_id = Column(Integer, ForeignKey('players.id'))
+    curr_question_id = Column(Integer, ForeignKey('questions.id'))
+
+    round = Column(Integer, default=0)
+    player =  Column(Integer, default=0)
+    players = Column(Integer)
+    max_rounds = Column(Integer)
+
+    group = relationship('Group', back_populates='curr_game', foreign_keys=[Group.game_instance_id])
+    game = relationship('Game')
+
+    curr_player = relationship('Player')
+    curr_question = relationship('Question')
+
+    @staticmethod
+    def new( game_id, group_id):
+        n = GameInstance(game_id=game_id, group_id=group_id)
+        n.players = ScopedSession.query(Group.players).filter(Group.id == group_id).count()
+        n.max_rounds = 1
+        return n
+
+
+    # def get_rem_question(self):
+    #     return ScopedSession.query(Question)\
+    #                         .filter(Question.game_id == self.game_id)\
+    #                         .filter(~Question.id.in_(ScopedSession.query(Question.id) \
+    #                                                  .join(Answer, Answer.question_id==self.curr_question )\
+    #                                                  .filter(Player.in_(self.get_players()))
+    #
+    #                                                  ))
+    #
+
+
+
+
+
+
+
 
 class Cube(Base):
     __tablename__ = 'cubes'
@@ -59,7 +110,7 @@ class Cube(Base):
 
 
     state = Column(Enum(CubeStates), default=CubeStates.DISCONNECTED )
-    group = relationship('Group', back_populates='cube')
+    group = relationship('Group', back_populates='cube',cascade='all')
 
 
 
@@ -68,7 +119,7 @@ class Game(Base):
 
     id = Column(Integer, primary_key=True)
     name = Column(String)
-    rounds = relationship('Question')
+    questions = relationship('Question')
     intro = Column(String)
 
 
@@ -78,6 +129,7 @@ class Question(Base):
     id = Column(Integer, primary_key=True)
     game_id = Column(Integer, ForeignKey('games.id'))
     text = Column(String)
+    intro = Column(String)
     curiosity = Column(String)
     points = Column(Integer)
 
@@ -89,7 +141,12 @@ class Answer(Base):
     id = Column(Integer, primary_key=True)
     game_id = Column(Integer, ForeignKey('cubes.id') )
     player_id = Column(Integer, ForeignKey('players.id') )
-    choice_id = Column(Integer, ForeignKey('cubes.id') )
+    choice_id = Column(Integer, ForeignKey('choices.id') )
+    question_id = Column(Integer, ForeignKey('questions.id'))
+    points = Column(Integer)
+    player = relationship('Player', back_populates='answers')
+    question = relationship('Question')
+    choice = relationship('Choice', foreign_keys=[choice_id])
 
 
 class Choice(Base):

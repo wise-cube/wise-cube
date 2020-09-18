@@ -1,0 +1,71 @@
+<script>
+
+function on_ok(){
+
+    window.location="{{ok}}"
+}
+function on_ko(){
+
+    window.location="{{ko}}"
+}
+function on_shake(){
+
+    window.location="{{shake}}"
+}
+
+</script>
+
+  <section class="section" >
+     <div class="container">
+        <div class="tile is-ancestor">
+          <div class="tile is-horizontal is-parent">
+
+
+                {% if ko %}
+                <button class="tile  is-child box bg-red" onclick="on_ko()" >
+                  <p class="title">
+                      {% with text=ko_str %}
+                          {% if text %}
+                              {{ text }}
+                          {% else %}
+                              Ko
+                          {% endif %}
+
+                      {%  endwith %}
+                  </p>
+                </button>
+                  {% endif %}
+                  {% if shake %}
+                <button class="tile is-child box is-warning" onclick="on_shake() ">
+                  <p class="title">
+                      {% with text=shake_str %}
+                          {% if text %}
+                              {{ text }}
+                          {% else %}
+                              Shake
+                          {% endif %}
+
+                      {%  endwith %}
+                  </p>
+                </button>
+                    {% endif %}
+                  {% if ok %}
+                <button class="tile  is-child box bg-green" onclick="on_ok()" >
+                  <p class="title">
+                      {% with text=ok_str %}
+                          {% if text %}
+                              {{ text }}
+                          {% else %}
+                              Ok
+                          {% endif %}
+
+                      {%  endwith %}
+                  </p>
+                </button>
+                  {% endif %}
+
+          </div>
+        </div>
+     </div>
+  </section>
+

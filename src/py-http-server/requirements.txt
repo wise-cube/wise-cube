@@ -1,11 +1,10 @@
 flask
 flask-socketio
 flask_qrcode
-sqlalchemy
-loguru
+
 flask-login
 flask-celery
 flask-table
 psycopg2
-flask-sqlalchemy==2.4.4
-
+sqlalchemy
+loguru

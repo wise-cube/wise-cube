@@ -1,26 +1,38 @@
-<section class="section has-text-centered" id="game-info">
-    <div class="container">
-        <div class="content">
-            <h2 class="subtitle">
-                Currently playing:
-                <a href="/game">
-                    {{ group.current_game.name }}
-                </a>
-            </h2>
-            <h2 class="subtitle">
-                Current Round:
-                <a href="/game">
-                    {{ group.current_round }}
-                </a>
-            </h2>
-            {% if group.current_player %}
-                <h2 class="subtitle">
-                    Current Player:
-                    <a href="/game">
-                        {{ group.current_player.name }}
-                    </a>
-                </h2>
-            {% endif %}
-        </div>
-    </div>
-</section>
+
+{#<section class="section has-text-centered" id="game-info">#}
+{#    <div class="container">#}
+{#        <div class="content">#}
+{#            <h2 class="subtitle">#}
+{#                Currently playing:#}
+{#                <a href="/game">#}
+{#                    {{ g.group.curr_game.game.name }}#}
+{#                </a>#}
+{#            </h2>#}
+{#            <h2 class="subtitle">#}
+{#                Current Round:#}
+{#                <a href="/game">#}
+{#                    {{ g.group.curr_game.curr_round_num }}#}
+{#                </a>#}
+{#            </h2>#}
+{#            {% if g.group.current_player %}#}
+{#                <h2 class="subtitle">#}
+{#                    Current Player:#}
+{#                    <a href="/game">#}
+{#                        {{ g.group.curr_game.curr_player.name }}#}
+{#                    </a>#}
+{#                </h2>#}
+{#            {% endif %}#}
+{#        </div>#}
+{#    </div>#}
+{#</section>#}
+{##}
+
+
+{% set gi=g.group.curr_game %}
+{% if gi %}
+    {% with ok="/game" %}
+    {% with ok_str=("go to " + gi.game.name)  %}
+{% include 'sections/controls.htm' %}
+    {% endwith %}
+    {% endwith %}
+{% endif %}
