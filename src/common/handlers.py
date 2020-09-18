@@ -99,47 +99,86 @@ class GroupHandler:
     def join_cube(self, cube_id):
         s = ScopedSession
         s.query(Cube) \
-            .filter(Group.id == self.id) \
+            .filter(Cube.id == cube_id) \
+            .update({Cube.state: CubeStates.IN_GROUP})
+        s.query(Group) \
+            .filter(Group.id == self.group.id) \
             .update({Group.cube_id: cube_id})
         s.commit()
 
     def leave_cube(self):
-        s = ScopedSession
-        s.query(Cube) \
-            .filter(Group.id == self.id) \
-            .update({Group.cube_id: None})
-        s.commit()
+        s = ScopedSession()
+        if g.group.cube:
+            g.group.cube.state = CubeStates.CONNECTED
+            g.group.cube = None
+            s.add(g.group, g.group.cube)
+            s.commit()
 
     def start_game(self, game_id):
-        self.group.state= GroupStates.IN_GAME
-        self.group.current_game_id= game_id
-        self.group.current_round = 0
-        ScopedSession.add(self.group)
+
+        gi = GameInstance.new(game_id, self.group.id)
+        gi.group.state = GroupStates.IN_GAME
+
+        ScopedSession.add(gi)
         ScopedSession.commit()
 
     def end_game(self):
         self.group.state = GroupStates.IDLE
-        self.group.current_game_id = None
-        self.group.current_round = 0
+        self.group.curr_game = None
         ScopedSession.add(self.group)
         ScopedSession.commit()
 
     def next_round(self):
-        player_number= self.group.current_round%len(self.group.players)
-        self.group.current_player=self.group.players[player_number]
-        self.group.current_round=+1
-        ScopedSession.add(self.group)
+        gi = self.group.curr_game
+        if gi.round == 0:
+            gi.round += 1
+        else:
+            gi.player = (gi.player + 1) % gi.players
+            if gi.player == 0:
+                gi.round += 1
+
+        gi.curr_player_id = self.group.players[gi.round].id
+        gi.curr_question_id = gi.game.questions[gi.player].id
+
+
+        ScopedSession.add(self.group,gi)
         ScopedSession.commit()
 
-    def new_answer(self, answer_number):
+    def to_group_topic(self):
+        return f"/to_group/{self.group.id}"
 
+    def button_ok(self):
+        MqttClient.publish(self.to_group_topic(), "{'msg_type':'ok_event'}", qos=0, retain=False)
+
+    def button_ko(self):
+        MqttClient.publish(self.to_group_topic(), "{'msg_type':'ko_event'}", qos=0, retain=False)
+
+    def shake(self):
+        MqttClient.publish(self.to_group_topic(), "{'msg_type':'shake_event'}", qos=0, retain=False)
+
+    def new_answer(self, answer_number):
+        answer_number = int(answer_number)
         '''
         id = Column(Integer, primary_key=True)
         game_id = Column(Integer, ForeignKey('cubes.id'))
         player_id = Column(Integer, ForeignKey('players.id'))
         choice_id = Column(Integer, ForeignKey('cubes.id'))
         '''
+        choice = self.group.curr_game.curr_question.choices[answer_number]
+        c = choice.correct
+        gi = self.group.curr_game
+        if not ScopedSession.query(Answer)\
+                        .filter(Answer.player_id == gi.curr_player.id, Answer.question_id == gi.curr_question_id).count() >0 :
+            a = Answer(game_id=self.group.curr_game.game.id, player_id=self.group.curr_game.curr_player.id,
+                       choice_id=self.group.curr_game.curr_question.choices[answer_number].id,
+                       question_id=self.group.curr_game.curr_question.id,
+                       points=100*(int(c)))
 
-        a = Answer(game_id=self.group.current_game_id, player_id=self.group.current_player_id, choice_id=self.group.current_round.choices[answer_number])
-        ScopedSession.add(a)
-        ScopedSession.commit()
+
+
+
+
+
+            ScopedSession.add(a)
+            ScopedSession.commit()
+        # self.next_round()

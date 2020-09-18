@@ -1,12 +1,11 @@
-{% extends 'base.html' %}
+{% extends 'pages/base.html' %}
 {% set pagename='Game Page' %}
 {% block body %}
 
 
 {% if g.get('group')  %}
         {% include 'sections/group_info.htm' %}
-    {% if g.group.current_game %}
-        {% include 'sections/game_info.htm' %}
+    {% if g.group.curr_game %}
         {%  include 'sections/game.htm' %}
     {% else %}
         {% include 'sections/no_game.htm' %}

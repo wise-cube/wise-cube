@@ -16,6 +16,7 @@ services:
   mqtt-sample:
     environment:
       IS_DOCKER: 1
+      SQLALCHEMY_DATABASE_URI: postgresql+psycopg2://test:test@db/wise-cube
     build: py-mqtt-sample
     networks:
       - default
@@ -32,6 +33,7 @@ services:
       - db
       - mqtt-sample
     environment:
+      IS_DOCKER: 1
       STAGE: test
       SQLALCHEMY_DATABASE_URI: postgresql+psycopg2://test:test@db/wise-cube
     networks:
@@ -51,8 +53,8 @@ services:
     image: postgres:latest
     networks:
       - default
-#    ports:
-#      - 5432:5432
+    ports:
+      - 5432:5432
     expose:
       - 5342
     restart: always

@@ -1,35 +1,67 @@
-{% if  g.group.current_round == 0 %}
-
-    <section class="section has-text-centered " id="intro">
-        <div class="container">
-            <div class="content">
-                <p class="subtitle">
-                    {{ g.group.current_game.intro }}
-                </p>
-            </div>
-        </div>
-    </section>
-{% elif group.current_round < (group.current_game.rounds | length) %}
-    {% include 'sections/choices.htm' %}
-{% else %}
-    <section class="section has-text-centered " id="outro">
-        <div class="container">
-            <div class="content">
-                <p class="subtitle">
-                    Game Ended!
-                </p>
-            </div>
-        </div>
-    </section>
-
-{% endif %}
-<section class="section has-text-centered is-warning" id="next">
+{% set choices=[] %}
+<section class="section has-text-centered " id="intro">
     <div class="container">
         <div class="content">
-            <p class="subtitle">
-                <a href="/next_round"> Next </a>
-            </p>
+
+                {% if  gi.round == 0 %}
+                    <h1 class="title">
+                        {{ gi.game.name }}
+                    </h1>
+                    <p class="subtitle">
+                        {{ gi.game.intro }}
+                    </p>
+                {% elif gi.round > gi.max_rounds %}
+                    <h1 class="title">
+                        {{ gi.game.name }}
+                    </h1>
+                    <p class="subtitle">
+                        {{ gi.game.outro }}
+                    </p>
+                {% else %}
+                    <h3 class="subtitle">
+                        {{ gi.game.name }}
+                    </h3>
+                    <h1 class="title">
+                        {{ gi.curr_question.text }}
+                    </h1>
+
+                    {% set curr_question=gi.curr_question %}
+                    {% for c in curr_question.choices %}
+                        {% set _  = choices.append(c)%}
+                    {% endfor %}
+                {% endif %}
+
+
         </div>
     </div>
 </section>
 
+
+{% if (choices | length) > 1 %}
+    {% include 'sections/choices.htm' %}
+{% endif %}
+
+{##}
+{#<section class="section has-text-centered is-warning" id="next">#}
+{#    <div class="container">#}
+{#        <div class="content">#}
+{#            <p class="subtitle">#}
+{#                <a href="/next_round"> Next </a>#}
+{#            </p>#}
+{#        </div>#}
+{#    </div>#}
+{#</section>#}
+
+{% if answer or gi.round == 0 %}
+    {% with ok="/next_round" %}
+    {% with ok_str="Next" %}
+        {% include 'sections/controls.htm' %}
+    {% endwith %}
+    {% endwith %}
+    {% elif gi.round > gi.max_rounds %}
+        {% with ko="/end_game" %}
+        {% with ko_str="End" %}
+            {% include 'sections/controls.htm' %}
+        {% endwith %}
+    {% endwith %}
+{% endif %}

@@ -1,0 +1,24 @@
+<div class="modal is-active">
+    <div class="modal-background"></div>
+    <div class="modal-content">
+        <section class="modal-card-body">
+            <article class="media">
+                <div class="media-content">
+                    <div class="content">
+                       <p>
+                          <strong>You need to pair with a cube in order to play!</strong>
+                          <br>
+                          Available cubes:
+                          <ul>
+                             {% for c in g.group.get_av_cubes() %}
+                                <li>
+                                    <a href="/join_cube?cube_id={{ c.id }}" > Cube {{ c.id }} </a>
+                                </li>
+                             {% endfor %}
+                          </ul>
+                    </div>
+                </div>
+            </article>
+        </section>
+    </div>
+</div>

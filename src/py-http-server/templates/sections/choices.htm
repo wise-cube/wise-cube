@@ -1,16 +1,33 @@
-{% set curr_question=group.current_game.rounds[group.current_round-1] %}
 {% set letters=['A','B','C','D','E'] %}
   <!-- Answers Section -->
+<script>
+    var answer = false
+
+    {%  if answer %}
+        answer = true
+    {%  endif%}
+
+
+
+
+</script>
   <section class="section" id="choices">
      <div class="container">
         <div class="tile is-ancestor">
           <div class="tile is-12 is-vertical is-parent">
 
-              {% for c in curr_question.choices %}
-                <div class="tile is-child box A">
-                  <p class="title">{{ letters[loop.index-1] }}</p>
-                  <p>{{  c.text }}</p>
-                </div>
+              {% for c in choices %}
+                <button onclick="send_answer({{ loop.index-1 }})" class="tile is-child box
+                    {% if answer and c.correct %}
+                        bg-green
+                    {% elif answer and (c.id == answer.choice.id and not c.correct) %}
+                        bg-red
+                    {% endif %}">
+
+                      <p class="title">{{ letters[loop.index-1] }}</p>
+                      <p>{{  c.text }}</p>
+
+                </button>
               {% endfor %}
           </div>
         </div>

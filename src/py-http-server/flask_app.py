@@ -11,11 +11,7 @@ from routes import tables, pages, triggers, game, misc
 
 
 def db_init():
-    if exists('wise-cube.db'):
-        remove('wise-cube.db')
-    # if not exists('wise-cube.db'):
-    #     DB.migration()
-    #     DB.seed()
+    DB.clear()
     DB.migrate()
     DB.seed()
 

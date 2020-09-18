@@ -8,9 +8,17 @@ class CubeStates(EnumClass):
     #RECONNECTING = 4
     IN_GROUP = 3
 
+
+    def describe(self):
+        return self.value
+
 class GroupStates(EnumClass):
     CREATION = 1
     IDLE = 2
     IN_GAME = 3
     TERMINATED = 4
+
+    def describe(self):
+        return self.value
+
 

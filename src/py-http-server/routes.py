@@ -23,7 +23,8 @@ RELATIONS = {
     'players': Player,
     'answers': Answer,
     'questions': Question,
-    'choices': Choice
+    'choices': Choice,
+    'game_instances': GameInstance
 }
 
 # PAGES
@@ -31,39 +32,36 @@ RELATIONS = {
 @pages.route('/home')
 def home_page():
     groups = ScopedSession.query(Group).all()
-    return render_template('home.html', groups=groups)
+    return render_template('pages/home.html', groups=groups)
 
 @pages.route('/group')
 def group_page():
 
-    is_creation = g.group.state == GroupStates.CREATION
-    is_game = g.group.state == GroupStates.IN_GAME
-
-
-    if is_creation:
+    if  g.group.state == GroupStates.CREATION:
         p_rand_name = Player.random_name()
         p_rand_avatar = Avatar.random()
         ScopedSession.add(p_rand_avatar)
         ScopedSession.commit()
-        return render_template('group.html', group=g.group, is_creation=is_creation, is_game=is_game, p_rand_name=p_rand_name, p_rand_avatar=p_rand_avatar)
+        return render_template('pages/group.html', is_creation=True, p_rand_name=p_rand_name, p_rand_avatar=p_rand_avatar)
 
-    if is_game:
-        return render_template('group.html', group=g.group, is_creation=is_creation, is_game=is_game)
+    if g.group.state == GroupStates.IN_GAME:
+        return render_template('pages/group.html', curr_game=g.group.curr_game)
 
 
 
-    return render_template('group.html', group=g.group, is_creation=is_creation)
+    return render_template('pages/group.html', group=g.group)
 
 @pages.route('/debug')
 def debug_page():
     tables = [(t_name.capitalize(), rel2table(t)) for t_name, t in RELATIONS.items()]
-    return render_template('debug.html', tables=tables)
+    return render_template('pages/debug.html', tables=tables)
 
 @pages.route('/game')
-
 def game_page():
+    ans = ScopedSession.query(Answer).filter(Answer.player == g.group.curr_game.curr_player, Answer.question == g.group.curr_game.curr_question ).first()
+    return render_template('pages/game.html', gi=g.group.curr_game, answer=ans)
 
-    return render_template('game.html', group=g.group)
+
 
 # MISC
 @misc.route('/rand_name')
@@ -81,6 +79,9 @@ def get_rand_avatar():
         'avatar_src': avatar.get_image_src()
     }
     return dumps(avatar_dic)
+
+
+
 
 
 
@@ -122,22 +123,47 @@ def new_player( ):
     player_name = request.form['player_name']
     player_avatar_id =  request.form['player_avatar_id']
 
-    GroupHandler().new_player(player_name, player_avatar_id)
+    GroupHandler.by_session().new_player(player_name, player_avatar_id)
 
     return redirect('/group')
 
+@triggers.route('/new_answer', methods=['GET'])
+def new_answer( ):
+    ans_num = request.args['num']
+    GroupHandler.by_session().new_answer(ans_num)
 
-@triggers.route('/join_cube', methods=['POST'])
+    return redirect('/game')
+
+@triggers.route('/join_cube', methods=['GET'])
 def join_cube():
-    group = flask.g.get('group')
-    group.cube_id = request.form['cube_id']
-    ScopedSession.commit()
+    cube_id = request.args.get('cube_id')
+    gh = GroupHandler.by_session()
+    gh.join_cube(cube_id)
     return redirect('/group')
+
+@triggers.route('/leave_cube', methods=['GET'])
+def leave_cube():
+
+    GroupHandler.by_session().leave_cube()
+    return redirect('/group')
+
+
 
 @triggers.route('/next_round', methods=['GET'])
 def next_round():
-    GroupHandler().next_round()
+    GroupHandler.by_session().next_round()
     return redirect('/game')
+
+@triggers.route('/start_game', methods=['GET'])
+def start_game():
+    g_id = request.args['id']
+    GroupHandler.by_session().start_game(g_id)
+    return redirect('/game')
+
+@triggers.route('/end_game', methods=['GET'])
+def end_game():
+    GroupHandler.by_session().end_game()
+    return redirect('/group')
 
 # @game.route('/player')
 # def player_page():

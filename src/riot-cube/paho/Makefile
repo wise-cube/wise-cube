@@ -30,7 +30,7 @@ USEPKG += paho-mqtt
 USEPKG += jsmn
 
 # paho-mqtt depends on TCP support, choose the stack you want
-LWIP_IPV4 ?= 0
+LWIP_IPV4 ?= 1
 
 
 ifneq (0, $(LWIP_IPV4))
@@ -63,4 +63,5 @@ include $(RIOTBASE)/Makefile.include
 ifneq (,$(filter arch_esp,$(FEATURES_USED)))
   CFLAGS += -DESP_WIFI_SSID=\"$(WIFI_SSID)\"
   CFLAGS += -DESP_WIFI_PASS=\"$(WIFI_PASS)\"
+  CFLAGS += -DBROKER_HOST=\"$(IP)\"
 endif
