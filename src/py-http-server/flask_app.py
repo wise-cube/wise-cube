@@ -11,8 +11,8 @@ from routes import tables, pages, triggers, game, misc
 
 
 def db_init():
-    DB.clear()
     DB.migrate()
+    DB.clear()
     DB.seed()
 
 

@@ -6,10 +6,24 @@ from sqlalchemy import engine, MetaData
 class DB:
     @staticmethod
     def clear():
-        Base.metadata.drop_all(SQL_ENGINE)
+        import traceback, sys
+        try :
+            #GameInstance.metadata.drop_all(SQL_ENGINE)
+            Choice.metadata.drop_all(SQL_ENGINE)
+            #Answer.metadata._all(SQL_ENGINE)
+            #Question.metadata.drop_all(SQL_ENGINE)
+            #Game.metadata.drop_all(SQL_ENGINE)
+            #Group.metadata.drop_all(SQL_ENGINE)
+
+            #Base.metadata.drop_all(SQL_ENGINE)
         # for tbl in reversed(Base.metadata.sorted_tables):
         #     if ScopedSession.query('id').count() > 0 :
         #         tbl.drop(SQL_ENGINE)
+        except Exception as e:
+
+            traceback.print_tb(e.__traceback__)
+            einfo = sys.exc_info()
+            traceback.print_exception(*einfo)
 
 
     @staticmethod
@@ -19,7 +33,7 @@ class DB:
     @staticmethod
     def seed():
 
-        group = Group(auth_token=new_token(64), name='I cchiu bell', state=GroupStates.IN_GAME, game_instance_id=1)
+        group = Group(auth_token=new_token(64), name='I cchiu bell', state=GroupStates.IN_GAME)
 
         cube = Cube(state=CubeStates.CONNECTED)
         ScopedSession.add_all((cube,group))
@@ -43,9 +57,6 @@ class DB:
         ScopedSession.add_all((g1,q1,q2,q3))
         ScopedSession.commit()
 
-        group.current_game=g1
-        ScopedSession.add(g1)
-        ScopedSession.commit()
         to_add = []
         for i,t in enumerate(["Bronze", "Marble", "Plaster", "Wax"]):
             # print('\n'*10)
@@ -67,8 +78,15 @@ class DB:
 
         print('\n' * 10)
 
-        to_add.append(GameInstance.new(1,1))
+        gi = GameInstance.new(g1.id, group.id )
+        to_add.append(gi)
         ScopedSession.add_all(to_add)
         ScopedSession.commit()
+
+        #group.curr_game = gi
+        #to_add = [gi]
+        #ScopedSession.add_all(to_add)
+        #ScopedSession.commit()
+
         ScopedSession.close()
 

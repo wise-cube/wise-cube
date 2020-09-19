@@ -45,7 +45,7 @@ class Group(Base):
 
     state = Column(Enum(GroupStates), default=GroupStates.CREATION )
 
-    curr_game= relationship('GameInstance',foreign_keys=[game_instance_id], back_populates='group')
+    curr_game = relationship('GameInstance',foreign_keys=[game_instance_id], back_populates='group')
     # current_round= Column(Integer, default=0)
     # current_player= relationship('Player', foreign_keys=[current_player_id])
 
@@ -60,12 +60,12 @@ class Group(Base):
 class GameInstance(Base):
     __tablename__ = 'game_instances'
 
-    id = Column(Integer, primary_key=True)
-    group_id = Column(Integer, ForeignKey('groups.id'), use_alter=True)
-    game_id = Column(Integer, ForeignKey('games.id'), use_alter=True )
+    id = Column(Integer, primary_key=True )
+    group_id = Column(Integer, ForeignKey('groups.id', ondelete="CASCADE") )
+    game_id = Column(Integer, ForeignKey('games.id',  ondelete="CASCADE") )
 
-    curr_player_id = Column(Integer, ForeignKey('players.id'))
-    curr_question_id = Column(Integer, ForeignKey('questions.id'))
+    curr_player_id = Column(Integer, ForeignKey('players.id',  ondelete="CASCADE"))
+    curr_question_id = Column(Integer, ForeignKey('questions.id',  ondelete="CASCADE"))
 
     round = Column(Integer, default=0)
     player =  Column(Integer, default=0)
