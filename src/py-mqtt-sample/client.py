@@ -41,12 +41,13 @@ def on_message(client, userdata, msg):
         # c = ScopedSession.query(Cube).filter(Cube.id == cube_id).first()
         c = ScopedSession.query(Cube).first()
         g = ScopedSession.query(Group).filter(Group.id == c.group_id).first()
+       """
         print(g)
         ch = CubeHandler(c)
         gh = None
         if g:
             gh = GroupHandler(g)
-
+        """
         # topic = msg.topic
         msg = json.loads(msg.payload)
         msg_type = msg["msg_type"]

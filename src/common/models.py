@@ -57,18 +57,19 @@ class Group(Base):
                             .filter(Cube.state == CubeStates.CONNECTED)\
                             .all()
 
+
 class GameInstance(Base):
     __tablename__ = 'game_instances'
 
-    id = Column(Integer, primary_key=True )
-    group_id = Column(Integer, ForeignKey('groups.id', ondelete="CASCADE") )
-    game_id = Column(Integer, ForeignKey('games.id',  ondelete="CASCADE") )
+    id = Column(Integer, primary_key=True)
+    group_id = Column(Integer, ForeignKey('groups.id', ondelete="CASCADE"))
+    game_id = Column(Integer, ForeignKey('games.id',  ondelete="CASCADE"))
 
-    curr_player_id = Column(Integer, ForeignKey('players.id',  ondelete="CASCADE"))
-    curr_question_id = Column(Integer, ForeignKey('questions.id',  ondelete="CASCADE"))
+    curr_player_id = Column(Integer, ForeignKey('players.id', ondelete="CASCADE"))
+    curr_question_id = Column(Integer, ForeignKey('questions.id', ondelete="CASCADE"))
 
     round = Column(Integer, default=0)
-    player =  Column(Integer, default=0)
+    player = Column(Integer, default=0)
     players = Column(Integer)
     max_rounds = Column(Integer)
 
@@ -79,10 +80,17 @@ class GameInstance(Base):
     curr_question = relationship('Question')
 
     @staticmethod
-    def new( game_id, group_id):
+    def new(game_id, group_id):
+        group = ScopedSession.query(Group).filter(Group.id == group_id).first()
+        game = ScopedSession.query(Game).filter(Game.id == game_id).first()
         n = GameInstance(game_id=game_id, group_id=group_id)
         n.players = ScopedSession.query(Group.players).filter(Group.id == group_id).count()
         n.max_rounds = 1
+
+        ScopedSession.add(n)
+        ScopedSession.commit()
+        group.game_instance_id = n.id
+
         return n
 
 
