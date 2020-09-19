@@ -12,7 +12,7 @@ from routes import tables, pages, triggers, game, misc
 
 def db_init():
     DB.migrate()
-    DB.clear()
+    #DB.clear()
     DB.seed()
 
 

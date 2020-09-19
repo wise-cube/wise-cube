@@ -1,3 +1,4 @@
+import shutil
 from common.models import *
 from common.conf import SQL_ENGINE, Base, ScopedSession
 from secrets import token_urlsafe  as new_token
@@ -6,8 +7,8 @@ from sqlalchemy import engine, MetaData
 class DB:
     @staticmethod
     def clear():
-        import traceback, sys
-        try :
+        import traceback,sys
+        try:
             #GameInstance.metadata.drop_all(SQL_ENGINE)
             Choice.metadata.drop_all(SQL_ENGINE)
             #Answer.metadata._all(SQL_ENGINE)
@@ -73,12 +74,12 @@ class DB:
         for i,t in enumerate(["Old, men, especially of noble rank.",
                               "Young, girl, especially of noble rank." ,
                               "Old, woman, especially of noble rank.",
-                              "Youth, boy, especially of noble rank."])    :
+                              "Youth, boy, especially of noble rank."]):
             to_add += [Choice( question_id=3, correct=int(i == 3), text=t)]
 
         print('\n' * 10)
 
-        gi = GameInstance.new(g1.id, group.id )
+        gi = GameInstance.new(g1.id, group.id)
         to_add.append(gi)
         ScopedSession.add_all(to_add)
         ScopedSession.commit()
