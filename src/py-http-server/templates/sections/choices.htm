@@ -1,16 +1,56 @@
 {% set letters=['A','B','C','D','E'] %}
   <!-- Answers Section -->
 <script>
-    var answer = false
+    var answer = false;
+    {#var window.ans_num;#}
+    var group_id = "{{ g.group.id }}"
 
     {%  if answer %}
         answer = true
     {%  endif%}
 
 
+     function set_button_if(idx ){
+         {#console.log(( "Index #" + idx + ": " + button ))#}
+         {#var classes = $("button.tile").first().attr('class').split(' ')#}
+         {#for (i=0; i<classes.length; i++){#}
+         {#    if (classes[i].includes('bg-')){#}
+         {#       #}
+         {#    }#}
+         {#}#}
+         $(this).removeClass('bg-green');
+         $(this).removeClass('bg-violet');
+         $(this).removeClass('bg-red');
+         $(this).removeClass('bg-blue');
+
+         if (idx == window.ans_num){
+            console.log(( "Index #" + idx + ",ans " + ans_num + ": " + this ))
+            switch (ans_num) {
 
 
+                case (0):
+                    $(this).addClass('bg-green')
+                    break;
+                case (1):
+                    $(this).addClass('bg-violet')
+                    break;
+                case (2):
+                    $(this).addClass('bg-red')
+                    break;
+                case (3):
+                    $(this).addClass('bg-blue')
+                    break;
+            }
+         }
+     }
+
+    function on_sel_ans(ans_num) {
+        var buttons = $("button.tile");
+        window.ans_num = ans_num;
+        buttons.each(set_button_if);
+    }
 </script>
+
   <section class="section" id="choices">
      <div class="container">
         <div class="tile is-ancestor">

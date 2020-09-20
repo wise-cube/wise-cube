@@ -23,8 +23,8 @@ class Player(Base):
     type = Column(String)
 
     answers = relationship('Answer', back_populates='player' )
-    group = relationship('Group', foreign_keys=[group_id], back_populates='players' )
-    avatar = relationship('Avatar')
+    group = relationship('Group', back_populates='players' )
+    avatar = relationship('Avatar', uselist=False)
 
     def get_score(self):
         return sum([a.points for a in self.answers])
@@ -33,51 +33,29 @@ class Player(Base):
     def random_name():
         return choice(Player.NAMES)
 
-class Group(Base):
-    __tablename__ = 'groups'
-
-    id = Column(Integer, primary_key=True)
-    cube_id = Column(Integer, ForeignKey('cubes.id') )
-    game_instance_id = Column(Integer, ForeignKey('game_instances.id'))
-
-    name = Column(String)
-    auth_token = Column(String)
-
-    state = Column(Enum(GroupStates), default=GroupStates.CREATION )
-
-    curr_game = relationship('GameInstance',foreign_keys=[game_instance_id], back_populates='group')
-    # current_round= Column(Integer, default=0)
-    # current_player= relationship('Player', foreign_keys=[current_player_id])
-
-    cube = relationship('Cube', back_populates='group', cascade='all')
-    players = relationship('Player', foreign_keys=[Player.group_id], back_populates='group',cascade='all')
-
-    def get_av_cubes(self):
-        return ScopedSession.query(Cube)\
-                            .filter(Cube.state == CubeStates.CONNECTED)\
-                            .all()
 
 
 class GameInstance(Base):
     __tablename__ = 'game_instances'
 
     id = Column(Integer, primary_key=True)
-    group_id = Column(Integer, ForeignKey('groups.id', ondelete="CASCADE"))
-    game_id = Column(Integer, ForeignKey('games.id',  ondelete="CASCADE"))
-
-    curr_player_id = Column(Integer, ForeignKey('players.id', ondelete="CASCADE"))
-    curr_question_id = Column(Integer, ForeignKey('questions.id', ondelete="CASCADE"))
+    group_id = Column(Integer, ForeignKey('groups.id'))
+    game_id = Column(Integer, ForeignKey('games.id'))
+    curr_question_id = Column(Integer, ForeignKey('questions.id'))
 
     round = Column(Integer, default=0)
     player = Column(Integer, default=0)
     players = Column(Integer)
     max_rounds = Column(Integer)
 
-    group = relationship('Group', back_populates='curr_game', foreign_keys=[Group.game_instance_id])
+    group = relationship('Group', uselist=False, back_populates='curr_game')
     game = relationship('Game')
 
-    curr_player = relationship('Player')
+
     curr_question = relationship('Question')
+
+
+
 
     @staticmethod
     def new(game_id, group_id):
@@ -93,6 +71,28 @@ class GameInstance(Base):
 
         return n
 
+class Group(Base):
+    __tablename__ = 'groups'
+
+    id = Column(Integer, primary_key=True)
+    cube_id = Column(Integer, ForeignKey('cubes.id'))
+
+    name = Column(String)
+    auth_token = Column(String)
+
+    state = Column(Enum(GroupStates), default=GroupStates.CREATION)
+
+    curr_game = relationship('GameInstance', uselist=False, back_populates='group')
+    # current_round= Column(Integer, default=0)
+    # current_player= relationship('Player', foreign_keys=[current_player_id])
+
+    cube = relationship('Cube',uselist=False, back_populates='group')
+    players = relationship('Player', back_populates='group')
+
+    def get_av_cubes(self):
+        return ScopedSession.query(Cube) \
+            .filter(Cube.state == CubeStates.CONNECTED) \
+            .all()
 
     # def get_rem_question(self):
     #     return ScopedSession.query(Question)\
@@ -118,7 +118,7 @@ class Cube(Base):
 
 
     state = Column(Enum(CubeStates), default=CubeStates.DISCONNECTED )
-    group = relationship('Group', back_populates='cube',cascade='all')
+    group = relationship('Group', back_populates='cube', uselist=False, )
 
 
 
@@ -154,7 +154,7 @@ class Answer(Base):
     points = Column(Integer)
     player = relationship('Player', back_populates='answers')
     question = relationship('Question')
-    choice = relationship('Choice', foreign_keys=[choice_id])
+    choice = relationship('Choice')
 
 
 class Choice(Base):

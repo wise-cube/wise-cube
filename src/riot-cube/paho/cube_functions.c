@@ -107,14 +107,14 @@ int pub_button_ko_event(void){
     return status;
 }
 
-int pub_answer_event(void){
+int pub_answer_event(int ans_num){
     char        msg_type_buf[]     ="answer_event";
     char        msg_buf[MSG_BUF_SIZE];
-    const char  msg_template_buf[]    ="{\"msg_type\":\"%s\"}";
+    const char  msg_template_buf[]    ="{\"msg_type\":\"%s\", \"num\":%d }";
     char*       msg                   = (char*)&msg_buf;
 
     memset(msg, 0, MSG_BUF_SIZE);
-    snprintf(msg, MSG_BUF_SIZE-1, msg_template_buf, msg_type_buf);
+    snprintf(msg, MSG_BUF_SIZE-1, msg_template_buf, msg_type_buf, ans_num);
 
     int  _argc=2;
     char * _argv_buf[2] = {0};
@@ -140,5 +140,5 @@ int cmd_pub_button_ko_event(int argc, char **argv){
     return pub_button_ok_event();
 }
 int cmd_pub_answer_event(int argc, char **argv){
-    return pub_answer_event();
+    return pub_answer_event(0);
 }

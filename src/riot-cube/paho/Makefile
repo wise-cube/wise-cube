@@ -25,7 +25,9 @@ FEATURES_REQUIRED += periph_i2c
 USEMODULE += shell
 USEMODULE += shell_commands
 USEMODULE += ps
+# USEMODULE += ws_periph
 USEMODULE += netdev_default
+
 USEPKG += paho-mqtt
 USEPKG += jsmn
 
@@ -57,6 +59,8 @@ USEMODULE += lwip_sock_async
 
 USEMODULE += sock_async_event
 ####
+# USEMODULE += led
+LDFLAGS=-L$(CURDIR)/ws_periph
 
 include $(RIOTBASE)/Makefile.include
 

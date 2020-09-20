@@ -8,11 +8,12 @@ from os import remove
 from loguru import logger
 
 from routes import tables, pages, triggers, game, misc
-
+from common.handlers import GroupHandler
 
 def db_init():
     DB.migrate()
-    #DB.clear()
+    DB.clear()
+    DB.migrate()
     DB.seed()
 
 
@@ -32,15 +33,16 @@ def before_request_func():
         g.group = ScopedSession.query(Group) \
                                   .filter(Group.auth_token == group_auth_token) \
                                   .first()
+        try:
+            g.gh=GroupHandler(g.group)
 
-        if g.group is None:
+        except:
             print("Invalid token")
             resp = make_response(redirect('/'))
             resp.set_cookie('auth-token', '', expires=0)
             return resp
-        else:
-            g.cube= g.group.cube
-            g.group_id = g.group.id
+
+
 
 
 

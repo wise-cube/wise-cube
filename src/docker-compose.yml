@@ -1,4 +1,4 @@
-version: '3.3'
+version: '3.6'
 
 services:
   mqtt-broker:
@@ -7,6 +7,7 @@ services:
       - default
     expose:
       - 1884
+
     ports:
       - 1884:1884
       - 1885:1885

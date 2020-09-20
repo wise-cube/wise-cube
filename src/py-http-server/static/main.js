@@ -1,16 +1,6 @@
-const express = require('express');
-const http = require('http');
-const WebSocket = require('ws');
-var mqtt = require('mqtt');
-
-
 var host = "localhost";
 var port = 1885;
 var clientid = "group_1";
-
-
-
-
 
 //var clientid = 'mqttjs_' + Math.random().toString(16).substr(2, 8);
 
@@ -32,16 +22,7 @@ client.connect({onSuccess:onConnect});
 function onConnect() {
   // Once a connection has been made, make a subscription and send a message.
   console.log("onConnect");
-  client.subscribe("group/req");
-  //client.subscribe("group/req/player");
-  client.subscribe("group/player");
-  client.subscribe("game");
-  client.subscribe("game/");
-
-  client.subscribe("game/avatar");
-  client.subscribe("game/answer");
-  client.subscribe("game/question");
-
+  client.subscribe("/to_group/1");
 }
 
 function pub(topic, msg){
@@ -62,24 +43,29 @@ function onConnectionLost(responseObject) {
 // called when a message arrives
 function onMessageArrived(message) {
   console.log("onMessageArrived:"+message.payloadString);
-  var msg = message.payloadString.replace(/\s/g, '"' )
+  var msg = JSON.parse(message.payloadString)
   trigger_pub(msg)
 }
 
 
 function trigger_pub(msg){
-	var obj = JSON.parse(msg);
-	console.log(obj);
-	switch(obj.type) {
+	console.log(msg)
 
-	case "ok_event":
+
+	switch(msg.msg_type) {
+
+	case "button_ok_event":
 		on_ok();
 		break;
 	case "shake_event":
 		on_shake()
 		break;
-	case "ko_event":
+	case "button_ko_event":
 		on_ko();
+		break;
+
+	case "sel_ans":
+		on_sel_ans(msg.num);
 		break;
 
 	default:

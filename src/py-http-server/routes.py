@@ -5,7 +5,7 @@ from helpers import rel2table
 from handlers import GroupHandler
 
 
-
+from common.handlers import GroupHandler
 s = ScopedSession()
 
 game = Blueprint('game', __name__, )
@@ -45,7 +45,7 @@ def group_page():
         return render_template('pages/group.html', is_creation=True, p_rand_name=p_rand_name, p_rand_avatar=p_rand_avatar)
 
     if g.group.state == GroupStates.IN_GAME:
-        return render_template('pages/group.html', curr_game=g.group.curr_game)
+        return render_template('pages/group.html', gi=g.group.curr_game)
 
 
 
@@ -58,7 +58,7 @@ def debug_page():
 
 @pages.route('/game')
 def game_page():
-    ans = ScopedSession.query(Answer).filter(Answer.player == g.group.curr_game.curr_player, Answer.question == g.group.curr_game.curr_question ).first()
+    ans = ScopedSession.query(Answer).filter(Answer.player == GroupHandler.by_session().get_curr_player(), Answer.question == g.group.curr_game.curr_question ).first()
     return render_template('pages/game.html', gi=g.group.curr_game, answer=ans)
 
 

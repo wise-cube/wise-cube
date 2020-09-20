@@ -17,9 +17,27 @@ a {
     background-color: #ffdd57;
 }
 
+
+img.avatar {
+    border-radius: 12%;
+}
 .bg-red {
     background-color: #ee2049;
 }
+
 .bg-green {
     background-color: #01c919;
+}
+
+.bg-blue {
+    background-color: #015bc9;
+}
+.bg-violet {
+    background-color: #8341ff;
+}
+.bg-teal {
+    background-color: #09ffda;
+}
+.bg-yellow {
+    background-color: #f0f643;
 }
