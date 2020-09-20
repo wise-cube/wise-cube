@@ -1,6 +1,5 @@
 #include "paho.h"
-
-
+#include "led.h"
 
 int topic_cnt = 0;
 MQTTClient client;
@@ -42,6 +41,10 @@ int _cmd_discon(int argc, char **argv)
     (void)argc;
     (void)argv;
 
+    return discon();
+}
+
+int discon(void){
     topic_cnt = 0;
     int res = MQTTDisconnect(&client);
     if (res < 0) {
@@ -55,6 +58,7 @@ int _cmd_discon(int argc, char **argv)
     status=0;
     return res;
 }
+
 
 int _cmd_con(int argc, char **argv)
 {

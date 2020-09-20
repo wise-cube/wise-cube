@@ -1,15 +1,18 @@
 //
 // Created by di3go on 2020-09-04.
 //
-
-#include "led.h"
-
-#include "periph/gpio.h"
+#include "stdlib.h"
 #include "xtimer.h"
+#include "periph/gpio.h"
 
-gpio_t led_r = 16;
-gpio_t led_g = 10;
-gpio_t led_b = 9;
+#include "./led.h"
+
+
+
+
+gpio_t led_r = LED_R_GPIO;
+gpio_t led_g = LED_G_GPIO;
+gpio_t led_b = LED_B_GPIO;
 
 
 void led_init(void){
@@ -61,5 +64,13 @@ void led_burst(void ){
 }
 int cmd_led_burst(int argc, char** argv ){
     led_burst();
+    return 0;
+}
+
+int cmd_led_on(int argc, char** argv ){
+    if (argc < 2) {
+        printf("Usage led_on <led_col(0-7)>");
+    }
+    led_on(atoi(argv[1]));
     return 0;
 }

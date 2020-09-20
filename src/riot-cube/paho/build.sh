@@ -1,7 +1,7 @@
 #!/bin/sh
 
 if [ $USER == "di3go" ]; then
-  export IP="192.168.3.200"
+  export IP="192.168.1.204"
   source /home/di3go/.sh_env
   make  flash term
 

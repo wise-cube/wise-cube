@@ -1,13 +1,25 @@
 #include "mpu.h"
 
-int old_pos = '0';
+
+#include "xtimer.h"
+#include "periph_conf.h"
+#include "periph/i2c.h"
+
+#include "board.h"
+#include "mutex.h"
+
+#include "cube_functions.h"
+
+
+char old_pos = '0';
+
 mpu9x50_status_t conf = {0x01,0x01,0x01,0x03,0x03,1000,100,0x00,0x00,0x00};
 mpu9x50_params_t params = {I2C_INTERFACE,0x68,0x0C,1000};
 
 mpu9x50_results_t res_g = {0};
 mpu9x50_results_t res_a = {0};
-int gyro[3] = {0};
-int acc[3] = {0};
+float gyro[3] = {0};
+float acc[3] = {0};
 
 
 int mpu_init(void){
@@ -30,8 +42,7 @@ int mpu_init(void){
 
 int mpu_handler(mpu9x50_t dev){
     for (;;){
-		puts("in handler\n");
-		
+//		puts("in handler\n");
 		mpu9x50_results_t  acc_buf = {0};
 		mpu9x50_results_t  gyr_buf = {0};
 		
@@ -92,27 +103,49 @@ int mpu_handler(mpu9x50_t dev){
 		
 }
 
-int position(int* acc){
-	if (acc[0]>=9 && (acc[1]<=2 && acc[1]>=-2) && (acc[2]<=2 && acc[2]>=-2)){
-		//printf("accelerometer: %d, %d, %d\n", acc[0], acc[1], acc[2]);
-		return 'X';
-	} else if (acc[0]<=-9 && (acc[1]<=2 || acc[1]>=-2) && (acc[2]<=2 || acc[2]>=-2)){
-		//printf("accelerometer: %d, %d, %d\n", acc[0], acc[1], acc[2]);
-		return 'x';
-	}else if (acc[1]>=9 && (acc[0]<=2 && acc[0]>=-2) && (acc[2]<=2 && acc[2]>=-2)){
-		//printf("accelerometer: %d, %d, %d\n", acc[0], acc[1], acc[2]);
-		return 'Y';
-	} else if (acc[1]<=-9 && (acc[0]<=2 || acc[0]>=-2) && (acc[2]<=2 || acc[2]>=-2)){
-		//printf("accelerometer: %d, %d, %d\n", acc[0], acc[1], acc[2]);
-		return 'y';
-	}else  if (acc[2]>=9 && (acc[1]<=2 && acc[1]>=-2) && (acc[0]<=2 && acc[0]>=-2)){
-		//printf("accelerometer: %d, %d, %d\n", acc[0], acc[1], acc[2]);
-		return 'Z';
-	} else if (acc[2]<=-9 && (acc[1]<=2 || acc[1]>=-2) && (acc[0]<=2 || acc[0]>=-2)){
-		//printf("accelerometer: %d, %d, %d\n", acc[0], acc[1], acc[2]);
-		return 'z';
-	}
-	return -1;
+int position(float *acc){
+    int axis = 0 ;
+    char choices[] = "xXyYzZ";
+    float max_acc = acc[0];
+
+//    printf("accelerometer: %f, %f, %f\n", acc[0], acc[1], acc[2]);
+
+    if (acc[1]*acc[1] > max_acc * max_acc) {
+        max_acc = acc[1];
+        axis = 1;
+    }
+
+    if (acc[2]*acc[2] > max_acc * max_acc) {
+        max_acc = acc[2];
+        axis = 2;
+    }
+
+    int c = 2*axis + (int)(max_acc > 0);
+    return choices[c];
+
+
+//
+//
+//	if (acc[0]>=9 && (acc[1]<=2 && acc[1]>=-2) && (acc[2]<=2 && acc[2]>=-2)){
+//
+//		return 'X';
+//	} else if (acc[0]<=-9 && (acc[1]<=2 || acc[1]>=-2) && (acc[2]<=2 || acc[2]>=-2)){
+//		//printf("accelerometer: %d, %d, %d\n", acc[0], acc[1], acc[2]);
+//		return 'x';
+//	}else if (acc[1]>=9 && (acc[0]<=2 && acc[0]>=-2) && (acc[2]<=2 && acc[2]>=-2)){
+//		//printf("accelerometer: %d, %d, %d\n", acc[0], acc[1], acc[2]);
+//		return 'Y';
+//	} else if (acc[1]<=-9 && (acc[0]<=2 || acc[0]>=-2) && (acc[2]<=2 || acc[2]>=-2)){
+//		//printf("accelerometer: %d, %d, %d\n", acc[0], acc[1], acc[2]);
+//		return 'y';
+//	}else  if (acc[2]>=9 && (acc[1]<=2 && acc[1]>=-2) && (acc[0]<=2 && acc[0]>=-2)){
+//		//printf("accelerometer: %d, %d, %d\n", acc[0], acc[1], acc[2]);
+//		return 'Z';
+//	} else if (acc[2]<=-9 && (acc[1]<=2 || acc[1]>=-2) && (acc[0]<=2 || acc[0]>=-2)){
+//		//printf("accelerometer: %d, %d, %d\n", acc[0], acc[1], acc[2]);
+//		return 'z';
+//	}
+//	return -1;
 
 }
 
@@ -124,41 +157,54 @@ void shake_handler(int s){
 }
 		
 int answer_handler(int pos){
-		char answer=0;
+        printf("handler fired \n");
+
 		if (old_pos != pos){
 			switch (pos){
 				case 'X': 
-					puts("answer A\n");
-					answer='A';
-					pub_answer_event();
+					puts("Face X\n");
+					pub_answer_event(0);
+					led_on(GREEN);
 					break;
+
 				case 'x': 
-					puts("answer C\n");
-					answer='C';
-					pub_answer_event();
+					puts("Face x\n");
+					pub_answer_event(2);
+					led_on(RED);
 					break;
+
 				case 'Y': 
-					puts("answer B\n");
-					answer='B';
-					pub_answer_event();
+					puts("Face Y\n");
+					pub_answer_event(1);
+					led_on(VIOLET);
 					break;
-				case 'y': 
-					puts("answer D\n");
-					answer='D';
-					pub_answer_event();
+
+				case 'y':
+					puts("Face y\n");
+					pub_answer_event(3);
+					led_on(BLUE);
 					break;
-				case 'Z': 
+
+				case 'Z':
+				    puts("Face Z, NmFC\n");
+				    led_on(WHITE);
+				    break;
+
 				case 'z': 
-					puts("NFC/button\n");
+					puts("Face z, NFC/button\n");
+					led_on(0);
 					break;
+
 				default: 
 					break;
 			}
+			old_pos = pos;
 			
 		}
-		return (int)answer;
+		return 0;
 				
-}   
+}
+
 int cmd_mpu_init(int argc, char **argv){
     return mpu_init();
 }

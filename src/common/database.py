@@ -4,13 +4,41 @@ from common.conf import SQL_ENGINE, Base, ScopedSession
 from secrets import token_urlsafe  as new_token
 from sqlalchemy import engine, MetaData
 
+from sqlalchemy.engine import reflection
+from sqlalchemy import MetaData, Table, ForeignKeyConstraint
+from sqlalchemy.schema import DropConstraint
+
+def remove_foreign_keys():
+    # log("Dropping all foreign key constraints from archive database")
+
+    inspector = reflection.Inspector.from_engine(SQL_ENGINE)
+    fake_metadata = MetaData()
+
+    fake_tables = []
+    all_fks = []
+
+    for table_name in Base.metadata.tables:
+        fks = []
+        for fk in inspector.get_foreign_keys(table_name):
+            if fk['name']:
+                fks.append(ForeignKeyConstraint((),(),name=fk['name']))
+        t = Table(table_name, fake_metadata, *fks)
+        fake_tables.append(t)
+        all_fks.extend(fks)
+
+    for fkc in all_fks:
+        ScopedSession.execute(DropConstraint(fkc))
+    ScopedSession.commit()
+
+
 class DB:
     @staticmethod
     def clear():
         import traceback,sys
+        remove_foreign_keys()
         try:
             #GameInstance.metadata.drop_all(SQL_ENGINE)
-            Choice.metadata.drop_all(SQL_ENGINE)
+            Base.metadata.drop_all(SQL_ENGINE)
             #Answer.metadata._all(SQL_ENGINE)
             #Question.metadata.drop_all(SQL_ENGINE)
             #Game.metadata.drop_all(SQL_ENGINE)

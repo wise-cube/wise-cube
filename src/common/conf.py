@@ -2,7 +2,7 @@ from sqlalchemy.orm import sessionmaker
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import scoped_session
-import paho.mqtt.client as mqtt
+
 import os
 
 HOSTNAME='192.168.1.205'
@@ -20,4 +20,4 @@ ScopedSession = scoped_session(LocalSession)
 
 Base = declarative_base()
 
-MqttClient = mqtt.Client(client_id="mqtt-sample", clean_session=True, userdata=None)
+

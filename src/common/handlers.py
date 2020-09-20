@@ -137,7 +137,7 @@ class GroupHandler:
             if gi.player == 0:
                 gi.round += 1
 
-        gi.curr_player_id = self.group.players[gi.round].id
+
         gi.curr_question_id = gi.game.questions[gi.player].id
 
 
@@ -147,14 +147,11 @@ class GroupHandler:
     def to_group_topic(self):
         return f"/to_group/{self.group.id}"
 
-    def button_ok(self):
-        MqttClient.publish(self.to_group_topic(), "{'msg_type':'ok_event'}", qos=0, retain=False)
+    def get_curr_player(self):
+        return  self.group.players[self.group.curr_game.player]
 
-    def button_ko(self):
-        MqttClient.publish(self.to_group_topic(), "{'msg_type':'ko_event'}", qos=0, retain=False)
-
-    def shake(self):
-        MqttClient.publish(self.to_group_topic(), "{'msg_type':'shake_event'}", qos=0, retain=False)
+    def is_curr_player(self, p):
+        return self.get_curr_player() == p and  self.group.curr_game and self.group.curr_game.round > 0
 
     def new_answer(self, answer_number):
         answer_number = int(answer_number)
@@ -168,8 +165,8 @@ class GroupHandler:
         c = choice.correct
         gi = self.group.curr_game
         if not ScopedSession.query(Answer)\
-                        .filter(Answer.player_id == gi.curr_player.id, Answer.question_id == gi.curr_question_id).count() >0 :
-            a = Answer(game_id=self.group.curr_game.game.id, player_id=self.group.curr_game.curr_player.id,
+                        .filter(Answer.player ==GroupHandler.by_session().get_curr_player(), Answer.question_id == gi.curr_question_id).count() >0 :
+            a = Answer(game_id=self.group.curr_game.game.id, player=GroupHandler.by_session().get_curr_player(),
                        choice_id=self.group.curr_game.curr_question.choices[answer_number].id,
                        question_id=self.group.curr_game.curr_question.id,
                        points=100*(int(c)))

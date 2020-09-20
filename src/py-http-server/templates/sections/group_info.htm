@@ -12,7 +12,7 @@
                 </p>
             </div>
         </div>
-
+        {% set curr_p=g.gh.get_curr_player() %}
         {% for p in g.group.players %}
               <div class="level-item has-text-centered">
                 <div>
@@ -22,8 +22,12 @@
                           </p>
                           {% if p.avatar %}
                               <p>
+                               {% if p==curr_p %}
+                                   {% set active=True %}
+                                   {% endif %}
                               {% set avatar=p.avatar %}
                               {% include  'avatar/avatar.htm' %}
+                               {% set active=False %}
                               </p>
                           {% endif %}
                           <p class="title">

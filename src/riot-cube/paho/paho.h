@@ -16,11 +16,14 @@
 #include "utils.h"
 
 unsigned get_qos(const char *str);
+int discon(void);
+
 void _on_msg_received(MessageData *data);
 int _cmd_discon(int argc, char **argv);
 int _cmd_con(int argc, char **argv);
 int _cmd_pub(int argc, char **argv);
 int _cmd_sub(int argc, char **argv);
 int _cmd_unsub(int argc, char **argv);
+
 
 #endif //RIOT_CUBE_PAHO_H
