@@ -13,3 +13,11 @@ if [ $USER == "roberto" ]; then
   make  flash term
 
 fi
+
+
+if [ $USER == "giulai" ]; then
+  export IP="192.168.1.139"
+  source /home/giulai/.sh_env
+  make  flash term
+
+fi

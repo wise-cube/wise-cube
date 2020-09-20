@@ -10,8 +10,15 @@
 
 #include "cube_functions.h"
 
+#include <thread.h>
 
 char old_pos = '0';
+
+char mpu_thread_stack[THREAD_STACKSIZE_MAIN];
+kernel_pid_t mpu_pid;
+
+char prova_thread_stack[THREAD_STACKSIZE_MAIN];
+kernel_pid_t prova_pid;
 
 mpu9x50_status_t conf = {0x01,0x01,0x01,0x03,0x03,1000,100,0x00,0x00,0x00};
 mpu9x50_params_t params = {I2C_INTERFACE,0x68,0x0C,1000};
@@ -23,6 +30,7 @@ float acc[3] = {0};
 
 
 int mpu_init(void){
+    printf("in thread: %d\n" , mpu_pid);
 	mpu9x50_t dev = {params,conf};
     /* Initialise the I2C serial interface as master */
     i2c_init(I2C_INTERFACE);
@@ -42,6 +50,8 @@ int mpu_init(void){
 
 int mpu_handler(mpu9x50_t dev){
     for (;;){
+        //da levare se nfc sta su un altro thread e bottoni sono interrupt (se non ce serve la shell)
+        xtimer_usleep(1000 * US_PER_MS);
 //		puts("in handler\n");
 		mpu9x50_results_t  acc_buf = {0};
 		mpu9x50_results_t  gyr_buf = {0};
@@ -101,6 +111,15 @@ int mpu_handler(mpu9x50_t dev){
 		shake_handler(s);
 	}
 		
+}
+
+int prova(void){
+    while(1){
+        xtimer_usleep(100 * US_PER_MS);
+        printf("in 2 thread --> %d\n", prova_pid);
+
+    }
+    return 0;
 }
 
 int position(float *acc){
@@ -206,5 +225,12 @@ int answer_handler(int pos){
 }
 
 int cmd_mpu_init(int argc, char **argv){
-    return mpu_init();
+
+    mpu_pid = thread_create(mpu_thread_stack, sizeof(mpu_thread_stack), THREAD_PRIORITY_MAIN - 1,
+    THREAD_CREATE_STACKTEST, mpu_init , NULL, "mpu_thread");
+
+    //prova_pid = thread_create(prova_thread_stack, sizeof(prova_thread_stack), THREAD_PRIORITY_MAIN - 1,
+    //THREAD_CREATE_STACKTEST, prova , NULL, "prova_thread");
+
+    //return mpu_init();
 }
