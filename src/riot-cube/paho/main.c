@@ -1,7 +1,10 @@
+#include "shell.h"
+
 #include "cube_functions.h"
 #include "led.h"
 #include "buttons.h"
 #include "mpu.h"
+
 
 char line_buf[SHELL_DEFAULT_BUFSIZE];
 const shell_command_t shell_commands[] =
@@ -30,6 +33,7 @@ int main(void)
     led_init();
     buttons_init();
     //mpu_init();
+
     shell_run(shell_commands, line_buf, SHELL_DEFAULT_BUFSIZE);
 
 
