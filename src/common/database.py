@@ -1,7 +1,7 @@
 import shutil
 from common.models import *
 from common.conf import SQL_ENGINE, Base, ScopedSession
-from secrets import token_urlsafe  as new_token
+from secrets import token_urlsafe as new_token
 from sqlalchemy import engine, MetaData
 
 from sqlalchemy.engine import reflection
@@ -83,24 +83,24 @@ class DB:
         q3 = Question(game_id=1, text="What Kouros means?",
                       curiosity="Kouros is a perfume for men produced by Yves Saint Laurent.The perfume was introduced in 1981. It was created by perfumer Pierre Bourdon.The perfume was inspired by a trip to Greece Saint Laurent had taken, he was particularly impressed by the kouroi.")
 
-        ScopedSession.add_all((g1,q1,q2,q3))
+        ScopedSession.add_all((g1, q1, q2, q3))
         ScopedSession.commit()
 
         to_add = []
-        for i,t in enumerate(["Bronze", "Marble", "Plaster", "Wax"]):
+        for i, t in enumerate(["Bronze", "Marble", "Plaster", "Wax"]):
             # print('\n'*10)
             # print(t)
             to_add += [Choice(question_id=1, correct=int(i == 1), text=t)]
 
 
-        for i,t in enumerate(["Old, men, especially of noble rank.",
-                              "Young, girl, especially of noble rank." ,
+        for i, t in enumerate(["Old, men, especially of noble rank.",
+                              "Young, girl, especially of noble rank.",
                               "Old, woman, especially of noble rank.",
-                              "Youth, boy, especially of noble rank."])    :
+                              "Youth, boy, especially of noble rank."]):
             to_add += [Choice( question_id=2, correct=int(i == 3), text=t)]
 
-        for i,t in enumerate(["Old, men, especially of noble rank.",
-                              "Young, girl, especially of noble rank." ,
+        for i, t in enumerate(["Old, men, especially of noble rank.",
+                              "Young, girl, especially of noble rank.",
                               "Old, woman, especially of noble rank.",
                               "Youth, boy, especially of noble rank."]):
             to_add += [Choice( question_id=3, correct=int(i == 3), text=t)]

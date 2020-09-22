@@ -34,7 +34,6 @@ class Player(Base):
         return choice(Player.NAMES)
 
 
-
 class GameInstance(Base):
     __tablename__ = 'game_instances'
 
@@ -51,11 +50,7 @@ class GameInstance(Base):
     group = relationship('Group', uselist=False, back_populates='curr_game')
     game = relationship('Game')
 
-
     curr_question = relationship('Question')
-
-
-
 
     @staticmethod
     def new(game_id, group_id):
@@ -71,8 +66,10 @@ class GameInstance(Base):
 
         return n
 
+
 class Group(Base):
     __tablename__ = 'groups'
+    query = ScopedSession.query_property()
 
     id = Column(Integer, primary_key=True)
     cube_id = Column(Integer, ForeignKey('cubes.id'))
@@ -86,7 +83,7 @@ class Group(Base):
     # current_round= Column(Integer, default=0)
     # current_player= relationship('Player', foreign_keys=[current_player_id])
 
-    cube = relationship('Cube',uselist=False, back_populates='group')
+    cube = relationship('Cube', uselist=False, back_populates='group')
     players = relationship('Player', back_populates='group')
 
     def get_av_cubes(self):
@@ -105,21 +102,13 @@ class Group(Base):
     #
 
 
-
-
-
-
-
-
 class Cube(Base):
     __tablename__ = 'cubes'
 
     id = Column(Integer, primary_key=True)
 
-
     state = Column(Enum(CubeStates), default=CubeStates.DISCONNECTED )
     group = relationship('Group', back_populates='cube', uselist=False, )
-
 
 
 class Game(Base):
@@ -142,6 +131,7 @@ class Question(Base):
     points = Column(Integer)
 
     choices = relationship('Choice', back_populates='question')
+
 
 class Answer(Base):
     __tablename__ = 'answers'
@@ -169,8 +159,6 @@ class Choice(Base):
     question = relationship('Question', back_populates='choices')
 
 
-
-
 class Avatar(Base):
     __tablename__ = 'avatars'
 
@@ -183,11 +171,8 @@ class Avatar(Base):
     id = Column(Integer, primary_key=True)
 
     cloth = Column(String, default=(OPTIONS['CLOTH'].pop()))
-    skin_color = Column(String, default=(OPTIONS['SKIN_COLOR'].pop() ))
-    hair = Column(String, default=(OPTIONS['HAIR'].pop() ))
-
-
-
+    skin_color = Column(String, default=(OPTIONS['SKIN_COLOR'].pop()))
+    hair = Column(String, default=(OPTIONS['HAIR'].pop()))
 
     def get_image_src(self):
         return 'https://avataaars.io/?avatarStyle=Transparent&' \
