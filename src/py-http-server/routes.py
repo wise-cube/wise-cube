@@ -15,7 +15,6 @@ triggers = Blueprint('triggers',__name__,template_folder="templates/triggers/")
 
 misc = Blueprint('misc', __name__,)
 
-
 RELATIONS = {
     'cubes': Cube,
     'games': Game,
@@ -27,12 +26,14 @@ RELATIONS = {
     'game_instances': GameInstance
 }
 
+
 # PAGES
 @pages.route('/')
 @pages.route('/home')
 def home_page():
     groups = ScopedSession.query(Group).all()
     return render_template('pages/home.html', groups=groups)
+
 
 @pages.route('/group')
 def group_page():
@@ -47,14 +48,14 @@ def group_page():
     if g.group.state == GroupStates.IN_GAME:
         return render_template('pages/group.html', gi=g.group.curr_game)
 
-
-
     return render_template('pages/group.html', group=g.group)
+
 
 @pages.route('/debug')
 def debug_page():
     tables = [(t_name.capitalize(), rel2table(t)) for t_name, t in RELATIONS.items()]
     return render_template('pages/debug.html', tables=tables)
+
 
 @pages.route('/game')
 def game_page():
@@ -62,11 +63,11 @@ def game_page():
     return render_template('pages/game.html', gi=g.group.curr_game, answer=ans)
 
 
-
 # MISC
 @misc.route('/rand_name')
 def get_rand_name():
     return Player.random_name()
+
 
 @misc.route('/rand_avatar')
 def get_rand_avatar():
@@ -81,10 +82,6 @@ def get_rand_avatar():
     return dumps(avatar_dic)
 
 
-
-
-
-
 # TRIGGERS
 @triggers.route('/login', methods=['POST'])
 def login():
@@ -92,16 +89,18 @@ def login():
     print('login')
 
     t = flask.request.form['auth_token']
-    resp.set_cookie('auth-token',t)
+    resp.set_cookie('auth-token', t)
 
     return resp
     # return 'login'
+
 
 @triggers.route('/logout', methods=['GET'])
 def logout():
     resp = make_response(redirect('/'))
     resp.set_cookie('auth-token', '', expires=0)
     return resp
+
 
 @triggers.route('/new_group', methods=['POST'])
 def new_group():
@@ -112,20 +111,23 @@ def new_group():
     resp.set_cookie('auth-token',g.auth_token)
     return resp
 
+
 @triggers.route('/end_players_creation', methods=['POST','GET'])
 def end_players_creation():
 
     GroupHandler.by_id(g.group_id).end_player_creation()
     return redirect('/group')
 
+
 @triggers.route('/new_player', methods=['POST'])
 def new_player( ):
     player_name = request.form['player_name']
-    player_avatar_id =  request.form['player_avatar_id']
+    player_avatar_id = request.form['player_avatar_id']
 
     GroupHandler.by_session().new_player(player_name, player_avatar_id)
 
     return redirect('/group')
+
 
 @triggers.route('/new_answer', methods=['GET'])
 def new_answer( ):
@@ -134,12 +136,14 @@ def new_answer( ):
 
     return redirect('/game')
 
+
 @triggers.route('/join_cube', methods=['GET'])
 def join_cube():
     cube_id = request.args.get('cube_id')
     gh = GroupHandler.by_session()
     gh.join_cube(cube_id)
     return redirect('/group')
+
 
 @triggers.route('/leave_cube', methods=['GET'])
 def leave_cube():
@@ -148,17 +152,18 @@ def leave_cube():
     return redirect('/group')
 
 
-
 @triggers.route('/next_round', methods=['GET'])
 def next_round():
     GroupHandler.by_session().next_round()
     return redirect('/game')
+
 
 @triggers.route('/start_game', methods=['GET'])
 def start_game():
     g_id = request.args['id']
     GroupHandler.by_session().start_game(g_id)
     return redirect('/game')
+
 
 @triggers.route('/end_game', methods=['GET'])
 def end_game():

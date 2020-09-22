@@ -67,7 +67,6 @@ class GroupHandler:
 
         return GroupHandler(group)
 
-
     @staticmethod
     def new(name=None):
         g = Group()
@@ -115,7 +114,6 @@ class GroupHandler:
             s.commit()
 
     def start_game(self, game_id):
-
         gi = GameInstance.new(game_id, self.group.id)
         gi.group.state = GroupStates.IN_GAME
 
@@ -137,30 +135,42 @@ class GroupHandler:
             if gi.player == 0:
                 gi.round += 1
 
-
         gi.curr_question_id = gi.game.questions[gi.player].id
 
-
-        ScopedSession.add(self.group,gi)
+        ScopedSession.add(self.group, gi)
         ScopedSession.commit()
 
     def to_group_topic(self):
         return f"/to_group/{self.group.id}"
 
+    def get_players(self):
+        result = Group.query.filter(Group.id == self.group.id).first()
+        print(result)
+        return result
+
     def get_curr_player(self):
-        return  self.group.players[self.group.curr_game.player]
+        if self.group.players:
+            return None
+
+        if self.group.curr_game is None:
+            game = Game(name=None, intro=None)
+            self.group.curr_game = GameInstance.new(game.id, self.group.id)
+
+        return self.group.players[self.group.curr_game.player]
 
     def is_curr_player(self, p):
-        return self.get_curr_player() == p and  self.group.curr_game and self.group.curr_game.round > 0
+        return self.get_curr_player() == p and self.group.curr_game and self.group.curr_game.round > 0
 
     def new_answer(self, answer_number):
         answer_number = int(answer_number)
+
         '''
         id = Column(Integer, primary_key=True)
         game_id = Column(Integer, ForeignKey('cubes.id'))
         player_id = Column(Integer, ForeignKey('players.id'))
         choice_id = Column(Integer, ForeignKey('cubes.id'))
         '''
+
         choice = self.group.curr_game.curr_question.choices[answer_number]
         c = choice.correct
         gi = self.group.curr_game
@@ -170,11 +180,6 @@ class GroupHandler:
                        choice_id=self.group.curr_game.curr_question.choices[answer_number].id,
                        question_id=self.group.curr_game.curr_question.id,
                        points=100*(int(c)))
-
-
-
-
-
 
             ScopedSession.add(a)
             ScopedSession.commit()
