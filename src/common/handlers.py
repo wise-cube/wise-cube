@@ -79,7 +79,7 @@ class GroupHandler:
         ScopedSession.commit()
         return g
 
-    def new_player(self, name, avatar_id=None):
+    def new_player(self, name, avatar_id):
         p = Player(group_id=self.group.id, name=name)
         if avatar_id is not None:
             p.avatar_id = avatar_id
@@ -186,9 +186,32 @@ class GroupHandler:
             ScopedSession.commit()
         # self.next_round()
 
-    def isInCreation(self):
+    def is_in_init(self):
+        if self.group.state == GroupStates.INIT:
+            return 1
+        return 0
+
+    def is_in_creation(self):
         if self.group.state == GroupStates.CREATION:
             return 1
         return 0
 
+    def is_in_idle(self):
+        if self.group.state == GroupStates.IDLE:
+            return 1
+        return 0
 
+    def is_in_game(self):
+        if self.group.state == GroupStates.IN_GAME:
+            return 1
+        return 0
+
+    def is_terminated(self):
+        if self.group.state == GroupStates.TERMINATED:
+            return 1
+        return 0
+
+    def change_state(self):
+        if self.group.state == GroupStates.INIT:
+            self.group.state = GroupStates.CREATION
+        return 0

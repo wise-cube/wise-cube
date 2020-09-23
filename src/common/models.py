@@ -55,8 +55,8 @@ class Player(Base):
     name = Column(String)
     type = Column(String)
 
-    answers = relationship('Answer', back_populates='player' )
-    group = relationship('Group', back_populates='players' )
+    answers = relationship('Answer', back_populates='player')
+    group = relationship('Group', back_populates='players')
     avatar = relationship('Avatar', uselist=False)
 
     def get_score(self):
@@ -110,7 +110,7 @@ class Group(Base):
     name = Column(String)
     auth_token = Column(String)
 
-    state = Column(Enum(GroupStates), default=GroupStates.CREATION)
+    state = Column(Enum(GroupStates), default=GroupStates.INIT)
 
     curr_game = relationship('GameInstance', uselist=False, back_populates='group')
     # current_round= Column(Integer, default=0)
