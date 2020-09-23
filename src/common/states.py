@@ -17,6 +17,7 @@ class GroupStates(EnumClass):
     IDLE = 2
     IN_GAME = 3
     TERMINATED = 4
+    INIT = 5
 
     def describe(self):
         return self.value

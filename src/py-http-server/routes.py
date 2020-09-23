@@ -36,8 +36,7 @@ def home_page():
 
 @pages.route('/group')
 def group_page():
-
-    if  g.group.state == GroupStates.CREATION:
+    if  g.group.state == GroupStates.INIT:
         p_rand_name = Player.random_name()
         p_rand_avatar = Avatar.random()
         ScopedSession.add(p_rand_avatar)
@@ -107,19 +106,18 @@ def new_group():
     g = GroupHandler.new(name=g_name)
 
     resp = make_response(redirect('/group'))
-    resp.set_cookie('auth-token',g.auth_token)
+    resp.set_cookie('auth-token', g.auth_token)
     return resp
 
 
-@triggers.route('/end_players_creation', methods=['POST','GET'])
+@triggers.route('/end_players_creation', methods=['POST', 'GET'])
 def end_players_creation():
-
     GroupHandler.by_id(g.group_id).end_player_creation()
     return redirect('/group')
 
 
 @triggers.route('/new_player', methods=['POST'])
-def new_player( ):
+def new_player():
     player_name = request.form['player_name']
     player_avatar_id = request.form['player_avatar_id']
 
@@ -129,10 +127,9 @@ def new_player( ):
 
 
 @triggers.route('/new_answer', methods=['GET'])
-def new_answer( ):
+def new_answer():
     ans_num = request.args['num']
     GroupHandler.by_session().new_answer(ans_num)
-
     return redirect('/game')
 
 

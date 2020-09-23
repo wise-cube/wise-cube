@@ -1,4 +1,4 @@
-{% if not g.gh.isInCreation() %}
+{% if not g.gh.is_in_init() %}
 {% set avatar_w=200 %}
 <img src={{ avatar.get_image_src() }} width={{ avatar_w }} class="avatar {% if g.gh.is_curr_player(p) %}{{ ['bg-red','bg-green','bg-blue'][g.group.curr_game.player%3] }}{% endif %}"
 >

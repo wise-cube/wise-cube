@@ -3,10 +3,10 @@ from common.models import *
 from common.conf import SQL_ENGINE, Base, ScopedSession
 from secrets import token_urlsafe as new_token
 from sqlalchemy import engine, MetaData
-
 from sqlalchemy.engine import reflection
 from sqlalchemy import MetaData, Table, ForeignKeyConstraint
 from sqlalchemy.schema import DropConstraint
+
 
 def remove_foreign_keys():
     # log("Dropping all foreign key constraints from archive database")
@@ -21,7 +21,7 @@ def remove_foreign_keys():
         fks = []
         for fk in inspector.get_foreign_keys(table_name):
             if fk['name']:
-                fks.append(ForeignKeyConstraint((),(),name=fk['name']))
+                fks.append(ForeignKeyConstraint((), (), name=fk['name']))
         t = Table(table_name, fake_metadata, *fks)
         fake_tables.append(t)
         all_fks.extend(fks)
@@ -34,7 +34,7 @@ def remove_foreign_keys():
 class DB:
     @staticmethod
     def clear():
-        import traceback,sys
+        import traceback, sys
         remove_foreign_keys()
         try:
             #GameInstance.metadata.drop_all(SQL_ENGINE)
@@ -54,18 +54,22 @@ class DB:
             einfo = sys.exc_info()
             traceback.print_exception(*einfo)
 
-
     @staticmethod
     def migrate():
         Base.metadata.create_all(SQL_ENGINE)
 
     @staticmethod
     def seed():
-
         group = Group(auth_token=new_token(64), name='I cchiu bell', state=GroupStates.IN_GAME)
 
+        # Cube #1
         cube = Cube(state=CubeStates.CONNECTED)
-        ScopedSession.add_all((cube,group))
+        ScopedSession.add_all((cube, group))
+        ScopedSession.commit()
+
+        # Cube #2
+        cube2 = Cube(state=CubeStates.CONNECTED)
+        ScopedSession.add(cube2)
         ScopedSession.commit()
 
         players = [Player(name=Player.random_name(), group_id=group.id, avatar=Avatar.random()),
@@ -92,18 +96,17 @@ class DB:
             # print(t)
             to_add += [Choice(question_id=1, correct=int(i == 1), text=t)]
 
+        for i, t in enumerate(["Old, men, especially of noble rank.",
+                               "Young, girl, especially of noble rank.",
+                               "Old, woman, especially of noble rank.",
+                               "Youth, boy, especially of noble rank."]):
+            to_add += [Choice(question_id=2, correct=int(i == 3), text=t)]
 
         for i, t in enumerate(["Old, men, especially of noble rank.",
-                              "Young, girl, especially of noble rank.",
-                              "Old, woman, especially of noble rank.",
-                              "Youth, boy, especially of noble rank."]):
-            to_add += [Choice( question_id=2, correct=int(i == 3), text=t)]
-
-        for i, t in enumerate(["Old, men, especially of noble rank.",
-                              "Young, girl, especially of noble rank.",
-                              "Old, woman, especially of noble rank.",
-                              "Youth, boy, especially of noble rank."]):
-            to_add += [Choice( question_id=3, correct=int(i == 3), text=t)]
+                               "Young, girl, especially of noble rank.",
+                               "Old, woman, especially of noble rank.",
+                               "Youth, boy, especially of noble rank."]):
+            to_add += [Choice(question_id=3, correct=int(i == 3), text=t)]
 
         print('\n' * 10)
 
