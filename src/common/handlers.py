@@ -174,13 +174,21 @@ class GroupHandler:
         choice = self.group.curr_game.curr_question.choices[answer_number]
         c = choice.correct
         gi = self.group.curr_game
-        if not ScopedSession.query(Answer)\
-                        .filter(Answer.player ==GroupHandler.by_session().get_curr_player(), Answer.question_id == gi.curr_question_id).count() >0 :
+        if not ScopedSession.query(Answer) \
+                       .filter(Answer.player == GroupHandler.by_session().get_curr_player(),
+                               Answer.question_id == gi.curr_question_id).count() > 0:
             a = Answer(game_id=self.group.curr_game.game.id, player=GroupHandler.by_session().get_curr_player(),
                        choice_id=self.group.curr_game.curr_question.choices[answer_number].id,
                        question_id=self.group.curr_game.curr_question.id,
-                       points=100*(int(c)))
+                       points=100 * (int(c)))
 
             ScopedSession.add(a)
             ScopedSession.commit()
         # self.next_round()
+
+    def isInCreation(self):
+        if self.group.state == GroupStates.CREATION:
+            return 1
+        return 0
+
+
