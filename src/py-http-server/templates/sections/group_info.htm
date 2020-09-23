@@ -12,7 +12,7 @@
                 </p>
             </div>
         </div>
-        {% if not g.gh.get_players() %}
+            {% if not g.gh.isInCreation() %}
             {% set curr_p=g.gh.get_curr_player() %}
             {% for p in g.group.players %}
                   <div class="level-item has-text-centered">

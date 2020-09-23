@@ -3,9 +3,8 @@ from flask import Blueprint, redirect, render_template, session, request, make_r
 import flask
 from helpers import rel2table
 from handlers import GroupHandler
-
-
 from common.handlers import GroupHandler
+
 s = ScopedSession()
 
 game = Blueprint('game', __name__, )
