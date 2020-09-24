@@ -1,7 +1,7 @@
-{#{% set gi=g.group.curr_game %}#}
+{# {% set gi=g.group.curr_game %} #}
 {% if gi %}
     {% with ok="/game" %}
-    {% with ok_str=("go to " + gi.game.name)  %}
+    {% with ok_str=("Go to " + gi.game.name) %}
 {% include 'sections/controls.htm' %}
     {% endwith %}
     {% endwith %}

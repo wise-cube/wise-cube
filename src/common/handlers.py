@@ -91,7 +91,8 @@ class GroupHandler:
         return p
 
     def end_player_creation(self):
-        self.group.state = GroupStates.IDLE
+        self.group.state = GroupStates.IN_GAME
+        self.group.curr_game = GameInstance.new(1, self.group.id)
         ScopedSession.add(self.group)
         ScopedSession.commit()
 
@@ -214,4 +215,6 @@ class GroupHandler:
     def change_state(self):
         if self.group.state == GroupStates.INIT:
             self.group.state = GroupStates.CREATION
+        elif self.group.state == GroupStates.CREATION or GroupStates.IDLE:
+            self.group.state == GroupStates.IN_GAME
         return 0
