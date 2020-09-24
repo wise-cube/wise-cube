@@ -10,7 +10,7 @@ s = ScopedSession()
 game = Blueprint('game', __name__, )
 pages = Blueprint('pages', __name__,)
 tables = Blueprint('tables', __name__, template_folder="templates/tables/")
-triggers = Blueprint('triggers',__name__,template_folder="templates/triggers/")
+triggers = Blueprint('triggers', __name__, template_folder="templates/triggers/")
 
 misc = Blueprint('misc', __name__,)
 
@@ -43,6 +43,9 @@ def group_page():
         ScopedSession.commit()
         return render_template('pages/group.html', is_creation=True, p_rand_name=p_rand_name, p_rand_avatar=p_rand_avatar)
 
+    if g.group.state == GroupStates.CREATION or GroupStates.IDLE:
+        g.group.state = GroupStates.IN_GAME
+
     if g.group.state == GroupStates.IN_GAME:
         return render_template('pages/group.html', gi=g.group.curr_game)
 
@@ -57,7 +60,8 @@ def debug_page():
 
 @pages.route('/game')
 def game_page():
-    ans = ScopedSession.query(Answer).filter(Answer.player == GroupHandler.by_session().get_curr_player(), Answer.question == g.group.curr_game.curr_question ).first()
+    ans = ScopedSession.query(Answer).filter(Answer.player == GroupHandler.by_session().get_curr_player(),
+                                             Answer.question == g.group.curr_game.curr_question).first()
     return render_template('pages/game.html', gi=g.group.curr_game, answer=ans)
 
 
@@ -85,6 +89,9 @@ def get_rand_avatar():
 def login():
     resp = make_response(redirect('/group'))
     print('login')
+
+    #GroupHandler.by_id(g.id).change_state()
+    #GroupHandler.by_session().change_state()
 
     t = flask.request.form['auth_token']
     resp.set_cookie('auth-token', t)
@@ -142,7 +149,6 @@ def join_cube():
 
 @triggers.route('/leave_cube', methods=['GET'])
 def leave_cube():
-
     GroupHandler.by_session().leave_cube()
     return redirect('/group')
 

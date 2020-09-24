@@ -5,8 +5,6 @@ var clientid = "group_1";
 //var clientid = 'mqttjs_' + Math.random().toString(16).substr(2, 8);
 
 
-
-
 // Create a client instance
 client = new Paho.MQTT.Client(host, port, clientid);
 
