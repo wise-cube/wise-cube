@@ -14,12 +14,10 @@
             <div class="field">
               <label class="label">Player Avatar</label>
               <div class="control">
-                <input type="image" name="player_avatar_id" id="player_avatar_id" value="{{ p_rand_avatar.id }}">
+                <input type="hidden" name="player_avatar_id" id="player_avatar_id" value="{{ p_rand_avatar.id }}">
                   {% set avatar=p_rand_avatar %}
-                  {% if g.gh.is_in_init() %}
-                    g.gh.change_state()
-                  {% endif %}
                   {% include 'avatar/avatar.htm' %}
+                  <img id="avatar_src">
               </div>
             </div>
 
@@ -67,6 +65,7 @@
              $("#player_name").addClass('is-success')
 
         } else {
+
             console.log("In Next_avatar: ", progress)
             $('form').submit() ;
         }
@@ -93,7 +92,7 @@
             obj = JSON.parse(data)
             console.log(obj)
             $("#player_avatar_id").val(obj.avatar_id);
-            $("form .avatar").attr('src',obj.avatar_src)
+            $("#avatar_src").attr('src',obj.avatar_src)
         });
     }
 
