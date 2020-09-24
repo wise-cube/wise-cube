@@ -88,7 +88,6 @@ def login():
 
     t = flask.request.form['auth_token']
     resp.set_cookie('auth-token', t)
-
     return resp
     # return 'login'
 
@@ -112,7 +111,7 @@ def new_group():
 
 @triggers.route('/end_players_creation', methods=['POST', 'GET'])
 def end_players_creation():
-    GroupHandler.by_id(g.group_id).end_player_creation()
+    GroupHandler.by_id(g.group.id).end_player_creation()
     return redirect('/group')
 
 
