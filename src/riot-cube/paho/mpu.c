@@ -12,31 +12,50 @@
 
 #include <thread.h>
 
-char old_pos = '0';
+char old_pos ;
 
 char mpu_thread_stack[THREAD_STACKSIZE_MAIN];
 kernel_pid_t mpu_pid;
-
-char prova_thread_stack[THREAD_STACKSIZE_MAIN];
-kernel_pid_t prova_pid;
-
-mpu9x50_status_t conf = {0x01,0x01,0x01,0x03,0x03,1000,100,0x00,0x00,0x00};
-mpu9x50_params_t params = {I2C_INTERFACE,0x68,0x0C,1000};
+mpu9x50_t* mpu_dev_ptr;
+int mpu_running;
 
 mpu9x50_results_t res_g = {0};
 mpu9x50_results_t res_a = {0};
 float gyro[3] = {0};
 float acc[3] = {0};
 
+static void pub_if_shake(int s){
+		if (s > 130){
+			puts("----> CUBE SHAKE <-----\n");
+			pub_shake_event();
+		}
+}
+
+static void  mpu_start(void){
+    mpu_running = 1;
+    thread_wakeup(mpu_pid);
+}
+static void  mpu_stop(void){
+    mpu_running = 0;
+}
 
 int mpu_init(void){
-    printf("in thread: %d\n" , mpu_pid);
-	mpu9x50_t dev = {params,conf};
+    mpu_running = 0;
+    old_pos = '0';
+    mpu9x50_status_t conf = {0x01,0x01,0x01,0x03,0x03,1000,100,0x00,0x00,0x00};
+    mpu9x50_params_t params = {I2C_INTERFACE,0x68,0x0C,1000};
+    mpu9x50_t dev = {params,conf};
+    mpu_dev_ptr = &dev;
+
+    printf("main thread: %d\n" , mpu_pid);
+
+
     /* Initialise the I2C serial interface as master */
     i2c_init(I2C_INTERFACE);
 
-    int init= mpu9x50_init(&dev, &params);
-    
+    int init= mpu9x50_init(mpu_dev_ptr, &params);
+
+
     if (init == -1) {
         puts("if given I2C is not enabled in board config\n");
         return 1;
@@ -44,28 +63,33 @@ int mpu_init(void){
     else {
         puts("mpu init on success\n");
     }
-    mpu_handler(dev);
+    mpu_pid = thread_create( mpu_thread_stack,
+                    THREAD_STACKSIZE_MAIN ,
+                    THREAD_PRIORITY_MAIN - 1,
+                    THREAD_CREATE_STACKTEST,
+                    mpu_handler ,
+                    NULL, "mpu_thread");
+
     return 0;
 }
-
-int mpu_handler(mpu9x50_t dev){
-    for (;;){
+void* mpu_handler(void* data){
+    while (1){
         //da levare se nfc sta su un altro thread e bottoni sono interrupt (se non ce serve la shell)
-        xtimer_usleep(1000 * US_PER_MS);
+//        xtimer_usleep(1000 * US_PER_MS);
 //		puts("in handler\n");
 		mpu9x50_results_t  acc_buf = {0};
 		mpu9x50_results_t  gyr_buf = {0};
 		
 		for (int i = 0 ; i < 10 ; i++){
 			
-			int read_gyro =  mpu9x50_read_gyro(&dev, &res_g);
+			int read_gyro =  mpu9x50_read_gyro(mpu_dev_ptr, &res_g);
 			if (read_gyro == -1) {
-				printf("if given I2C is not enabled in board config\n");
-				return 1;
+				printf("I2C is not enabled in board config\n");
+				return NULL;
 			}
 			else if(read_gyro == -2){
-				printf(" -2 if gyro full-scale range is configured wrong\n");
-				return 1;
+				printf("Gyro full-scale range is configured wrong\n");
+				return NULL ;
 			}
 			else {
 				gyr_buf.x_axis += res_g.x_axis;
@@ -75,14 +99,14 @@ int mpu_handler(mpu9x50_t dev){
 			}
 		
 		
-			int read_accel =  mpu9x50_read_accel(&dev, &res_a);				
+			int read_accel =  mpu9x50_read_accel(mpu_dev_ptr, &res_a);
 			if (read_accel == -1) {
 				printf("if given I2C is not enabled in board config\n");
-				return 1;
+				return NULL;
 			}
 			else if(read_accel == -2){
 				printf(" -2 if gyro full-scale range is configured wrong\n");
-				return 1;
+				return NULL;
 			}
 			else {
 				acc_buf.x_axis += res_a.x_axis;
@@ -108,18 +132,16 @@ int mpu_handler(mpu9x50_t dev){
 		int s=acc[0]*acc[0] + acc[1]*acc[1] + acc[2]*acc[2];
 		//printf("x: %d, y: %d, z:%d", acc[0], acc[1], acc[2]);
 		//puts("----> val: %d", s);
-		shake_handler(s);
+		pub_if_shake(s);
+		xtimer_usleep(100 * US_PER_MS);
+
+		if (!mpu_running){
+		    thread_yield();
+		}
 	}
-		
-}
-
-int prova(void){
-    while(1){
-        xtimer_usleep(100 * US_PER_MS);
-        printf("in 2 thread --> %d\n", prova_pid);
-
-    }
-    return 0;
+	printf("mpu handler exited")	;
+//	flush(stdout);
+	return NULL;
 }
 
 int position(float *acc){
@@ -168,12 +190,7 @@ int position(float *acc){
 
 }
 
-void shake_handler(int s){	
-		if (s > 130){
-			puts("----> CUBE SHAKE <-----\n");
-			pub_shake_event();
-		}
-}
+
 		
 int answer_handler(int pos){
         printf("handler fired \n");
@@ -226,11 +243,28 @@ int answer_handler(int pos){
 
 int cmd_mpu_init(int argc, char **argv){
 
-    mpu_pid = thread_create(mpu_thread_stack, sizeof(mpu_thread_stack), THREAD_PRIORITY_MAIN - 1,
-    THREAD_CREATE_STACKTEST, mpu_init , NULL, "mpu_thread");
 
+    mpu_init();
     //prova_pid = thread_create(prova_thread_stack, sizeof(prova_thread_stack), THREAD_PRIORITY_MAIN - 1,
     //THREAD_CREATE_STACKTEST, prova , NULL, "prova_thread");
 
-    //return mpu_init();
+    return 0;
+}
+int cmd_mpu_start(int argc, char **argv){
+
+
+    mpu_start();
+    //prova_pid = thread_create(prova_thread_stack, sizeof(prova_thread_stack), THREAD_PRIORITY_MAIN - 1,
+    //THREAD_CREATE_STACKTEST, prova , NULL, "prova_thread");
+
+    return 0;
+}
+int cmd_mpu_stop(int argc, char **argv){
+
+
+    mpu_stop();
+    //prova_pid = thread_create(prova_thread_stack, sizeof(prova_thread_stack), THREAD_PRIORITY_MAIN - 1,
+    //THREAD_CREATE_STACKTEST, prova , NULL, "prova_thread");
+
+    return 0;
 }

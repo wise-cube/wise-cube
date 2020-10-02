@@ -21,7 +21,9 @@ const shell_command_t shell_commands[] =
                 { "pub_button_ok", "publish the button Ok event message", cmd_pub_button_ok_event},
                 { "pub_button_ko", "publish the button Ko event message", cmd_pub_button_ko_event},
                 { "pub_answer", "publish answer event message", cmd_pub_answer_event},
-                { "mpu", 	"mpu init"				     			, cmd_mpu_init},
+                { "mpu_init", 	"mpu init"				     			, cmd_mpu_init},
+                { "mpu_start", 	"mpu start"				     			, cmd_mpu_start},
+                { "mpu_stop", 	"mpu stop"				     			, cmd_mpu_stop},
                 { NULL,     NULL,                                 NULL        }
         };
 
@@ -32,7 +34,7 @@ int main(void)
     cube_init();
     led_init();
     buttons_init();
-    //mpu_init();
+    mpu_init();
 
     shell_run(shell_commands, line_buf, SHELL_DEFAULT_BUFSIZE);
 

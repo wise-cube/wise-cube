@@ -14,11 +14,13 @@
 #define INTERVAL (100000U)    /* set interval to 1 seconds */
 
 int mpu_init(void);
-int mpu_handler(mpu9x50_t dev);
-void shake_handler(int);
+void* mpu_handler(void*);
 int answer_handler(int);
 int position(float* acc);
 
+
 int cmd_mpu_init(int argc, char **argv);
+int cmd_mpu_start(int argc, char **argv);
+int cmd_mpu_stop(int argc, char **argv);
 
 #endif //RIOT_CUBE_PAHO_H

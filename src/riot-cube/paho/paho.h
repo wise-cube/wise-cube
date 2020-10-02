@@ -25,5 +25,6 @@ int _cmd_pub(int argc, char **argv);
 int _cmd_sub(int argc, char **argv);
 int _cmd_unsub(int argc, char **argv);
 
+void* mqtt_thread_handler(void*);
 
 #endif //RIOT_CUBE_PAHO_H
