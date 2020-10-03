@@ -7,8 +7,6 @@
 #include "board.h"
 #include "mqtt_wrapper.h"
 
-char mpu_thread_stack[THREAD_STACKSIZE_MAIN];
-
 kernel_pid_t mpu_pid;
 mpu9x50_t mpu_dev;
 
@@ -34,8 +32,9 @@ int mpu_init(void){
         return err;
     }
 
+    char* mpu_thread_stack = malloc(THREAD_STACKSIZE_MAIN);
     mpu_pid = thread_create( mpu_thread_stack,
-                    THREAD_STACKSIZE_MAIN ,
+                    THREAD_STACKSIZE_MEDIUM  ,
                     12,
                     THREAD_CREATE_STACKTEST,
                     mpu_thread_handler ,
@@ -132,6 +131,7 @@ int detect_face_change(float *acc){
     }
 
     int c = 2*axis + (int)(max_acc > 0);
+
     char old_face = current_face;
     current_face = choices[c];
     if (old_face != current_face){
