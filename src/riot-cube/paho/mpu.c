@@ -69,7 +69,7 @@ void* mpu_thread_handler(void* data){
 
         memset(&acc_buf, 0, sizeof(acc_buf));
 
-		for (int i = 0 ; i < 30 ; i++){
+		for (int i = 0 ; i < 10 ; i++){
 
 //			err =  mpu9x50_read_gyro(&mpu_dev, &res_buf);
 //			if(err == -2){
@@ -92,16 +92,16 @@ void* mpu_thread_handler(void* data){
             }
 		}
 				
-		acc[0] = (float)acc_buf.x_axis/3000;
-		acc[1] = (float)acc_buf.y_axis/3000;
-		acc[2] = (float)acc_buf.z_axis/3000;
+		acc[0] = (float)acc_buf.x_axis/1000;
+		acc[1] = (float)acc_buf.y_axis/1000;
+		acc[2] = (float)acc_buf.z_axis/1000;
 
 //		gyro[0] = gyr_buf.x_axis/10;
 //		gyro[1] = gyr_buf.y_axis/10;
 //		gyro[2] = gyr_buf.z_axis/10;
 		
 		float acc_sum = acc[0]*acc[0] + acc[1]*acc[1] + acc[2]*acc[2];
-		printf("x: %f, y: %f, z:%f, s: %f\n", acc[0], acc[1], acc[2], acc_sum);
+//		printf("x: %f, y: %f, z:%f, s: %f\n", acc[0], acc[1], acc[2], acc_sum);
 		//puts("----> val: %d", s);
 		detect_shake(acc_sum);
 

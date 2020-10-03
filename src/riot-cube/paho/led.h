@@ -24,7 +24,9 @@ int led_init(void);
 void led_off(void);
 void led_on(int color);
 void led_blink(int color);
+void led_flash(int color);
 void led_burst(void );
+
 int cmd_led_burst(int argc, char** argv );
 int cmd_led_on(int argc, char** argv );
 

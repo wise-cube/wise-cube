@@ -27,13 +27,11 @@ int led_init(void){
     wlog_res("Led init", err);
     return err;
 }
-
 void led_off(void){
     gpio_clear(led_r);
     gpio_clear(led_g);
     gpio_clear(led_b);
 }
-
 void led_on(int color){
     led_off();
 
@@ -57,8 +55,12 @@ void led_blink(int color){
     led_on(color);
     xtimer_usleep(50000);
     led_off();
-
-
+}
+void led_flash(int color){
+    led_off();
+    led_on(color);
+    xtimer_usleep(200000);
+    led_off();
 }
 void led_burst(void ){
     for(int i=0; i<8; i++){
@@ -72,7 +74,6 @@ int cmd_led_burst(int argc, char** argv ){
     led_burst();
     return 0;
 }
-
 int cmd_led_on(int argc, char** argv ){
     if (argc < 2) {
         printf("Usage led_on <led_col(0-7)>");
