@@ -1,7 +1,7 @@
 #ifndef RIOT_CUBE_CUBE_FUNCTIONS_H
 #define RIOT_CUBE_CUBE_FUNCTIONS_H
 
-#define MSG_BUF_SIZE 100
+#define MSG_BUF_SIZE 128
 
 #include "paho.h"
 

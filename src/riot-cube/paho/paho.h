@@ -13,7 +13,7 @@
 #define DEFAULT_MQTT_PWD                ""
 #define DEFAULT_MQTT_PORT               1884
 #define DEFAULT_KEEPALIVE_SEC           10
-#define MAX_LEN_TOPIC                   100
+#define MAX_LEN_TOPIC                   128
 #define MAX_TOPICS                      4
 #define IS_CLEAN_SESSION                1
 #define IS_RETAINED_MSG                 0

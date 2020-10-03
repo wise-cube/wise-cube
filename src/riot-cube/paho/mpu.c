@@ -34,7 +34,7 @@ int mpu_init(void){
 
     char* mpu_thread_stack = malloc(THREAD_STACKSIZE_MAIN);
     mpu_pid = thread_create( mpu_thread_stack,
-                    THREAD_STACKSIZE_MEDIUM  ,
+                    THREAD_STACKSIZE_MAIN  ,
                     12,
                     THREAD_CREATE_STACKTEST,
                     mpu_thread_handler ,
@@ -44,7 +44,8 @@ int mpu_init(void){
     wlog_res("Mpu init", err);
     return err;
 }
-void  mpu_start(void){
+void mpu_start(void){
+    printf("[LOG] Mpu thread status : %d\n",thread_getstatus(mpu_pid));
     mpu_running = 1;
     thread_wakeup(mpu_pid);
 }
@@ -60,13 +61,15 @@ void* mpu_thread_handler(void* data){
     int err;
 
     while (1){
-
+//        printf("[LOG] Mpu thread status : %d\n",thread_getstatus(mpu_pid));
         if (!mpu_running){
 		    thread_sleep();
 		    continue;
         }
 
-		for (int i = 0 ; i < 10 ; i++){
+        memset(&acc_buf, 0, sizeof(acc_buf));
+
+		for (int i = 0 ; i < 30 ; i++){
 
 //			err =  mpu9x50_read_gyro(&mpu_dev, &res_buf);
 //			if(err == -2){
@@ -78,35 +81,37 @@ void* mpu_thread_handler(void* data){
 //				gyr_buf.z_axis += res_buf.z_axis;
 //			}
 
-			err =  mpu9x50_read_accel(&mpu_dev, &res_buf);
-			if(err == -2){
-				printf("Acc full-scale range is configured wrong\n");
-				return NULL;
-			} else {
-				acc_buf.x_axis += res_buf.x_axis;
-				acc_buf.y_axis += res_buf.y_axis;
-				acc_buf.z_axis += res_buf.z_axis;
-			}
+        err =  mpu9x50_read_accel(&mpu_dev, &res_buf);
+        if(err){
+            printf("Error while mesauring accel\n");
+            continue;
+        } else {
+            acc_buf.x_axis += res_buf.x_axis;
+            acc_buf.y_axis += res_buf.y_axis;
+            acc_buf.z_axis += res_buf.z_axis;
+            }
 		}
 				
-		acc[0] = acc_buf.x_axis/1000;
-		acc[1] = acc_buf.y_axis/1000;
-		acc[2] = acc_buf.z_axis/1000;
+		acc[0] = (float)acc_buf.x_axis/3000;
+		acc[1] = (float)acc_buf.y_axis/3000;
+		acc[2] = (float)acc_buf.z_axis/3000;
 
 //		gyro[0] = gyr_buf.x_axis/10;
 //		gyro[1] = gyr_buf.y_axis/10;
 //		gyro[2] = gyr_buf.z_axis/10;
 		
-		int acc_sum = acc[0]*acc[0] + acc[1]*acc[1] + acc[2]*acc[2];
-		//printf("x: %d, y: %d, z:%d", acc[0], acc[1], acc[2]);
+		float acc_sum = acc[0]*acc[0] + acc[1]*acc[1] + acc[2]*acc[2];
+		printf("x: %f, y: %f, z:%f, s: %f\n", acc[0], acc[1], acc[2], acc_sum);
 		//puts("----> val: %d", s);
 		detect_shake(acc_sum);
+
 		detect_face_change(acc);
+
 
 		xtimer_usleep(100000);
 	}
 
-	printf("mpu handler exited");
+	printf("mpu handler exited\n");
 }
 
 void detect_shake(int s){

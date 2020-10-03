@@ -2,7 +2,7 @@
 #include "utils.h"
 
 int pub_shake_event(void){
-    char        msg_buf[MSG_BUF_SIZE];
+    char         msg_buf[MSG_BUF_SIZE];
     const char  msg_template_buf[]    ="{\"msg_type\":\"%s\"}";
 
     snprintf(msg_buf, MSG_BUF_SIZE-1, msg_template_buf, "shake_event");
@@ -29,7 +29,7 @@ int pub_answer_event(int ans_num){
     char        msg_buf[MSG_BUF_SIZE];
     const char  msg_template_buf[]    ="{\"msg_type\":\"%s\", \"num\":%d }";
 
-    snprintf(msg_buf, MSG_BUF_SIZE-1, msg_template_buf, "button_ko_event", ans_num);
+    snprintf(msg_buf, MSG_BUF_SIZE-1, msg_template_buf, "new_answer", ans_num);
     return pub(msg_buf, NULL);
 }
 

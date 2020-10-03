@@ -18,7 +18,6 @@ int mqtt_init(void){
 //    network = malloc(sizeof(Network))
 
     NetworkInit(&mqtt_network);
-    xtimer_sleep(3);
     MQTTClientInit(&mqtt_client, &mqtt_network, COMMAND_TIMEOUT_MS, buf, BUF_SIZE, readbuf, BUF_SIZE);
 
     err = MQTTStartTask(&mqtt_client) < 1;
@@ -45,7 +44,6 @@ int con(void){
     // Retrieve broker ip and port
     char *broker_ip = (char*)&BROKER_HOST;
     int broker_port = BROKER_PORT;
-
     int err = 0;
 
     // Create mqtt last will object ( used to signal disconnection )
@@ -75,10 +73,9 @@ int con(void){
     err = MQTTConnect(&mqtt_client, &connect_data);
     if (err < 0) {
         printf("Unable to connect to broker (%d)\n", err);
-        discon();
-
+//        discon();
     } else {
-         printf("Connection Successful");
+         printf("Connection Successfu\n");
     }
     return err;
 }
@@ -99,22 +96,20 @@ int discon(void) {
 int pub(char* payload, char* topic){
 
     if ( !payload) {
-        printf("Cannot publish, no message specified \n");
+        printf("Cannot publish, no message payload specified \n");
         return -1;
     }
     if ( !is_con() ) {
         printf("Cannot publish, mqtt client disconnected \n");
         con();
     }
-
-    enum QoS msg_qos = QOS0;
     char* msg_payload = (payload);
     char* msg_topic = (topic) ? topic :(char*)&PUB_TOPIC;
 
     int err;
 
     MQTTMessage message;
-    message.qos = msg_qos;
+    message.qos = QOS0;
     message.retained = IS_RETAINED_MSG;
     message.payload = msg_payload;
     message.payloadlen = strlen(message.payload);
@@ -136,7 +131,7 @@ int sub(char* topic){
     }
     char* sub_topic = (topic) ? topic :(char*)&SUB_TOPIC;
 
-    printf("Subscribing to %s\n", topic);
+    printf("Subscribing to %s\n", sub_topic);
 
     if (strlen(sub_topic) > MAX_LEN_TOPIC) {
         printf("Not subscribing, topic too long %s\n", sub_topic);
@@ -144,9 +139,9 @@ int sub(char* topic){
     }
     int err = MQTTSubscribe(&mqtt_client, sub_topic, QOS0, on_msg_received);
     if (err) {
-        printf("Unable to subscribe to %s (%d)\n", topic, err  );
+        printf("Unable to subscribe to %s (%d)\n", sub_topic, err  );
     } else {
-        printf("Now subscribed to %s, QOS0\n", topic);
+        printf("Now subscribed to %s, QOS0\n", sub_topic);
     }
     return err;
 }
