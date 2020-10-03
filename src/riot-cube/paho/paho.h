@@ -1,6 +1,11 @@
 #ifndef RIOT_CUBE_PAHO_H
 #define RIOT_CUBE_PAHO_H
 
+#include "paho_mqtt.h"
+#include "MQTTClient.h"
+
+
+
 #define BUF_SIZE                        1024
 #define MQTT_VERSION_v311               4       /* MQTT v3.1.1 version is 4 */
 #define COMMAND_TIMEOUT_MS              4000
@@ -13,18 +18,22 @@
 #define IS_CLEAN_SESSION                1
 #define IS_RETAINED_MSG                 0
 
-#include "utils.h"
-
-unsigned get_qos(const char *str);
+int is_con(void);
 int discon(void);
+int con(char* ip_addr, int port);
+int pub(char* payload, char* topic);
+
 
 void _on_msg_received(MessageData *data);
+void* mqtt_thread_handler(void*);
+int mqtt_init(void);
+
+
 int _cmd_discon(int argc, char **argv);
 int _cmd_con(int argc, char **argv);
 int _cmd_pub(int argc, char **argv);
 int _cmd_sub(int argc, char **argv);
 int _cmd_unsub(int argc, char **argv);
-
-void* mqtt_thread_handler(void*);
+int cmd_mqtt_init(int argc, char **argv);
 
 #endif //RIOT_CUBE_PAHO_H

@@ -1,34 +1,15 @@
 #include "paho.h"
+
+#include "utils.h"
 #include "led.h"
 
-int topic_cnt = 0;
-MQTTClient client;
-Network network;
-char _topic_to_subscribe[MAX_TOPICS][MAX_LEN_TOPIC];
-int status;
-
-unsigned char buf[BUF_SIZE];
-unsigned char readbuf[BUF_SIZE];
 
 
-/*
-// Paho Functions
-*/
 
-unsigned get_qos(const char *str)
-{
-    int qos = atoi(str);
+MQTTClient mqtt_client;
+Network mqtt_network;
 
-    switch (qos) {
-        case 1:     return QOS1;
-        case 2:     return QOS2;
-        default:    return QOS0;
-    }
-}
-
-
-void _on_msg_received(MessageData *data)
-{
+void _on_msg_received(MessageData *data) {
     printf("paho_mqtt_example: message received on topic"
            " %.*s: %.*s\n",
            (int)data->topicName->lenstring.len,
@@ -36,198 +17,198 @@ void _on_msg_received(MessageData *data)
            (char *)data->message->payload);
 }
 
-int _cmd_discon(int argc, char **argv)
-{
-    (void)argc;
-    (void)argv;
-
-    return discon();
+int is_con(void) {
+    return mqtt_client.isconnected;
 }
+int discon(void) {
 
-int discon(void){
-    topic_cnt = 0;
-    int res = MQTTDisconnect(&client);
+    int res = MQTTDisconnect(&mqtt_client);
     if (res < 0) {
-        printf("mqtt_example: Unable to disconnect\n");
+        printf("Unable to disconnect from mqtt broker\n");
     }
     else {
-        printf("mqtt_example: Disconnect successful\n");
+        printf("Disconnect successful from mqtt broker \n");
     }
 
-    NetworkDisconnect(&network);
-    status=0;
+    NetworkDisconnect(&mqtt_network);
+
     return res;
 }
-
-
-int _cmd_con(int argc, char **argv)
-{
-    if (client.isconnected) {
-        printf("mqtt_example: client already connected, disconnecting it\n");
-        MQTTDisconnect(&client);
-        NetworkDisconnect(&network);
+int con(char* ip_addr, int port){
+    if ( is_con() ) {
+        printf("mqtt_example: client already connected\n");
+        return 0;
     }
 
+    // Retrieve broker ip and port
+    char *broker_ip = (char*)&BROKER_HOST;
+    int broker_port = BROKER_PORT;
+    if (ip_addr) broker_ip = ip_addr;
+    if (port) broker_port = port;
+    int err = 0;
 
-    char *remote_ip = (char*)&BROKER_HOST;
-    int port = BROKER_PORT;
-    int ret = -1;
-
-
+    // Create mqtt last will object ( used to signal disconnection )
     MQTTPacket_willOptions lwt_data = MQTTPacket_willOptions_initializer;
-    lwt_data.topicName.cstring= PUB_TOPIC;
+    lwt_data.topicName.cstring = PUB_TOPIC;
     lwt_data.message.cstring = LWT_MSG;
 
+    // Create mqtt client ( used to signal disconnection )
     MQTTPacket_connectData connect_data = MQTTPacket_connectData_initializer;
     connect_data.willFlag = 1;
     connect_data.will = lwt_data;
     connect_data.MQTTVersion = MQTT_VERSION_v311;
     connect_data.clientID.cstring = DEFAULT_MQTT_CLIENT_ID;
     connect_data.cleansession = IS_CLEAN_SESSION;
+    //    connect_data.username.cstring
+    //    connect_data.password
+    //    connect_data.keepAliveInterval
 
-
-    if (argc > 1) {
-        remote_ip = argv[1];
+    printf("Trying to connect to network\n");
+    // Connecting to network
+    err = NetworkConnect(&mqtt_network, broker_ip, broker_port);
+    if (err ) {
+        printf("Unable to connect to network (%d)\n", err);
+        return err;
     }
 
-    if (argc > 2) {
-        port = atoi(argv[2]);
-    }
+    printf("Trying to connect to %s, port: %d\n",
+       ip_addr, port);
 
-    if (argc > 3) {
-        connect_data.clientID.cstring = argv[3];
-    }
+     // Connecting to broker
+    err = MQTTConnect(&mqtt_client, &connect_data);
+    if (err < 0) {
+        printf("Unable to connect to broker (%d)\n", err);
+        discon();
 
-    connect_data.username.cstring = DEFAULT_MQTT_USER;
-    if (argc > 4) {
-        connect_data.username.cstring = argv[4];
+    } else {
+         printf("Connection Successful");
     }
-
-    connect_data.password.cstring = DEFAULT_MQTT_PWD;
-    if (argc > 5) {
-        connect_data.password.cstring = argv[5];
-    }
-
-    connect_data.keepAliveInterval = DEFAULT_KEEPALIVE_SEC;
-    if (argc > 6) {
-        connect_data.keepAliveInterval = atoi(argv[6]);
-    }
-
-    printf("mqtt_example: Connecting to MQTT Broker from %s %d\n",
-           remote_ip, port);
-    printf("mqtt_example: Trying to connect to %s , port: %d\n",
-           remote_ip, port);
-    ret = NetworkConnect(&network, remote_ip, port);
-    if (ret < 0) {
-        printf("mqtt_example: Unable to connect\n");
-        return ret;
-    }
-
-    printf("user:%s clientId:%s password:%s\n", connect_data.username.cstring,
-           connect_data.clientID.cstring, connect_data.password.cstring);
-    ret = MQTTConnect(&client, &connect_data);
-    if (ret < 0) {
-        printf("mqtt_example: Unable to connect client %d\n", ret);
-        _cmd_discon(0, NULL);
-        return ret;
-    }
-    else {
-        printf("mqtt_example: Connection successfully\n");
-    }
-    status = (ret > 0) ? 0 : 1;
-    return (ret > 0) ? 0 : 1;
+    return err;
 }
+int pub(char* payload, char* topic){
 
-int _cmd_pub(int argc, char **argv)
-{
-	if ( !client.isconnected) {
-        printf("mqtt_example: disconnect\n");
-        _cmd_con(0, NULL);
+    if ( !payload) {
+        printf("Cannot publish, no message specified \n");
+        return -1;
     }
-    enum QoS qos = QOS0;
-    char* topic = (char*)&PUB_TOPIC;
-    printf("cmd_pub");
-    if (argc < 2) {
-        printf("usage: %s <string msg> [topic name] [QoS level]\n",
-               argv[0]);
-        return 1;
+    if ( !is_con() ) {
+        printf("Cannot publish, mqtt client disconnected \n");
+        return -1 ;
+//        con();
     }
 
-    if (argc > 2) {
-        topic = argv[2];
-    }
+    enum QoS msg_qos = QOS0;
+    char* msg_payload = (payload);
+    char* msg_topic = (topic) ? topic :(char*)&PUB_TOPIC;
 
-    if (argc > 3) {
-        qos = get_qos(argv[3]);
-    }
+    int err;
 
     MQTTMessage message;
-    message.qos = qos;
+    message.qos = msg_qos;
     message.retained = IS_RETAINED_MSG;
-    message.payload = argv[1];
+    message.payload = msg_payload;
     message.payloadlen = strlen(message.payload);
 
-    int rc;
-
-    if ((rc = MQTTPublish(&client, topic, &message)) < 0) {
-        printf("mqtt_example: Unable to publish (%d)\n", rc);
-    }
-    else {
-        printf("mqtt_example: Message (%s) has been published to topic %s"
-               "with QOS %d\n",
-               (char *)message.payload, topic, (int)message.qos);
-    }
-
-    return rc;
+    err = MQTTPublish(&mqtt_client, msg_topic, &message);
+    if (!err){
+        printf("Message (%s) has been published to topic %s"
+                   "with QOS %d\n",
+                   (char *)message.payload, topic, (int)message.qos);
+   } else {
+        printf("Unable to publish, error: %d\n", err);
+   }
+   return err;
 }
 
-int _cmd_sub(int argc, char **argv)
-{
-    enum QoS qos = QOS0;
-    char* topic = (char*)&SUB_TOPIC;
+void* mqtt_thread_handler(void* data){
+    return NULL;
+}
 
-    if (argc < 1) {
-        printf("usage: %s [topic name] [QoS level]\n", argv[0]);
-        return 1;
-    }
-    if (argc > 1) {
-        topic = argv[1];
+
+
+//unsigned char buf[BUF_SIZE];
+//unsigned char readbuf[BUF_SIZE];
+//
+int mqtt_init(void){
+
+    int err = 0;
+    unsigned char* buf = malloc(BUF_SIZE);
+    unsigned char* readbuf = malloc(BUF_SIZE);
+//    client = malloc(sizeof(MQTTClient))
+//    network = malloc(sizeof(Network))
+
+    if (buf == NULL || readbuf == NULL){
+        err = -64;
     }
 
-    if (argc > 2) {
-        qos = get_qos(argv[2]);
-    }
 
-    if (topic_cnt > MAX_TOPICS) {
-        printf("mqtt_example: Already subscribed to max %d topics,"
-               "call 'unsub' command\n", topic_cnt);
+
+    NetworkInit(&mqtt_network);
+    xtimer_sleep(3);
+    MQTTClientInit(&mqtt_client, &mqtt_network, COMMAND_TIMEOUT_MS, buf, BUF_SIZE, readbuf, BUF_SIZE);
+
+    err |= MQTTStartTask(&mqtt_client);
+//    con(NULL,0);
+    wlog_res("Mqtt init", err);
+    return err;
+
+}
+
+int _cmd_discon(int argc, char **argv){
+    (void)argc;
+    (void)argv;
+
+    int err = discon();
+    wlog_res("cmd discon", err);
+    return err;
+}
+
+int _cmd_con(int argc, char **argv){
+//    printf("usage: con <string msg> [broker ip ] [broker port]\n")
+//    char * ip_addr = (argc > 1) ? argv[1] : NULL;
+//    int  port = (argc > 2) ? atoi(argv[2]): 0;
+//    char * ip_addr = (argc > 1) ? argv[1] : NULL;
+//    int  port = (argc > 2) ? atoi(argv[2]): 0;
+
+    int err = con(NULL, 0);
+    wlog_res("cmd con", err);
+    return err;
+}
+int _cmd_pub(int argc, char **argv){
+//    printf("usage: pub <string msg> [topic name] [QoS level]\n")
+    if (argc <= 1) {
         return -1;
     }
+    char* msg = argv[1];
+    char* topic = (argc > 2) ? argv[2] : NULL;
+//    enum Qos qos = (argc > 3) ? get_qos(atoi(argv[3])) : NULL;
+
+    int err = pub(topic, msg);
+    wlog_res("cmd con", err);
+    return err;
+
+}
+int _cmd_sub(int argc, char **argv){
+//    printf("usage: sub [topic name] [QoS level]\n", argv[0])
+    char* topic = (argc > 1) ? (char*)&SUB_TOPIC : NULL;
+    enum QoS qos = (argc > 2) ? QOS0 : get_qos(argv[2]);
 
     if (strlen(topic) > MAX_LEN_TOPIC) {
-        printf("mqtt_example: Not subscribing, topic too long %s\n", argv[1]);
+        printf("Not subscribing, topic too long %s\n", argv[1]);
         return -1;
     }
-    strncpy(_topic_to_subscribe[topic_cnt], topic, strlen(topic));
 
-    printf("mqtt_example: Subscribing to %s\n", _topic_to_subscribe[topic_cnt]);
-    int ret = MQTTSubscribe(&client,
-                            _topic_to_subscribe[topic_cnt], qos, _on_msg_received);
-    if (ret < 0) {
-        printf("mqtt_example: Unable to subscribe to %s (%d)\n",
-               _topic_to_subscribe[topic_cnt], ret);
-        _cmd_discon(0, NULL);
+    printf("Subscribing to %s\n", topic);
+
+    int err = MQTTSubscribe(&mqtt_client, topic, qos, _on_msg_received);
+    if (err) {
+        printf("Unable to subscribe to %s (%d)\n", topic, err  );
+    } else {
+        printf("Now subscribed to %s, QOS %d\n", topic, (int) qos);
     }
-    else {
-        printf("mqtt_example: Now subscribed to %s, QOS %d\n",
-               topic, (int) qos);
-        topic_cnt++;
-    }
-    return ret;
+    return err;
 }
-
-int _cmd_unsub(int argc, char **argv)
-{
+int _cmd_unsub(int argc, char **argv){
     char* topic = (char*)&SUB_TOPIC;
 
     if (argc < 1) {
@@ -238,7 +219,7 @@ int _cmd_unsub(int argc, char **argv)
         topic = argv[1];
     }
 
-    int ret = MQTTUnsubscribe(&client, topic);
+    int ret = MQTTUnsubscribe(&mqtt_client, topic);
 
     if (ret < 0) {
         printf("mqtt_example: Unable to unsubscribe from topic: %s\n", topic);
@@ -246,7 +227,10 @@ int _cmd_unsub(int argc, char **argv)
     }
     else {
         printf("mqtt_example: Unsubscribed from topic:%s\n", topic);
-        topic_cnt--;
     }
     return ret;
+}
+
+int cmd_mqtt_init(int argc, char **argv){
+    return mqtt_init();
 }

@@ -15,12 +15,15 @@ gpio_t led_g = LED_G_GPIO;
 gpio_t led_b = LED_B_GPIO;
 
 
-void led_init(void){
-    gpio_init ( led_r, GPIO_OUT );
-    gpio_init ( led_g, GPIO_OUT );
-    gpio_init ( led_b, GPIO_OUT );
+int led_init(void){
+    int res = 0;
+    res |= gpio_init ( led_r, GPIO_OUT );
+    res |= gpio_init ( led_g, GPIO_OUT );
+    res |= gpio_init ( led_b, GPIO_OUT );
 
     led_burst();
+
+    return res;
 }
 
 void led_off(void){
@@ -62,6 +65,7 @@ void led_burst(void ){
     }
     led_off();
 }
+
 int cmd_led_burst(int argc, char** argv ){
     led_burst();
     return 0;

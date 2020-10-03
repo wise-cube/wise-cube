@@ -1,22 +1,22 @@
 #include "mpu.h"
+#include "utils.h"
 
-
-#include "xtimer.h"
 #include "periph_conf.h"
 #include "periph/i2c.h"
 
 #include "board.h"
 #include "mutex.h"
 
-#include "cube_functions.h"
+#include "mqtt_wrapper.h"
 
 #include <thread.h>
 
-char old_pos ;
+char old_pos;
+
 
 char mpu_thread_stack[THREAD_STACKSIZE_MAIN];
 kernel_pid_t mpu_pid;
-mpu9x50_t* mpu_dev_ptr;
+mpu9x50_t mpu_dev;
 int mpu_running;
 
 mpu9x50_results_t res_g = {0};
@@ -41,11 +41,13 @@ static void  mpu_stop(void){
 
 int mpu_init(void){
     mpu_running = 0;
-    old_pos = '0';
+    old_pos = 0;
+
     mpu9x50_status_t conf = {0x01,0x01,0x01,0x03,0x03,1000,100,0x00,0x00,0x00};
     mpu9x50_params_t params = {I2C_INTERFACE,0x68,0x0C,1000};
-    mpu9x50_t dev = {params,conf};
-    mpu_dev_ptr = &dev;
+    mpu9x50_t tmp_mpu_dev = {params,conf};
+    memcpy(&mpu_dev, &tmp_mpu_dev, sizeof(mpu9x50_t));
+
 
     printf("main thread: %d\n" , mpu_pid);
 
@@ -53,7 +55,7 @@ int mpu_init(void){
     /* Initialise the I2C serial interface as master */
     i2c_init(I2C_INTERFACE);
 
-    int init= mpu9x50_init(mpu_dev_ptr, &params);
+    int init= mpu9x50_init(&mpu_dev, &params);
 
 
     if (init == -1) {
@@ -79,10 +81,16 @@ void* mpu_handler(void* data){
 //		puts("in handler\n");
 		mpu9x50_results_t  acc_buf = {0};
 		mpu9x50_results_t  gyr_buf = {0};
+
+        if (!mpu_running){
+		    thread_sleep();
+        }
 		
 		for (int i = 0 ; i < 10 ; i++){
+
 			
-			int read_gyro =  mpu9x50_read_gyro(mpu_dev_ptr, &res_g);
+			int read_gyro =  mpu9x50_read_gyro(&mpu_dev, &res_g);
+
 			if (read_gyro == -1) {
 				printf("I2C is not enabled in board config\n");
 				return NULL;
@@ -99,7 +107,7 @@ void* mpu_handler(void* data){
 			}
 		
 		
-			int read_accel =  mpu9x50_read_accel(mpu_dev_ptr, &res_a);
+			int read_accel =  mpu9x50_read_accel(&mpu_dev, &res_a);
 			if (read_accel == -1) {
 				printf("if given I2C is not enabled in board config\n");
 				return NULL;
@@ -115,7 +123,6 @@ void* mpu_handler(void* data){
 				//printf("read accelerometer on success\n");
 				
 			}
-			xtimer_usleep(INTERVAL);		
 		}
 				
 		acc[0] = acc_buf.x_axis/1000;
@@ -133,11 +140,8 @@ void* mpu_handler(void* data){
 		//printf("x: %d, y: %d, z:%d", acc[0], acc[1], acc[2]);
 		//puts("----> val: %d", s);
 		pub_if_shake(s);
-		xtimer_usleep(100 * US_PER_MS);
+		xtimer_usleep(100000);
 
-		if (!mpu_running){
-		    thread_yield();
-		}
 	}
 	printf("mpu handler exited")	;
 //	flush(stdout);

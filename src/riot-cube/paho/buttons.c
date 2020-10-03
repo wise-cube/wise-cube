@@ -1,14 +1,14 @@
 //
 // Created by di3go on 2020-09-04.
 //
-
-#include <stdio.h>
-#include "buttons.h"
-#include "led.h"
-#include "board.h"
 #include "periph/gpio.h"
 #include "mutex.h"
-#include "cube_functions.h"
+#include "board.h"
+
+#include "utils.h"
+#include "buttons.h"
+#include "led.h"
+#include "mqtt_wrapper.h"
 
 
 gpio_t button_ok_pin = 14;
@@ -17,7 +17,7 @@ mutex_t buttons_mutex;
 xtimer_t* release_lock_timer;
 
 
-void buttons_init(void){
+int buttons_init(void){
     int res = gpio_init_int( button_ok_pin, GPIO_OUT, GPIO_RISING, button_ok_handler, NULL);
     res |= gpio_init_int( button_ko_pin, GPIO_OUT, GPIO_RISING, button_ko_handler, NULL);
     mutex_init(&buttons_mutex);
@@ -33,7 +33,8 @@ void buttons_init(void){
 //    gpio_clear(button_ko_pin);
 //    gpio_clear(button_ok_pin);
 
-    printf("Buttons init: %d\n",res);
+//    printf("Buttons init: %d\n",res);
+    return res;
 }
 
 void release_lock_handler(void* arg){

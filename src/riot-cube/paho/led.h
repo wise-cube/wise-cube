@@ -20,7 +20,7 @@
 #define LED_G_GPIO 12
 #define LED_B_GPIO 13
 
-void led_init(void);
+int led_init(void);
 void led_off(void);
 void led_on(int color);
 void led_blink(int color);

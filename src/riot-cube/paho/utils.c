@@ -1,17 +1,26 @@
 #include "utils.h"
 
+#include "paho_mqtt.h"
+#include "MQTTClient.h"
 
-extern int status;
-int is_online(void){
-    int cnt=0;
-//    netif_t * netif_ptr = NULL;
-//    for(netif_ptr = netif_iter(NULL); netif_ptr!=NULL ;netif_ptr = netif_iter(netif_ptr)){
-//        cnt ++;
-//    }
-    return cnt;
+void wlog_res(char* action, int res){
+
+    if (res == 0) {
+        printf("[LOG] : %s ok\n", action);
+    } else {
+        printf("[ERR] : %s failed (%d)\n", action, res);
+    }
 }
 
-int cmd_get_status(int argc, char **argv){
-    return status;
+unsigned get_qos(const char *str)
+{
+    int qos = atoi(str);
+
+    switch (qos) {
+        case 1:     return QOS1;
+        case 2:     return QOS2;
+        default:    return QOS0;
+    }
 }
+
 
