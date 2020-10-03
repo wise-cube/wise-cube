@@ -41,7 +41,7 @@ ifneq (0, $(LWIP_IPV4))
   USEMODULE += lwip_ipv4
   USEMODULE += lwip_dhcp_auto
   USEMODULE += lwip_sock_udp
-#   CFLAGS += -DETHARP_SUPPORT_STATIC_ENTRIES=1
+  CFLAGS += -DETHARP_SUPPORT_STATIC_ENTRIES=1
   LWIP_IPV6 ?= 0
 else
   LWIP_IPV6 ?= 1

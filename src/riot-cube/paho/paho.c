@@ -36,21 +36,6 @@ void on_msg_received(MessageData *data) {
            (char *)data->message->payload);
 }
 
-
-int discon(void) {
-
-    int res = MQTTDisconnect(&mqtt_client);
-    if (res < 0) {
-        printf("Unable to disconnect from mqtt broker\n");
-    }
-    else {
-        printf("Disconnect successful from mqtt broker \n");
-    }
-
-    NetworkDisconnect(&mqtt_network);
-
-    return res;
-}
 int con(void){
     if ( is_con() ) {
         printf("mqtt_example: client already connected\n");
@@ -96,6 +81,20 @@ int con(void){
          printf("Connection Successful");
     }
     return err;
+}
+int discon(void) {
+
+    int res = MQTTDisconnect(&mqtt_client);
+    if (res < 0) {
+        printf("Unable to disconnect from mqtt broker\n");
+    }
+    else {
+        printf("Disconnect successful from mqtt broker \n");
+    }
+
+    NetworkDisconnect(&mqtt_network);
+
+    return res;
 }
 int pub(char* payload, char* topic){
 
