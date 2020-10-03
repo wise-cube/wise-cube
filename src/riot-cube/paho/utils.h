@@ -9,4 +9,5 @@
 void wlog_res(char* action, int status);
 unsigned get_qos(const char *str);
 
+void wlog(char* msg);
 #endif //RIOT_CUBE_UTILS_H

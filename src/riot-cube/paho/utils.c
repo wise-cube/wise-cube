@@ -3,13 +3,18 @@
 #include "paho_mqtt.h"
 #include "MQTTClient.h"
 
-void wlog_res(char* action, int res){
+void wlog_res (char* action, int res){
 
     if (res == 0) {
         printf("[LOG] : %s ok\n", action);
     } else {
         printf("[ERR] : %s failed (%d)\n", action, res);
     }
+}
+
+
+void wlog(char* msg){
+    printf("[LOG] : %s ok\n", msg);
 }
 
 unsigned get_qos(const char *str)

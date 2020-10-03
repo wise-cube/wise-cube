@@ -18,22 +18,19 @@
 #define IS_CLEAN_SESSION                1
 #define IS_RETAINED_MSG                 0
 
-int is_con(void);
+int mqtt_init(void);
+int con(void);
 int discon(void);
-int con(char* ip_addr, int port);
+int is_con(void);
 int pub(char* payload, char* topic);
 
-
 void _on_msg_received(MessageData *data);
-void* mqtt_thread_handler(void*);
-int mqtt_init(void);
 
-
-int _cmd_discon(int argc, char **argv);
-int _cmd_con(int argc, char **argv);
-int _cmd_pub(int argc, char **argv);
-int _cmd_sub(int argc, char **argv);
-int _cmd_unsub(int argc, char **argv);
+int cmd_con(int argc, char **argv);
+int cmd_discon(int argc, char **argv);
+int cmd_pub(int argc, char **argv);
+int cmd_sub(int argc, char **argv);
+int cmd_unsub(int argc, char **argv);
 int cmd_mqtt_init(int argc, char **argv);
 
 #endif //RIOT_CUBE_PAHO_H

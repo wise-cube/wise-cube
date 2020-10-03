@@ -1,11 +1,13 @@
 //
 // Created by di3go on 2020-09-04.
 //
+#include "led.h"
+
 #include "stdlib.h"
-#include "xtimer.h"
+#include "utils.h"
 #include "periph/gpio.h"
 
-#include "./led.h"
+
 
 
 
@@ -16,14 +18,14 @@ gpio_t led_b = LED_B_GPIO;
 
 
 int led_init(void){
-    int res = 0;
-    res |= gpio_init ( led_r, GPIO_OUT );
-    res |= gpio_init ( led_g, GPIO_OUT );
-    res |= gpio_init ( led_b, GPIO_OUT );
+    int err = 0;
+    err |= gpio_init ( led_r, GPIO_OUT );
+    err |= gpio_init ( led_g, GPIO_OUT );
+    err |= gpio_init ( led_b, GPIO_OUT );
 
     led_burst();
-
-    return res;
+    wlog_res("Led init", err);
+    return err;
 }
 
 void led_off(void){

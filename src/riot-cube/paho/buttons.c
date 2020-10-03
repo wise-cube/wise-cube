@@ -2,7 +2,6 @@
 // Created by di3go on 2020-09-04.
 //
 #include "periph/gpio.h"
-#include "mutex.h"
 #include "board.h"
 
 #include "utils.h"
@@ -34,6 +33,7 @@ int buttons_init(void){
 //    gpio_clear(button_ok_pin);
 
 //    printf("Buttons init: %d\n",res);
+    wlog_res("Button init", res);
     return res;
 }
 

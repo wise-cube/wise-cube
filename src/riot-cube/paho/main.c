@@ -6,14 +6,13 @@
 #include "mpu.h"
 
 
-
 const shell_command_t shell_commands[] =
         {
-                { "con",    "connect to MQTT broker",             _cmd_con    },
-                { "discon", "disconnect from the current broker", _cmd_discon },
-                { "pub",    "publish something",                  _cmd_pub    },
-                { "sub",    "subscribe topic",                    _cmd_sub    },
-                { "unsub",  "unsubscribe from topic",             _cmd_unsub  },
+                { "con",    "connect to MQTT broker",             cmd_con    },
+                { "discon", "disconnect from the current broker", cmd_discon },
+                { "pub",    "publish something",                  cmd_pub    },
+                { "sub",    "subscribe topic",                    cmd_sub    },
+                { "unsub",  "unsubscribe from topic",             cmd_unsub  },
                 { "led_burst", "flashes all the color",          cmd_led_burst},
                 { "led_on", "set led to onecolor",                cmd_led_on},
                 { "pub_shake", "publish the shake event message", cmd_pub_shake_event},
@@ -27,7 +26,6 @@ const shell_command_t shell_commands[] =
                 { NULL,     NULL,                                 NULL        }
         };
 
-extern int status;
 
 int main(void)
 {
@@ -35,9 +33,10 @@ int main(void)
     xtimer_sleep(1);
     #endif
 
-    wlog_res("Leds init", led_init());
-    wlog_res("Button init", buttons_init());
-    wlog_res("Mpu init", mpu_init());
+
+    led_init();
+    buttons_init();
+    mpu_init();
     mqtt_init();
 
     char line_buf[SHELL_DEFAULT_BUFSIZE];

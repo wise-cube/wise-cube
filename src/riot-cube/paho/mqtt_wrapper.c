@@ -1,5 +1,5 @@
 #include "mqtt_wrapper.h"
-
+#include "utils.h"
 
 int pub_shake_event(void){
     char        msg_buf[MSG_BUF_SIZE];
@@ -47,4 +47,7 @@ int cmd_pub_button_ko_event(int argc, char **argv){
 
 int cmd_pub_answer_event(int argc, char **argv){
     return pub_answer_event(0);
+}
+int cmd_mqtt_init(int argc, char **argv){
+    return mqtt_init();
 }

@@ -10,6 +10,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdbool.h>
+#include <thread.h>
 #include "xtimer.h"
 #include "shell.h"
 #include "thread.h"
