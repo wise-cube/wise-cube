@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 if [ $USER == "di3go" ]; then
   export IP="192.168.1.204"
@@ -8,7 +8,7 @@ if [ $USER == "di3go" ]; then
 fi
 
 if [ $USER == "roberto" ]; then
-  export IP="172.20.10.4"
+  export IP="192.168.1.29"
   source /home/roberto/.sh_env
   make  flash term
 

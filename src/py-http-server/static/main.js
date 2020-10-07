@@ -49,29 +49,25 @@ function onMessageArrived(message) {
 function trigger_pub(msg){
 	console.log(msg)
 
-
 	switch(msg.msg_type) {
 
-	case "button_ok_event":
+	case "long_press_event":
 		on_ok();
 		break;
 	case "shake_event":
 		on_shake()
 		break;
-	case "button_ko_event":
+	case "short_press_event":
 		on_ko();
 		break;
-
 	case "sel_ans":
 		on_sel_ans(msg.num);
 		break;
-
 	default:
 		console.log("Invalid msg_type")
 		break;
 	}
 }
-
 
 function new_group_resp(id, token, status){
 	var payload= ' {"type":"new_group_resp","group_id":' + id + ', "group_token ": ' + token + ', "status" :' + status+ '}';

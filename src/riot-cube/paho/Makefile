@@ -13,8 +13,8 @@ RIOTBASE ?= $(CURDIR)/../../../../RIOT
 DEVELHELP ?= 1
 # Change this to 0 show compiler invocation lines by default:
 QUIET ?= 1
-WIFI_SSID ?= ""
-WIFI_PASS ?= ""
+WIFI_SSID ?= "AirPort Network"
+WIFI_PASS ?= "netgear2014"
 
 FEATURES_REQUIRED += periph_gpio
 USEMODULE += periph_gpio_irq

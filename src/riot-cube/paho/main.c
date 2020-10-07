@@ -31,7 +31,6 @@ int main(void)
     xtimer_sleep(1);
     #endif
 
-
     led_init();
     buttons_init();
     mpu_init();
