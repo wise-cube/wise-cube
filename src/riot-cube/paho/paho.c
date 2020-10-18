@@ -22,8 +22,8 @@ int mqtt_init(void){
 //    con(NULL,0);
     wlog_res("Mqtt init", err);
     return err;
-
 }
+
 void on_msg_received(MessageData *data) {
     printf("paho_mqtt_example: message received on topic"
            " %.*s: %.*s\n",
@@ -40,7 +40,7 @@ int con(void){
 
     // Retrieve broker ip and port
     //char *broker_ip = (char*)&BROKER_HOST;
-    char *broker_ip = "192.168.1.29";
+    char *broker_ip = BROKER_HOST;
     int broker_port = BROKER_PORT;
     int err = 0;
 
@@ -98,8 +98,11 @@ int pub(char* payload, char* topic){
         return -1;
     }
     if ( !is_con() ) {
-        printf("Cannot publish, mqtt client disconnected \n");
-        con();
+        int res = con();
+        if (res){
+            printf("Cannot publish, mqtt client disconnected \n");
+            return -1;
+            }
     }
     char* msg_payload = (payload);
     char* msg_topic = (topic) ? topic :(char*)&PUB_TOPIC;

@@ -21,24 +21,23 @@ const shell_command_t shell_commands[] =
                 { "short", 	"button short press",                  cmd_pub_short_press_event},
                 { "mpu_stop", 	"mpu stop",                        cmd_mpu_stop},
                 { "mpu_start", 	"mpu start"	,                      cmd_mpu_start},
+                { "shake", 	"detect and send shake",               cmd_shake_toggle},
+                { "face", 	"detect and send facechange"	,      cmd_face_toggle},
                 { NULL,     NULL,                                 NULL        }
+
         };
 
 
 int main(void)
 {
-    #ifdef MODULE_LWIP
-    xtimer_sleep(1);
-    #endif
+    char line_buf[SHELL_DEFAULT_BUFSIZE];
 
     led_init();
     buttons_init();
     mpu_init();
     mqtt_init();
 
-    char line_buf[SHELL_DEFAULT_BUFSIZE];
     shell_run(shell_commands, line_buf, SHELL_DEFAULT_BUFSIZE);
-
 
     return 0;
 }

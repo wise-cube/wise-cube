@@ -11,10 +11,14 @@ kernel_pid_t mpu_pid;
 mpu9x50_t mpu_dev;
 
 int mpu_running;
+int mpu_detect_shake_running;
+int mpu_detect_face_running;
 int current_face;
 
 int mpu_init(void){
     mpu_running = 0;
+    mpu_detect_shake_running = 0;
+    mpu_detect_face_running = 0;
     current_face = 'N';
 
     mpu9x50_status_t conf = {0x01,0x01,0x01,0x03,0x03,1000,100,0x00,0x00,0x00};
@@ -91,10 +95,11 @@ void* mpu_thread_handler(void* data){
             acc_buf.z_axis += res_buf.z_axis;
             }
 		}
-				
+
 		acc[0] = (float)acc_buf.x_axis/1000;
 		acc[1] = (float)acc_buf.y_axis/1000;
 		acc[2] = (float)acc_buf.z_axis/1000;
+        printf("[LOG]: mpu acc: %f, %f, %f\n", acc[0], acc[1], acc[2]);
 
 //		gyro[0] = gyr_buf.x_axis/10;
 //		gyro[1] = gyr_buf.y_axis/10;
@@ -103,18 +108,18 @@ void* mpu_thread_handler(void* data){
 		float acc_sum = acc[0]*acc[0] + acc[1]*acc[1] + acc[2]*acc[2];
 //		printf("x: %f, y: %f, z:%f, s: %f\n", acc[0], acc[1], acc[2], acc_sum);
 		//puts("----> val: %d", s);
-		detect_shake(acc_sum);
-
-		detect_face_change(acc);
-
-
+		if (mpu_detect_shake_running)
+		    detect_shake(acc_sum);
+		if (mpu_detect_face_running)
+		    detect_face_change(acc);
 		xtimer_usleep(100000);
 	}
 
 	printf("mpu handler exited\n");
 }
 
-void detect_shake(int s){
+void detect_shake(float s){
+        printf("Acc sum is: %f\n ",s );
 		if (s > 130){
 			puts("[EVENT] Cube shake\n");
 			pub_shake_event();
@@ -211,6 +216,22 @@ int cmd_mpu_stop(int argc, char **argv){
 
 
     mpu_stop();
+    //prova_pid = thread_create(prova_thread_stack, sizeof(prova_thread_stack), THREAD_PRIORITY_MAIN - 1,
+    //THREAD_CREATE_STACKTEST, prova , NULL, "prova_thread");
+
+    return 0;
+}
+int cmd_shake_toggle(int argc, char **argv){
+
+    mpu_detect_shake_running^=1;
+    //prova_pid = thread_create(prova_thread_stack, sizeof(prova_thread_stack), THREAD_PRIORITY_MAIN - 1,
+    //THREAD_CREATE_STACKTEST, prova , NULL, "prova_thread");
+
+    return 0;
+}
+int cmd_face_toggle(int argc, char **argv){
+
+    mpu_detect_face_running^=1;
     //prova_pid = thread_create(prova_thread_stack, sizeof(prova_thread_stack), THREAD_PRIORITY_MAIN - 1,
     //THREAD_CREATE_STACKTEST, prova , NULL, "prova_thread");
 

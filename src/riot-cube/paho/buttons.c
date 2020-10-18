@@ -10,7 +10,7 @@
 #include "mqtt_wrapper.h"
 
 
-#define BUTTON_GPIO 0
+#define BUTTON_GPIO 2
 
 
 xtimer_t* button_press_timer;

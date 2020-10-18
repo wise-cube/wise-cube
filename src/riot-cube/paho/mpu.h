@@ -21,8 +21,10 @@ void* mpu_thread_handler(void* data);
 int cmd_mpu_init(int argc, char **argv);
 int cmd_mpu_start(int argc, char **argv);
 int cmd_mpu_stop(int argc, char **argv);
+int cmd_shake_toggle(int argc, char **argv);
+int cmd_face_toggle(int argc, char **argv);
 
-void detect_shake(int s);
+void detect_shake(float s);
 int detect_face_change(float *acc);
 void handle_face_change(char face);
 
