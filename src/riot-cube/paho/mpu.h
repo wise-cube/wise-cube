@@ -6,6 +6,7 @@
 #include <stdlib.h>
 #include "utils.h"
 #include "led.h"
+#include "mpu9x50.h"
 
 #define I2C_INTERFACE I2C_DEV(0)    /* I2C interface number */
 #define mpu9x50_hw_addr_t 			/* I2C MPU address on sensor */

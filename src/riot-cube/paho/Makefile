@@ -22,7 +22,9 @@ USEMODULE += xtimer
 USEMODULE += shell
 USEMODULE += shell_commands
 USEMODULE += ps
-USEMODULE += saul_default
+
+
+USEMODULE += netdev_default
 USEMODULE += mpu9150
 
 

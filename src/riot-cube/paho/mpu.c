@@ -1,10 +1,8 @@
 #include "mpu.h"
 #include "utils.h"
-#include "mqtt_wrapper.h"
-
 #include "board.h"
-#include "mpu9x50.h"
-#include "mpu9x50_params.h"
+
+#include "mqtt_wrapper.h"
 
 kernel_pid_t mpu_pid;
 mpu9x50_t mpu_dev;
@@ -17,43 +15,8 @@ int mpu_detect_face_running;
 int current_face;
 
 int mpu_init(void){
-    mpu_running = 0;
-    mpu_detect_shake_running = 0;
-    mpu_detect_face_running = 0;
-    current_face = 'N';
 
-    int result = mpu9x50_init(&mpu_dev, &mpu9x50_params[0]);
-
-    if (result == -1) {
-        puts("[Error] The given i2c is not enabled");
-        return 1;
-    }
-    else if (result == -2) {
-        puts("[Error] The compass did not answer correctly on the given address");
-        return 1;
-    }
-
-    mpu9x50_set_sample_rate(&mpu_dev, 200);
-    if (mpu_dev.conf.sample_rate != 200) {
-        puts("[Error] The sample rate was not set correctly");
-        return 1;
-    }
-
-
-    mpu9x50_status_t conf = {0x01,0x01,0x01,0x03,0x03,1000,100,0x00,0x00,0x00};
-    mpu9x50_params_t params = {I2C_INTERFACE,0x68,0x0C,1000};
-    mpu9x50_t tmp_mpu_dev = {params,conf};
-    memcpy(&mpu_dev, &tmp_mpu_dev, sizeof(mpu9x50_t));
-
-
-    i2c_init(I2C_INTERFACE);
-
-    int err= mpu9x50_init(&mpu_dev, &params);
-
-    if (err == -1) {
-        puts("I2C is not enabled in board config\n");
-        return err;
-    }
+    int err;
 
     char* mpu_thread_stack = malloc(THREAD_STACKSIZE_MAIN);
     mpu_pid = thread_create( mpu_thread_stack,
@@ -74,12 +37,42 @@ void mpu_start(void){
 }
 void  mpu_stop(void){ mpu_running = 0;}
 void* mpu_thread_handler(void* data){
+    mpu_running = 0;
+    current_face = 'N';
+    int  err;
+
+
+    mpu9x50_status_t conf = {0x01,0x01,0x01,0x03,0x03,1000,100,0x00,0x00,0x00};
+    mpu9x50_params_t params = {I2C_INTERFACE,0x68,0x0C,1000};
+    mpu9x50_t tmp_mpu_dev = {params,conf};
+    memcpy(&mpu_dev, &tmp_mpu_dev, sizeof(mpu9x50_t));
+
+    /* Initialise the I2C serial interface as master */
+    i2c_init(I2C_INTERFACE);
+    err = mpu9x50_init(&mpu_dev, &params);
+
+
+    if (err == -1) {
+        puts("[Error] The given i2c is not enabled");
+        return (void*) -1;
+    }
+    else if (err == -2) {
+        puts("[Error] The compass did not answer correctly on the given address");
+        err =0 ;
+    }
+
+
+    mpu9x50_set_sample_rate(&mpu_dev, 200);
+    if (mpu_dev.conf.sample_rate != 200) {
+        puts("[Error] The sample rate was not set correctly");
+        return (void*) -1 ;
+    }
+
 
     float acc[3] = {0};
     mpu9x50_results_t acc_buf = {0};
     mpu9x50_results_t res_buf = {0};
 
-    int err;
 
     while (1){
 //        printf("[LOG] Mpu thread status : %d\n",thread_getstatus(mpu_pid));
@@ -113,7 +106,9 @@ void* mpu_thread_handler(void* data){
             }
 		}
 
-		acc[0] = (float)acc_buf.x_axis/1000;
+
+
+		acc[0] = ((float)acc_buf.x_axis)/1000;
 		acc[1] = (float)acc_buf.y_axis/1000;
 		acc[2] = (float)acc_buf.z_axis/1000;
         printf("[LOG]: mpu acc: %f, %f, %f\n", acc[0], acc[1], acc[2]);
@@ -123,7 +118,7 @@ void* mpu_thread_handler(void* data){
 //		gyro[2] = gyr_buf.z_axis/10;
 		
 		float acc_sum = acc[0]*acc[0] + acc[1]*acc[1] + acc[2]*acc[2];
-//		printf("x: %f, y: %f, z:%f, s: %f\n", acc[0], acc[1], acc[2], acc_sum);
+		printf("x: %f, y: %f, z:%f, s: %f\n", acc[0], acc[1], acc[2], acc_sum);
 		//puts("----> val: %d", s);
 		if (mpu_detect_shake_running)
 		    detect_shake(acc_sum);
