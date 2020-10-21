@@ -5,7 +5,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "utils.h"
-#include "mpu9x50.h"
 #include "led.h"
 
 #define I2C_INTERFACE I2C_DEV(0)    /* I2C interface number */

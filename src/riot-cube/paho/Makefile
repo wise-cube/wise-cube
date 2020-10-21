@@ -12,17 +12,19 @@ RIOTBASE ?= $(CURDIR)/../../../../RIOT
 DEVELHELP ?= 1
 # Change this to 0 show compiler invocation lines by default:
 QUIET ?= 1
-WIFI_SSID ?= "AirPort Network"
-WIFI_PASS ?= "netgear2014"
+WIFI_SSID ?= ""
+WIFI_PASS ?= ""
 
 
 USEMODULE += periph_gpio_irq
 USEMODULE += xtimer
-USEMODULE += mpu9150
+
 USEMODULE += shell
 USEMODULE += shell_commands
 USEMODULE += ps
 USEMODULE += saul_default
+USEMODULE += mpu9150
+
 
 USEPKG += paho-mqtt
 USEPKG += jsmn

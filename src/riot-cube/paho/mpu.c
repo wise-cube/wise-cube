@@ -1,14 +1,15 @@
 #include "mpu.h"
 #include "utils.h"
-
-#include "periph_conf.h"
-#include "periph/i2c.h"
+#include "mqtt_wrapper.h"
 
 #include "board.h"
-#include "mqtt_wrapper.h"
+#include "mpu9x50.h"
+#include "mpu9x50_params.h"
 
 kernel_pid_t mpu_pid;
 mpu9x50_t mpu_dev;
+mpu9x50_results_t acc_buf;
+
 
 int mpu_running;
 int mpu_detect_shake_running;
@@ -21,12 +22,30 @@ int mpu_init(void){
     mpu_detect_face_running = 0;
     current_face = 'N';
 
+    int result = mpu9x50_init(&mpu_dev, &mpu9x50_params[0]);
+
+    if (result == -1) {
+        puts("[Error] The given i2c is not enabled");
+        return 1;
+    }
+    else if (result == -2) {
+        puts("[Error] The compass did not answer correctly on the given address");
+        return 1;
+    }
+
+    mpu9x50_set_sample_rate(&mpu_dev, 200);
+    if (mpu_dev.conf.sample_rate != 200) {
+        puts("[Error] The sample rate was not set correctly");
+        return 1;
+    }
+
+
     mpu9x50_status_t conf = {0x01,0x01,0x01,0x03,0x03,1000,100,0x00,0x00,0x00};
     mpu9x50_params_t params = {I2C_INTERFACE,0x68,0x0C,1000};
     mpu9x50_t tmp_mpu_dev = {params,conf};
     memcpy(&mpu_dev, &tmp_mpu_dev, sizeof(mpu9x50_t));
 
-    /* Initialise the I2C serial interface as master */
+
     i2c_init(I2C_INTERFACE);
 
     int err= mpu9x50_init(&mpu_dev, &params);
@@ -56,10 +75,8 @@ void mpu_start(void){
 void  mpu_stop(void){ mpu_running = 0;}
 void* mpu_thread_handler(void* data){
 
-//    float gyro[3] = {0};
     float acc[3] = {0};
     mpu9x50_results_t acc_buf = {0};
-//    mpu9x50_results_t gyr_buf = {0};
     mpu9x50_results_t res_buf = {0};
 
     int err;
