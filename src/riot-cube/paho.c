@@ -39,7 +39,7 @@ int con(void){
     }
 
     // Retrieve broker ip and port
-    char *broker_ip = (char*)&BROKER_HOST;
+    char broker_ip[] = BROKER_HOST;
 
 
     int broker_port = BROKER_PORT;

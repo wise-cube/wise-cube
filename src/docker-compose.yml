@@ -60,4 +60,4 @@ services:
       - 5342
     restart: always
     volumes:
-      - ./postgres-data:/var/lib/postgresql/data
+      - /tmp/postgres-data:/var/lib/postgresql/data
