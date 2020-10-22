@@ -1,3 +1,12 @@
+/* mpu.c
+         _____  ______   __ __
+        /     \ \____ \ |  |  \
+       |  Y Y  \|  |_> >|  |  /
+       |__|_|  /|   __/ |____/
+            \/ |__|
+       This file contains the accelerometer code that handles the
+       face selection and shake detection
+*/
 #include "mpu.h"
 #include "utils.h"
 #include "board.h"
@@ -163,40 +172,41 @@ int detect_face_change(float *acc){
     return 0;
 
 }
+
 void handle_face_change(char face){
     switch (face){
         case 'X':
             puts("Face X\n");
             pub_answer_event(0);
-            led_on(GREEN);
+            led_set_color(GREEN);
             break;
 
         case 'x':
             puts("Face x\n");
             pub_answer_event(2);
-            led_on(RED);
+            led_set_color(RED);
             break;
 
         case 'Y':
             puts("Face Y\n");
             pub_answer_event(1);
-            led_on(VIOLET);
+            led_set_color(VIOLET);
             break;
 
         case 'y':
             puts("Face y\n");
             pub_answer_event(3);
-            led_on(BLUE);
+            led_set_color(BLUE);
             break;
 
         case 'Z':
             puts("Face Z, NmFC\n");
-            led_on(WHITE);
+            led_set_color(WHITE);
             break;
 
         case 'z':
             puts("Face z, NFC/button\n");
-            led_on(0);
+            led_set_color(0);
             break;
 
         default:

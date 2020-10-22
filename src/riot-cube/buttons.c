@@ -1,6 +1,13 @@
-//
-// Created by di3go on 2020-09-04.
-//
+/* button.c
+     ___.             __     __
+     \_ |__   __ __ _/  |_ _/  |_  ____    ____
+      | __ \ |  |  \\   __\\   __\/  _ \  /    \
+      | \_\ \|  |  / |  |   |  | (  <_> )|   |  \
+      |___  /|____/  |__|   |__|  \____/ |___|  /
+          \/                                  \/
+     This file contains the code that handles the button click
+     basically it consist in a thread awaken by an interrupt
+*/
 #include "periph/gpio.h"
 #include "board.h"
 
@@ -28,7 +35,7 @@ int buttons_init(void){
     res |= gpio_init_int( BUTTON_GPIO, GPIO_OUT, GPIO_BOTH, button_interrupt_handler, NULL);
 
     gpio_irq_enable(BUTTON_GPIO);
-
+    
     button_press_timer = malloc(sizeof(xtimer_t));
 
     char* button_thread_stack = malloc(THREAD_STACKSIZE_MAIN);
@@ -40,6 +47,7 @@ int buttons_init(void){
                     THREAD_CREATE_STACKTEST,
                     button_thread_handler ,
                     NULL, "button_thread");
+
     timer_thread_pid = thread_create( timer_thread_stack,
                 THREAD_STACKSIZE_MAIN  ,
                 13,
@@ -47,6 +55,7 @@ int buttons_init(void){
                 timer_thread_handler ,
                 NULL, "timer_thread");
 
+    
 
     res |= timer_thread_pid < 1;
     res |= button_thread_pid < 1;
@@ -56,11 +65,11 @@ int buttons_init(void){
 
 void long_press_event(void){
     pub_long_press_event();
-    led_blink(GREEN);
+    led_blink(4);
 }
 void short_press_event(void){
     pub_short_press_event();
-    led_flash(GREEN);
+    led_blink(1);
 }
 
 void button_interrupt_handler(void* data){
@@ -93,6 +102,7 @@ void* button_thread_handler(void* data){
         }
 
     }
+    
     return NULL;
 
 }

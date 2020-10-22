@@ -1,5 +1,13 @@
+/* utils.c
+            __   .__ .__
+     __ __ _/  |_ |__||  |    ______
+    |  |  \\   __\|  ||  |   /  ___/
+    |  |  / |  |  |  ||  |__ \___ \
+    |____/  |__|  |__||____   ____  >
+                                \/
+    This file contains various utils
+*/
 #include "utils.h"
-
 #include "paho_mqtt.h"
 #include "MQTTClient.h"
 
@@ -27,5 +35,3 @@ unsigned get_qos(const char *str)
         default:    return QOS0;
     }
 }
-
-

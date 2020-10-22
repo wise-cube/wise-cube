@@ -9,5 +9,13 @@
 void wlog_res(char* action, int status);
 unsigned get_qos(const char *str);
 
+enum state {
+    error = -1,
+    uninitialized = 0,
+    disconnected = 1,
+    connected = 2,
+    paired = 4,
+};
+
 void wlog(char* msg);
 #endif //RIOT_CUBE_UTILS_H

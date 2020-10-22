@@ -16,3 +16,5 @@ venv/
 
 /src/riot-cube/bin/*
 
+src/riot-cube/.vscode/c_cpp_properties.json
+src/riot-cube/.vscode/settings.json

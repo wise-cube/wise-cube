@@ -1,12 +1,17 @@
 #include "shell.h"
 
 #include "mqtt_wrapper.h"
-#include "led.h"
+#include "utils.h"
 #include "buttons.h"
 #include "mpu.h"
+#include "cube_state.h"
+
+extern int current_state;
 
 
-const shell_command_t shell_commands[] =
+void shell_init(void) {
+    char line_buf[SHELL_DEFAULT_BUFSIZE];
+    const shell_command_t shell_commands[] =
         {
                 { "con",    "connect to MQTT broker",              cmd_con    },
                 { "discon", "disconnect from the current broker",  cmd_discon },
@@ -14,7 +19,6 @@ const shell_command_t shell_commands[] =
                 { "sub",    "subscribe topic",                     cmd_sub    },
                 { "unsub",  "unsubscribe from topic",              cmd_unsub  },
                 { "led_burst", "flashes all the color",            cmd_led_burst},
-                { "led_on", "set led to onecolor",                 cmd_led_on},
                 { "pub_shake", "publish the shake event message",  cmd_pub_shake_event},
                 { "pub_answer", "publish answer event message",    cmd_pub_answer_event},
                 { "long", 	"button long press",                   cmd_pub_long_press_event},
@@ -27,17 +31,24 @@ const shell_command_t shell_commands[] =
 
         };
 
+    shell_run(shell_commands, line_buf, SHELL_DEFAULT_BUFSIZE);
+
+
+
+}
+
+
+void loop(void){
+    while(true) {
+        update_state();
+        xtimer_sleep(1);
+    }
+}
 
 int main(void)
 {
-    char line_buf[SHELL_DEFAULT_BUFSIZE];
-
-    led_init();
-    buttons_init();
-    mpu_init();
-    mqtt_init();
-
-    shell_run(shell_commands, line_buf, SHELL_DEFAULT_BUFSIZE);
-
+    current_state = uninitialized;
+    loop();
     return 0;
 }
+

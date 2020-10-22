@@ -1,5 +1,14 @@
+/* paho.c
+                 .__
+  ______ _____   |  |__    ____
+   \____ \\__  \  |  |  \  /  _ \
+   |  |_> >/ __ \_|   Y  \(  <_> )
+   |   __/(____  /|___|  / \____/
+   |__|        \/      \/
+    paho is the package used to enable mqtt support in riot-os
+    available since release 2020.7
+*/
 #include "paho.h"
-
 #include "utils.h"
 #include "led.h"
 

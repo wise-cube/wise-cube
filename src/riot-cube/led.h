@@ -5,7 +5,6 @@
 #ifndef RIOT_CUBE_LED_H
 #define RIOT_CUBE_LED_H
 
-
 #define RED 0b100
 #define GREEN 0b010
 #define BLUE 0b001
@@ -22,12 +21,10 @@
 
 int led_init(void);
 void led_off(void);
-void led_on(int color);
-void led_blink(int color);
-void led_flash(int color);
+void led_set_color(int color);
+void led_blink(int times);
+void led_flash_color(int color);
 void led_burst(void );
-
 int cmd_led_burst(int argc, char** argv );
-int cmd_led_on(int argc, char** argv );
 
 #endif //RIOT_CUBE_LED_H
