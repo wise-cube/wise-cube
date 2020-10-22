@@ -10,17 +10,19 @@
 #include "mpu.h"
 #include "utils.h"
 #include "board.h"
-
 #include "mqtt_wrapper.h"
+
+#define SHAKE_TRESHOLD_USEC 1500 * 1000
 
 kernel_pid_t mpu_pid;
 mpu9x50_t mpu_dev;
 mpu9x50_results_t acc_buf;
 
 
-int mpu_running;
-int mpu_detect_shake_running;
-int mpu_detect_face_running;
+bool mpu_running;
+bool mpu_detect_shake_running;
+bool mpu_detect_face_running;
+uint32_t last_shake_time;
 int current_face;
 
 int mpu_init(void){
@@ -37,7 +39,7 @@ int mpu_init(void){
                     mpu_thread_handler ,
                     NULL, "mpu_thread");
     err = mpu_pid < 1;
-
+    last_shake_time = 0 ;
     wlog_res("Mpu init", err);
     return err;
 }
@@ -141,12 +143,20 @@ void* mpu_thread_handler(void* data){
 	printf("mpu handler exited\n");
 }
 
-void detect_shake(float s){
-        printf("Acc sum is: %f\n ",s );
-		if (s > 130){
+void detect_shake(float acc_sum_squared){
+        // printf("Acc sum %f", acc_sum_squared);
+		if (acc_sum_squared > 300){
+
+            int current_time = xtimer_now_usec();
+            if (current_time - last_shake_time > SHAKE_TRESHOLD_USEC){
+
 			puts("[EVENT] Cube shake\n");
 			pub_shake_event();
+
+            last_shake_time = current_time;
 		}
+        
+    }
 }
 int detect_face_change(float *acc){
     int axis = 0 ;
