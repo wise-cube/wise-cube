@@ -28,6 +28,8 @@ int mpu_init(void){
     int err;
 
     char* mpu_thread_stack = malloc(THREAD_STACKSIZE_MAIN);
+    err = !mpu_thread_stack;
+    wlog_res("Mpu thread stack allocation", err);
     mpu_pid = thread_create( mpu_thread_stack,
                     THREAD_STACKSIZE_MAIN  ,
                     12,

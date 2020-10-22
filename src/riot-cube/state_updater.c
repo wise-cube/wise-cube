@@ -1,4 +1,4 @@
-#include "cube_state.h"
+#include "state_updater.h"
 #include "led.h"
 #include "paho.h"
 #include "utils.h"
@@ -6,14 +6,15 @@
 #include "buttons.h"
 
 enum state current_state;
+pid_t state_updater_pid;
 
-void update_state(void){
+void state_update_internal(void){
+
      switch (current_state) {
             case error:
                 led_set_color(VIOLET);
                 break;
             case uninitialized:
-                init();
                 led_set_color(RED);
                 break;
             case disconnected:
@@ -28,25 +29,32 @@ void update_state(void){
                 break;
             default:
                 break;
-        }
-            xtimer_sleep(1);
-        }
-
-void init(void){
-
-    int err;
-    err = led_init();
-    err = buttons_init();
-    err = mpu_init();
-    err = mqtt_init();
-
-    if (!err){
-        current_state = disconnected;
-    }else{
-        current_state = error;
     }
-
 }
+
+void* state_updater_thread_handler(void* data){
+    while(true) {
+        state_update_internal();
+        xtimer_sleep(1);
+    }
+}
+
+
+int state_updater_init(void) {
+    char * status_updater_thread_stack = malloc(THREAD_STACKSIZE_MEDIUM);
+    state_updater_pid = thread_create( status_updater_thread_stack,
+            THREAD_STACKSIZE_MEDIUM  ,
+            THREAD_PRIORITY_MIN,
+            THREAD_CREATE_STACKTEST,
+            state_updater_thread_handler ,
+            NULL, "state_updater_thread");
+
+    int err = state_updater_pid < 0;
+    wlog_res("State updater init", err);
+    return err;
+}
+
+
 void connect(void){
     int err;
     err = con();

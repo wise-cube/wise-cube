@@ -4,7 +4,7 @@
 #include "utils.h"
 #include "buttons.h"
 #include "mpu.h"
-#include "cube_state.h"
+#include "state_updater.h"
 
 extern int current_state;
 
@@ -37,18 +37,28 @@ void shell_init(void) {
 
 }
 
+void init(void){
 
-void loop(void){
-    while(true) {
-        update_state();
-        xtimer_sleep(1);
+    int err;
+    err = mqtt_init();
+    err |= led_init();
+    err |= buttons_init();
+    err |= mpu_init();
+    err |= state_updater_init();
+
+    if (!err){
+        current_state = disconnected;
+    } else {
+        current_state = error;
     }
+    shell_init();
 }
+
 
 int main(void)
 {
     current_state = uninitialized;
-    loop();
+    init();
     return 0;
 }
 

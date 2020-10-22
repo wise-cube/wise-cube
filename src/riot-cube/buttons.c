@@ -31,25 +31,28 @@ uint64_t button_down_time = 0;
 
 
 int buttons_init(void){
-    int res = 0;
-    res |= gpio_init_int( BUTTON_GPIO, GPIO_OUT, GPIO_BOTH, button_interrupt_handler, NULL);
+    int err = 0;
+    err |= gpio_init_int( BUTTON_GPIO, GPIO_OUT, GPIO_BOTH, button_interrupt_handler, NULL);
 
     gpio_irq_enable(BUTTON_GPIO);
     
     button_press_timer = malloc(sizeof(xtimer_t));
 
-    char* button_thread_stack = malloc(THREAD_STACKSIZE_MAIN);
-    char* timer_thread_stack = malloc(THREAD_STACKSIZE_MAIN);
+    char* button_thread_stack = malloc(THREAD_STACKSIZE_DEFAULT * 2);
+    char* timer_thread_stack = malloc(THREAD_STACKSIZE_DEFAULT * 2);
+
+    err = !button_thread_stack || !timer_thread_stack;
+    wlog_res("Button threads stack allocation", err);
 
     button_thread_pid = thread_create( button_thread_stack,
-                    THREAD_STACKSIZE_MAIN  ,
+                    THREAD_STACKSIZE_DEFAULT * 2,
                     20,
                     THREAD_CREATE_STACKTEST,
                     button_thread_handler ,
                     NULL, "button_thread");
 
     timer_thread_pid = thread_create( timer_thread_stack,
-                THREAD_STACKSIZE_MAIN  ,
+                THREAD_STACKSIZE_DEFAULT * 2  ,
                 13,
                 THREAD_CREATE_STACKTEST,
                 timer_thread_handler ,
@@ -57,10 +60,10 @@ int buttons_init(void){
 
     
 
-    res |= timer_thread_pid < 1;
-    res |= button_thread_pid < 1;
-    wlog_res("Button init", res);
-    return res;
+    err |= timer_thread_pid < 1;
+    err |= button_thread_pid < 1;
+    wlog_res("Button init", err);
+    return err;
 }
 
 void long_press_event(void){
