@@ -13,7 +13,7 @@
 #define mpu9x50_comp_addr_t
 #define INTERVAL (100000U)    /* set interval to 1 seconds */
 
-void mpu_start(void);
+int mpu_start(void);
 void mpu_stop(void);
 int mpu_init(void);
 

@@ -25,6 +25,12 @@ bool mpu_detect_face_running;
 uint32_t last_shake_time;
 int current_face;
 
+int mpu_start(void){
+    printf("[LOG] Mpu thread status : %d\n",thread_getstatus(mpu_pid));
+    mpu_running = 1;
+    return thread_wakeup(mpu_pid);
+}
+
 int mpu_init(void){
 
     int err;
@@ -40,14 +46,11 @@ int mpu_init(void){
                     NULL, "mpu_thread");
     err = mpu_pid < 1;
     last_shake_time = 0 ;
-    wlog_res("Mpu init", err);
+    err |=  mpu_start();
+    wlog_res("Mpu start",err);
     return err;
 }
-void mpu_start(void){
-    printf("[LOG] Mpu thread status : %d\n",thread_getstatus(mpu_pid));
-    mpu_running = 1;
-    thread_wakeup(mpu_pid);
-}
+
 void  mpu_stop(void){ mpu_running = 0;}
 void* mpu_thread_handler(void* data){
     mpu_running = 0;
