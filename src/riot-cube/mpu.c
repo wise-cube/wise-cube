@@ -26,26 +26,31 @@ uint32_t last_shake_time;
 int current_face;
 
 int mpu_start(void){
-    printf("[LOG] Mpu thread status : %d\n",thread_getstatus(mpu_pid));
+    // printf("[LOG] Mpu thread status : %d\n",thread_getstatus(mpu_pid));
     mpu_running = 1;
-    return thread_wakeup(mpu_pid);
+    return thread_wakeup(mpu_pid) != 1;
 }
 
 int mpu_init(void){
 
     int err;
 
-    char* mpu_thread_stack = malloc(THREAD_STACKSIZE_MAIN);
+    char* mpu_thread_stack = malloc(THREAD_STACKSIZE_MAIN );
     err = !mpu_thread_stack;
     wlog_res("Mpu thread stack allocation", err);
     mpu_pid = thread_create( mpu_thread_stack,
                     THREAD_STACKSIZE_MAIN  ,
-                    12,
+                    16,
                     THREAD_CREATE_STACKTEST,
                     mpu_thread_handler ,
                     NULL, "mpu_thread");
     err = mpu_pid < 1;
     last_shake_time = 0 ;
+    while(thread_getstatus(mpu_pid) != STATUS_SLEEPING)
+    {
+        xtimer_sleep(1);
+    }
+    
     err |=  mpu_start();
     wlog_res("Mpu start",err);
     return err;
@@ -72,10 +77,7 @@ void* mpu_thread_handler(void* data){
         puts("[Error] The given i2c is not enabled");
         return (void*) -1;
     }
-    else if (err == -2) {
-        puts("[Error] The compass did not answer correctly on the given address");
-        err =0 ;
-    }
+
 
 
     mpu9x50_set_sample_rate(&mpu_dev, 200);
@@ -148,7 +150,7 @@ void* mpu_thread_handler(void* data){
 
 void detect_shake(float acc_sum_squared){
         // printf("Acc sum %f", acc_sum_squared);
-		if (acc_sum_squared > 300){
+		if (acc_sum_squared > 200){
 
             int current_time = xtimer_now_usec();
             if (current_time - last_shake_time > SHAKE_TRESHOLD_USEC){

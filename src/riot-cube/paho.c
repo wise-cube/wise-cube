@@ -26,7 +26,7 @@ int mqtt_init(void){
     NetworkInit(&mqtt_network);
     MQTTClientInit(&mqtt_client, &mqtt_network, COMMAND_TIMEOUT_MS, buf, BUF_SIZE, readbuf, BUF_SIZE);
 
-    err = MQTTStartTask(&mqtt_client) < 1;
+    err = MQTTStartTask(&mqtt_client) < 1;  
 
 //    con(NULL,0);
     wlog_res("Mqtt init", err);
@@ -81,9 +81,9 @@ int con(void){
     err = MQTTConnect(&mqtt_client, &connect_data);
     if (err < 0) {
         printf("Unable to connect to broker (%d)\n", err);
-//        discon();
+        // discon();
     } else {
-         printf("Connection Successfu\n");
+         printf("LOG]Connection Successful\n");
     }
     return err;
 }
@@ -108,11 +108,13 @@ int pub(char* payload, char* topic){
         return -1;
     }
     if ( !is_con() ) {
-        int res = con();
-        if (res){
-            printf("Cannot publish, mqtt client disconnected \n");
-            return -1;
-            }
+        printf("Cannot publish, mqtt client disconnected \n");
+        return -1 ;
+        // int res = con();
+        // if (res){
+        //     printf("Cannot publish, mqtt client disconnected \n");
+        //     return -1;
+        //     }
     }
     char* msg_payload = (payload);
     char* msg_topic = (topic) ? topic :(char*)&PUB_TOPIC;
@@ -138,7 +140,7 @@ int pub(char* payload, char* topic){
 int sub(char* topic){
     if ( !is_con() ) {
         printf("Cannot publish, mqtt client disconnected \n");
-        con();
+        return -1;
     }
     char* sub_topic = (topic) ? topic :(char*)&SUB_TOPIC;
 
@@ -159,7 +161,7 @@ int sub(char* topic){
 int unsub(char* topic){
     if ( !is_con() ) {
         printf("Cannot publish, mqtt client disconnected \n");
-        con();
+        return -1;
     }
     char* sub_topic = (topic) ? topic :(char*)&SUB_TOPIC;
 

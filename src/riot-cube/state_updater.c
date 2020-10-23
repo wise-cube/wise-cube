@@ -44,7 +44,7 @@ int state_updater_init(void) {
     char * status_updater_thread_stack = malloc(THREAD_STACKSIZE_MEDIUM);
     state_updater_pid = thread_create( status_updater_thread_stack,
             THREAD_STACKSIZE_MEDIUM  ,
-            THREAD_PRIORITY_MIN,
+            3,
             THREAD_CREATE_STACKTEST,
             state_updater_thread_handler ,
             NULL, "state_updater_thread");

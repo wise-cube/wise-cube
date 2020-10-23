@@ -39,12 +39,12 @@ void shell_init(void) {
 
 void init(void){
 
-    int err;
-    err = mqtt_init();
+    int err = 0;
     err |= led_init();
+    err |= mqtt_init();
     err |= buttons_init();
     err |= mpu_init();
-    err |= state_updater_init();
+    // err |= state_updater_init();
 
     if (!err){
         current_state = disconnected;
