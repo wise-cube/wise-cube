@@ -1,5 +1,4 @@
-APPLICATION = paho-mqtt-example
-
+APPLICATION = wise-cube
 # If no BOARD is found in the environment, use this default:
 BOARD ?= esp8266-esp-12x
 
@@ -12,9 +11,17 @@ RIOTBASE ?= $(CURDIR)/../../../../RIOT
 DEVELHELP ?= 1
 # Change this to 0 show compiler invocation lines by default:
 QUIET ?= 1
-WIFI_SSID ?= ""
-WIFI_PASS ?= ""
 
+DEBUG=1
+WIFI_SSID ?= "---redacted---"
+WIFI_PASS ?= "---redacted---"
+BROKER_HOST ?= "---redacted---"
+CLIENT_ID ?= "cube_1"
+
+USE_MQTTSN ?= 1
+
+FEATURES_REQUIRED += periph_gpio
+FEATURES_REQUIRED += periph_i2c
 
 USEMODULE += periph_gpio_irq
 USEMODULE += xtimer
@@ -27,48 +34,22 @@ USEMODULE += ps
 USEMODULE += netdev_default
 USEMODULE += mpu9150
 
-
-USEPKG += paho-mqtt
 USEPKG += jsmn
+USEMODULE += esp_wifi
 
-FEATURES_REQUIRED += periph_gpio
-FEATURES_REQUIRED += periph_i2c
-
-
-# Networking with lwip
-USEMODULE += netdev_default
-
-LWIP_IPV4 ?= 1
-
-ifneq (0, $(LWIP_IPV4))
-	USEMODULE += ipv4_addr
-	USEMODULE += lwip_arp
-	USEMODULE += lwip_ipv4
-	USEMODULE += lwip_dhcp_auto
-	USEMODULE += lwip_sock_udp
-	CFLAGS += -DETHARP_SUPPORT_STATIC_ENTRIES=1
-	LWIP_IPV6 ?= 0
+ifneq (1, $(USE_MQTTSN))
+   include ./Makefile.paho
 else
-	LWIP_IPV6 ?= 1
+	include ./Makefile.emcute
 endif
-	
-ifneq (0, $(LWIP_IPV6))
-	USEMODULE += ipv6_addr
-	USEMODULE += lwip_ipv6_autoconfig
-endif
-    
-USEMODULE += lwip_netdev
-USEMODULE += lwip lwip_sock_ip
-USEMODULE += lwip_tcp lwip_sock_tcp
-USEMODULE += lwip_sock_async
-    
-USEMODULE += sock_async_event
-   
-####
+
 include $(RIOTBASE)/Makefile.include
 
 ifneq (,$(filter arch_esp,$(FEATURES_USED)))
   CFLAGS += -DESP_WIFI_SSID=\"$(WIFI_SSID)\"
   CFLAGS += -DESP_WIFI_PASS=\"$(WIFI_PASS)\"
-  CFLAGS += -DBROKER_HOST=\"$(IP)\"
+  
+endif
+ifeq (0, $(USE_MQTT))
+  CFLAGS += -DUSE_MQTT
 endif

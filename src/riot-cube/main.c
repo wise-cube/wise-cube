@@ -6,7 +6,7 @@
 #include "mpu.h"
 #include "state_updater.h"
 
-extern int current_state;
+extern state_t current_state;
 
 
 void shell_init(void) {
@@ -41,23 +41,25 @@ void init(void){
 
     int err = 0;
     err |= led_init();
+
     err |= mqtt_init();
     err |= buttons_init();
     err |= mpu_init();
-    // err |= state_updater_init();
+    err |= state_updater_init();
 
     if (!err){
-        current_state = disconnected;
+        current_state = STATE_INITIALIZED;
     } else {
-        current_state = error;
+        current_state = STATE_ERROR;
     }
+    state_update();
     shell_init();
 }
 
 
 int main(void)
 {
-    current_state = uninitialized;
+    current_state = STATE_UNINITIALIZED;
     init();
     return 0;
 }

@@ -1,26 +1,65 @@
-version: '3.6'
+version: '2.4'
+
+networks:
+  internal:
+    name : wise-cube-internal
+    # Use a custom driver
+    driver: bridge
+    internal: true
+  external:
+    name : wise-cube-external
+    # Use a custom driver which takes special options
+    driver: bridge
+    enable_ipv6: true
+    driver_opts:
+      com.docker.network.enable_ipv6: "true"
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.16.238.0/24
+          gateway: 172.16.238.1
+        - subnet: fd11:0011:0011:1100::/64
+          gateway: fd11:11:11:1100:0:0:0:1
+  
 
 services:
+  mqttsn-gateway:
+    container_name: mqttsn-gateway
+    build: mqttsn-gateway
+    networks:
+      - internal
+      - external
+    ports:
+      - 1886:1886/udp
+    expose:
+      - 1886/udp
+    depends_on:
+      - mqtt-broker
+    volumes:
+      - ./mqttsn-gateway/conf:/paho/config/
+  
   mqtt-broker:
+    container_name: mqtt-broker
     build: mqtt-broker
     networks:
-      - default
-    expose:
-      - 1884
-
+      - internal
+      - external
     ports:
       - 1884:1884
       - 1885:1885
+    expose:
+      - 1884
     volumes:
       - ./mqtt-broker/conf:/mosquitto/config/
 
-  mqtt-sample:
+  mqtt-cubes-handler:
+    container_name: mqtt-cubes-handler
+    build: py-mqtt-sample
     environment:
       IS_DOCKER: 1
       SQLALCHEMY_DATABASE_URI: postgresql+psycopg2://test:test@db/wise-cube
-    build: py-mqtt-sample
     networks:
-      - default
+      - internal
     volumes:
       - ./py-mqtt-sample:/src/
       - ./common:/src/common
@@ -30,34 +69,38 @@ services:
 
   http-server:
     build: py-http-server
-    depends_on:
-      - db
-      - mqtt-sample
+    container_name: http-server
+
     environment:
       IS_DOCKER: 1
       STAGE: test
       SQLALCHEMY_DATABASE_URI: postgresql+psycopg2://test:test@db/wise-cube
     networks:
-      - default
+      - internal
+      - external
     ports:
       - 5000:5000
+    depends_on:
+      - db
+      - mqtt-cubes-handler
     volumes:
       - ./py-http-server:/src/
       - ./common:/src/common
     restart: always
 
   db:
+    container_name: db
+    image: postgres:latest
     environment:
       POSTGRES_USER: test
       POSTGRES_PASSWORD: test
       POSTGRES_DB: wise-cube
-    image: postgres:latest
     networks:
-      - default
+      - internal
     ports:
       - 5432:5432
     expose:
       - 5342
-    restart: always
     volumes:
       - /tmp/postgres-data:/var/lib/postgresql/data
+    restart: always

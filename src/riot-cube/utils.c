@@ -8,8 +8,8 @@
     This file contains various utils
 */
 #include "utils.h"
-#include "paho_mqtt.h"
-#include "MQTTClient.h"
+
+state_t current_state = STATE_UNINITIALIZED;
 
 void wlog_res (char* action, int res){
 
@@ -25,13 +25,3 @@ void wlog(char* msg){
     printf("[LOG] : %s ok\n", msg);
 }
 
-unsigned get_qos(const char *str)
-{
-    int qos = atoi(str);
-
-    switch (qos) {
-        case 1:     return QOS1;
-        case 2:     return QOS2;
-        default:    return QOS0;
-    }
-}

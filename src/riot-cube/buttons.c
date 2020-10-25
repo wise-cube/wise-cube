@@ -8,6 +8,7 @@
      This file contains the code that handles the button click
      basically it consist in a thread awaken by an interrupt
 */
+
 #include "periph/gpio.h"
 #include "board.h"
 
@@ -58,6 +59,14 @@ int buttons_init(void){
                 timer_thread_handler ,
                 NULL, "timer_thread");
 
+    // while (thread_getstatus(button_thread_pid) != STATUS_PENDING)
+    // {
+    //     xtimer_sleep(1);
+    // }
+    //     while (thread_getstatus(timer_thread_pid) != STATUS_PENDING)
+    // {
+    //     xtimer_sleep(1);
+    // }
     
 
     err |= timer_thread_pid < 1;

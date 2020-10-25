@@ -1,3 +1,5 @@
+#ifdef USE_MQTT
+
 /* paho.c
                  .__
   ______ _____   |  |__    ____
@@ -8,13 +10,24 @@
     paho is the package used to enable mqtt support in riot-os
     available since release 2020.7
 */
-#include "paho.h"
+#include "mqtt.h"
 #include "utils.h"
 #include "led.h"
+#include "paho_mqtt.h"
+#include "MQTTClient.h"
+
+#define BROKER_PORT 1884
 
 MQTTClient mqtt_client;
 Network mqtt_network;
 
+void on_msg_received(MessageData *data) {
+    printf("paho_mqtt_example: message received on topic"
+           " %.*s: %.*s\n",
+           (int)data->topicName->lenstring.len,
+           data->topicName->lenstring.data, (int)data->message->payloadlen,
+           (char *)data->message->payload);
+}
 int mqtt_init(void){
 
     int err = 0;
@@ -27,19 +40,14 @@ int mqtt_init(void){
     MQTTClientInit(&mqtt_client, &mqtt_network, COMMAND_TIMEOUT_MS, buf, BUF_SIZE, readbuf, BUF_SIZE);
 
     err = MQTTStartTask(&mqtt_client) < 1;  
+    
 
 //    con(NULL,0);
     wlog_res("Mqtt init", err);
     return err;
 }
 
-void on_msg_received(MessageData *data) {
-    printf("paho_mqtt_example: message received on topic"
-           " %.*s: %.*s\n",
-           (int)data->topicName->lenstring.len,
-           data->topicName->lenstring.data, (int)data->message->payloadlen,
-           (char *)data->message->payload);
-}
+
 
 int con(void){
     if ( is_con() ) {
@@ -180,55 +188,4 @@ int unsub(char* topic){
     return err;
 }
 int is_con(void){return mqtt_client.isconnected;}
-
-int cmd_discon(int argc, char **argv){
-    (void)argc;
-    (void)argv;
-
-    int err = discon();
-    wlog_res("cmd discon", err);
-    return err;
-}
-int cmd_con(int argc, char **argv){
-//    printf("usage: con <string msg> [broker ip ] [broker port]\n")
-//    char * ip_addr = (argc > 1) ? argv[1] : NULL;
-//    int  port = (argc > 2) ? atoi(argv[2]): 0;
-//    char * ip_addr = (argc > 1) ? argv[1] : NULL;
-//    int  port = (argc > 2) ? atoi(argv[2]): 0;
-
-    return con();
-}
-int cmd_pub(int argc, char **argv){
-//    printf("usage: pub <string msg> [topic name] \n")
-    if (argc <= 1) {
-        printf("usage: pub <string msg> [topic name] \n");
-        return -1;
-    }
-    char* msg = argv[1];
-    char* topic = (argc > 2) ? argv[2] : (char*)&PUB_TOPIC;
-//    enum Qos qos = (argc > 3) ? get_qos(atoi(argv[3])) : NULL;
-
-    return pub(msg, topic);
-}
-int cmd_sub(int argc, char **argv){
-
-    if (argc == 1 ) {
-        printf("usage: sub [topic name] \n");
-        return -1;
-    }
-
-    char* topic = (argc > 1) ? argv[1]:(char*)&SUB_TOPIC;
-
-    return sub(topic);
-
-}
-int cmd_unsub(int argc, char **argv){
-    if (argc <= 1 ) {
-        printf("usage: unsub [topic name] \n");
-        return -1;
-    }
-    char* topic = (argc > 1) ? argv[1]:(char*)&SUB_TOPIC;
-
-    return unsub(topic);
-}
-
+#endif
