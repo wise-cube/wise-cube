@@ -105,10 +105,10 @@ int pub(char* topic, char* payload)
 
     printf("[MQTT] Published new message \n\t[TOPIC] %s\n\t[MSG] %s \n ", topic, payload);
 
-    if (emcute_reg(&pub_topic) != EMCUTE_OK) {
-        printf("[ERR] unable to obtain topic %s ID", PUB_TOPIC);
-        return 1;
-    }
+    // if (emcute_reg(&pub_topic) != EMCUTE_OK) {
+    //     printf("[ERR] unable to obtain topic %s ID", PUB_TOPIC);
+    //     return 1;
+    // }
     /* step 2: publish data */
     if (emcute_pub(&pub_topic, payload, strlen(payload), flags) != EMCUTE_OK) {
         printf("[ERR] unable to publish data to topic '%s [%i]'\n",
