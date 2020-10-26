@@ -46,7 +46,7 @@ void* state_updater_thread_handler(void* data){
     // xtimer_ticks32_t last_wakeup = xtimer_now();
     while(true) {
         state_update_internal();
-        xtimer_sleep(1);
+        xtimer_sleep(3);
         // xtimer_periodic_wakeup(&last_wakeup,STATE_UPDATER_FREQ_USEC);
     }
     

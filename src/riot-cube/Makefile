@@ -20,6 +20,10 @@ CLIENT_ID ?= "cube_1"
 
 USE_MQTTSN ?= 1
 
+USEMODULE += pn532
+PN532_MODE ?= i2c
+
+
 FEATURES_REQUIRED += periph_gpio
 FEATURES_REQUIRED += periph_i2c
 
@@ -29,7 +33,7 @@ USEMODULE += xtimer
 USEMODULE += shell
 USEMODULE += shell_commands
 USEMODULE += ps
-
+USEMODULE += i2c_scan
 
 USEMODULE += netdev_default
 USEMODULE += mpu9150
@@ -50,6 +54,14 @@ ifneq (,$(filter arch_esp,$(FEATURES_USED)))
   CFLAGS += -DESP_WIFI_PASS=\"$(WIFI_PASS)\"
   
 endif
+
+ifeq ($(PN532_MODE),i2c)
+  CFLAGS += -DPN532_SUPPORT_I2C
+endif
+ifeq ($(PN532_MODE),spi)
+  CFLAGS += -DPN532_SUPPORT_SPI
+endif
+
 ifeq (0, $(USE_MQTT))
   CFLAGS += -DUSE_MQTT
 endif

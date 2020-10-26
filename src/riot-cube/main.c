@@ -5,7 +5,7 @@
 #include "buttons.h"
 #include "mpu.h"
 #include "state_updater.h"
-
+#include "nfc_reader.h"
 extern state_t current_state;
 
 
@@ -46,7 +46,7 @@ void init(void){
     err |= buttons_init();
     err |= mpu_init();
     err |= state_updater_init();
-
+    err |= nfc_init();
     if (!err){
         current_state = STATE_INITIALIZED;
     } else {
