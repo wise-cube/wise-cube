@@ -15,9 +15,7 @@
 #define BLACK 0b000
 #define OFF 0b000
 
-#define LED_R_GPIO 15
-#define LED_G_GPIO 12
-#define LED_B_GPIO 13
+
 
 int led_init(void);
 void led_off(void);

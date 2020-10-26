@@ -18,6 +18,18 @@
 #include "mutex.h"
 
 
+#define BUTTON_GPIO 2
+#define LED_G_GPIO 16
+#define LED_R_GPIO 0 
+#define LED_B_GPIO 2
+#define I2C_CKL 4
+#define I2C_SDA 5
+#define SPI_SCLK 14
+#define SPI_MISO 12
+#define SPI_MOSI 13
+
+// GPIO 9/10 create fault on boot
+// GPIO 15 appears to be reserved to spi
 
 #endif //RIOT_CUBE_GLOBALS_H
 
