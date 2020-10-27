@@ -1,0 +1,14 @@
+USEMODULE += gnrc_netdev_default
+USEMODULE += auto_init_gnrc_netif
+# Specify the mandatory networking modules for IPv6 and UDP
+USEMODULE += gnrc_sock_udp
+USEMODULE += gnrc_ipv6_default
+# Include MQTT-SN
+USEMODULE += emcute
+USEMODULE += gnrc_icmpv6_echo
+
+ifneq ("",$(CLIENT_ID))
+  CFLAGS += -DEMCUTE_ID=\"$(CLIENT_ID)\"
+endif
+CFLAGS += -DGNRC_NETIF_SINGLE
+CFLAGS += -DBROKER_HOST=\"$(BROKER_HOST)\"
