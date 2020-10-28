@@ -21,9 +21,8 @@ function on_shake(){
         <div class="tile is-ancestor">
           <div class="tile is-horizontal is-parent">
 
-
-                {% if ko %}
-                <button class="tile  is-child box bg-red" onclick="on_ko()" >
+                 {% if ko %}
+                <button id="end_button" class="tile  is-child box bg-red" onclick="on_ko()" >
                   <p class="title">
                       {% with text=ko_str %}
                           {% if text %}
@@ -31,13 +30,13 @@ function on_shake(){
                           {% else %}
                               Ko
                           {% endif %}
-
                       {%  endwith %}
                   </p>
                 </button>
                   {% endif %}
+
                   {% if shake %}
-                <button class="tile is-child box is-warning" onclick="on_shake() ">
+                <button id="random_button" class="tile is-child box is-warning" onclick="on_shake() ">
                   <p class="title">
                       {% with text=shake_str %}
                           {% if text %}
@@ -50,8 +49,9 @@ function on_shake(){
                   </p>
                 </button>
                     {% endif %}
+
                   {% if ok %}
-                <button class="tile  is-child box bg-green" onclick="on_ok()" >
+                <button id="progress_button" class="tile  is-child box bg-green" onclick="on_ok()" >
                   <p class="title">
                       {% with text=ok_str %}
                           {% if text %}

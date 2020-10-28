@@ -57,7 +57,7 @@
           <div class="tile is-12 is-vertical is-parent">
 
               {% for c in choices %}
-                <button onclick="send_answer({{ loop.index-1 }})" class="tile is-child box
+                <button id="ans_button" onclick="send_answer({{ loop.index-1 }})" class="tile is-child box
                     {% if answer and c.correct %}
                         bg-green
                     {% elif answer and (c.id == answer.choice.id and not c.correct) %}
