@@ -6,7 +6,7 @@
 
 // #define STATE_ERROR (-1)
 // #define STATE_UNINITIALIZED 0
-// #define STATE_INITIALIZED 1
+// #define STATE_DISCONNECTED 1
 // #define STATE_CONNECTED 2
 // #define STATE_PAIRED 3
 
@@ -18,7 +18,7 @@ unsigned get_qos(const char *str);
 enum enum_state_t {
     STATE_ERROR,
     STATE_UNINITIALIZED,
-    STATE_INITIALIZED,
+    STATE_DISCONNECTED,
     STATE_CONNECTED,
     STATE_PAIRED,
 };
