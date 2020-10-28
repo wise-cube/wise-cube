@@ -30,8 +30,10 @@ extern state_t current_state;
 int mqtt_thread_pid; 
 static void *emcute_thread(void *arg)
 {
+    char emcute_id_buf[16] = {0};
+    snprintf(emcute_id_buf, 16, "%s_%d", EMCUTE_ID, rand() & 0xffffffff);
     (void)arg;
-    emcute_run(EMCUTE_PORT, EMCUTE_ID);
+    emcute_run(EMCUTE_PORT, emcute_id_buf);
     return NULL;    /* should never be reached */
 }
 
@@ -50,28 +52,44 @@ static void on_pub(const emcute_topic_t *topic, void *data, size_t len)
 
 int con(void)
 {
+    if (current_state > STATE_DISCONNECTED){        
+        puts("[LOG] Already connected");
+        return 0;
+    }
+
     sock_udp_ep_t gw = { .family = AF_INET6, .port = EMCUTE_PORT };
-    char *topic = PUB_TOPIC;
+    char *topic = (char*)&PUB_TOPIC;
     char *message = "{\"msg_type\":\"status_update\", \"connected\":false}";
     size_t len = strlen(message);
 
 
     /* parse address */
     if (ipv6_addr_from_str((ipv6_addr_t *)&gw.addr.ipv6, BROKER_HOST) == NULL) {
-        printf("error parsing IPv6 address %s\n", BROKER_HOST);
-        return 1;
+        printf("[ERR] error parsing IPv6 address %s\n", BROKER_HOST);
+        set_state(STATE_DISCONNECTED);
+        exit(1);
     }
+
     printf("[LOG]: connecting to [%s]:%i\n", BROKER_HOST, (int)gw.port);
-    int err = emcute_con(&gw, true, topic, message, len, 0);
+
+    int err = emcute_con(&gw, true, topic, message, len,  EMCUTE_QOS_1);
+    
     if (err == EMCUTE_DUP) {
         printf("[LOG] Already connected");
     } else if (err!= EMCUTE_OK) {
     // if (err!= EMCUTE_OK) {
         printf("[ERR] unable to connect to [%s]:%i (%d) \n ", BROKER_HOST, (int)gw.port, err);
+        set_state(STATE_DISCONNECTED);
         return 1;
     }
     printf("Successfully connected to gateway at [%s]:%i\n",
            BROKER_HOST, (int)gw.port);
+
+    printf("[LOG] Trying to register to %s ", pub_topic.name);  
+    if (emcute_reg(&pub_topic) != EMCUTE_OK) {
+        printf("[ERR] unable to obtain ID for topic %s ", PUB_TOPIC);
+        return 1;
+    }
 
     set_state(STATE_CONNECTED);
     return 0;
@@ -80,39 +98,48 @@ int con(void)
 
 int discon(void)
 {
-    int res = emcute_discon();
-    if (res == EMCUTE_NOGW) {
+    int err = emcute_discon();
+    if (err == EMCUTE_NOGW) {
         puts("[ERR] not connected to any broker");
-        return 1;
-    }
-    else if (res != EMCUTE_OK) {
-        puts("[ERR] unable to disconnect");
-        return 1;
-    }
-    puts("Disconnect successful");
-    return 0;
 
-    set_state(STATE_INITIALIZED);
+    }
+    else if (err) {
+        puts("[ERR] unable to disconnect");
+
+    } else {
+        puts("Disconnect successful");
+    }
+    
+    set_state(STATE_DISCONNECTED);
+    return err;
+
+    
 }
 
 int pub(char* topic, char* payload)
-{
+{   int err;
+
 
     (void)topic;
 
-    unsigned flags = EMCUTE_QOS_0;
+    unsigned flags = EMCUTE_QOS_1;
     
 
-    printf("[MQTT] Published new message \n\t[TOPIC] %s\n\t[MSG] %s \n ", topic, payload);
-
+    printf("[MQTT] Publishing new message \n\t[TOPIC] %s\n\t[MSG] %s \n ", topic, payload);
+    if (current_state < STATE_CONNECTED){
+        puts("[ERR] disconnected");
+        return -1;
+    }
     // if (emcute_reg(&pub_topic) != EMCUTE_OK) {
     //     printf("[ERR] unable to obtain topic %s ID", PUB_TOPIC);
     //     return 1;
     // }
     /* step 2: publish data */
-    if (emcute_pub(&pub_topic, payload, strlen(payload), flags) != EMCUTE_OK) {
-        printf("[ERR] unable to publish data to topic '%s [%i]'\n",
-                pub_topic.name, (int)pub_topic.id);
+    err = emcute_pub(&pub_topic, payload, strlen(payload), flags);
+    if (err != EMCUTE_OK) {
+        printf("[ERR] unable to publish data to topic '%s [%i]' err %d\n",
+                pub_topic.name, (int)pub_topic.id, err);
+        // set_state(STATE_DISCONNECTED);
         return 1;
     }
 
@@ -124,7 +151,10 @@ int pub(char* topic, char* payload)
 
 int sub(  char* topic)
 {
-    unsigned flags = EMCUTE_QOS_0;
+    if (current_state != STATE_CONNECTED){
+        return -1;
+    }
+    unsigned flags = EMCUTE_QOS_1;
 
     /* find empty subscription slot */
     unsigned i = 0;
@@ -148,7 +178,9 @@ int sub(  char* topic)
 
 int unsub(char* topic)
 {
-
+    if (current_state != STATE_CONNECTED){
+        return -1;
+    }
     /* find subscriptions entry */
     for (unsigned i = 0; i < NUMOFSUBS; i++) {
         if (subscriptions[i].topic.name &&
@@ -192,11 +224,7 @@ int mqtt_init(void)
     
     con();
 
-    printf("[LOG] Trying to register to %s ", pub_topic.name);  
-    if (emcute_reg(&pub_topic) != EMCUTE_OK) {
-        printf("[ERR] unable to obtain ID for topic %s ", PUB_TOPIC);
-        return 1;
-    }
+  
     // if (emcute_reg(&pub_topic) != EMCUTE_OK) {
     //     puts("[ERR] unable to obtain topic ID");
     //     return 1;
