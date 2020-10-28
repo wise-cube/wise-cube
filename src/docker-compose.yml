@@ -23,34 +23,34 @@ networks:
   
 
 services:
-  mqttsn-gateway:
-    container_name: mqttsn-gateway
-    build: mqttsn-gateway
-    networks:
-      - internal
-      - external
-    ports:
-      - 1886:1886/udp
-    expose:
-      - 1886/udp
-    depends_on:
-      - mqtt-broker
-    volumes:
-      - ./mqttsn-gateway/conf:/paho/config/
+  # mqttsn-gateway:
+  #   container_name: mqttsn-gateway
+  #   build: mqttsn-gateway
+  #   networks:
+  #     - internal
+  #     - external
+  #   ports:
+  #     - 1886:1886/udp
+  #   expose:
+  #     - 1886/udp
+  #   depends_on:
+  #     - mqtt-broker
+  #   volumes:
+  #     - ./mqttsn-gateway/conf:/paho/config/
   
-  mqtt-broker:
-    container_name: mqtt-broker
-    build: mqtt-broker
-    networks:
-      - internal
-      - external
-    ports:
-      - 1884:1884
-      - 1885:1885
-    expose:
-      - 1884
-    volumes:
-      - ./mqtt-broker/conf:/mosquitto/config/
+  # mqtt-broker:
+  #   container_name: mqtt-broker
+  #   build: mqtt-broker
+  #   networks:
+  #     - internal
+  #     - external
+  #   ports:
+  #     - 1884:1884
+  #     - 1885:1885
+  #   expose:
+  #     - 1884
+  #   volumes:
+  #     - ./mqtt-broker/conf:/mosquitto/config/
 
   mqtt-cubes-handler:
     container_name: mqtt-cubes-handler
@@ -67,6 +67,17 @@ services:
       - mqtt-broker
       - db
 
+  mqtt-broker:
+    container_name: emqx-mqtt-broker
+    image: emqx/emqx
+    ports: 
+      - 1884:1883
+      - 1885:8083 
+      - 1886:1886/udp
+      - 8081:18083
+    volumes: 
+      - ${PWD}/emqx/conf/plugins/emqx_sn.conf:/opt/emqx/etc/plugins/emqx_sn.conf
+      - ${PWD}/emqx/conf/data/loaded_plugins:/opt/emqx/data/loaded_plugins
   http-server:
     build: py-http-server
     container_name: http-server
@@ -102,5 +113,50 @@ services:
     expose:
       - 5342
     volumes:
-      - /tmp/postgres-data:/var/lib/postgresql/data
+      - /tmp/postgres/data:/var/lib/postgresql/data
     restart: always
+
+  node-red:
+    environment: 
+      - PUID=1000
+      # - NODE_OPTIONS:"--unsafe-perm"
+    container_name: node-red
+    image: nodered/node-red:1.2.0
+    environment:
+      - TZ=Europe/Amsterdam
+    ports:
+      - 1880:1880
+    expose:
+      - 1880
+    networks:
+      - internal
+      - external
+    volumes:
+      - ./node-red/data:/data
+    user:
+      root:root
+
+  influxdb:
+    container_name: influxdb
+    image: influxdb
+    ports:
+      - 8086:8086
+    expose: 
+      - 8086
+    networks:
+      - internal
+      - external
+    
+  grafana:
+    environment: 
+      - INFLUXDB_GRAPHITE_ENABLED
+    container_name: grafana
+    depends_on:
+      - influxdb
+    image: grafana/grafana
+    ports:
+      - 3000:3000
+      - 2003:2003
+    networks: 
+      - internal
+      - external

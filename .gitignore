@@ -7,6 +7,7 @@ venv/
 /src/mqtt-broker/build/
 /src/mqtt-broker/mosquitto
 
+/src/node-red/data/*
 /src/*/__pycache__/
 /src/py-common/__pycache__/
 /src/common/__pycache__/
