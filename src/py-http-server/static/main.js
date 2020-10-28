@@ -47,7 +47,6 @@ function onMessageArrived(message) {
 
 
 function trigger_pub(msg){
-	console.log("------>" + msg);
 	var event = document.createEvent("MouseEvent");
 	event.initMouseEvent("click", true, true, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
 
@@ -55,6 +54,7 @@ function trigger_pub(msg){
 
 	case "long_press_event":
 		var elem = document.getElementById("progress_button")	;
+
 		break;
 	case "shake_event":
 		var elem = document.getElementById("random_button");
@@ -69,7 +69,7 @@ function trigger_pub(msg){
 		console.log("Invalid msg_type")
 		break;
 	}
-	console.log("after ifsss")
+
 	if (typeof(elem) != 'undefined' && elem != null) {
 		console.log("in if")
 		elem.dispatchEvent(event);

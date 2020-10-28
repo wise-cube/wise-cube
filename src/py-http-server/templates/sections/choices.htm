@@ -23,22 +23,27 @@
          $(this).removeClass('bg-red');
          $(this).removeClass('bg-blue');
 
+         $(this).removeAttr('id');
+
          if (idx == window.ans_num){
             console.log(( "Index #" + idx + ",ans " + ans_num + ": " + this ))
             switch (ans_num) {
 
-
                 case (0):
                     $(this).addClass('bg-green')
+                    $(this).attr('id', 'progress_button')
                     break;
                 case (1):
                     $(this).addClass('bg-violet')
+                    $(this).attr('id', 'progress_button')
                     break;
                 case (2):
                     $(this).addClass('bg-red')
+                    $(this).attr('id', 'progress_button')
                     break;
                 case (3):
                     $(this).addClass('bg-blue')
+                    $(this).attr('id', 'progress_button')
                     break;
             }
          }
