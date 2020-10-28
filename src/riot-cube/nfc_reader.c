@@ -66,7 +66,7 @@ void* nfc_thread_handler(void* useless)
 
     while (1) {
         /* Delay not to be always polling the interface */
-        xtimer_sleep(1);
+        xtimer_sleep(2);
 
         ret = pn532_get_passive_iso14443a(&pn532, &card, 0x50);
         if (ret < 0) {

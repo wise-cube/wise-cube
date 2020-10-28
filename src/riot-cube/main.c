@@ -47,11 +47,7 @@ void init(void){
     err |= mpu_init();
     err |= state_updater_init();
     err |= nfc_init();
-    if (!err){
-        current_state = STATE_INITIALIZED;
-    } else {
-        current_state = STATE_ERROR;
-    }
+
     state_update();
     shell_init();
 }
