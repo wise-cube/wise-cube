@@ -7,6 +7,8 @@
 #define LWT_MSG "{ \"msg_type\" : \"disconnected\" }"
 #define DEFAULT_MQTT_CLIENT_ID "cube_1"
 
+#define I2C0_SPEED     I2C_SPEED_FAST
+
 #include <stdio.h>
 #include <string.h>
 #include <stdbool.h>

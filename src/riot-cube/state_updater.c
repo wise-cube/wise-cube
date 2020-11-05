@@ -4,17 +4,20 @@
 #include "utils.h"
 #include "mpu.h"
 #include "buttons.h"
+#include "net/sntp.h"
+#include "net/sock/udp.h"
+#include "net/sock/dns.h"
+#include "net/ipv6/addr.h"
 #define MSG_BUF_SIZE 256
 // #define STATE_UPDATER_FREQ_USEC _xtimer_ticks_from_usec(1000000)
+
 
 extern state_t current_state;
 pid_t state_updater_pid;
 
 void set_state(state_t new_state){
     current_state = new_state;
-    if (current_state == STATE_CONNECTED) {
-        state_update();
-    }
+    state_update();
 }
 
 void state_update(void){
@@ -22,9 +25,9 @@ void state_update(void){
 }
 int pub_state(void){
     char         msg_buf[MSG_BUF_SIZE];
-    const char  msg_template_buf[]    ="{\"msg_type\":\"%s\",\"state\":%d}";
-
-    snprintf(msg_buf, MSG_BUF_SIZE-1, msg_template_buf, "state_update", current_state);
+    const char  msg_template_buf[]    ="{\"msg_type\":\"%s\",\"ts\": %llu, \"state\":%d}";
+    long long unsigned int ts = sntp_get_unix_usec();
+    snprintf(msg_buf, MSG_BUF_SIZE-1, msg_template_buf, "state_update", (ts ) ,current_state);
     return pub(PUB_TOPIC, msg_buf);
 }
 void state_update_internal(void){
@@ -63,17 +66,26 @@ void* state_updater_thread_handler(void* data){
     
 }
 
-
 int state_updater_init(void) {
-    char * status_updater_thread_stack = malloc(THREAD_STACKSIZE_MEDIUM);
+
+    // Use sntp to sync with backend, i supposed it was automagic, well, it isn't
+    sock_udp_ep_t sntp_server = { .port = NTP_PORT, .family = AF_INET6 };
+    ipv6_addr_t *addr = (ipv6_addr_t *)&sntp_server.addr;
+    ipv6_addr_from_str(addr, BROKER_HOST);
+    int err = sntp_sync(&sntp_server, 5 * US_PER_SEC );
+    
+    // // timer_offset = sntp_get_offset() - (NTP_UNIX_OFFSET * US_PER_SEC)  ;
+    // // printf("[LOG] offset timer : %lu\n", timer_offset );
+    // printf("[LOG] offset timer : %lu\n", timer_offset );
+    char * status_updater_thread_stack = malloc(THREAD_STACKSIZE_DEFAULT);
     state_updater_pid = thread_create( status_updater_thread_stack,
-            THREAD_STACKSIZE_MEDIUM  ,
+            THREAD_STACKSIZE_DEFAULT   ,
             4,
             THREAD_CREATE_STACKTEST,
             state_updater_thread_handler ,
             NULL, "state_updater_thread");
 
-    int err = state_updater_pid < 0;
+    err |= state_updater_pid < 0;
     wlog_res("State updater init", err);
     return err;
 }

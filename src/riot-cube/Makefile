@@ -8,11 +8,13 @@ RIOTBASE ?= $(CURDIR)/../../../../RIOT
 # Comment this out to disable code in RIOT that does safety checking
 # which is not needed in a production environment but helps in the
 # development process:
-DEVELHELP ?= 1
+DEVELHELP ?= 0
 # Change this to 0 show compiler invocation lines by default:
 QUIET ?= 1
 
-DEBUG=1
+DEBUG=0
+LOG_LEVEL = LOG_INFO
+
 WIFI_SSID ?= "---redacted---"
 WIFI_PASS ?= "---redacted---"
 BROKER_HOST ?= "---redacted---"
@@ -26,6 +28,7 @@ PN532_MODE ?= i2c
 
 FEATURES_REQUIRED += periph_gpio
 FEATURES_REQUIRED += periph_i2c
+# FEATURES_REQUIRED += periph_spi
 
 USEMODULE += periph_gpio_irq
 USEMODULE += xtimer
@@ -40,7 +43,8 @@ USEMODULE += mpu9150
 
 USEPKG += jsmn
 USEMODULE += esp_wifi
-
+USEMODULE += sntp
+# USEMODULE += dns
 ifneq (1, $(USE_MQTTSN))
    include ./Makefile.paho
 else

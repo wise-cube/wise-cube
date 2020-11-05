@@ -32,9 +32,6 @@ void shell_init(void) {
         };
 
     shell_run(shell_commands, line_buf, SHELL_DEFAULT_BUFSIZE);
-
-
-
 }
 
 void init(void){
@@ -48,7 +45,7 @@ void init(void){
     err |= state_updater_init();
     err |= nfc_init();
 
-    state_update();
+    // state_update();
     shell_init();
 }
 

@@ -24,7 +24,7 @@
 #include "pn532.h"
 #include "xtimer.h"
 
-#define LOG_LEVEL LOG_DEBUG
+
 #include "log.h"
 
 #define MIN(a, b) ((a) < (b) ? (a) : (b))
@@ -40,25 +40,34 @@ static void printbuff(char *buff, unsigned len)
 
 void* nfc_thread_handler(void* useless)
 {
-    static char data[16];
+    // static char data[16];
     static nfc_iso14443a_t card;
     static pn532_t pn532;
-    pn532_params_t pn532_params;
-    unsigned len;
+    pn532_params_t pn532_params = {.i2c =I2C_DEV(0), .irq = 2, .reset = 0 };
+    // unsigned len;
     int ret;
     (void)useless;
 
-    ret = pn532_init(&pn532, &pn532_params,PN532_SPI );
+    ret = pn532_init_i2c(&pn532, &pn532_params);
+    
     if (ret != 0) {
         LOG_INFO("init error %d\n", ret);
     }
 
-    xtimer_sleep(1);
+    xtimer_sleep(2);
     LOG_INFO("awake\n");
 
     uint32_t fwver;
     pn532_fw_version(&pn532, &fwver);
     LOG_INFO("ver %d.%d\n", (unsigned)PN532_FW_VERSION(fwver), (unsigned)PN532_FW_REVISION(fwver));
+
+
+    ret = pn532_sam_configuration(&pn532, PN532_SAM_NORMAL, 1000);
+    LOG_INFO("set sam %d\n", ret);
+
+    // uint32_t fwver;
+    // pn532_fw_version(&pn532, &fwver);
+    // LOG_INFO("ver %d.%d\n", (unsigned)PN532_FW_VERSION(fwver), (unsigned)PN532_FW_REVISION(fwver));
 
 
     ret = pn532_sam_configuration(&pn532, PN532_SAM_NORMAL, 1000);
@@ -74,31 +83,31 @@ void* nfc_thread_handler(void* useless)
             continue;
         }
 
-        if (card.type == ISO14443A_TYPE4) {
-            if (pn532_iso14443a_4_activate(&pn532, &card) != 0) {
-                LOG_ERROR("act\n");
-                continue;
+        // if (card.type == ISO14443A_TYPE4) {
+        //     if (pn532_iso14443a_4_activate(&pn532, &card) != 0) {
+        //         LOG_ERROR("act\n");
+        //         continue;
 
-            }
-            else if (pn532_iso14443a_4_read(&pn532, data, &card, 0x00, 2) != 0) {
-                LOG_ERROR("len\n");
-                continue;
-            }
+        //     }
+        //     else if (pn532_iso14443a_4_read(&pn532, data, &card, 0x00, 2) != 0) {
+        //         LOG_ERROR("len\n");
+        //         continue;
+        //     }
 
-            len = PN532_ISO14443A_4_LEN_FROM_BUFFER(data);
-            len = MIN(len, sizeof(data));
+        //     len = PN532_ISO14443A_4_LEN_FROM_BUFFER(data);
+        //     len = MIN(len, sizeof(data));
 
-            if (pn532_iso14443a_4_read(&pn532, data, &card, 0x02, len) != 0) {
-                LOG_ERROR("read\n");
-                continue;
-            }
+        //     if (pn532_iso14443a_4_read(&pn532, data, &card, 0x02, len) != 0) {
+        //         LOG_ERROR("read\n");
+        //         continue;
+        //     }
 
-            LOG_INFO("dumping card contents (%d bytes)\n", len);
-            printbuff(data, len);
-            pn532_release_passive(&pn532, card.target);
+        //     LOG_INFO("dumping card contents (%d bytes)\n", len);
+        //     printbuff(data, len);
+        //     pn532_release_passive(&pn532, card.target);
 
-        }
-        else if (card.type == ISO14443A_MIFARE) {
+        // }
+        if (card.type == ISO14443A_MIFARE) {
             char key[] = { 0xff, 0xff, 0xff, 0xff, 0xff, 0xff };
             char data[32];
 
@@ -137,7 +146,7 @@ int nfc_init(void) {
     char * status_updater_thread_stack = malloc(THREAD_STACKSIZE_MAIN);
     int nfc_pid = thread_create( status_updater_thread_stack,
             THREAD_STACKSIZE_MAIN  ,
-            5,
+            23,
             THREAD_CREATE_STACKTEST,
             nfc_thread_handler ,
             NULL, "nfc_thread");
