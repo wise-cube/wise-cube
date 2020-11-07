@@ -38,50 +38,6 @@ services:
     environment:
       - NTP_SERVERS=time.cloudflare.com
       
-  # mqttsn-gateway:
-  #   container_name: mqttsn-gateway
-  #   build: mqttsn-gateway
-  #   networks:
-  #     - internal
-  #     - external
-  #   ports:
-  #     - 1886:1886/udp
-  #   expose:
-  #     - 1886/udp
-  #   depends_on:
-  #     - mqtt-broker
-  #   volumes:
-  #     - ./mqttsn-gateway/conf:/paho/config/
-  
-  # mqtt-broker:
-  #   container_name: mqtt-broker
-  #   build: mqtt-broker
-  #   networks:
-  #     - internal
-  #     - external
-  #   ports:
-  #     - 1884:1884
-  #     - 1885:1885
-  #   expose:
-  #     - 1884
-  #   volumes:
-  #     - ./mqtt-broker/conf:/mosquitto/config/
-
-  mqtt-cubes-handler:
-    container_name: mqtt-cubes-handler
-    build: py-mqtt-sample
-    environment:
-      IS_DOCKER: 1
-      SQLALCHEMY_DATABASE_URI: postgresql+psycopg2://test:test@db/wise-cube
-    networks:
-      - internal
-    volumes:
-      - ./py-mqtt-sample:/src/
-      - ./common:/src/common
-    depends_on:
-      - mqtt-broker
-      - db
-
   mqtt-broker:
     container_name: emqx-mqtt-broker
     image: emqx/emqx
@@ -114,7 +70,6 @@ services:
       - 5000:5000
     depends_on:
       - db
-      - mqtt-cubes-handler
     volumes:
       - ./py-http-server:/src/
       - ./common:/src/common
