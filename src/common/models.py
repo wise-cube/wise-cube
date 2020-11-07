@@ -3,11 +3,7 @@ from sqlalchemy import Column, Integer, String, ForeignKey, Enum
 from common.conf import Base, ScopedSession
 from common.states import CubeStates, GroupStates
 from random import choice
-
-
-class Player(Base):
-    __tablename__ = 'players'
-    NAMES = ['Mario Speedwagon', 'Petey Cruiser', 'Anna Sthesia', 'Paul Molive', 'Anna Mull', 'Gail Forcewind',
+PLAYER_NAMES = ['Mario Speedwagon', 'Petey Cruiser', 'Anna Sthesia', 'Paul Molive', 'Anna Mull', 'Gail Forcewind',
              'Paige Turner', 'Bob Frapples', 'Walter Melon', 'Nick R. Bocker', 'Barb Ackue', 'Buck Kinnear',
              'Greta Life', 'Ira Membrit', 'Shonda Leer', 'Brock Lee', 'Maya Didas', "Rick O'Shea", 'Pete Sariya',
              'Monty Carlo', 'Sal Monella', 'Sue Vaneer', 'Cliff Hanger', 'Barb Dwyer', 'Terry Aki', 'Cory Ander',
@@ -48,6 +44,10 @@ class Player(Base):
              'Jen Youfelct', 'Reanne Carnation', 'Paul Misunday', 'Chris P. Cream', 'Gio Metric', 'Caire Innet',
              'Marsha Mello', 'Manny Petty', 'Val Adictorian', 'Lucy Tania', 'Jaques Amole']
 
+
+class Player(Base):
+    __tablename__ = 'players'
+    
     id = Column(Integer, primary_key=True)
     group_id = Column(Integer, ForeignKey('groups.id'))
     avatar_id = Column(Integer, ForeignKey('avatars.id'))
@@ -64,7 +64,7 @@ class Player(Base):
 
     @staticmethod
     def random_name():
-        return choice(Player.NAMES)
+        return choice(PLAYER_NAMES)
 
 
 class GameInstance(Base):

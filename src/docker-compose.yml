@@ -23,6 +23,21 @@ networks:
   
 
 services:
+  ntp:
+    image: cturra/ntp:latest
+    container_name: ntp
+    restart: always
+    networks: 
+      - external
+    ports:
+      - 123:123/udp
+    cap_add:
+      - SYS_NICE
+      - SYS_RESOURCE
+      - SYS_TIME
+    environment:
+      - NTP_SERVERS=time.cloudflare.com
+      
   # mqttsn-gateway:
   #   container_name: mqttsn-gateway
   #   build: mqttsn-gateway
@@ -70,14 +85,20 @@ services:
   mqtt-broker:
     container_name: emqx-mqtt-broker
     image: emqx/emqx
+
     ports: 
       - 1884:1883
       - 1885:8083 
       - 1886:1886/udp
       - 8081:18083
+    
     volumes: 
       - ${PWD}/emqx/conf/plugins/emqx_sn.conf:/opt/emqx/etc/plugins/emqx_sn.conf
       - ${PWD}/emqx/conf/data/loaded_plugins:/opt/emqx/data/loaded_plugins
+    networks: 
+      - internal
+      - external
+
   http-server:
     build: py-http-server
     container_name: http-server
