@@ -15,6 +15,9 @@
 extern state_t current_state;
 pid_t state_updater_pid;
 
+int last_ntp_update;
+sock_udp_ep_t sntp_server = { .port = NTP_PORT, .family = AF_INET6 };
+
 void set_state(state_t new_state){
     current_state = new_state;
     state_update();
@@ -60,6 +63,11 @@ void* state_updater_thread_handler(void* data){
         xtimer_sleep(3);
         state_update_internal();
         pub_state();
+
+        if (xtimer_now_usec64() - last_ntp_update > 1 * US_PER_SEC){
+            sntp_sync(&sntp_server, 5 * US_PER_SEC );   
+            last_ntp_update = xtimer_now_usec64();
+        }
         
         // xtimer_periodic_wakeup(&last_wakeup,STATE_UPDATER_FREQ_USEC);
     }
@@ -69,17 +77,18 @@ void* state_updater_thread_handler(void* data){
 int state_updater_init(void) {
 
     // Use sntp to sync with backend, i supposed it was automagic, well, it isn't
-    sock_udp_ep_t sntp_server = { .port = NTP_PORT, .family = AF_INET6 };
+
     ipv6_addr_t *addr = (ipv6_addr_t *)&sntp_server.addr;
     ipv6_addr_from_str(addr, BROKER_HOST);
-    int err = sntp_sync(&sntp_server, 5 * US_PER_SEC );
     
+    int err = sntp_sync(&sntp_server, 5 * US_PER_SEC );
+    last_ntp_update = xtimer_now_usec64();
     // // timer_offset = sntp_get_offset() - (NTP_UNIX_OFFSET * US_PER_SEC)  ;
     // // printf("[LOG] offset timer : %lu\n", timer_offset );
     // printf("[LOG] offset timer : %lu\n", timer_offset );
-    char * status_updater_thread_stack = malloc(THREAD_STACKSIZE_DEFAULT);
+    char * status_updater_thread_stack = malloc(THREAD_STACKSIZE_DEFAULT * 2);
     state_updater_pid = thread_create( status_updater_thread_stack,
-            THREAD_STACKSIZE_DEFAULT   ,
+            THREAD_STACKSIZE_DEFAULT  *2 ,
             4,
             THREAD_CREATE_STACKTEST,
             state_updater_thread_handler ,

@@ -20,10 +20,10 @@
 #include "mutex.h"
 
 
-#define BUTTON_GPIO 2
-#define LED_G_GPIO 16
-#define LED_R_GPIO 0 
-#define LED_B_GPIO 10      
+#define BUTTON_GPIO 15
+#define LED_G_GPIO 14
+#define LED_R_GPIO 12
+#define LED_B_GPIO 13      
 // #define I2C_CKL 4
 // #define I2C_SDA 5
 // #define SPI_SCLK 14

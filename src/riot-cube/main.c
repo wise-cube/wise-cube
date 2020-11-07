@@ -40,10 +40,11 @@ void init(void){
     err |= led_init();
 
     err |= mqtt_init();
-    err |= buttons_init();
+    
     err |= mpu_init();
     err |= state_updater_init();
     err |= nfc_init();
+    err |= buttons_init();
 
     // state_update();
     shell_init();
