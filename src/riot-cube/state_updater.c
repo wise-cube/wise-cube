@@ -64,7 +64,7 @@ void* state_updater_thread_handler(void* data){
         state_update_internal();
         pub_state();
 
-        if (xtimer_now_usec64() - last_ntp_update > 1 * US_PER_SEC){
+        if (xtimer_now_usec64() - last_ntp_update > 60 * US_PER_SEC){
             sntp_sync(&sntp_server, 5 * US_PER_SEC );   
             last_ntp_update = xtimer_now_usec64();
         }

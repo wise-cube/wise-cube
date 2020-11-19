@@ -46,7 +46,7 @@ services:
       - 1884:1883
       - 1885:8083 
       - 1886:1886/udp
-      - 8081:18083
+      - 82:18083
     
     volumes: 
       - ${PWD}/emqx/conf/plugins/emqx_sn.conf:/opt/emqx/etc/plugins/emqx_sn.conf
@@ -67,7 +67,7 @@ services:
       - internal
       - external
     ports:
-      - 5000:5000
+      - 80:5000
     depends_on:
       - db
     volumes:
@@ -89,7 +89,7 @@ services:
     expose:
       - 5342
     volumes:
-      - /tmp/postgres/data:/var/lib/postgresql/data
+      - ./postgres/data:/var/lib/postgresql/data
     restart: always
 
   node-red:
@@ -101,7 +101,7 @@ services:
     environment:
       - TZ=Europe/Amsterdam
     ports:
-      - 1880:1880
+      - 81:1880
     expose:
       - 1880
     networks:
@@ -115,6 +115,10 @@ services:
   influxdb:
     container_name: influxdb
     image: influxdb
+    environment: 
+      - INFLUXDB_DB=wise_cube        
+      - INFLUXDB_ADMIN_USER=test
+      - INFLUXDB_ADMIN_PASSWORD=test
     ports:
       - 8086:8086
     expose: 
@@ -124,15 +128,26 @@ services:
       - external
     
   grafana:
-    environment: 
-      - INFLUXDB_GRAPHITE_ENABLED
+    image: grafana/grafana 
+    user: "1000"
+    # environment:
+    #   - HTTP_USER=test
+    #   - HTTP_PASS=test
+    #   - INFLUXDB_HOST=influxdb
+    #   - INFLUXDB_PORT=8086
+    #   - INFLUXDB_NAME=wise_cube
+    #   - INFLUXDB_USER=test
+    #   - INFLUXDB_PASS=test
+    volumes:
+      - ./grafana/data:/var/lib/grafana
+      - ./grafana/conf/sample.ini:/etc/grafana/grafana.ini
+      - ./grafana/conf/provisioning:/etc/grafana/provisioning
     container_name: grafana
     depends_on:
       - influxdb
-    image: grafana/grafana
+    
     ports:
-      - 3000:3000
-      - 2003:2003
+      - 83:3000
     networks: 
       - internal
       - external
