@@ -1,13 +1,11 @@
-version: '2.4'
+version: '2.2'
 
 networks:
   internal:
-    name : wise-cube-internal
     # Use a custom driver
     driver: bridge
     internal: true
   external:
-    name : wise-cube-external
     # Use a custom driver which takes special options
     driver: bridge
     enable_ipv6: true

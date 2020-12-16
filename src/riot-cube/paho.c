@@ -57,8 +57,6 @@ int con(void){
 
     // Retrieve broker ip and port
     char broker_ip[] = BROKER_HOST;
-
-
     int broker_port = BROKER_PORT;
     int err = 0;
 
@@ -80,7 +78,7 @@ int con(void){
     printf("Trying to connect to %s:%d \n",broker_ip,broker_port);
     // Connecting to network
     err = NetworkConnect(&mqtt_network, broker_ip, broker_port);
-    if (err ) {
+    if (err) {
         printf("Unable to connect to network (%d)\n", err);
         return err;
     }

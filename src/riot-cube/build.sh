@@ -16,7 +16,7 @@ fi
 
 
 if [ $USER == "giulai" ]; then
-  export BROKER_HOST="192.168.1.139"
+  export BROKER_HOST="fe80::2cc4:7a49:5c6e:1baa"
   source /home/giulai/.sh_env
   make  flash term
 

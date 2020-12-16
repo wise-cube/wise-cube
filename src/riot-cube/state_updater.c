@@ -1,9 +1,9 @@
 #include "state_updater.h"
-#include "led.h"
+//#include "led.h"
 #include "mqtt.h"
 #include "utils.h"
-#include "mpu.h"
-#include "buttons.h"
+//#include "mpu.h"
+//#include "buttons.h"
 #include "net/sntp.h"
 #include "net/sock/udp.h"
 #include "net/sock/dns.h"
@@ -37,20 +37,20 @@ void state_update_internal(void){
     printf("Current state: %d\n", current_state);
      switch (current_state) {
             case STATE_ERROR:
-                led_set_color(VIOLET);
+                //led_set_color(VIOLET);
                 break;
             case STATE_UNINITIALIZED:
-                led_set_color(RED);
+                //led_set_color(RED);
                 break;
             case STATE_DISCONNECTED:
-                led_set_color(YELLOW);
+                //led_set_color(YELLOW);
                 con();
                 break;
             case STATE_CONNECTED:
-                led_set_color(GREEN);
+                //led_set_color(GREEN);
                 break;
             case STATE_PAIRED:
-                led_set_color(WHITE);
+                //led_set_color(WHITE);
                 break;
             default:
                 break;

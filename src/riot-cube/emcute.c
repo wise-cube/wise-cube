@@ -73,7 +73,7 @@ int con(void)
     printf("[LOG]: connecting to [%s]:%i\n", BROKER_HOST, (int)gw.port);
 
     int err = emcute_con(&gw, true, topic, message, len,  EMCUTE_QOS_1);
-    
+    printf("after connection\n");
     if (err == EMCUTE_DUP) {
         printf("[LOG] Already connected");
     } else if (err!= EMCUTE_OK) {
@@ -204,7 +204,7 @@ int unsub(char* topic)
 
 int mqtt_init(void)
 {
-
+    printf("in emcuteeeeeeeeeeeeeeeeee\n");
     /* the main thread needs a msg queue to be able to run `ping6`*/
     msg_init_queue(queue, ARRAY_SIZE(queue));
 

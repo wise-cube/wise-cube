@@ -1,4 +1,4 @@
-LWIP_IPV4 ?= 1
+LWIP_IPV4 ?= 0
 
 ifneq (0, $(LWIP_IPV4))
 	USEMODULE += ipv4_addr
