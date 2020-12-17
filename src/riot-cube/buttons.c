@@ -14,7 +14,7 @@
 
 #include "utils.h"
 #include "buttons.h"
-#include "led.h"
+#include "cube_led/cube_led.h"
 #include "mqtt_wrapper.h"
 
 
@@ -80,7 +80,7 @@ void long_press_event(void){
 }
 void short_press_event(void){
     pub_short_press_event();
-    led_blink(1);
+    led_blink(2);
 }
 
 void button_interrupt_handler(void* data){

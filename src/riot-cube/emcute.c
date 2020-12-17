@@ -9,9 +9,12 @@
 #include "net/ipv6/addr.h"
 #include "utils.h"
 #include "mqtt.h"
+
 #ifndef EMCUTE_ID
 #define EMCUTE_ID           ("gertrud")
 #endif
+
+
 #define EMCUTE_PORT         (1886U)
 #define EMCUTE_PRIO         (THREAD_PRIORITY_MAIN - 1)
 
@@ -20,7 +23,7 @@
 
 static char stack[THREAD_STACKSIZE_DEFAULT];
 static msg_t queue[8];
-
+bool clean = true;
 static emcute_sub_t subscriptions[NUMOFSUBS];
 static char topics[NUMOFSUBS][TOPIC_MAXLEN];
 
@@ -72,10 +75,12 @@ int con(void)
 
     printf("[LOG]: connecting to [%s]:%i\n", BROKER_HOST, (int)gw.port);
 
-    int err = emcute_con(&gw, true, topic, message, len,  EMCUTE_QOS_1);
+    int err = emcute_con(&gw, clean, topic, message, len,  EMCUTE_QOS_0);
     
     if (err == EMCUTE_DUP) {
         printf("[LOG] Already connected");
+        set_state(STATE_CONNECTED);
+        clean = false;
     } else if (err!= EMCUTE_OK) {
     // if (err!= EMCUTE_OK) {
         printf("[ERR] unable to connect to [%s]:%i (%d) \n ", BROKER_HOST, (int)gw.port, err);
@@ -139,7 +144,9 @@ int pub(char* topic, char* payload)
     if (err != EMCUTE_OK) {
         printf("[ERR] unable to publish data to topic '%s [%i]' err %d\n",
                 pub_topic.name, (int)pub_topic.id, err);
-        // set_state(STATE_DISCONNECTED);
+        if (err != EMCUTE_TIMEOUT){
+            set_state(STATE_DISCONNECTED);
+        }
         return 1;
     }
 
@@ -222,7 +229,6 @@ int mqtt_init(void)
     sub_topic.name = SUB_TOPIC;
     pub_topic.name = PUB_TOPIC;
     
-    con();
 
   
     // if (emcute_reg(&pub_topic) != EMCUTE_OK) {

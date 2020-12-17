@@ -33,14 +33,14 @@ static void printbuff(char *buff, unsigned len)
 {
     while (len) {
         len--;
-        printf("%02x ", *buff++);
+        printf("\\x%02x", *buff++);
     }
     puts("");
 }
 
 void* nfc_thread_handler(void* useless)
 {
-    // static char data[16];
+    static char data[32];
     static nfc_iso14443a_t card;
     static pn532_t pn532;
     pn532_params_t pn532_params = {.i2c =I2C_DEV(0), .irq = 2, .reset = 0 };
@@ -48,13 +48,15 @@ void* nfc_thread_handler(void* useless)
     int ret;
     (void)useless;
 
+    // i2c_init(I2C_DEV(0));
     ret = pn532_init_i2c(&pn532, &pn532_params);
     
     if (ret != 0) {
         LOG_INFO("init error %d\n", ret);
     }
+    
 
-    xtimer_sleep(2);
+    xtimer_sleep(3);
     LOG_INFO("awake\n");
 
     uint32_t fwver;
@@ -64,22 +66,31 @@ void* nfc_thread_handler(void* useless)
 
     ret = pn532_sam_configuration(&pn532, PN532_SAM_NORMAL, 1000);
     LOG_INFO("set sam %d\n", ret);
+    
 
     // uint32_t fwver;
     // pn532_fw_version(&pn532, &fwver);
     // LOG_INFO("ver %d.%d\n", (unsigned)PN532_FW_VERSION(fwver), (unsigned)PN532_FW_REVISION(fwver));
 
 
-    ret = pn532_sam_configuration(&pn532, PN532_SAM_NORMAL, 1000);
-    LOG_INFO("set sam %d\n", ret);
+    // ret = pn532_sam_configuration(&pn532, PN532_SAM_NORMAL, 1000);
+    // LOG_INFO("set sam %d\n", ret);
 
     while (1) {
         /* Delay not to be always polling the interface */
-        xtimer_sleep(2);
+        // printf("NFC reader start \n");
+        pn532_reset(&pn532);
+        ret = pn532_sam_configuration(&pn532, PN532_SAM_NORMAL, 1000);
+        LOG_INFO("set sam %d\n", ret);
+        xtimer_sleep(4);
+        // printf("NFC reader pre_read \n");
 
+        // pn532_reset(&pn532);
         ret = pn532_get_passive_iso14443a(&pn532, &card, 0x50);
+
+        // printf("NFC reader post_read \n");
         if (ret < 0) {
-            LOG_DEBUG("no card\n");
+            LOG_DEBUG("[NFC] no card\n");
             continue;
         }
 
@@ -109,28 +120,40 @@ void* nfc_thread_handler(void* useless)
         // }
         if (card.type == ISO14443A_MIFARE) {
             char key[] = { 0xff, 0xff, 0xff, 0xff, 0xff, 0xff };
-            char data[32];
+            // char data[32];
+            int i = 0;
 
-            for (int i = 0; i < 64; i++) {
-                LOG_INFO("sector %02d, block %02d | ", i / 4, i);
-                if ((i & 0x03) == 0) {
-                    ret = pn532_mifareclassic_authenticate(&pn532, &card,
-                                                           PN532_MIFARE_KEY_A, key, i);
-                    if (ret != 0) {
-                        LOG_ERROR("auth\n");
-                        break;
-                    }
-                }
-
-                ret = pn532_mifareclassic_read(&pn532, data, &card, i);
-                if (ret == 0) {
-                    printbuff(data, 16);
-                }
-                else {
-                    LOG_ERROR("read\n");
-                    break;
+            // LOG_INFO("sector %02d, block %02d | ", i / 4, i);
+            if ((i & 0x03) == 0) {
+                ret = pn532_mifareclassic_authenticate(&pn532, &card,
+                                                        PN532_MIFARE_KEY_A, key, i);
+                if (ret != 0) {
+                    LOG_ERROR("auth\n");
+                    continue;
                 }
             }
+
+            ret = pn532_mifareclassic_read(&pn532, data, &card, i);
+            if (ret == 0) {
+                printf("[NFC] ");
+                char game_ids[16][3] = {0};
+
+                memcpy(game_ids[0],"\xdb\x65\xcc\x22\x50\x08\x04\x00\x62\x63\x64\x65\x66\x67\x68\x69", 16);
+                memcpy(game_ids[1],"\xeb\x56\x8b\x22\x14\x08\x04\x00\x62\x63\x64\x65\x66\x67\x68\x69", 16);
+                memcpy(game_ids[2],"\x59\x26\xdd\x6e\xcc\x08\x04\x00\x62\x63\x64\x65\x66\x67\x68\x69", 16);
+                printbuff(data, 16);
+
+                for(uint gi=0; gi < sizeof(game_ids)/16; gi++){
+                    
+                    if(memcmp(game_ids[gi], data, 3) ==0 ){
+                        printf(" -> Card %d\n", gi + 1);
+
+                    }
+                }
+                
+            }
+
+            
 
         }
         else {
@@ -143,14 +166,16 @@ void* nfc_thread_handler(void* useless)
 
 
 int nfc_init(void) {
+    #ifndef NATIVE
     char * status_updater_thread_stack = malloc(THREAD_STACKSIZE_MAIN);
     int nfc_pid = thread_create( status_updater_thread_stack,
             THREAD_STACKSIZE_MAIN  ,
-            23,
+            5,
             THREAD_CREATE_STACKTEST,
             nfc_thread_handler ,
             NULL, "nfc_thread");
     int err = nfc_pid < 0;
     wlog_res("NFC init", err);
     return err;
+    #endif
 }

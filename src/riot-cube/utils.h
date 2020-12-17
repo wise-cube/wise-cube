@@ -20,6 +20,7 @@ enum enum_state_t {
     STATE_UNINITIALIZED,
     STATE_DISCONNECTED,
     STATE_CONNECTED,
+    STATE_PAIR_REQ,
     STATE_PAIRED,
 };
 

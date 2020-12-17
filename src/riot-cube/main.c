@@ -1,11 +1,11 @@
 #include "shell.h"
-
 #include "mqtt_wrapper.h"
 #include "utils.h"
 #include "buttons.h"
 #include "mpu.h"
 #include "state_updater.h"
 #include "nfc_reader.h"
+#include "cube_led/cube_led.h"
 extern state_t current_state;
 
 
@@ -34,18 +34,26 @@ void shell_init(void) {
     shell_run(shell_commands, line_buf, SHELL_DEFAULT_BUFSIZE);
 }
 
+
+
+
 void init(void){
 
     int err = 0;
     err |= led_init();
 
+    led_set_color(RED);
     err |= mqtt_init();
-    
-    err |= mpu_init();
-    err |= state_updater_init();
+    // err |= mpu_init();
     err |= nfc_init();
-    err |= buttons_init();
+    // err |= buttons_init();
 
+    led_set_color(YELLOW);
+    // con();
+    
+    // err |= state_updater_init();
+
+     
     // state_update();
     shell_init();
 }

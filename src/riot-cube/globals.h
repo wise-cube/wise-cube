@@ -20,10 +20,17 @@
 #include "mutex.h"
 
 
+// values defined here override default values for GPIOS
 #define BUTTON_GPIO 15
-#define LED_G_GPIO 14
-#define LED_R_GPIO 12
-#define LED_B_GPIO 13      
+#define GPIO_LED_R 13
+#define GPIO_LED_G 14
+#define GPIO_LED_B 12  
+
+    
+// #define I2C0_SPEED     I2C_SPEED_FAST
+// #define I2C0_SDA       GPIO4
+// #define I2C0_SCL       GPIO5
+
 // #define I2C_CKL 4
 // #define I2C_SDA 5
 // #define SPI_SCLK 14

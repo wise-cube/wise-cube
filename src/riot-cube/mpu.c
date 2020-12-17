@@ -11,6 +11,8 @@
 #include "utils.h"
 #include "board.h"
 #include "mqtt_wrapper.h"
+#include "log.h"
+#include "cube_led/cube_led.h"
 
 #define SHAKE_TRESHOLD_USEC 1500 * 1000
 
@@ -37,22 +39,23 @@ int mpu_init(void){
 
     char* mpu_thread_stack = malloc(THREAD_STACKSIZE_MAIN );
     err = !mpu_thread_stack;
-    wlog_res("Mpu thread stack allocation", err);
+    if (err) {
+        LOG_INFO("Mpu thread stack allocation failed");
+    }
+
     mpu_pid = thread_create( mpu_thread_stack,
                     THREAD_STACKSIZE_MAIN  ,
-                    16,
+                    30,
                     THREAD_CREATE_STACKTEST,
                     mpu_thread_handler ,
                     NULL, "mpu_thread");
-    err = mpu_pid < 1;
-    last_shake_time = 0 ;
-    while(thread_getstatus(mpu_pid) != STATUS_SLEEPING)
-    {
-        xtimer_sleep(1);
-    }
     
     err |=  mpu_start();
-    wlog_res("Mpu start",err);
+    last_shake_time = 0 ;
+    mpu_detect_shake_running=1;
+    mpu_detect_face_running=1;
+    LOG_INFO("Mpu started with pid %d",mpu_pid);
+    
     return err;
 }
 
@@ -114,42 +117,47 @@ void* mpu_thread_handler(void* data){
 //			}
 
         err =  mpu9x50_read_accel(&mpu_dev, &res_buf);
-        if(err){
+
+        if(err != 0){
             printf("Error while mesauring accel\n");
             continue;
         } else {
             acc_buf.x_axis += res_buf.x_axis;
             acc_buf.y_axis += res_buf.y_axis;
             acc_buf.z_axis += res_buf.z_axis;
+
+            if (acc_buf.x_axis == 0 && acc_buf.x_axis == 0 && acc_buf.x_axis ==0){
+                printf("Null\n");
+                mpu9x50_init(&mpu_dev, &params);
             }
 		}
 
 
+    }
+    acc[0] = ((float)acc_buf.x_axis)/1000;
+    acc[1] = (float)acc_buf.y_axis/1000;
+    acc[2] = (float)acc_buf.z_axis/1000;
+    // printf("[LOG]: mpu acc: %f, %f, %f\n", acc[0], acc[1], acc[2]);
 
-		acc[0] = ((float)acc_buf.x_axis)/1000;
-		acc[1] = (float)acc_buf.y_axis/1000;
-		acc[2] = (float)acc_buf.z_axis/1000;
-//        printf("[LOG]: mpu acc: %f, %f, %f\n", acc[0], acc[1], acc[2]);
+    //	gyro[0] = gyr_buf.x_axis/10;
+    //	gyro[1] = gyr_buf.y_axis/10;
+    //	gyro[2] = gyr_buf.z_axis/10;
+    
+    float acc_sum = acc[0]*acc[0] + acc[1]*acc[1] + acc[2]*acc[2];
+    // printf("x: %f, y: %f, z:%f, s: %f\n", acc[0], acc[1], acc[2], acc_sum);
+    // puts("----> val: %d", s);
+    if (mpu_detect_shake_running)
+        detect_shake(acc_sum);
+    if (mpu_detect_face_running)
+        detect_face_change(acc);
+    xtimer_usleep(100000);
+}
 
-//		gyro[0] = gyr_buf.x_axis/10;
-//		gyro[1] = gyr_buf.y_axis/10;
-//		gyro[2] = gyr_buf.z_axis/10;
-		
-		float acc_sum = acc[0]*acc[0] + acc[1]*acc[1] + acc[2]*acc[2];
-//		printf("x: %f, y: %f, z:%f, s: %f\n", acc[0], acc[1], acc[2], acc_sum);
-		//puts("----> val: %d", s);
-		if (mpu_detect_shake_running)
-		    detect_shake(acc_sum);
-		if (mpu_detect_face_running)
-		    detect_face_change(acc);
-		xtimer_usleep(100000);
-	}
-
-	printf("mpu handler exited\n");
+printf("mpu handler exited\n");
 }
 
 void detect_shake(float acc_sum_squared){
-        // printf("Acc sum %f", acc_sum_squared);
+        // printf("Acc sum %f\n", acc_sum_squared);
 		if (acc_sum_squared > 200){
 
             int current_time = xtimer_now_usec();
@@ -229,8 +237,7 @@ void handle_face_change(char face){
         default:
             break;
 
-}
-
+    }
 }
 
 int cmd_mpu_init(int argc, char **argv){

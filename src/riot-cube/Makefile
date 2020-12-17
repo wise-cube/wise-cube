@@ -1,71 +1,93 @@
+# General Configuration
+
+# Application name
 APPLICATION = wise-cube
-# If no BOARD is found in the environment, use this default:
+# Default BOARD if it is not overwritten
 BOARD ?= esp8266-esp-12x
-
-# This has to be the absolute path to the RIOT base directory:
+# Default RIOTBASE directoty 
 RIOTBASE ?= $(CURDIR)/../../../../RIOT
-
-# Comment this out to disable code in RIOT that does safety checking
-# which is not needed in a production environment but helps in the
-# development process:
+# Default debug stats
 DEVELHELP ?= 0
-# Change this to 0 show compiler invocation lines by default:
+LOG_LEVEL = LOG_INFO
 QUIET ?= 1
 
-DEBUG=0
-LOG_LEVEL = LOG_INFO
-
-WIFI_SSID ?= "---redacted---"
-WIFI_PASS ?= "---redacted---"
-BROKER_HOST ?= "---redacted---"
-CLIENT_ID ?= "cube_1"
-
-USE_MQTTSN ?= 1
-
-USEMODULE += pn532
-PN532_MODE ?= i2c
+# Debugging tools, set DEBUG to 1 to enable them
+DEBUG?=1
+ifneq (1, $(DEBUG))
+    DEVELHELP ?= 0
+    LOG_LEVEL = LOG_INFO
+    QUIET ?= 1
+endif
 
 
+
+# Generic Board and sensor requirements
 FEATURES_REQUIRED += periph_gpio
 FEATURES_REQUIRED += periph_i2c
-# FEATURES_REQUIRED += periph_spi
-
 USEMODULE += periph_gpio_irq
-USEMODULE += xtimer
+USEMODULE += pn532
+USEMODULE += mpu9150
+USEMODULE += esp_wifi
+# Wifi settings
+WIFI_SSID ?= "---redacted---"
+WIFI_PASS ?= "---redacted---"
 
+# Mqtt/ Mqtt-sn settings
+BROKER_HOST ?= "---redacted---"
+CLIENT_ID ?= "cube_1"
+USE_MQTTSN ?= 1
+# Nfc reader settings
+PN532_MODE = i2c
+# Mpu reader
+
+
+# Utility modules
+USEMODULE += xtimer
 USEMODULE += shell
 USEMODULE += shell_commands
 USEMODULE += ps
 USEMODULE += i2c_scan
-
-USEMODULE += netdev_default
-USEMODULE += mpu9150
-
-USEPKG += jsmn
-USEMODULE += esp_wifi
 USEMODULE += sntp
-# USEMODULE += dns
+# Mpu modules
+USEMODULE += netdev_default
+
+
+# Additional Packages
+USEPKG += jsmn
+
+
+
+
+
 ifneq (1, $(USE_MQTTSN))
    include ./Makefile.paho
 else
 	include ./Makefile.emcute
+  CFLAGS += -DEMCUTE_T_RETRY=5U
+  CFLAGS += -DEMCUTE_N_RETRY=1U
 endif
 
-include $(RIOTBASE)/Makefile.include
 
-ifneq (,$(filter arch_esp,$(FEATURES_USED)))
-  CFLAGS += -DESP_WIFI_SSID=\"$(WIFI_SSID)\"
-  CFLAGS += -DESP_WIFI_PASS=\"$(WIFI_PASS)\"
-  
-endif
 
-ifeq ($(PN532_MODE),i2c)
-  CFLAGS += -DPN532_SUPPORT_I2C
-endif
-ifeq ($(PN532_MODE),spi)
-  CFLAGS += -DPN532_SUPPORT_SPI
-endif
 
+# Define ESP flags
+
+CFLAGS += -DESP_WIFI_SSID=\"$(WIFI_SSID)\"
+CFLAGS += -DESP_WIFI_PASS=\"$(WIFI_PASS)\"
+CFLAGS += -DPN532_SUPPORT_I2C
+
+
+# Define flag USE_MQTT in c when USE_MQTT is true
 ifeq (0, $(USE_MQTT))
   CFLAGS += -DUSE_MQTT
 endif
+
+USEMODULE += cube_led
+
+EXTERNAL_MODULE_DIRS += $(CURDIR)/cube_led
+
+
+
+# Note: For some Reason this import should be done before defining the cflags
+include $(RIOTBASE)/Makefile.include
+

@@ -15,8 +15,6 @@
 #define BLACK 0b000
 #define OFF 0b000
 
-
-
 int led_init(void);
 void led_off(void);
 void led_set_color(int color);

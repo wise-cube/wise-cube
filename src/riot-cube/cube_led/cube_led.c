@@ -7,41 +7,50 @@
               \/      \/
    This file contains the code that handles the led
 */
-#include "led.h"
+#include <stdlib.h>
+#include <log.h>
+#include <periph/gpio.h>
+#include <xtimer.h>
 
-#include "stdlib.h"
-#include "utils.h"
-#include "periph/gpio.h"
+#include "cube_led.h"
 
+#ifndef GPIO_LED_R
+#define GPIO_LED_R 13
+#endif
 
-gpio_t led_r = LED_R_GPIO;
-gpio_t led_g = LED_G_GPIO;
-gpio_t led_b = LED_B_GPIO;
+#ifndef GPIO_LED_G
+#define GPIO_LED_G 14
+#endif
+
+#ifndef GPIO_LED_B
+#define GPIO_LED_B 12  
+#endif
 
 #define BLINK_INTERVAL_USEC  100 * 1000
 #define FLASH_INTERVAL_USEC  1000 * 1000
 #define LONG_FLASH_INTERVAL_USEC  3 *1000 * 1000
 
 int current_color;
+
 int led_init(void){
     int err = 0;
-    err |= gpio_init ( led_r, GPIO_OUT );
-    err |= gpio_init ( led_g, GPIO_OUT );
-    err |= gpio_init ( led_b, GPIO_OUT );
+    err |= gpio_init ( (gpio_t) GPIO_LED_R, GPIO_OUT );
+    err |= gpio_init ( (gpio_t) GPIO_LED_G, GPIO_OUT );
+    err |= gpio_init ( (gpio_t) GPIO_LED_B, GPIO_OUT );
 
     led_burst();
-    wlog_res("Led init", err);
+    LOG_INFO("Led init %d", err);
     return err;
 }
 void led_off(void){
-    gpio_clear(led_r);
-    gpio_clear(led_g);
-    gpio_clear(led_b);
+    gpio_clear(GPIO_LED_R);
+    gpio_clear(GPIO_LED_G);
+    gpio_clear(GPIO_LED_B);
 }
 void led_on(void){
-    gpio_write(led_r, current_color & 0b100);
-    gpio_write(led_g, current_color & 0b010);
-    gpio_write(led_b, current_color & 0b001);
+    gpio_write(GPIO_LED_R, current_color & 0b100);
+    gpio_write(GPIO_LED_G, current_color & 0b010);
+    gpio_write(GPIO_LED_B, current_color & 0b001);
 }
 void led_set_color(int color){
     if (color != current_color){
@@ -84,5 +93,6 @@ void led_burst(void ){
 int cmd_led_burst(int argc, char** argv ){
     led_burst();
     return 0;
+    
 }
 

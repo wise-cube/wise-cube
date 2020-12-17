@@ -1,5 +1,5 @@
 #include "state_updater.h"
-#include "led.h"
+#include "cube_led/cube_led.h"
 #include "mqtt.h"
 #include "utils.h"
 #include "mpu.h"
@@ -21,6 +21,9 @@ sock_udp_ep_t sntp_server = { .port = NTP_PORT, .family = AF_INET6 };
 void set_state(state_t new_state){
     current_state = new_state;
     state_update();
+}
+state_t get_state(void){
+    return current_state ;
 }
 
 void state_update(void){
@@ -62,6 +65,9 @@ void* state_updater_thread_handler(void* data){
     while(true) {
         xtimer_sleep(3);
         state_update_internal();
+        if (get_state() == STATE_DISCONNECTED){
+            con();
+        }
         pub_state();
 
         if (xtimer_now_usec64() - last_ntp_update > 60 * US_PER_SEC){
@@ -89,7 +95,7 @@ int state_updater_init(void) {
     char * status_updater_thread_stack = malloc(THREAD_STACKSIZE_DEFAULT * 2);
     state_updater_pid = thread_create( status_updater_thread_stack,
             THREAD_STACKSIZE_DEFAULT  *2 ,
-            4,
+            24,
             THREAD_CREATE_STACKTEST,
             state_updater_thread_handler ,
             NULL, "state_updater_thread");
