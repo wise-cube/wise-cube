@@ -8,7 +8,7 @@ from common.handlers import GroupHandler
 s = ScopedSession()
 
 game = Blueprint('game', __name__, )
-pages = Blueprint('pages', __name__,)
+# pages = Blueprint('pages', __name__,)
 tables = Blueprint('tables', __name__, template_folder="templates/tables/")
 triggers = Blueprint('triggers', __name__, template_folder="templates/triggers/")
 
@@ -26,43 +26,43 @@ RELATIONS = {
 }
 
 
-# PAGES
-@pages.route('/')
-@pages.route('/home')
-def home_page():
-    groups = ScopedSession.query(Group).all()
-    return render_template('pages/home.html', groups=groups)
+# # PAGES
+# @pages.route('/')
+# @pages.route('/home')
+# def home_page():
+#     groups = ScopedSession.query(Group).all()
+#     return render_template('pages/home.html', groups=groups)
 
 
-@pages.route('/group')
-def group_page():
-    if  g.group.state == GroupStates.INIT:
-        p_rand_name = Player.random_name()
-        p_rand_avatar = Avatar.random()
-        ScopedSession.add(p_rand_avatar)
-        ScopedSession.commit()
-        return render_template('pages/group.html', is_creation=True, p_rand_name=p_rand_name, p_rand_avatar=p_rand_avatar)
+# @pages.route('/group')
+# def group_page():
+#     if  g.group.state == GroupStates.INIT:
+#         p_rand_name = Player.random_name()
+#         p_rand_avatar = Avatar.random()
+#         ScopedSession.add(p_rand_avatar)
+#         ScopedSession.commit()
+#         return render_template('pages/group.html', is_creation=True, p_rand_name=p_rand_name, p_rand_avatar=p_rand_avatar)
 
-    if g.group.state == GroupStates.CREATION or GroupStates.IDLE:
-        g.group.state = GroupStates.IN_GAME
+#     if g.group.state == GroupStates.CREATION or GroupStates.IDLE:
+#         g.group.state = GroupStates.IN_GAME
 
-    if g.group.state == GroupStates.IN_GAME:
-        return render_template('pages/group.html', gi=g.group.curr_game)
+#     if g.group.state == GroupStates.IN_GAME:
+#         return render_template('pages/group.html', gi=g.group.curr_game)
 
-    return render_template('pages/group.html', group=g.group)
-
-
-@pages.route('/debug')
-def debug_page():
-    tables = [(t_name.capitalize(), rel2table(t)) for t_name, t in RELATIONS.items()]
-    return render_template('pages/debug.html', tables=tables)
+#     return render_template('pages/group.html', group=g.group)
 
 
-@pages.route('/game')
-def game_page():
-    ans = ScopedSession.query(Answer).filter(Answer.player == GroupHandler.by_session().get_curr_player(),
-                                             Answer.question == g.group.curr_game.curr_question).first()
-    return render_template('pages/game.html', gi=g.group.curr_game, answer=ans)
+# @pages.route('/debug')
+# def debug_page():
+#     tables = [(t_name.capitalize(), rel2table(t)) for t_name, t in RELATIONS.items()]
+#     return render_template('pages/debug.html', tables=tables)
+
+
+# @pages.route('/game')
+# def game_page():
+#     ans = ScopedSession.query(Answer).filter(Answer.player == GroupHandler.by_session().get_curr_player(),
+#                                              Answer.question == g.group.curr_game.curr_question).first()
+#     return render_template('pages/game.html', gi=g.group.curr_game, answer=ans)
 
 
 # MISC
