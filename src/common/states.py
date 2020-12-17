@@ -14,10 +14,11 @@ class CubeStates(EnumClass):
 
 class GroupStates(EnumClass):
     CREATION = 1
-    IDLE = 2
-    IN_GAME = 3
-    TERMINATED = 4
-    INIT = 5
+    PAIRING = 2
+    IDLE = 3
+    IN_GAME = 4
+    TERMINATED = 5
+    INIT = 6
 
     def describe(self):
         return self.value

@@ -43,8 +43,9 @@ function onMessageArrived(message) {
   console.log("onMessageArrived:"+message.payloadString);
   var msg = JSON.parse(message.payloadString)
   trigger_pub(msg)
+  $('.mqtt-msg').html(message.payloadString)
 }
-
+$('.mqtt-msg').html('no-msg')
 
 function trigger_pub(msg){
 	console.log(msg)

@@ -1,0 +1,22 @@
+<div>
+  Group: 
+  {% if g.group %} 
+    {{ g.group.name }}
+    {{ g.group.id }}
+    {{ g.group.state }}
+    {% if g.group.cube %} 
+      <br>
+      Cube: {{ g.group.cube.id }} 
+      <br>
+      Cube.group_id: {{ g.group.cube.group.id }} 
+    {% endif %}
+  {% else %}
+    None
+  {% endif %}
+  <br>
+  Last Msg:
+  
+  <div class="mqtt-msg">
+
+  </div>
+</div>

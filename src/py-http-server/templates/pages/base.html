@@ -1,34 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Wise Cube</title>
+    <head>
+        <meta charset="UTF-8">
+        <title>Wise Cube</title>
 
-    <script
-        src="//cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"
-        integrity="sha256-yr4fRk/GU1ehYJPAs8P4JlTgu0Hdsp4ZKrx8bDEDC3I="
-        crossorigin="anonymous"></script>
-    <script
-          src="https://code.jquery.com/jquery-3.5.1.min.js"
-          crossorigin="anonymous"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.1/mqttws31.min.js"></script>
+        <script
+            src="//cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"
+            integrity="sha256-yr4fRk/GU1ehYJPAs8P4JlTgu0Hdsp4ZKrx8bDEDC3I="
+            crossorigin="anonymous">
+            </script>
 
+        <script
+            src="https://code.jquery.com/jquery-3.5.1.min.js"
+            crossorigin="anonymous">
+            </script>
 
+        <script 
+            type="text/javascript" 
+            src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.1/mqttws31.min.js">
+            </script>
 
-    <link
-            rel="stylesheet" href="/vendor/bulma.css">
-    <link
-            rel="stylesheet" href="/main.css">
+        <link
+            rel="stylesheet" 
+            href="/vendor/bulma.css">
+        
+        <link
+            rel="stylesheet" 
+            href="/main.css">
 
-</head>
-<body>
-    {% include 'partials/header.htm' %}
+    </head>
+    <body>
+        {% include 'partials/header.htm' %}
+        {% include 'partials/debug_pane.htm' %}
 
-    {% block body %}
-    {% endblock %}
+        {% block body %}
+        {% endblock %}
 
-    {% include 'partials/footer.htm' %}
-</body>
+        {% include 'partials/footer.htm' %}
+    </body>
     <script
         src="/main.js" >
     </script>

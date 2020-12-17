@@ -7,7 +7,8 @@ from os.path import exists
 from os import remove
 from loguru import logger
 
-from routes import tables, pages, triggers, game, misc
+from routes import tables,  triggers, game, misc
+from pages_routes import pages
 from common.handlers import GroupHandler
 
 def db_init():
