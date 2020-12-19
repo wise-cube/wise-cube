@@ -18,12 +18,10 @@
  * @}
  */
 #include "nfc_reader.h"
-#include "utils.h"
-#include "board.h"
 
+#include "board.h"
 #include "pn532.h"
 #include "xtimer.h"
-
 
 #include "log.h"
 
@@ -166,7 +164,7 @@ void* nfc_thread_handler(void* useless)
 
 
 int nfc_init(void) {
-    #ifndef NATIVE
+    #ifndef VIRTUAL
     char * status_updater_thread_stack = malloc(THREAD_STACKSIZE_MAIN);
     int nfc_pid = thread_create( status_updater_thread_stack,
             THREAD_STACKSIZE_MAIN  ,

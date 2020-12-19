@@ -1,23 +1,17 @@
-#ifndef RIOT_CUBE_GLOBALS_H
-#define RIOT_CUBE_GLOBALS_H
+#ifndef CUBE_GLOBALS_H
+#define CUBE_GLOBALS_H
 
 
-#define SUB_TOPIC "/to_cube/1"
-#define PUB_TOPIC "/from_cube/1"
-#define LWT_MSG "{ \"msg_type\" : \"disconnected\" }"
-#define DEFAULT_MQTT_CLIENT_ID "cube_1"
+// #define SUB_TOPIC "/to_cube/1"
+// #define PUB_TOPIC "/from_cube/1"
+// #define LWT_MSG "{ \"msg_type\" : \"disconnected\" }"
+// #define DEFAULT_MQTT_CLIENT_ID "cube_1"
+
+#ifndef BROKER_HOST
+#define BROKER_HOST "::1"
+#endif
 
 #define I2C0_SPEED     I2C_SPEED_FAST
-
-#include <stdio.h>
-#include <string.h>
-#include <stdbool.h>
-#include <stdlib.h>
-#include <thread.h>
-#include "xtimer.h"
-#include "shell.h"
-#include "thread.h"
-#include "mutex.h"
 
 
 // values defined here override default values for GPIOS
@@ -26,7 +20,8 @@
 #define GPIO_LED_G 14
 #define GPIO_LED_B 12  
 
-    
+
+
 // #define I2C0_SPEED     I2C_SPEED_FAST
 // #define I2C0_SDA       GPIO4
 // #define I2C0_SCL       GPIO5

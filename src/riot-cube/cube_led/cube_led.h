@@ -2,8 +2,8 @@
 // Created by di3go on 2020-09-04.
 //
 
-#ifndef RIOT_CUBE_LED_H
-#define RIOT_CUBE_LED_H
+#ifndef CUBE_LED
+#define CUBE_LED
 
 #define RED 0b100
 #define GREEN 0b010
@@ -23,4 +23,4 @@ void led_flash_color(int color);
 void led_burst(void );
 int cmd_led_burst(int argc, char** argv );
 
-#endif //RIOT_CUBE_LED_H
+#endif

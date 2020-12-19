@@ -10,5 +10,5 @@ USEMODULE += gnrc_icmpv6_echo
 ifneq ("",$(CLIENT_ID))
   CFLAGS += -DEMCUTE_ID=\"$(CLIENT_ID)\"
 endif
-CFLAGS += -DGNRC_NETIF_SINGLE
+
 CFLAGS += -DBROKER_HOST=\"$(BROKER_HOST)\"

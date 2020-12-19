@@ -9,11 +9,10 @@
      basically it consist in a thread awaken by an interrupt
 */
 
-#include "periph/gpio.h"
-#include "board.h"
+#include <periph/gpio.h>
+#include <board.h>
+#include <cube_button/cube_button.h>
 
-#include "utils.h"
-#include "buttons.h"
 #include "cube_led/cube_led.h"
 #include "mqtt_wrapper.h"
 

@@ -1,11 +1,10 @@
-#ifndef RIOT_MPU_H
-#define RIOT_MPU_H
+#ifndef CUBE_MPU
+#define CUBE_MPU
 
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "utils.h"
-#include "led.h"
+#include "cube_led.h"
 #include "mpu9x50.h"
 
 #define I2C_INTERFACE I2C_DEV(0)    /* I2C interface number */

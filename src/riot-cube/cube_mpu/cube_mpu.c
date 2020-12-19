@@ -7,8 +7,7 @@
        This file contains the accelerometer code that handles the
        face selection and shake detection
 */
-#include "mpu.h"
-#include "utils.h"
+#include "cube_mpu.h"
 #include "board.h"
 #include "mqtt_wrapper.h"
 #include "log.h"

@@ -2,8 +2,8 @@
 // Created by di3go on 2020-09-04.
 //
 
-#ifndef RIOT_CUBE_BUTTONS_H
-#define RIOT_CUBE_BUTTONS_H
+#ifndef CUBE_BUTTON
+#define CUBE_BUTTON
 
 int buttons_init(void);
 

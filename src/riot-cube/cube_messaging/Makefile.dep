@@ -1,0 +1,5 @@
+
+ifneq (,$(filter cube_core,$(USEMODULE))) # if module in USEMODULE
+  USEMODULE += cube_core                         # add dependencies to USEMODULE
+  USEMODULE += emcute
+endif

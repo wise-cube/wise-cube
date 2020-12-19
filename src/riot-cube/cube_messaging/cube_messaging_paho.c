@@ -1,4 +1,4 @@
-#ifdef USE_MQTT
+#ifdef PAHO
 
 /* paho.c
                  .__
@@ -10,8 +10,7 @@
     paho is the package used to enable mqtt support in riot-os
     available since release 2020.7
 */
-#include "mqtt.h"
-#include "utils.h"
+#include "cube_mqtt.h"
 #include "led.h"
 #include "paho_mqtt.h"
 #include "MQTTClient.h"
@@ -189,3 +188,4 @@ int unsub(char* topic){
 }
 int is_con(void){return mqtt_client.isconnected;}
 #endif
+int PAHO_UNUSED = 1;

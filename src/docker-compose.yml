@@ -1,4 +1,4 @@
-version: '2.4'
+version: '3.4'
 
 networks:
   internal:
@@ -6,29 +6,13 @@ networks:
     # Use a custom driver
     driver: bridge
     internal: true
-  external:
-    name : wise-cube-external
-    # Use a custom driver which takes special options
-    driver: bridge
-    enable_ipv6: true
-    driver_opts:
-      com.docker.network.enable_ipv6: "true"
-    ipam:
-      driver: default
-      config:
-        - subnet: 172.16.238.0/24
-          gateway: 172.16.238.1
-        - subnet: fd11:0011:0011:1100::/64
-          gateway: fd11:11:11:1100:0:0:0:1
-  
 
 services:
   ntp:
     image: cturra/ntp:latest
     container_name: ntp
     restart: always
-    networks: 
-      - external
+
     ports:
       - 123:123/udp
     cap_add:
@@ -41,19 +25,21 @@ services:
   mqtt-broker:
     container_name: emqx-mqtt-broker
     image: emqx/emqx
-
+    cap_add:
+      - SYS_NICE
+      - SYS_RESOURCE
     ports: 
       - 1884:1883
       - 1885:8083 
       - 1886:1886/udp
       - 82:18083
-    
     volumes: 
       - ${PWD}/emqx/conf/plugins/emqx_sn.conf:/opt/emqx/etc/plugins/emqx_sn.conf
       - ${PWD}/emqx/conf/data/loaded_plugins:/opt/emqx/data/loaded_plugins
     networks: 
       - internal
-      - external
+      - default
+ 
 
   http-server:
     build: py-http-server
@@ -65,7 +51,7 @@ services:
       SQLALCHEMY_DATABASE_URI: postgresql+psycopg2://test:test@db/wise-cube
     networks:
       - internal
-      - external
+      - default
     ports:
       - 80:5000
     depends_on:
@@ -106,7 +92,7 @@ services:
       - 1880
     networks:
       - internal
-      - external
+      - default
     volumes:
       - ./node-red/data:/data
     user:
@@ -125,7 +111,6 @@ services:
       - 8086
     networks:
       - internal
-      - external
     
   grafana:
     image: grafana/grafana 
@@ -150,4 +135,4 @@ services:
       - 83:3000
     networks: 
       - internal
-      - external
+      - default
