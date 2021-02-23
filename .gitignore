@@ -12,10 +12,8 @@ venv/
 /src/py-common/__pycache__/
 /src/common/__pycache__/
 /src/py-http-server/__pycache__/
-/src/py-cubes-handler/__pycache__/
-/src/py-mqtt-sample/__pycache__/
 
 /src/riot-cube/bin/*
-
+/src/riot-cube/build/*
 src/riot-cube/.vscode/c_cpp_properties.json
 src/riot-cube/.vscode/settings.json

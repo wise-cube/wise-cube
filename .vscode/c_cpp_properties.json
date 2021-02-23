@@ -1,0 +1,43 @@
+{
+    "configurations": [
+        {
+            "name": "Linux",
+            "includePath": [
+                "/usr/local/lib/riot/core/include",
+                "/usr/local/lib/riot/sys/cpp11-compat/include",
+                "/usr/local/lib/riot/sys/include",
+                "/usr/local/lib/riot/sys/arduino/include",
+                "/usr/local/lib/riot/sys/net/gnrc/transport_layer/tcp/include",
+                "/usr/local/lib/riot/sys/net/gnrc/link_layer/lorawan/include",
+                "/usr/local/lib/riot/sys/net/gnrc/link_layer/gomach/include",
+                "/usr/local/lib/riot/sys/net/gnrc/link_layer/lwmac/include",
+                "/usr/local/lib/riot/sys/net/gnrc/sock/include",
+                "/usr/local/lib/riot/sys/net/gnrc/netif/init_devs/include",
+                "/usr/local/lib/riot/sys/net/link_layer/eui_provider/include",
+                "/usr/local/lib/riot/sys/oneway-malloc/include",
+                "/usr/local/lib/riot/sys/libc/include",
+                "/usr/local/lib/riot/sys/posix/pthread/include",
+                "/usr/local/lib/riot/sys/posix/include",
+                "/usr/local/lib/riot/sys/clif/include",
+                "/usr/local/lib/riot/cpu/esp8266/include",
+                "/usr/local/lib/riot/cpu/esp8266/vendor/esp-idf/bootloader_support/include",
+                "/usr/local/lib/riot/cpu/esp8266/vendor/esp-idf/esp8266/include",
+                "/usr/local/lib/riot/cpu/esp8266/vendor/esp-idf/heap/include",
+                "/usr/local/lib/riot/cpu/esp8266/vendor/esp-idf/log/include",
+                "/usr/local/lib/riot/cpu/esp8266/vendor/esp-idf/wpa_supplicant/port/include",
+                "/usr/local/lib/riot/cpu/esp8266/vendor/esp-idf/wpa_supplicant/include",
+                "/usr/local/lib/riot/build/pkg/lwip/src/include",
+                "/usr/local/lib/riot/dist/tools/coccinelle/include",
+                "/usr/local/lib/riot/build/pkg/paho-mqtt/MQTTClient/src",
+                "/usr/local/lib/riot/build/pkg/paho-mqtt/MQTTClient/src",
+                "/usr/local/lib/riot/build/pkg/paho-mqtt/MQTTPacket/src"
+            ],
+            "defines": [],
+            "compilerPath": "/usr/bin/gcc",
+            "cStandard": "gnu17",
+            "cppStandard": "gnu++14",
+            "intelliSenseMode": "linux-gcc-x64"
+        }
+    ],
+    "version": 4
+}
