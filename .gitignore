@@ -8,6 +8,9 @@
 /src/py-http-server/__pycache__/
 
 /src/riot-cube/bin/*
-/src/riot-cube/build/*
+/src/riot-cube/build/bin/*
 src/riot-cube/.vscode/c_cpp_properties.json
 src/riot-cube/.vscode/settings.json
+.vscode/c_cpp_properties.json
+.vscode/settings.json
+.vscode/c_cpp_properties.json

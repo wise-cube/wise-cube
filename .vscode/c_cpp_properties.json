@@ -28,9 +28,10 @@
                 "/usr/local/lib/riot/cpu/esp8266/vendor/esp-idf/wpa_supplicant/include",
                 "/usr/local/lib/riot/build/pkg/lwip/src/include",
                 "/usr/local/lib/riot/dist/tools/coccinelle/include",
-                "/usr/local/lib/riot/build/pkg/paho-mqtt/MQTTClient/src",
+                "/usr/local/lib/riot/pkg/paho-mqtt/include",
                 "/usr/local/lib/riot/build/pkg/paho-mqtt/MQTTClient/src",
                 "/usr/local/lib/riot/build/pkg/paho-mqtt/MQTTPacket/src"
+                
             ],
             "defines": [],
             "compilerPath": "/usr/bin/gcc",
