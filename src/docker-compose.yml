@@ -1,7 +1,7 @@
 version: '3.0'
 
 networks:
-  internal:
+  ws-internal:
     internal: false
 
 services:
@@ -21,12 +21,25 @@ services:
   mqtt-broker:
     container_name: mqtt-broker
     image: eclipse-mosquitto:latest
-
     ports: 
       - 1883:1883
-    
+    expose:
+      - 1883
     volumes: 
-      - ./mosquitto/mosquitto.conf:/mosquitto/config/mosquitto.conf
+      - ./mqtt/mosquitto.conf:/mosquitto/config/mosquitto.conf
+    networks:
+      - ws-internal 
+
+  mqttsn-gateway:
+    container_name: mqttsn-gateway
+    build: mqtt-sn
+    ports: 
+    - 1885:1885/udp
+    networks:
+      - ws-internal 
+    volumes:
+      - ./mqtt-sn/rsmb.conf:/mqtt/config/rsmb.conf
+
 
   http-server:
     build: py-http-server
@@ -37,7 +50,7 @@ services:
       STAGE: test
       SQLALCHEMY_DATABASE_URI: postgresql+psycopg2://test:test@db/wise-cube
     networks:
-      - internal
+      - ws-internal
     ports:
       - 5000:5000
     depends_on:
@@ -45,7 +58,7 @@ services:
     volumes:
       - ./py-http-server:/src/
       - ./common:/src/common
-    restart: always
+    restart: "no"
 
   postgres-db:
     container_name: postgres-db
@@ -55,7 +68,7 @@ services:
       POSTGRES_PASSWORD: test
       POSTGRES_DB: wise-cube
     networks:
-      - internal
+      - ws-internal
     expose:
       - 5432
     volumes:
@@ -74,7 +87,7 @@ services:
     expose:
       - 1880
     networks:
-      - internal
+      - ws-internal
     volumes:
       - ./node-red/data:/data
 
@@ -88,8 +101,10 @@ services:
     ports:
       - 3000:3000
     networks: 
-      - internal
+      - ws-internal
     volumes:
     - ./node-red/sample.ini:/etc/grafana/grafana.ini
     - ./node-red/postgres.yml:/etc/grafana/provisioning/datasources/postgres.yml
+    restart: "no"
+
 

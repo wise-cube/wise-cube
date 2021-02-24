@@ -33,15 +33,22 @@ endif
 
 
 # Networking ROUTING 
-USEMODULE += netdev_default
-USEMODULE += lwip_netdev
-USEMODULE += lwip
+# USEMODULE += netdev_default
+# USEMODULE += lwip_netdev
+# USEMODULE += lwip
 
 # Networking ROUTING ipv4
-USEMODULE += ipv6_addr
-USEMODULE += lwip_ipv6
-USEMODULE += lwip_ipv6_autoconfig
+# USEMODULE += ipv6_addr
+# USEMODULE += lwip_ipv6
+# USEMODULE += lwip_ipv6_autoconfig
 
+USEMODULE += gnrc_netdev_default
+USEMODULE += auto_init_gnrc_netif
+USEMODULE += gnrc_netif_single
+USEMODULE += gnrc_ipv6
+USEMODULE += gnrc_icmpv6_echo
+
+USEMODULE += gnrc_sock
 # Networking TRANSPORT
 USEMODULE += sock_async_event
 USEMODULE += sock_ip
