@@ -1,39 +1,29 @@
 #include "shell.h"
 #include "commands.h"
-#include "periph_conf.h"
-#include "periph/i2c.h"
+#include "mqtt.h"
 #include "log.h"
 
 enum states{ STARTING, CONNECTING, IDLE, GROUP_CREATION, ANSWERING } current_state;
 
 
 void shell_init(void) {
-    char line_buf[SHELL_DEFAULT_BUFSIZE];
-    // const shell_command_t shell_commands[] =
-    //     {
-    //             { "con",    "connect to MQTT broker",              cmd_con    },
-    //             { "discon", "disconnect from the current broker",  cmd_discon },
-    //             { "pub",    "publish something",                   cmd_pub    },
-    //             { "sub",    "subscribe topic",                     cmd_sub    },
-    //             { "unsub",  "unsubscribe from topic",              cmd_unsub  },
-    //             { "led_burst", "flashes all the color",            cmd_led_burst},
-    //             { "pub_shake", "publish the shake event message",  cmd_pub_shake_event},
-    //             { "pub_answer", "publish answer event message",    cmd_pub_answer_event},
-    //             { "long", 	"button long press",                   cmd_pub_long_press_event},
-    //             { "short", 	"button short press",                  cmd_pub_short_press_event},
-    //             { "mpu_stop", 	"mpu stop",                        cmd_mpu_stop},
-    //             { "mpu_start", 	"mpu start"	,                      cmd_mpu_start},
-    //             { "shake", 	"detect and send shake",               cmd_shake_toggle},
-    //             { "face", 	"detect and send facechange"	,      cmd_face_toggle},
-    //     };
+    char shell_buf[SHELL_DEFAULT_BUFSIZE];
+
     const shell_command_t shell_commands[SHELL_DEFAULT_BUFSIZE] =  { 
             { "con",    "connect to MQTT broker",              cmd_con    },
             { "discon", "disconnect from the current broker",  cmd_discon },
-            { "netif", "Interface manager",              lwip_netif_config},
+            { "connect", "connect to MQTT-SN gateway", cmd_connect },
+            { "disconnect", "disconnect from MQTT-SN gateway", cmd_disconnect },
+            { "reg", "register a given topic", cmd_reg },
+            { "unreg", "remove a topic registration [locally]", cmd_unreg },
+            { "pub", "publish data", cmd_pub },
+            { "sub", "subscribe to topic", cmd_sub },
+            { "unsub", "unsubscribe from topic", cmd_unsub },
+            { "info", "print state information", cmd_info },
             { NULL, NULL, NULL}
         
          };
-    shell_run(shell_commands, line_buf, SHELL_DEFAULT_BUFSIZE);
+    shell_run(shell_commands, shell_buf, SHELL_DEFAULT_BUFSIZE);
 }
 
 void print_info(void){

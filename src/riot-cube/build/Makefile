@@ -1,23 +1,18 @@
 APPLICATION = wise-cube
-
-# If no BOARD is found in the environment, use this default:
 BOARD ?= native 
-# This has to be the absolute path to the RIOT base directory:
 RIOTBASE ?= $(CURDIR)/../../../../RIOT
 
-# Comment this out to disable code in RIOT that does safety checking
-# which is not needed in a production environment but helps in the
-# development process:
+# Debug Stuff
 DEVELHELP ?= 0
-QUIET = 0
-DEBUG = 0
+QUIET = 1
+DEBUG = 1
 LOG_LEVEL = LOG_INFO
 
 # Shell
 USEMODULE += shell
 USEMODULE += shell_commands
 USEMODULE += ps 
-
+WERROR = 0
 
 # Networking PHY
 ifneq (,$(findstring esp,$(BOARD)))
@@ -27,36 +22,23 @@ ifneq (,$(findstring esp,$(BOARD)))
   USEMODULE += esp_wifi
 else
   include Makefile.native.include
-  USEMODULE += netdev_tap
+  
 endif
 
-
-
-# Networking ROUTING 
-# USEMODULE += netdev_default
-# USEMODULE += lwip_netdev
-# USEMODULE += lwip
-
-# Networking ROUTING ipv4
-# USEMODULE += ipv6_addr
-# USEMODULE += lwip_ipv6
-# USEMODULE += lwip_ipv6_autoconfig
-
+# Networking GNRC
 USEMODULE += gnrc_netdev_default
 USEMODULE += auto_init_gnrc_netif
-USEMODULE += gnrc_netif_single
-USEMODULE += gnrc_ipv6
+USEMODULE += gnrc_ipv6_default
 USEMODULE += gnrc_icmpv6_echo
 
-USEMODULE += gnrc_sock
-# Networking TRANSPORT
-USEMODULE += sock_async_event
-USEMODULE += sock_ip
-USEMODULE += sock_udp
-USEMODULE += sock_tcp
+USEMODULE += netstats_ipv6
+USEMODULE += gnrc_udp
+USEMODULE += gnrc_icmpv6_error
+
+
 
 # Mqtt
-USEPKG += paho-mqtt
+USEMODULE += asymcute
 CFLAGS += -DBROKER_HOST=\"$(BROKER_HOST)\"
 CFLAGS += -DBROKER_PORT=$(BROKER_PORT)
 CFLAGS += -DCLIENT_ID=\"$(CUBE_ID)\"
@@ -66,6 +48,7 @@ CFLAGS += -DSUB_TOPIC=\"/from_cube/$(CUBE_ID)\"
 
 # Compiler flags
 CFLAGS += -DBOARD=\"$(BOARD)\"
+
 
 include $(RIOTBASE)/Makefile.include
 

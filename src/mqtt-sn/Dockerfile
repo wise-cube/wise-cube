@@ -1,16 +1,11 @@
-FROM alpine
-MAINTAINER Thomas Kerpe <thomas@kerpe.net>
+FROM alpine:latest
+RUN apk add --update gcc g++ make perl openssl-dev git
+WORKDIR /src
+RUN git clone -b master  https://github.com/eclipse/paho.mqtt-sn.embedded-c   
+WORKDIR paho.mqtt-sn.embedded-c/MQTTSNGateway       
+RUN make SENSORNET=udp6
+RUN make install   
+RUN make clean    
+WORKDIR /src
 
-RUN apk --update add git gcc make musl-dev perl
-RUN mkdir /tmp/src
-WORKDIR  /tmp/src 
-RUN git clone  https://github.com/eclipse/mosquitto.rsmb.git
-WORKDIR /tmp/src/mosquitto.rsmb/rsmb/src 
-RUN make
-RUN cp broker_mqtts  /usr/local/bin/
-
-VOLUME ["/mqtt/config"]
-COPY rsmb.conf /mqtt/config/
-
-
-CMD ["broker_mqtts", "/mqtt/config/rsmb.conf"]
+CMD ["./MQTT-SNGateway",  "-f", "/mqtt/config/paho.conf"]

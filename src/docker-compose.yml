@@ -1,8 +1,5 @@
-version: '3.0'
+version: '2.4'
 
-networks:
-  ws-internal:
-    internal: false
 
 services:
   ntp:
@@ -17,7 +14,9 @@ services:
       - SYS_TIME
     environment:
       - NTP_SERVERS=time.cloudflare.com
-      
+    networks:
+      - ws-internal
+
   mqtt-broker:
     container_name: mqtt-broker
     image: eclipse-mosquitto:latest
@@ -28,17 +27,22 @@ services:
     volumes: 
       - ./mqtt/mosquitto.conf:/mosquitto/config/mosquitto.conf
     networks:
-      - ws-internal 
+      - ws-internal
 
   mqttsn-gateway:
     container_name: mqttsn-gateway
     build: mqtt-sn
     ports: 
-    - 1885:1885/udp
+      - 1885:1885/udp
+    expose: 
+      - 1885/udp
     networks:
-      - ws-internal 
+      ws-internal:
+        ipv6_address: fd83:e1e3:9898:dedf::100
     volumes:
-      - ./mqtt-sn/rsmb.conf:/mqtt/config/rsmb.conf
+      - ./mqtt-sn/paho-ipv6.conf:/mqtt/config/paho.conf
+    
+      
 
 
   http-server:
@@ -108,3 +112,20 @@ services:
     restart: "no"
 
 
+networks:
+  ws-internal:
+    # use the bridge driver, but enable IPv6
+    enable_ipv6: true
+    driver: bridge
+    driver_opts:
+        com.docker.network.bridge.name: bridge-ws
+
+    name: ws-net
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.16.238.0/24
+          gateway: 172.16.238.1
+        - subnet: fd83:e1e3:9898:dedf::/64
+          gateway: fd83:e1e3:9898:dedf::1
+      
