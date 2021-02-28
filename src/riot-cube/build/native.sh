@@ -14,17 +14,30 @@ if [ "0" = "$#" ]
 then 
     echo hola
     sudo $RIOTBASE/dist/tools/tapsetup/tapsetup -c 3 -t $TAP -b $BRIDGE -f
-    BUILD_IN_DOCKER=1  BOARD=native PORT=${TAP}1 make all term  
+    sudo ip link add dev veth-ws0 type veth peer name veth-ws1
+    sudo brctl addif bridge-ws-ext veth-ws1
+    sudo brctl addif bridge-ws veth-ws0
+    sudo ifconfig veth-ws1 up
+    sudo ifconfig veth-ws0 up
+
+
+    BUILD_IN_DOCKER=1  BOARD=native PORT=${TAP}0 make all term  
 
 else
     case "$@" in
         
-        -c)  sudo "$RIOTBASE/dist/tools/tapsetup/tapsetup" -b "$BRIDGE" -f -d
+        -c)  
             BUILD_IN_DOCKER=1  BOARD=native make clean
+            sudo ifconfig veth-ws1 down
+            sudo ifconfig veth-ws0 down
+            sudo brctl delif bridge-ws-ext veth-ws1
+            sudo brctl delif bridge-ws veth-ws0
+
+            sudo "$RIOTBASE/dist/tools/tapsetup/tapsetup" -b "$BRIDGE" -f -d
             break ;;
 
         -r)  
-            BUILD_IN_DOCKER=1  BOARD=native make term
+            BUILD_IN_DOCKER=1  BOARD=native PORT=${TAP}1 make term
             break ;;
 
         *)  echo "unrecognized flag"
