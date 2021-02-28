@@ -60,9 +60,10 @@ int main(void)
 {
     current_state = STARTING;
     print_info();
+    mqtt_init();
     shell_init();
     current_state = CONNECTING;
-    mqtt_init();
+    
     return 0;
 }
 

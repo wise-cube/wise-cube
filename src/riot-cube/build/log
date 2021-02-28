@@ -1,0 +1,67 @@
+Launching build container using image "riot/riotbuild:latest".
+docker run --rm --tty --user $(id -u) -v '/usr/share/zoneinfo/Europe/Rome:/etc/localtime:ro' -v '/usr/local/lib/riot:/data/riotbuild/riotbase:delegated' -e 'RIOTBASE=/data/riotbuild/riotbase' -e 'CCACHE_BASEDIR=/data/riotbuild/riotbase' -e 'BUILD_DIR=/data/riotbuild/riotbase/build' -v '/home/di3go/Desktop/wise-cube:/data/riotbuild/riotproject:delegated' -e 'RIOTPROJECT=/data/riotbuild/riotproject' -e 'RIOTCPU=/data/riotbuild/riotbase/cpu' -e 'RIOTBOARD=/data/riotbuild/riotbase/boards' -e 'RIOTMAKE=/data/riotbuild/riotbase/makefiles'      -e 'BOARD=native'  -w '/data/riotbuild/riotproject/src/riot-cube/build/' 'riot/riotbuild:latest' make     all
+[1;32mBuilding application "wise-cube" for "native" with MCU "native".[0m
+
+"make" -C /data/riotbuild/riotbase/boards/native
+"make" -C /data/riotbuild/riotbase/boards/native/drivers
+"make" -C /data/riotbuild/riotbase/core
+"make" -C /data/riotbuild/riotbase/cpu/native
+"make" -C /data/riotbuild/riotbase/cpu/native/netdev_tap
+"make" -C /data/riotbuild/riotbase/cpu/native/periph
+"make" -C /data/riotbuild/riotbase/cpu/native/stdio_native
+"make" -C /data/riotbuild/riotbase/cpu/native/vfs
+"make" -C /data/riotbuild/riotbase/drivers
+"make" -C /data/riotbuild/riotbase/drivers/netdev_eth
+"make" -C /data/riotbuild/riotbase/drivers/periph_common
+"make" -C /data/riotbuild/riotbase/sys
+"make" -C /data/riotbuild/riotbase/sys/auto_init
+"make" -C /data/riotbuild/riotbase/sys/div
+"make" -C /data/riotbuild/riotbase/sys/event
+"make" -C /data/riotbuild/riotbase/sys/evtimer
+"make" -C /data/riotbuild/riotbase/sys/fmt
+"make" -C /data/riotbuild/riotbase/sys/iolist
+"make" -C /data/riotbuild/riotbase/sys/luid
+"make" -C /data/riotbuild/riotbase/sys/net/application_layer/asymcute
+"make" -C /data/riotbuild/riotbase/sys/net/crosslayer/inet_csum
+"make" -C /data/riotbuild/riotbase/sys/net/gnrc
+"make" -C /data/riotbuild/riotbase/sys/net/gnrc/netapi
+"make" -C /data/riotbuild/riotbase/sys/net/gnrc/netif
+"make" -C /data/riotbuild/riotbase/sys/net/gnrc/netif/ethernet
+"make" -C /data/riotbuild/riotbase/sys/net/gnrc/netif/hdr
+"make" -C /data/riotbuild/riotbase/sys/net/gnrc/netif/init_devs
+"make" -C /data/riotbuild/riotbase/sys/net/gnrc/netreg
+"make" -C /data/riotbuild/riotbase/sys/net/gnrc/network_layer/icmpv6
+"make" -C /data/riotbuild/riotbase/sys/net/gnrc/network_layer/icmpv6/echo
+"make" -C /data/riotbuild/riotbase/sys/net/gnrc/network_layer/ipv6
+"make" -C /data/riotbuild/riotbase/sys/net/gnrc/network_layer/ipv6/hdr
+"make" -C /data/riotbuild/riotbase/sys/net/gnrc/network_layer/ipv6/nib
+"make" -C /data/riotbuild/riotbase/sys/net/gnrc/network_layer/ndp
+"make" -C /data/riotbuild/riotbase/sys/net/gnrc/pkt
+"make" -C /data/riotbuild/riotbase/sys/net/gnrc/pktbuf
+"make" -C /data/riotbuild/riotbase/sys/net/gnrc/pktbuf_static
+"make" -C /data/riotbuild/riotbase/sys/net/gnrc/sock
+"make" -C /data/riotbuild/riotbase/sys/net/gnrc/sock/udp
+"make" -C /data/riotbuild/riotbase/sys/net/gnrc/transport_layer/udp
+"make" -C /data/riotbuild/riotbase/sys/net/link_layer/l2util
+"make" -C /data/riotbuild/riotbase/sys/net/netif
+"make" -C /data/riotbuild/riotbase/sys/net/network_layer/icmpv6
+"make" -C /data/riotbuild/riotbase/sys/net/network_layer/ipv6/addr
+"make" -C /data/riotbuild/riotbase/sys/net/network_layer/ipv6/hdr
+"make" -C /data/riotbuild/riotbase/sys/net/sock
+"make" -C /data/riotbuild/riotbase/sys/net/transport_layer/udp
+"make" -C /data/riotbuild/riotbase/sys/posix/inet
+"make" -C /data/riotbuild/riotbase/sys/ps
+"make" -C /data/riotbuild/riotbase/sys/random
+"make" -C /data/riotbuild/riotbase/sys/random/tinymt32
+"make" -C /data/riotbuild/riotbase/sys/shell
+"make" -C /data/riotbuild/riotbase/sys/shell/commands
+"make" -C /data/riotbuild/riotbase/sys/xtimer
+   text	   data	    bss	    dec	    hex	filename
+ 182273	   1084	 100596	 283953	  45531	/data/riotbuild/riotproject/src/riot-cube/build/bin/native/wise-cube.elf
+/home/di3go/Desktop/wise-cube/src/riot-cube/build/bin/native/wise-cube.elf tap-ws
+RIOT native interrupts/signals initialized.
+LED_RED_OFF
+LED_GREEN_ON
+RIOT native board initialized.
+RIOT native hardware initialization complete.
+
