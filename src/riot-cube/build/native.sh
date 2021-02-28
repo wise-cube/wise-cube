@@ -30,6 +30,9 @@ else
             BUILD_IN_DOCKER=1  BOARD=native make clean
             sudo ifconfig veth-ws1 down
             sudo ifconfig veth-ws0 down
+            sudo ip link del veth-ws1
+            sudo ip link del veth-ws0
+
             sudo brctl delif bridge-ws-ext veth-ws1
             sudo brctl delif bridge-ws veth-ws0
 
